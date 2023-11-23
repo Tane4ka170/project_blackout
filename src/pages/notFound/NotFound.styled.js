@@ -12,7 +12,7 @@ export const StyledNotFoundWrapper = styled.div`
   border: 2px solid white;
   box-shadow: 0px 8px 12px 6px gray;
   h1 {
-    font-weight: 500px;
+    font-weight: 500;
     font-size: 48px;
     text-align: center;
     margin-left: auto;
