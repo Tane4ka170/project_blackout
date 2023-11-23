@@ -8,14 +8,15 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const Categories = () => {
+export const Categories = ({ type = 'incomes' }) => {
   const categories = useSelector(selectCategories);
   const dispatch = useDispatch();
 
   const { register, handleSubmit, reset } = useForm();
 
   const submit = ({ name }) => {
-    dispatch(createCategoryThunk({ name }));
+    const categoryDate = { name, type };
+    dispatch(createCategoryThunk(categoryDate));
     reset();
   };
 
