@@ -3,10 +3,9 @@ const {
   getCategoriesThunk,
   deleteCategoryThunk,
   createCategoryThunk,
-  updateCategoriesThunk,
+  updateCategoryThunk,
 } = require('./operations');
 const { toast } = require('react-toastify');
-const { stat } = require('fs');
 
 const initialState = {
   categories: {
@@ -42,7 +41,7 @@ const categoriesSlice = createSlice({
         state.categories.items.push(payload);
         state.categories.isLoading = false;
       })
-      .addCase(updateCategoriesThunk, (state, { payload }) => {
+      .addCase(updateCategoryThunk, (state, { payload }) => {
         const categoryIndex = state.categories.items.findIndex(
           item => item.id === payload.id
         );
@@ -58,7 +57,7 @@ const categoriesSlice = createSlice({
           getCategoriesThunk.pending,
           deleteCategoryThunk.pending,
           createCategoryThunk.pending,
-          updateCategoriesThunk.pending
+          updateCategoryThunk.pending
         ),
         (state, { payload }) => {
           state.categories.isLoading = true;
@@ -70,7 +69,7 @@ const categoriesSlice = createSlice({
           getCategoriesThunk.rejected,
           deleteCategoryThunk.rejected,
           createCategoryThunk.rejected,
-          updateCategoriesThunk.rejected
+          updateCategoryThunk.rejected
         ),
         (state, { payload }) => {
           state.categories.error = payload;
@@ -79,3 +78,6 @@ const categoriesSlice = createSlice({
       );
   },
 });
+
+export const { setCurrentId } = categoriesSlice.actions;
+export const categoriesReducer = categoriesSlice.reducer;
