@@ -29,7 +29,7 @@ export const updateCategoriesThunk = createAsyncThunk(
   'updateCategories',
   async ({ id, ...body }, thunkApi) => {
     try {
-      const { data } = await expenseApi.patch(`contacts/${id}`, body);
+      const { data } = await expenseApi.patch(`categories/${id}`, body);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -37,11 +37,11 @@ export const updateCategoriesThunk = createAsyncThunk(
   }
 );
 
-export const deleteContactThunk = createAsyncThunk(
-  'deleteContact',
+export const deleteCategoryThunk = createAsyncThunk(
+  'deleteCategory',
   async (id, thunkApi) => {
     try {
-      const { data } = await expenseApi.delete(`contacts/${id}`);
+      const { data } = await expenseApi.delete(`categories/${id}`);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
