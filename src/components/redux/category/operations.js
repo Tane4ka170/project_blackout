@@ -25,7 +25,7 @@ export const getCategoriesThunk = createAsyncThunk(
   }
 );
 
-export const updateCategoriesThunk = createAsyncThunk(
+export const updateCategoryThunk = createAsyncThunk(
   'updateCategories',
   async ({ id, ...body }, thunkApi) => {
     try {
