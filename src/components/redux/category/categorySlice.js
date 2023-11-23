@@ -41,7 +41,7 @@ const categoriesSlice = createSlice({
         state.categories.items.push(payload);
         state.categories.isLoading = false;
       })
-      .addCase(updateCategoryThunk, (state, { payload }) => {
+      .addCase(updateCategoryThunk.fulfilled, (state, { payload }) => {
         const categoryIndex = state.categories.items.findIndex(
           item => item.id === payload.id
         );

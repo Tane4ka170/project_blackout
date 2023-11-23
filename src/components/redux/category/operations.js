@@ -14,7 +14,7 @@ export const createCategoryThunk = createAsyncThunk(
 );
 
 export const getCategoriesThunk = createAsyncThunk(
-  'getAll',
+  'getAllCategories',
   async (_, thunkApi) => {
     try {
       const { data } = await expenseApi.get('categories');
@@ -26,7 +26,7 @@ export const getCategoriesThunk = createAsyncThunk(
 );
 
 export const updateCategoryThunk = createAsyncThunk(
-  'updateCategories',
+  'updateCategory',
   async ({ id, ...body }, thunkApi) => {
     try {
       const { data } = await expenseApi.patch(`categories/${id}`, body);
