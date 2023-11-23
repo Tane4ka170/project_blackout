@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-// import axios from 'axios';
 import { expenseApi, setToken } from '../auth/operations';
 
 export const getCurrentUserThunk = createAsyncThunk(
