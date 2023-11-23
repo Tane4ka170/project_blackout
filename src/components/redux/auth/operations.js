@@ -5,7 +5,7 @@ export const expenseApi = axios.create({
   baseURL: 'https://expense-tracker.b.goit.study/api/',
 });
 
-const setToken = token => {
+export const setToken = token => {
   expenseApi.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 const clearToken = () => {
