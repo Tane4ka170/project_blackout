@@ -13,6 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
 import { userReducer } from './user/userSlice';
 import { transactionReducer } from './transactions/transactionsSlice';
+import { categoriesReducer } from './category/categorySlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -25,6 +26,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     user: userReducer,
     transaction: transactionReducer,
+    categories: categoriesReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
