@@ -1,5 +1,8 @@
 import { OneCategory } from 'components/oneCategory/OneCategory';
-import { deleteCategoryThunk } from 'components/redux/category/operations';
+import {
+  createCategoryThunk,
+  deleteCategoryThunk,
+} from 'components/redux/category/operations';
 import { selectCategories } from 'components/redux/category/selectors';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -10,6 +13,11 @@ export const Categories = () => {
   const dispatch = useDispatch();
 
   const { register, handleSubmit, reset } = useForm();
+
+  const submit = ({ name }) => {
+    dispatch(createCategoryThunk({ name }));
+    reset();
+  };
 
   return (
     <div>
@@ -25,9 +33,13 @@ export const Categories = () => {
           );
         })}
       </ul>
-      <form action="">
+      <form action="" onSubmit={handleSubmit(submit)}>
         <p>New category</p>
-        <input type="text" placeholder="Enter the text" />
+        <input
+          type="text"
+          placeholder="Enter the text"
+          {...register('name', { required: true })}
+        />
         <button>Add</button>
       </form>
     </div>
