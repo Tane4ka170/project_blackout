@@ -10,6 +10,7 @@ import Loader from './loader/Loader';
 import Home from 'pages/Home/Home';
 import Register from 'pages/Register/Register';
 import Login from 'pages/Login/Login';
+import { Categories } from './categories/Categories';
 // const HomePage = lazy(() => import('../pages/Home/Home'));
 // const RegisterPage = lazy(() => import('../pages/Register/Register'));
 // const LoginPage = lazy(() => import('../pages/Login/Login'));
@@ -53,6 +54,7 @@ function App() {
           {/* redirect to home page */}
         </Route>
       </Routes>
+      <Categories />
     </div>
   );
 }

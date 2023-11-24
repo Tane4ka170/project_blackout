@@ -14,8 +14,8 @@ export const Categories = ({ type = 'incomes' }) => {
 
   const { register, handleSubmit, reset } = useForm();
 
-  const submit = ({ name }) => {
-    const categoryDate = { name, type };
+  const submit = ({ categoryName }) => {
+    const categoryDate = { type, categoryName };
     dispatch(createCategoryThunk(categoryDate));
     reset();
   };
@@ -39,7 +39,7 @@ export const Categories = ({ type = 'incomes' }) => {
         <input
           type="text"
           placeholder="Enter the text"
-          {...register('name', { required: true })}
+          {...register('categoryName', { required: true })}
         />
         <button>Add</button>
       </form>
