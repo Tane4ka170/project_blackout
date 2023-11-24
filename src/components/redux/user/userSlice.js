@@ -7,7 +7,11 @@ import {
 } from './operations.js';
 
 const initialState = {
-  user: null,
+  user: {
+    name: '',
+    currency: '',
+    avatar: null,
+  },
   loading: false,
   error: null,
 };
@@ -45,7 +49,7 @@ const userSlice = createSlice({
       })
       .addCase(changeAvatarThunk.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.user.avatar = action.payload;
       })
       .addCase(changeAvatarThunk.rejected, (state, action) => {
         state.loading = false;
@@ -56,7 +60,7 @@ const userSlice = createSlice({
       })
       .addCase(deleteAvatarThunk.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.user.avatar = action.payload;
       })
       .addCase(deleteAvatarThunk.rejected, (state, action) => {
         state.loading = false;
