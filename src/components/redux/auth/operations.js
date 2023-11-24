@@ -53,13 +53,11 @@ export const refreshThunk = createAsyncThunk(
       refreshToken: thunkApi.getState().auth.refreshToken,
       sid: thunkApi.getState().auth.sid,
     };
-
-
-    // if (!savedToken) {
-    //   return thunkApi.rejectWithValue('Token is not exist');
-    // }
+    if (!savedToken) {
+      return thunkApi.rejectWithValue('Token is not exist');
+    }
     try {
-      // setToken(savedToken);
+      setToken(savedToken);
       const { data } = await expenseApi.get('auth/current');
       return data;
     } catch (error) {
