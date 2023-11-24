@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { expenseApi, setToken } from '../auth/operations';
+import { expenseApi } from '../auth/operations';
 
 export const getCurrentUserThunk = createAsyncThunk(
   'getCurrentUser',
