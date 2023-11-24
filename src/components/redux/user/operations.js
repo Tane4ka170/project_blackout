@@ -49,7 +49,7 @@ export const deleteAvatarThunk = createAsyncThunk(
   'deleteAvatar',
   async (avatarId, thunkApi) => {
     try {
-      const { data } = await expenseApi.delete(`users/avatar?${avatarId}`);
+      const { data } = await expenseApi.delete(`users/${avatarId}`);
 
       return data;
     } catch (error) {
