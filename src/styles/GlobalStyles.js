@@ -4,8 +4,6 @@ import fontRegular from '../fonts/SuisseIntl-Regular.ttf';
 import { modernNormalize } from 'styled-normalize';
 
 export const GlobalStyles = createGlobalStyle`
- ${modernNormalize}
-
  @font-face {
   font-family: 'Suisse Intl';
   font-weight: 400 600 700;
