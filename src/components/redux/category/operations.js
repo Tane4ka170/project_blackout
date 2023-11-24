@@ -18,6 +18,7 @@ export const getCategoriesThunk = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const { data } = await expenseApi.get('categories');
+      console.log(data);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -41,9 +42,10 @@ export const deleteCategoryThunk = createAsyncThunk(
   'deleteCategory',
   async (id, thunkApi) => {
     try {
-      const { data } = await expenseApi.delete(`categories/${id}`);
-      return data;
+      await expenseApi.delete(`categories/${id}`);
+      return id;
     } catch (error) {
+      console.log(error);
       return thunkApi.rejectWithValue(error.message);
     }
   }

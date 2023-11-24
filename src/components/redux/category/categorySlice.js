@@ -33,7 +33,7 @@ const categoriesSlice = createSlice({
       })
       .addCase(deleteCategoryThunk.fulfilled, (state, { payload }) => {
         state.categories.items = state.categories.items.filter(
-          item => item.id !== payload.id
+          item => item._id !== payload
         );
         state.categories.isLoading = false;
       })
