@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/project_blackout/static/css/main.7acaea2f.css",
-    "main.js": "/project_blackout/static/js/main.e0206009.js",
+    "main.js": "/project_blackout/static/js/main.69e9f288.js",
     "index.html": "/project_blackout/index.html",
     "main.7acaea2f.css.map": "/project_blackout/static/css/main.7acaea2f.css.map",
-    "main.e0206009.js.map": "/project_blackout/static/js/main.e0206009.js.map"
+    "main.69e9f288.js.map": "/project_blackout/static/js/main.69e9f288.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.e0206009.js"
+    "static/js/main.69e9f288.js"
   ]
 }
