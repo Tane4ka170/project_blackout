@@ -4,17 +4,19 @@ import {
   createCategoryThunk,
   deleteCategoryThunk,
   getCategoriesThunk,
+  updateCategoryThunk,
 } from 'components/redux/category/operations';
 import { selectCategories } from 'components/redux/category/selectors';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const Categories = ({ type = 'incomes' }) => {
   const categories = useSelector(selectCategories);
-  console.log(categories);
-  const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
+
+  const [currentCategory, setCurrentCategory] = useState(null);
 
   const { register, handleSubmit, reset } = useForm();
 
@@ -24,10 +26,21 @@ export const Categories = ({ type = 'incomes' }) => {
     }
   }, [dispatch, isLoggedIn]);
 
+  const editCategory = category => {
+    setCurrentCategory(category);
+    reset({ categoryName: category.categoryName });
+  };
+
   const submit = ({ categoryName }) => {
     const categoryDate = { type, categoryName };
-    dispatch(createCategoryThunk(categoryDate));
+    if (currentCategory) {
+      dispatch(updateCategoryThunk({ id: currentCategory._id, categoryName }));
+      setCurrentCategory(null);
+    } else {
+      dispatch(createCategoryThunk(categoryDate));
+    }
     reset();
+    setCurrentCategory(null);
   };
 
   return (
@@ -43,6 +56,7 @@ export const Categories = ({ type = 'incomes' }) => {
                 deleteCategory={() =>
                   dispatch(deleteCategoryThunk(category._id))
                 }
+                editCategory={() => editCategory(category)}
               />
             );
           })
@@ -51,13 +65,13 @@ export const Categories = ({ type = 'incomes' }) => {
         )}
       </ul>
       <form action="" onSubmit={handleSubmit(submit)}>
-        <p>New category</p>
+        <p>{currentCategory ? 'Edit category' : 'New category'}</p>
         <input
           type="text"
           placeholder="Enter the text"
           {...register('categoryName', { required: true })}
         />
-        <button>Add</button>
+        <button>{currentCategory ? 'Edit' : 'Add'}</button>
       </form>
     </div>
   );

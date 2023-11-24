@@ -18,7 +18,6 @@ export const getCategoriesThunk = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const { data } = await expenseApi.get('categories');
-      console.log(data);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
