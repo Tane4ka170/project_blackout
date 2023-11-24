@@ -4,12 +4,7 @@ import { expenseApi, setToken } from '../auth/operations';
 export const getCurrentUserThunk = createAsyncThunk(
   'getCurrentUser',
   async (_, thunkApi) => {
-    const savedToken = thunkApi.getState().auth.token;
-    if (!savedToken) {
-      return thunkApi.rejectWithValue('Token is not exist');
-    }
     try {
-      setToken(savedToken);
       const { data } = await expenseApi.get('users/current');
       return data;
     } catch (error) {
@@ -21,10 +16,6 @@ export const getCurrentUserThunk = createAsyncThunk(
 export const updateUserInfoThunk = createAsyncThunk(
   'updateUserInfo',
   async (userData, thunkApi) => {
-    const savedToken = thunkApi.getState().auth.token;
-    if (!savedToken) {
-      return thunkApi.rejectWithValue('Token is not exist');
-    }
     try {
       const { data } = await expenseApi.patch('users/info', userData);
       return data;
@@ -37,10 +28,6 @@ export const updateUserInfoThunk = createAsyncThunk(
 export const changeAvatarThunk = createAsyncThunk(
   'changeAvatar',
   async (avatarFile, thunkApi) => {
-    const savedToken = thunkApi.getState().auth.token;
-    if (!savedToken) {
-      return thunkApi.rejectWithValue('Token is not exist');
-    }
     try {
       const formData = new FormData();
       formData.append('avatar', avatarFile);
@@ -61,10 +48,6 @@ export const changeAvatarThunk = createAsyncThunk(
 export const deleteAvatarThunk = createAsyncThunk(
   'deleteAvatar',
   async (avatarId, thunkApi) => {
-    const savedToken = thunkApi.getState().auth.token;
-    if (!savedToken) {
-      return thunkApi.rejectWithValue('Token is not exist');
-    }
     try {
       const { data } = await expenseApi.delete(`users/avatar?${avatarId}`);
 
