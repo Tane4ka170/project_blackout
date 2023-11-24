@@ -17,7 +17,6 @@ export const registerThunk = createAsyncThunk(
   async (credential, thunkApi) => {
     try {
       const { data } = await expenseApi.post('auth/register', credential);
-      setToken(data.token);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -30,7 +29,7 @@ export const loginThunk = createAsyncThunk(
   async (credential, thunkApi) => {
     try {
       const { data } = await expenseApi.post('auth/login', credential);
-      setToken(data.token);
+      setToken(data.accessToken);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -55,11 +54,12 @@ export const refreshThunk = createAsyncThunk(
       sid: thunkApi.getState().auth.sid,
     };
 
-    if (!savedToken) {
-      return thunkApi.rejectWithValue('Token is not exist');
-    }
+
+    // if (!savedToken) {
+    //   return thunkApi.rejectWithValue('Token is not exist');
+    // }
     try {
-      setToken(savedToken);
+      // setToken(savedToken);
       const { data } = await expenseApi.get('auth/current');
       return data;
     } catch (error) {
