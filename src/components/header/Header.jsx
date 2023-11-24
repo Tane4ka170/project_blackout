@@ -4,17 +4,31 @@ import {
   HeaderStyled,
   MenuBtn,
   SiteIcon,
-  StyledMenu,
+  MobileMenu,
+  CloseBtn,
+  MenuHeader,
+  ProfileBtn,
+  UserArrowDown,
+  MenuMain,
 } from './headerStyled';
 import Symbols from 'images/svg/Symbols';
 
 const Header = () => {
-  const [menuOpenState, setMenuOpenState] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [hideOrShow, setHideOrShow] = useState({});
 
-  const toggleMenu = () => {
-    setMenuOpenState(!menuOpenState);
+  const handleMenu = () => {
+    setIsOpen(prev => !prev);
+    if (isOpen) {
+      setHideOrShow(() => {
+        return {};
+      });
+    } else {
+      setHideOrShow(() => {
+        return { display: 'flex' };
+      });
+    }
   };
-
   return (
     <HeaderStyled>
       <HeaderLink to="/">
@@ -26,29 +40,33 @@ const Header = () => {
         </SiteIcon>
         ExpenseTracker
       </HeaderLink>
-      <MenuBtn type="button" onClick={toggleMenu}>
+
+      <MenuBtn type="button" onClick={handleMenu}>
         <svg width={36} height={36}>
           <use xlinkHref="#icon-burger-menu" />
         </svg>
       </MenuBtn>
-      <div id="outer-container">
-        <StyledMenu
-          pageWrapId={'page-wrap'}
-          outerContainerId={'outer-container'}
-          isOpen={menuOpenState}
-          onStateChange={state => setMenuOpenState(state.isOpen)}
-        >
-          <main id="page-wrap">
-            <div>
-              <Symbols />
-              <svg width={36} height={36}>
-                <use xlinkHref="#user-sign-down" />
-              </svg>
-            </div>
-            <button>X</button>
-          </main>
-        </StyledMenu>
-      </div>
+      <MobileMenu style={hideOrShow}>
+        <MenuHeader>
+          <ProfileBtn>
+            <img alt="Alex" />
+            <p>Alex Rybachok</p>
+            <UserArrowDown width={30} height={30}>
+              <use xlinkHref="#icon-user-sign-down" />
+            </UserArrowDown>
+          </ProfileBtn>
+          <CloseBtn onClick={handleMenu}>
+            <svg width={30} height={30}>
+              <use xlinkHref="#icon-close" />
+            </svg>
+          </CloseBtn>
+        </MenuHeader>
+        <MenuMain>
+          <button>All Expense</button>
+          <button>All Income</button>
+        </MenuMain>
+        <div></div>
+      </MobileMenu>
     </HeaderStyled>
   );
 };
