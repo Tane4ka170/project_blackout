@@ -3,11 +3,18 @@ import fontBold from '../fonts/Suisse-Intl-Bold.ttf';
 import fontRegular from '../fonts/SuisseIntl-Regular.ttf';
 
 export const GlobalStyles = createGlobalStyle`
- @font-face {
-  font-family: 'Suisse Intl';
-  font-weight: 400 600 700;
-  src: url(${fontBold},url(${fontRegular}) ;
+@font-face {
+    font-family: 'Suisse Intl';
+    font-weight: 400;
+    src: url(${fontRegular}) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Suisse Intl';
+    font-weight: 700;
+    src: url(${fontBold}) format('truetype');
 }
+
 body{
 font-family: 'Suisse Intl', sans-serif;
 }
