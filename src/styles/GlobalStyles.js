@@ -6,7 +6,7 @@ export const GlobalStyles = createGlobalStyle`
  @font-face {
   font-family: 'Suisse Intl';
   font-weight: 400 600 700;
-  src: url(${fontBold}),url(${fontRegular}) ;
+  src: url(${fontBold},url(${fontRegular}) ;
 }
 body{
 font-family: 'Suisse Intl', sans-serif;
