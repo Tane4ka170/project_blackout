@@ -48,6 +48,7 @@ button {
   cursor: pointer;
   border: none;
   color: inherit;
+  padding: 0;
 }
 
 img {
