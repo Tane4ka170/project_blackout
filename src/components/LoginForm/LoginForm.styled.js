@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+// import { Input } from 'antd';
 
 export const Form = styled.form`
   display: flex;
@@ -30,4 +31,29 @@ export const Button = styled.button`
 export const Text = styled.p`
   /* padding: 10px 20px; */
   margin-bottom: 15px;
+`;
+export const RememberBox = styled.span`
+  color: rgba(250, 250, 250, 0.4);
+`;
+export const LogIn = styled.button`
+  display: flex;
+  padding: 14px 44px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 40px;
+  border: 1px solid rgba(250, 250, 250, 0.4);
+  color: #fafafa;
+  font-family: Suisse Intl;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.32px;
+  text-decoration: none;
+  background: #0c0d0d;
+  &:hover {
+    border-radius: 40px;
+    border: 1px solid #0ef387;
+  }
 `;

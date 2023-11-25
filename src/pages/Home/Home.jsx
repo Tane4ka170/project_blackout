@@ -4,8 +4,11 @@
 import LoginForm from 'components/LoginForm/LoginForm';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
 import { NavLink } from 'react-router-dom/dist';
-import { Content, ContentUsers, H1, H2, H2span, H3, Links, SignUp, Text, WrapBtn, Wrapper } from './Home.styled';
+import { Avatar, Content, ContentInfo, ContentUsers, First, H1, H2, H2span, H3, ImagePack, Links, Second, SignUp, Text, TextDown, Third, WrapBtn, Wrapper } from './Home.styled';
 import homeimg from '../../images/home/Rectangle 1.png'
+import first from '../../images/home/first.jpg'
+import second from '../../images/home/second.png'
+import third from '../../images/home/third.png'
 
 
 
@@ -25,8 +28,15 @@ const Home = () => (
         </WrapBtn>
       </Content>
       <ContentUsers>
-        <H3>1000 users +</H3>
-        <Text>Trusted by users for reliable expense tracking!</Text>
+        <ImagePack>
+          <First><Avatar src={first} width="48px" height="48px" alt="" /></First>
+          <Second><Avatar src={second} width="48px" height="48px" alt="" /></Second>
+          <Third><Avatar src={third} width="48px" height="48px" alt="" /></Third>
+        </ImagePack>
+        <ContentInfo>
+          <H3>1000 users +</H3>
+          <TextDown>Trusted by users for reliable expense tracking!</TextDown>
+        </ContentInfo>
       </ContentUsers>
     </div>
   </Wrapper>

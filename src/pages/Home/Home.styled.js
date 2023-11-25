@@ -9,6 +9,19 @@ export const Text = styled.p`
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.32px;
+  margin: 0;
+  margin-bottom: 40px;
+  max-width: 533px;
+`;
+export const TextDown = styled.p`
+  color: rgba(250, 250, 250, 0.4);
+  font-family: Suisse Intl;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.32px;
+  margin: 0;
 `;
 export const H1 = styled.h1`
   color: rgba(250, 250, 250, 0.4);
@@ -50,12 +63,14 @@ export const H3 = styled.h3`
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.56px;
+  margin: 0;
 `;
 export const WrapBtn = styled.div`
   display: flex;
   flex-direction: row;
   gap: 20px;
-  margin-top: 40px;
+
+  margin-bottom: 166px;
 `;
 export const Content = styled.div`
   padding-left: 54px;
@@ -64,6 +79,46 @@ export const Content = styled.div`
 export const ContentUsers = styled.div`
   padding-left: 54px;
   padding-right: 100px;
+  display: flex;
+  flex-direction: row;
+`;
+export const Avatar = styled.img`
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 40px;
+  border: 2px solid #11101c;
+  background: var(
+    --avatar-user-square-fleur-cook-neutral-background,
+    url(<path-to-image>),
+    lightgray 50% / cover no-repeat,
+    #e0e0e0
+  );
+`;
+
+export const First = styled.div`
+  position: relative;
+  z-index: 3;
+`;
+export const Second = styled.div`
+  position: relative;
+  left: -10px;
+  z-index: 2;
+`;
+export const Third = styled.div`
+  position: relative;
+  left: -20px;
+  z-index: 1;
+`;
+export const ContentInfo = styled.div`
+  margin-left: 12px;
+  width: 210px;
+  display: flex;
+  flex-direction: column;
+`;
+export const ImagePack = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 export const Wrapper = styled.div`
   padding: 74px 100px 100px 100px;
