@@ -55,7 +55,7 @@ function App() {
           {/* <Route path="*" element={<Navigate to="/" />} />{' '} */}
           {/* redirect to home page */}
         </Route>
-        <Route path="*" element={<NotFound />}></Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Categories />
     </div>
