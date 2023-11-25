@@ -11,7 +11,10 @@ import Home from 'pages/Home/Home';
 import Register from 'pages/Register/Register';
 import Login from 'pages/Login/Login';
 import { Categories } from './categories/Categories';
-import NotFound from 'pages/NotFoundPage/NotFound';
+
+import NotFound from 'pages/notFound/NotFound';
+import { Expense } from 'pages/Expense/Expense';
+import { Income } from 'pages/Income/Income';
 
 // const HomePage = lazy(() => import('../pages/Home/Home'));
 // const RegisterPage = lazy(() => import('../pages/Register/Register'));
@@ -32,6 +35,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="/expenses" element={<Expense />} />
+          <Route path="/incomes" element={<Income />} />
           <Route
             path="register"
             element={
