@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/project_blackout/static/css/main.5e4ffa51.css",
-    "main.js": "/project_blackout/static/js/main.389cc6cd.js",
+    "main.js": "/project_blackout/static/js/main.baecc171.js",
     "static/media/Rectangle 1.png": "/project_blackout/static/media/Rectangle 1.7b8413bdbd40263d05fd.png",
     "static/media/SuisseIntl-Regular.ttf": "/project_blackout/static/media/SuisseIntl-Regular.7ea99720633194a9e3c4.ttf",
     "static/media/Suisse-Intl-Bold.ttf": "/project_blackout/static/media/Suisse-Intl-Bold.6e9941f2a44c1939c4ef.ttf",
@@ -13,10 +13,10 @@
     "index.html": "/project_blackout/index.html",
     "static/media/eye.svg": "/project_blackout/static/media/eye.eeff295c23781fcaf0988e367a1f8870.svg",
     "main.5e4ffa51.css.map": "/project_blackout/static/css/main.5e4ffa51.css.map",
-    "main.389cc6cd.js.map": "/project_blackout/static/js/main.389cc6cd.js.map"
+    "main.baecc171.js.map": "/project_blackout/static/js/main.baecc171.js.map"
   },
   "entrypoints": [
     "static/css/main.5e4ffa51.css",
-    "static/js/main.389cc6cd.js"
+    "static/js/main.baecc171.js"
   ]
 }
