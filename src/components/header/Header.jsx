@@ -26,18 +26,13 @@ import {
 } from './headerStyled';
 import Symbols from 'images/svg/Symbols';
 import { useSelector } from 'react-redux';
-import { selectIsLoggedIn, selectUser } from 'components/redux/auth/selectors';
+import { selectIsLoggedIn } from 'components/redux/auth/selectors';
+import { selectUser } from 'components/redux/user/selectors';
 
 const Header = () => {
+  const { name, avatar } = useSelector(selectUser);
+
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  let name, avatar;
-  const user = useSelector(selectUser);
-
-  if (isLoggedIn) {
-    name = user.name;
-    avatar = user.avatar;
-  }
-
   const [isOpen, setIsOpen] = useState(false);
   const [hideOrShow, setHideOrShow] = useState({});
   const [hideOrShowList, setHideOrShowList] = useState({});
