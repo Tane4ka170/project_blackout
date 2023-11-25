@@ -9,8 +9,8 @@ export const StyledNotFoundWrapper = styled.div`
   padding: 50px;
   background-color: transparent;
   border-radius: 6px;
-  border: 2px solid white;
-  box-shadow: 0px 2px 6px 4px gray;
+  border: 1px solid white;
+  box-shadow: 0px 2px 4px 2px gray;
   h1 {
     font-size: 48px;
     text-align: center;
