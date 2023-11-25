@@ -23,6 +23,7 @@ import {
 } from './StyledCategories';
 // import { useParams } from 'react-router';
 import { toast } from 'react-toastify';
+import { motion } from 'framer-motion';
 
 export const Categories = ({ type = 'incomes' }) => {
   const categories = useSelector(selectCategories);
@@ -104,22 +105,28 @@ export const Categories = ({ type = 'incomes' }) => {
           <CategoriesPlugP>There are no categories yet😭</CategoriesPlugP>
         )}
       </CategoriesList>
-      <SubmitForm action="" onSubmit={handleSubmit(submit)}>
-        <InputTitleP>
-          {currentCategory ? 'Edit category' : 'New category'}
-        </InputTitleP>
-        <StyledInput
-          type="text"
-          placeholder="Enter the text"
-          {...register('categoryName', { required: true, maxLength: 30 })}
-        />
-        <button>{currentCategory ? 'Edit' : 'Add'}</button>
-      </SubmitForm>
-      {errors?.categoryName && (
-        <StyledErrorP>
-          Max length of category name is 16 or less symbols
-        </StyledErrorP>
-      )}
+      <motion.div
+        initial={{ y: '100%' }}
+        animate={{ y: 0 }}
+        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+      >
+        <SubmitForm action="" onSubmit={handleSubmit(submit)}>
+          <InputTitleP>
+            {currentCategory ? 'Edit category' : 'New category'}
+          </InputTitleP>
+          <StyledInput
+            type="text"
+            placeholder="Enter the text"
+            {...register('categoryName', { required: true, maxLength: 30 })}
+          />
+          <button>{currentCategory ? 'Edit' : 'Add'}</button>
+        </SubmitForm>
+        {errors?.categoryName && (
+          <StyledErrorP>
+            Max length of category name is 16 or less symbols
+          </StyledErrorP>
+        )}
+      </motion.div>
     </CategoriesDiv>
   );
 };
