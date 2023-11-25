@@ -39,6 +39,7 @@ const Modal = ({ children, closeModal }) => {
     rootModal
   );
 };
+console.log(Modal);
 
 // export default Modal;
 
