@@ -44,7 +44,6 @@ export const deleteCategoryThunk = createAsyncThunk(
       await expenseApi.delete(`categories/${id}`);
       return id;
     } catch (error) {
-      console.log(error);
       return thunkApi.rejectWithValue(error.message);
     }
   }
