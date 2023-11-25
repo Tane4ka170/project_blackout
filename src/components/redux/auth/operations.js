@@ -40,7 +40,7 @@ export const loginThunk = createAsyncThunk(
 
 export const logoutThunk = createAsyncThunk('logout', async (_, thunkApi) => {
   try {
-    await expenseApi.post('auth/logout');
+    await expenseApi.get('auth/logout');
     clearToken();
   } catch (error) {
     return thunkApi.rejectWithValue(error.message);
@@ -59,8 +59,8 @@ export const refreshThunk = createAsyncThunk(
     }
     try {
       setToken(refreshData.refreshToken);
-      const { data } = await expenseApi.get('auth/current', {
-        params: { sid: refreshData.sid },
+      const { data } = await expenseApi.post('auth/refresh', {
+        sid: refreshData.sid,
       });
       setToken(data.accessToken);
       thunkApi.dispatch(getCurrentUserThunk());
