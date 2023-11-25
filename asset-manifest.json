@@ -1,14 +1,13 @@
 {
   "files": {
-    "main.js": "/project_blackout/static/js/main.5a3dcc62.js",
+    "main.js": "/project_blackout/static/js/main.c1c742c9.js",
     "static/media/SuisseIntl-Regular.ttf": "/project_blackout/static/media/SuisseIntl-Regular.7ea99720633194a9e3c4.ttf",
     "static/media/Suisse-Intl-Bold.ttf": "/project_blackout/static/media/Suisse-Intl-Bold.6e9941f2a44c1939c4ef.ttf",
     "static/media/404-page-not-found.png": "/project_blackout/static/media/404-page-not-found.9d370afd7b49866c0dd7.png",
     "index.html": "/project_blackout/index.html",
-    "static/media/fakeImage.webp": "/project_blackout/static/media/fakeImage.20a4b99e9e2154884c36.webp",
-    "main.5a3dcc62.js.map": "/project_blackout/static/js/main.5a3dcc62.js.map"
+    "main.c1c742c9.js.map": "/project_blackout/static/js/main.c1c742c9.js.map"
   },
   "entrypoints": [
-    "static/js/main.5a3dcc62.js"
+    "static/js/main.c1c742c9.js"
   ]
 }
