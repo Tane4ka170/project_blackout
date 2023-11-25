@@ -44,7 +44,7 @@ export const Categories = ({ type = 'incomes' }) => {
     const categoryDate = { type, categoryName };
     if (currentCategory) {
       dispatch(updateCategoryThunk({ id: currentCategory._id, categoryName }));
-      reset();
+      reset({ categoryName: '' });
     } else {
       dispatch(createCategoryThunk(categoryDate));
       reset();
