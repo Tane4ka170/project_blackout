@@ -49,6 +49,7 @@ export const CategoriesPlugP = styled.p`
   font-size: 20px;
   font-style: normal;
   line-height: normal;
+  margin-left: 40px;
 `;
 
 export const SubmitForm = styled.form`

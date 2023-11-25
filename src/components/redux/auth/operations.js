@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { getCurrentUserThunk } from '../user/operations';
 
 export const expenseApi = axios.create({
   baseURL: 'https://expense-tracker.b.goit.study/api/',
@@ -49,16 +50,20 @@ export const logoutThunk = createAsyncThunk('logout', async (_, thunkApi) => {
 export const refreshThunk = createAsyncThunk(
   'auth/refresh',
   async (_, thunkApi) => {
-    const savedToken = {
+    const refreshData = {
       refreshToken: thunkApi.getState().auth.refreshToken,
       sid: thunkApi.getState().auth.sid,
     };
-    if (!savedToken) {
+    if (!refreshData.refreshToken) {
       return thunkApi.rejectWithValue('Token is not exist');
     }
     try {
-      setToken(savedToken);
-      const { data } = await expenseApi.get('auth/current');
+      setToken(refreshData.refreshToken);
+      const { data } = await expenseApi.get('auth/current', {
+        params: { sid: refreshData.sid },
+      });
+      setToken(data.accessToken);
+      thunkApi.dispatch(getCurrentUserThunk());
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
