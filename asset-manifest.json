@@ -1,16 +1,22 @@
 {
   "files": {
-    "main.css": "/project_blackout/static/css/main.98ec47ca.css",
-    "main.js": "/project_blackout/static/js/main.5aca075d.js",
+    "main.css": "/project_blackout/static/css/main.5e4ffa51.css",
+    "main.js": "/project_blackout/static/js/main.bc6be164.js",
+    "static/media/Rectangle 1.png": "/project_blackout/static/media/Rectangle 1.7b8413bdbd40263d05fd.png",
     "static/media/SuisseIntl-Regular.ttf": "/project_blackout/static/media/SuisseIntl-Regular.7ea99720633194a9e3c4.ttf",
     "static/media/Suisse-Intl-Bold.ttf": "/project_blackout/static/media/Suisse-Intl-Bold.6e9941f2a44c1939c4ef.ttf",
+    "static/media/second.png": "/project_blackout/static/media/second.d49e4dd24ce300368ed6.png",
+    "static/media/third.png": "/project_blackout/static/media/third.45f625c7c00330a16ba6.png",
+    "static/media/first.jpg": "/project_blackout/static/media/first.6a7263ac361b1adf5849.jpg",
     "static/media/404-page-not-found.png": "/project_blackout/static/media/404-page-not-found.9d370afd7b49866c0dd7.png",
+    "static/media/eye-off.svg": "/project_blackout/static/media/eye-off.7d3eaa07c5a4b3b2aa092dfc4359d832.svg",
     "index.html": "/project_blackout/index.html",
-    "main.98ec47ca.css.map": "/project_blackout/static/css/main.98ec47ca.css.map",
-    "main.5aca075d.js.map": "/project_blackout/static/js/main.5aca075d.js.map"
+    "static/media/eye.svg": "/project_blackout/static/media/eye.eeff295c23781fcaf0988e367a1f8870.svg",
+    "main.5e4ffa51.css.map": "/project_blackout/static/css/main.5e4ffa51.css.map",
+    "main.bc6be164.js.map": "/project_blackout/static/js/main.bc6be164.js.map"
   },
   "entrypoints": [
-    "static/css/main.98ec47ca.css",
-    "static/js/main.5aca075d.js"
+    "static/css/main.5e4ffa51.css",
+    "static/js/main.bc6be164.js"
   ]
 }
