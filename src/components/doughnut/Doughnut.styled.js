@@ -47,6 +47,7 @@ export const ListWrapper = styled.div`
 
   overflow-x: hidden;
   overflow-y: auto;
+  scroll-behavior: smooth;
   scrollbar-color: #444446 #0c0d0d;
 
   & ::-webkit-scrollbar-thumb {
@@ -72,8 +73,8 @@ export const ItemStyled = styled.li`
   padding-left: 8px;
 
   & ::before {
-    content: '•'; /* Задати бажаний символ для маркера */
-    color: red; /* Змінити колір маркера */
+    content: '•';
+    color: ${props => props.color || 'black'};
     font-size: 30px; /* Задати розмір маркера */
     position: absolute;
     top: -10px;

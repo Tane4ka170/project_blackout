@@ -15,22 +15,6 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const colors = ['#0EBB69', '#0EF387', '#FAFAFA', 'rgba(250, 250, 250, 0.20)'];
 
-const textCenter = {
-  id: 'textCenter',
-  beforeDatasetDraw(chart, args, pluginOptions) {
-    const { ctx, data } = chart;
-    const xCenter = chart.getDatasetMeta(0).data[0].x;
-    const yCenter = chart.getDatasetMeta(0).data[0].y;
-
-    ctx.save();
-    ctx.font = '54px';
-    ctx.textAlign = 'center';
-    ctx.fillStyle = '#FAFAFA';
-    ctx.textBaseline = 'bottom';
-    ctx.fillText('100%', xCenter, yCenter);
-  },
-};
-
 const chartOptions = {
   hoverOffset: [30],
   rotation: [-90],
@@ -43,6 +27,27 @@ const chartOptions = {
 const DoughnutComponent = () => {
   const listRef = useRef(null);
   const [selectedItem, setSelectedItem] = useState(null);
+
+  const textCenter = {
+    id: 'textCenter',
+    beforeDatasetDraw(chart, args, pluginOptions) {
+      const { ctx, data } = chart;
+      const xCenter = chart.getDatasetMeta(0).data[0].x;
+      const yCenter = chart.getDatasetMeta(0).data[0].y;
+
+      ctx.save();
+      ctx.font = '54px';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#FAFAFA';
+      ctx.textBaseline = 'bottom';
+
+      const displayText = selectedItem
+        ? `${selectedItem.number}%`
+        : 'Ваш текст';
+      ctx.fillText(`${displayText}%`, xCenter, yCenter);
+    },
+  };
+
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [
@@ -54,6 +59,7 @@ const DoughnutComponent = () => {
       },
     ],
   });
+
   const [items, setItems] = useState([
     {
       name: 'Хобі1',
@@ -80,11 +86,16 @@ const DoughnutComponent = () => {
       // Оновлюємо вибраний елемент
       setSelectedItem(items[index]);
 
-      if (listRef.current && listRef.current.children[index]) {
-        listRef.current.children[index].scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-        });
+      if (listRef.current) {
+        const listItem = listRef.current.querySelector(`[data-id="${index}"]`);
+
+        if (listItem) {
+          listItem.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'center',
+          });
+        }
       }
     }
   };
@@ -135,15 +146,11 @@ const DoughnutComponent = () => {
         </DoughnutWrapper>
         <ListWrapper ref={listRef}>
           <ListStyled>
-            {items?.map(item => (
+            {items?.map((item, index) => (
               <ItemStyled
+                data-id={index}
                 key={item.id}
-                style={{
-                  backgroundColor:
-                    selectedItem && selectedItem.id === item.id
-                      ? 'yellow'
-                      : 'white',
-                }}
+                color={chartData.datasets[0]?.backgroundColor[index]}
               >
                 <p>{item.name}</p>
                 <p>{item.number}%</p>
@@ -151,7 +158,9 @@ const DoughnutComponent = () => {
             ))}
           </ListStyled>
         </ListWrapper>
-        <button onClick={addDataPoint}>Додати дані</button>
+        <button data-id={items.length} onClick={addDataPoint}>
+          Додати дані
+        </button>
       </MainWrapper>
     </Wrapper>
   );
