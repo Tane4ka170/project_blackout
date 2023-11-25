@@ -24,6 +24,8 @@ import {
 // import { useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { schemaCategoryInput } from 'helpers/schemas';
 
 export const Categories = ({ type = 'incomes' }) => {
   const categories = useSelector(selectCategories);
@@ -40,7 +42,7 @@ export const Categories = ({ type = 'incomes' }) => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({ resolver: yupResolver(schemaCategoryInput) });
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -133,9 +135,7 @@ export const Categories = ({ type = 'incomes' }) => {
           <button>{isEditing ? 'Edit' : 'Add'}</button>
         </SubmitForm>
         {errors?.categoryName && (
-          <StyledErrorP>
-            Max length of category name is 16 or less symbols
-          </StyledErrorP>
+          <StyledErrorP>{errors.categoryName.message}</StyledErrorP>
         )}
       </motion.div>
     </CategoriesDiv>
