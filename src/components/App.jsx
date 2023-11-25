@@ -12,7 +12,7 @@ import Register from 'pages/Register/Register';
 import Login from 'pages/Login/Login';
 import { Categories } from './categories/Categories';
 
-import NotFound from 'pages/notFound/NotFound';
+import NotFound from 'pages/NotFoundPage/NotFound';
 import { Expense } from 'pages/Expense/Expense';
 import { Income } from 'pages/Income/Income';
 
