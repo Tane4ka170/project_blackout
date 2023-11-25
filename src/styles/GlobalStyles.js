@@ -17,6 +17,7 @@ export const GlobalStyles = createGlobalStyle`
 
 body{
 font-family: 'Suisse Intl', sans-serif;
+background-color: #0C0D0D;
 }
 
 h1,
