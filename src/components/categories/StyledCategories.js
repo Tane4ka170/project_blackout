@@ -1,25 +1,42 @@
 import styled from 'styled-components';
 
 export const CategoriesDiv = styled.div`
+  @media (max-width: 767px) {
+    max-width: 335px;
+    max-height: 400px;
+  }
+
   width: 500px;
   max-height: 461px;
   border-radius: 30px;
   border: 1px solid rgba(250, 250, 250, 0.1);
   background: #171719;
   padding: 40px 0;
+  position: relative;
 `;
 
 export const TransactionType = styled.h2`
+  @media (max-width: 767px) {
+    font-size: 24px;
+    margin-left: 20px;
+  }
+
   color: #fafafa;
   font-size: 28px;
   font-style: normal;
   line-height: normal;
+  font-weight: 400;
   letter-spacing: -0.02em;
   margin-bottom: 20px;
   margin-left: 40px;
 `;
 
 export const AllCategoriesP = styled.p`
+  @media (max-width: 767px) {
+    font-size: 12px;
+    margin-left: 20px;
+  }
+
   color: rgba(250, 250, 250, 0.4);
   font-size: 12px;
   font-style: normal;
@@ -46,13 +63,17 @@ export const CategoriesList = styled.ul`
 
 export const CategoriesPlugP = styled.p`
   color: rgba(250, 250, 250, 0.4);
-  font-size: 20px;
+  font-size: 16px;
   font-style: normal;
   line-height: normal;
-  margin-left: 40px;
+  text-align: center;
 `;
 
 export const SubmitForm = styled.form`
+  @media (max-width: 767px) {
+    margin: 0px 20px;
+  }
+
   margin: 0px 40px;
   display: flex;
   flex-direction: column;
@@ -61,21 +82,11 @@ export const SubmitForm = styled.form`
   position: relative;
   margin-bottom: 10px;
 
-  input {
-    box-sizing: border-box;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    padding-left: 18px;
-    border-radius: 12px;
-    background: #171719;
-    color: rgba(250, 250, 250, 0.4);
-    font-size: 16px;
-    font-style: normal;
-    line-height: 1.5;
-    border: 1px solid rgba(250, 250, 250, 0.2);
-  }
-
   button {
+    @media (max-width: 767px) {
+      font-size: 14px;
+    }
+
     position: absolute;
     right: 0%;
     bottom: 0%;
@@ -90,10 +101,45 @@ export const SubmitForm = styled.form`
     font-style: normal;
     line-height: normal;
     letter-spacing: -0.02em;
+
+    &:hover,
+    &:focus {
+      background: #0ebb69;
+    }
+  }
+`;
+
+export const StyledInput = styled.input`
+  @media (max-width: 767px) {
+    font-size: 14px;
+    padding-left: 14px;
+  }
+
+  box-sizing: border-box;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 18px;
+  border-radius: 12px;
+  background: #171719;
+  color: rgba(250, 250, 250, 0.4);
+  font-size: 16px;
+  font-style: normal;
+  line-height: 1.5;
+  border: 1px solid rgba(250, 250, 250, 0.2);
+
+  &:focus {
+    border: 1px solid #0ef387;
+  }
+  &:focus:not(.focus-visible) {
+    outline: none;
   }
 `;
 
 export const InputTitleP = styled.p`
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
+
   color: #0ef387;
   font-size: 16px;
   font-style: normal;
@@ -104,7 +150,10 @@ export const InputTitleP = styled.p`
 
 export const StyledErrorP = styled.p`
   color: #e74a3b;
-  text-align: center;
+  position: absolute;
+  top: 114%;
+  left: 13.5%;
+  /* text-align: center; */
   font-size: 10px;
   font-style: normal;
   line-height: normal;
