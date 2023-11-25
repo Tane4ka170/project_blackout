@@ -152,9 +152,13 @@ export const StyledErrorP = styled.p`
   color: #e74a3b;
   position: absolute;
   top: 114%;
-  left: 13.5%;
-  /* text-align: center; */
-  font-size: 10px;
+  left: 30%;
+  font-size: 12px;
   font-style: normal;
   line-height: normal;
+
+  @media (min-width: 768px) {
+    left: 34%;
+    font-size: 14px;
+  }
 `;

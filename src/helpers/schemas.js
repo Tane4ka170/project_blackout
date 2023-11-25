@@ -5,6 +5,5 @@ export const schemaCategoryInput = yup.object().shape({
     .string()
     .trim()
     .max(16, 'Max length must be 16 symbols')
-    .matches(/\S/, 'Category name can not contain only spaces')
     .required('Enter name for category'),
 });
