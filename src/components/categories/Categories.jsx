@@ -20,7 +20,7 @@ import {
   SubmitForm,
   TransactionType,
 } from './StyledCategories';
-import { useParams } from 'react-router';
+// import { useParams } from 'react-router';
 import { toast } from 'react-toastify';
 
 export const Categories = ({ type = 'incomes' }) => {
@@ -28,7 +28,7 @@ export const Categories = ({ type = 'incomes' }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
 
-  const { transactionsType } = useParams();
+  // const { transactionsType } = useParams();
 
   const [currentCategory, setCurrentCategory] = useState(null);
 
