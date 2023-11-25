@@ -26,11 +26,16 @@ export const StyledLi = styled.li`
       top: 50%;
       left: 80%;
       transform: translate(-50%, -50%);
-      background-color: white;
       display: flex;
       justify-content: center;
+      align-items: center;
+      gap: 14px;
     }
     background: rgba(0, 0, 0, 0.2);
+  }
+  button {
+    background: rgba(0, 0, 0, 0);
+    padding: 0;
   }
 
   &:hover div {

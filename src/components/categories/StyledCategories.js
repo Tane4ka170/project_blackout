@@ -34,8 +34,8 @@ export const CategoriesList = styled.ul`
   margin-bottom: 28px;
 
   &::-webkit-scrollbar {
-    width: 8px;
     height: 131px;
+    width: 8px;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -52,7 +52,7 @@ export const CategoriesPlugP = styled.p`
 `;
 
 export const SubmitForm = styled.form`
-  margin-left: 40px;
+  margin: 0px 40px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -66,7 +66,6 @@ export const SubmitForm = styled.form`
     padding-left: 18px;
     border-radius: 12px;
     background: #171719;
-    /* position: relative; */
     color: rgba(250, 250, 250, 0.4);
     font-size: 16px;
     font-style: normal;

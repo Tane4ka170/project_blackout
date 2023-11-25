@@ -159,6 +159,52 @@ const Symbols = () => {
           </symbol>
         </defs>
       </svg>
+      <svg
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          width: '0',
+          height: '0',
+          overflow: 'hidden',
+        }}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <symbol id="icon-trash-2" viewBox="0 0 32 32">
+            <path
+              fill="none"
+              stroke="#0ef387"
+              style={{ stroke: 'var( #0ef387)' }}
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke-width="3"
+              d="M4 8h24M25.333 8v18.667a2.67 2.67 0 0 1-2.667 2.667H9.333a2.668 2.668 0 0 1-2.667-2.667V8m4.001 0V5.333a2.668 2.668 0 0 1 2.667-2.667h5.333a2.668 2.668 0 0 1 2.667 2.667V8M13.333 14.667v8M18.667 14.667v8"
+            />
+          </symbol>
+          <symbol id="icon-edit-2" viewBox="0 0 32 32">
+            <path
+              fill="none"
+              stroke="#0ef387"
+              style={{ stroke: 'var(--color1, #0ef387)' }}
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke-width="3"
+              d="M22.667 4a3.76 3.76 0 0 1 2.667-1.104A3.779 3.779 0 0 1 28 4a3.783 3.783 0 0 1 .818 4.109c-.19.458-.467.873-.818 1.223l-18 18-7.333 2 2-7.333 18-18z"
+            />
+          </symbol>
+          <symbol id="icon-check" viewBox="0 0 32 32">
+            <path
+              fill="none"
+              stroke="#0ef387"
+              style={{ stroke: 'var(--color1, #0ef387)' }}
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke-width="3"
+              d="M26.667 8 12 22.667 5.333 16"
+            />
+          </symbol>
+        </defs>
+      </svg>
     </div>
   );
 };
