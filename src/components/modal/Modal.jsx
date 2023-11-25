@@ -1,6 +1,9 @@
 import ReactDOM from 'react-dom';
 import React, { useCallback, useEffect } from 'react';
 import toast from 'react-toastify';
+import Symbols from 'images/svg/Symbols';
+
+import { CloseButton, ContentWrapper, StyledWrapper } from './Modal.styled';
 
 const rootModal = document.querySelector('#modal');
 
@@ -32,10 +35,18 @@ const Modal = ({ children, closeModal }) => {
   };
 
   return ReactDOM.createPortal(
-    <div onClick={handleBackDrop}>
-      <button onClick={closeModal}></button>
-      <div>{children}</div>
-    </div>,
+    <StyledWrapper onClick={handleBackDrop}>
+      <ContentWrapper>
+        <CloseButton onClick={closeModal}>
+          <Symbols />
+          <svg width={24} height={24}>
+            <use xlinkHref="#icon-close" />
+          </svg>
+        </CloseButton>
+        {children}
+        <h1>Hello, modal</h1>
+      </ContentWrapper>
+    </StyledWrapper>,
     rootModal
   );
 };
