@@ -16,22 +16,36 @@ import {
   CategoriesList,
   CategoriesPlugP,
   InputTitleP,
+  StyledErrorP,
   SubmitForm,
   TransactionType,
 } from './StyledCategories';
+import { useParams } from 'react-router';
+import { toast } from 'react-toastify';
 
 export const Categories = ({ type = 'incomes' }) => {
   const categories = useSelector(selectCategories);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
 
+  const { transactionsType } = useParams();
+
   const [currentCategory, setCurrentCategory] = useState(null);
 
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(getCategoriesThunk());
+      dispatch(getCategoriesThunk())
+        .unwrap()
+        .catch(e => {
+          toast.error('Oops, something went wrong');
+        });
     }
   }, [dispatch, isLoggedIn]);
 
@@ -43,14 +57,30 @@ export const Categories = ({ type = 'incomes' }) => {
   const submit = ({ categoryName }) => {
     const categoryDate = { type, categoryName };
     if (currentCategory) {
-      dispatch(updateCategoryThunk({ id: currentCategory._id, categoryName }));
+      dispatch(updateCategoryThunk({ id: currentCategory._id, categoryName }))
+        .unwrap()
+        .catch(e => {
+          toast.error('Oops, something went wrong');
+        });
       reset({ categoryName: '' });
     } else {
-      dispatch(createCategoryThunk(categoryDate));
-      reset();
+      dispatch(createCategoryThunk(categoryDate))
+        .unwrap()
+        .catch(e => {
+          toast.error('Oops, something went wrong');
+        });
+      // reset();
     }
     reset();
     setCurrentCategory(null);
+  };
+
+  const deleteCategory = id => {
+    dispatch(deleteCategoryThunk(id))
+      .unwrap()
+      .catch(e => {
+        toast.error('Oops, something went wrong');
+      });
   };
 
   return (
@@ -64,9 +94,7 @@ export const Categories = ({ type = 'incomes' }) => {
               <OneCategory
                 key={category._id}
                 {...category}
-                deleteCategory={() =>
-                  dispatch(deleteCategoryThunk(category._id))
-                }
+                deleteCategory={() => deleteCategory(category._id)}
                 editCategory={() => editCategory(category)}
               />
             );
@@ -82,10 +110,13 @@ export const Categories = ({ type = 'incomes' }) => {
         <input
           type="text"
           placeholder="Enter the text"
-          {...register('categoryName', { required: true })}
+          {...register('categoryName', { required: true, maxLength: 30 })}
         />
         <button>{currentCategory ? 'Edit' : 'Add'}</button>
       </SubmitForm>
+      {errors?.categoryName && (
+        <StyledErrorP>Максимальна кількість символів - 30</StyledErrorP>
+      )}
     </CategoriesDiv>
   );
 };

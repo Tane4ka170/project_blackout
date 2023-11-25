@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 export const CategoriesDiv = styled.div`
   width: 500px;
-  height: 461px;
+  max-height: 461px;
   border-radius: 30px;
   border: 1px solid rgba(250, 250, 250, 0.1);
   background: #171719;
+  padding: 40px 0;
 `;
 
 export const TransactionType = styled.h2`
@@ -16,7 +17,6 @@ export const TransactionType = styled.h2`
   letter-spacing: -0.02em;
   margin-bottom: 20px;
   margin-left: 40px;
-  margin-top: 40px;
 `;
 
 export const AllCategoriesP = styled.p`
@@ -59,6 +59,7 @@ export const SubmitForm = styled.form`
   gap: 8px;
   max-width: 420px;
   position: relative;
+  margin-bottom: 10px;
 
   input {
     box-sizing: border-box;
@@ -99,4 +100,12 @@ export const InputTitleP = styled.p`
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.02em;
+`;
+
+export const StyledErrorP = styled.p`
+  color: #e74a3b;
+  text-align: center;
+  font-size: 10px;
+  font-style: normal;
+  line-height: normal;
 `;
