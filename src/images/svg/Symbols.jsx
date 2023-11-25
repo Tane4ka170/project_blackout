@@ -30,12 +30,20 @@ const Symbols = () => {
               d="M4 11.333h24M4 20.667h24"
             />
           </symbol>
-          <symbol id="icon-user-sign-down" viewBox="0 0 32 32">
+          <symbol id="user-icon-down" viewBox="0 0 32 32">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="3.2"
               d="m8 12 8 8 8-8"
+            />
+          </symbol>
+          <symbol id="user-icon-up" viewBox="0 0 32 32">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="3.2"
+              d="m8 20 8-8 8 8"
             />
           </symbol>
           <symbol id="icon-trash-icon" viewBox="0 0 32 32">
@@ -111,7 +119,7 @@ const Symbols = () => {
           <symbol id="icon-default-svg" viewBox="0 0 32 32">
             <path d="M29.298 26.25a15.421 15.421 0 0 0-7.597-6.654 9.502 9.502 0 0 0-.145-15.307 9.5 9.5 0 0 0-11.255 15.307 15.42 15.42 0 0 0-7.598 6.654 1.5 1.5 0 1 0 2.595 1.501c2.265-3.915 6.265-6.25 10.701-6.25s8.436 2.336 10.701 6.25a1.502 1.502 0 0 0 2.024.507 1.502 1.502 0 0 0 .572-2.006zM9.5 12a6.5 6.5 0 1 1 6.5 6.5A6.507 6.507 0 0 1 9.5 12z" />
           </symbol>
-          <symbol id="icon-succes" viewBox="0 0 32 32">
+          <symbol id="icon-success" viewBox="0 0 32 32">
             <path d="M0 16C0 7.162 7.162 0 16 0s16 7.162 16 16c0 8.837-7.163 16-16 16S0 24.837 0 16zm23.237-2.762c.681-.681.681-1.794 0-2.475s-1.794-.681-2.475 0l-6.763 6.762-2.763-2.762c-.681-.681-1.794-.681-2.475 0s-.681 1.794 0 2.475l4 4a1.755 1.755 0 0 0 2.475 0l8-8z" />
           </symbol>
           <symbol id="icon-error" viewBox="0 0 32 32">
@@ -155,6 +163,52 @@ const Symbols = () => {
               fill="#fafafa"
               d="M15.659 12.597c.6-.645.972-1.52.972-2.477 0-1.977-1.593-3.601-3.579-3.601-1.22 0-2.296.604-2.937 1.54-.124.125-9.039 11.199-9.143 11.344-.6.645-.972 1.52-.972 2.477a3.591 3.591 0 0 0 3.579 3.601c1.22 0 2.296-.604 2.937-1.54.124-.146 9.06-11.199 9.143-11.344zM31.028 12.597c.6-.645.972-1.52.972-2.477a3.591 3.591 0 0 0-3.579-3.601 3.543 3.543 0 0 0-2.937 1.54c-.124.125-9.06 11.199-9.163 11.344-.6.645-.972 1.52-.972 2.477a3.591 3.591 0 0 0 3.579 3.601c1.22 0 2.296-.604 2.937-1.54.145-.146 9.06-11.199 9.164-11.344z"
               style={{ fill: 'var(--color2, #fafafa)' }}
+            />
+          </symbol>
+        </defs>
+      </svg>
+      <svg
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          width: '0',
+          height: '0',
+          overflow: 'hidden',
+        }}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <symbol id="icon-trash-2" viewBox="0 0 32 32">
+            <path
+              fill="none"
+              stroke="#0ef387"
+              style={{ stroke: 'var( #0ef387)' }}
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="3"
+              d="M4 8h24M25.333 8v18.667a2.67 2.67 0 0 1-2.667 2.667H9.333a2.668 2.668 0 0 1-2.667-2.667V8m4.001 0V5.333a2.668 2.668 0 0 1 2.667-2.667h5.333a2.668 2.668 0 0 1 2.667 2.667V8M13.333 14.667v8M18.667 14.667v8"
+            />
+          </symbol>
+          <symbol id="icon-edit-2" viewBox="0 0 32 32">
+            <path
+              fill="none"
+              stroke="#0ef387"
+              style={{ stroke: 'var(--color1, #0ef387)' }}
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="3"
+              d="M22.667 4a3.76 3.76 0 0 1 2.667-1.104A3.779 3.779 0 0 1 28 4a3.783 3.783 0 0 1 .818 4.109c-.19.458-.467.873-.818 1.223l-18 18-7.333 2 2-7.333 18-18z"
+            />
+          </symbol>
+          <symbol id="icon-check" viewBox="0 0 32 32">
+            <path
+              fill="none"
+              stroke="#0ef387"
+              style={{ stroke: 'var(--color1, #0ef387)' }}
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="3"
+              d="M26.667 8 12 22.667 5.333 16"
             />
           </symbol>
         </defs>

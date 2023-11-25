@@ -59,13 +59,8 @@ const transactionsSlice = createSlice({
       })
       .addCase(updateTransactionThunk.fulfilled, (state, action) => {
         state.loading = false;
-        const searchTerm = action.payload.toLowerCase();
-        state.transactions = state.transactions.filter(
-          transaction =>
-            transaction.comment.toLowerCase().includes(searchTerm) ||
-            transaction.date.includes(searchTerm) ||
-            transaction.time.includes(searchTerm)
-        );
+        const item = state.transactions.findIndex(action.payload.id);
+        state.transactions.splice(item, 1, action.payload);
       })
       .addCase(updateTransactionThunk.rejected, (state, action) => {
         state.loading = false;

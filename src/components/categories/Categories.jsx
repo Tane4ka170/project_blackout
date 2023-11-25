@@ -10,6 +10,15 @@ import { selectCategories } from 'components/redux/category/selectors';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+  AllCategoriesP,
+  CategoriesDiv,
+  CategoriesList,
+  CategoriesPlugP,
+  InputTitleP,
+  SubmitForm,
+  TransactionType,
+} from './StyledCategories';
 
 export const Categories = ({ type = 'incomes' }) => {
   const categories = useSelector(selectCategories);
@@ -35,18 +44,20 @@ export const Categories = ({ type = 'incomes' }) => {
     const categoryDate = { type, categoryName };
     if (currentCategory) {
       dispatch(updateCategoryThunk({ id: currentCategory._id, categoryName }));
-      setCurrentCategory(null);
+      reset({ categoryName: '' });
     } else {
       dispatch(createCategoryThunk(categoryDate));
+      reset();
     }
     reset();
     setCurrentCategory(null);
   };
 
   return (
-    <div>
-      <p>All categories</p>
-      <ul>
+    <CategoriesDiv>
+      <TransactionType>Expenses</TransactionType>
+      <AllCategoriesP>All categories</AllCategoriesP>
+      <CategoriesList>
         {categories.length ? (
           categories?.map(category => {
             return (
@@ -61,18 +72,20 @@ export const Categories = ({ type = 'incomes' }) => {
             );
           })
         ) : (
-          <p>There are no categories yet</p>
+          <CategoriesPlugP>There are no categories yet😭</CategoriesPlugP>
         )}
-      </ul>
-      <form action="" onSubmit={handleSubmit(submit)}>
-        <p>{currentCategory ? 'Edit category' : 'New category'}</p>
+      </CategoriesList>
+      <SubmitForm action="" onSubmit={handleSubmit(submit)}>
+        <InputTitleP>
+          {currentCategory ? 'Edit category' : 'New category'}
+        </InputTitleP>
         <input
           type="text"
           placeholder="Enter the text"
           {...register('categoryName', { required: true })}
         />
         <button>{currentCategory ? 'Edit' : 'Add'}</button>
-      </form>
-    </div>
+      </SubmitForm>
+    </CategoriesDiv>
   );
 };

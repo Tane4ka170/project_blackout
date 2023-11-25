@@ -7,10 +7,6 @@ import {
 } from './operations';
 
 const initialState = {
-  user: {
-    name: '',
-    email: '',
-  },
   token: '',
   isLoggedIn: false,
   isRefreshing: false,
@@ -24,12 +20,10 @@ const authSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
         state.token = payload.token;
         state.isLoggedIn = true;
       })
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
         state.token = payload.token;
         state.isLoggedIn = true;
       })
@@ -42,7 +36,6 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshThunk.fulfilled, (state, { payload }) => {
-        state.user = payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
