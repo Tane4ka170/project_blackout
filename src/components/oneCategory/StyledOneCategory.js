@@ -21,7 +21,6 @@ export const StyledLi = styled.li`
 
   &:hover {
     div {
-      opacity: 0;
       transition: opacity 0.3s ease;
       top: 50%;
       left: 80%;
@@ -33,9 +32,30 @@ export const StyledLi = styled.li`
     }
     background: rgba(0, 0, 0, 0.2);
   }
+
   button {
     background: rgba(0, 0, 0, 0);
     padding: 0;
+    @keyframes wiggle {
+      0% {
+        transform: translateX(0);
+      }
+      25% {
+        transform: rotateZ(10deg);
+      }
+      50% {
+        transform: translateX(0);
+      }
+      75% {
+        transform: rotateZ(-10deg);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+    &:hover {
+      animation: wiggle 0.5s ease infinite;
+    }
   }
 
   &:hover div {
