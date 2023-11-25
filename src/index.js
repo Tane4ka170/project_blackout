@@ -1,3 +1,5 @@
+import 'antd/dist/reset.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { persistor, store } from 'components/redux/store';

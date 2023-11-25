@@ -1,85 +1,100 @@
-import { useDispatch } from 'react-redux';
-import { Form, Input, Button, Checkbox } from 'antd';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Navigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
+import { ButtonSign, Err, Line, PasswordToggle, StyledInput, StyledPasswordInput, WrapBt, WrapInp, WrapPassword } from 'components/RegisterForm/RegisterForm.styled';
 import { loginThunk } from 'components/redux/auth/operations';
-
-const LoginForm = () => {
+import { selectIsLoggedIn } from 'components/redux/auth/selectors';
+import { ReactComponent as ShowsIco } from '../../images/home/eye.svg'
+import { ReactComponent as HideIco } from '../../images/home/eye-off.svg'
+export const LoginForm = () => {
   const dispatch = useDispatch();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors: formErrors },
+  } = useForm();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  const onFinish = ({ email, password }) => {
-    dispatch(loginThunk({ email, password }));
-
+  const onSubmit = data => {
+    dispatch(loginThunk(data))
+      .unwrap()
+      .catch(error => {
+        toast.error('Invalid email or password');
+      });
   };
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   const { email, password } = e.target.elements;
-  //   if (email.value.trim() === '' || password.value.trim() === '') {
-  //     return toast.error('Please fill in all fields');
-  //   }
-  //   dispatch(logIn({ email: email.value, password: password.value }));
-  //   e.target.reset();
-  // };
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  if (isLoggedIn) {
+    return <Navigate to="/" />;
+  }
 
   return (
-    <Form
-      name="normal_login"
-      className="login-form"
-      initialValues={{
-        remember: false,
-      }}
-      onFinish={onFinish}
-    >
-      <Form.Item
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Email!',
-          },
-        ]}
-      >
-        <Input
-          prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Email"
-        />
-      </Form.Item>
-      <Form.Item
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Password!',
-          },
-        ]}
-      >
-        <Input
-          prefix={<LockOutlined className="site-form-item-icon" />}
-          type="password"
-          placeholder="Password"
-        />
-      </Form.Item>
-      <Form.Item>
-        <Form.Item name="remember" valuePropName="checked" noStyle>
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-      </Form.Item>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <WrapInp >
+        <div>
+          <StyledInput
+            defaultValue=""
+            {...register('email', {
+              required: 'Please provide your email',
+              minLength: {
+                value: 6,
+                message: 'Ensure your email is at least 6 characters long',
+              },
+            })}
 
-      <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
-        </Button>
-      </Form.Item>
-    </Form>
+            type="email"
+            placeholder="Email"
+            autoComplete="new-email"
+          />
+          {formErrors.email && (
+            <Err >{formErrors.email.message}</Err>
+          )}
+        </div>
 
-    // <Form onSubmit={handleSubmit} autoComplete="off">
-    //   <Text>Email</Text>
-    //   <Input type="email" name="email" placeholder="Enter email" />
-    //   <Text>Password</Text>
-    //   <Input type="password" name="password" placeholder="Enter password" />
-    //   <Button type="submit">Log In</Button>
-    // </Form>
+        <WrapPassword >
+          <StyledPasswordInput
+            {...register('password', {
+              required: 'Please enter your password',
+              minLength: {
+                value: 6,
+                message: 'Make sure your password is at least 6 characters long',
+              },
+            })}
+
+            type={showPassword ? 'text' : 'password'}
+            placeholder="Password"
+            autoComplete="new-password"
+          />
+          <PasswordToggle onClick={togglePasswordVisibility} type="button">
+            {showPassword ? (
+              <HideIco />
+            ) : (
+              <ShowsIco />
+            )}
+          </PasswordToggle>
+          {formErrors.password && (
+            <Err >{formErrors.password.message}</Err>
+          )}
+        </WrapPassword>
+
+
+        <WrapBt  >
+          <ButtonSign >Sign in</ButtonSign>
+        </WrapBt>
+
+        <Line >
+          New here? <Link to={'/register'}>Create an account</Link>
+        </Line>
+      </WrapInp>
+
+    </form>
   );
 };
 
