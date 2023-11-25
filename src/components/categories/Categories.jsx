@@ -33,6 +33,7 @@ export const Categories = ({ type = 'incomes' }) => {
   // const { transactionsType } = useParams();
 
   const [currentCategory, setCurrentCategory] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   const {
     register,
@@ -54,6 +55,7 @@ export const Categories = ({ type = 'incomes' }) => {
   const editCategory = category => {
     setCurrentCategory(category);
     reset({ categoryName: category.categoryName });
+    setIsEditing(true);
   };
 
   const submit = ({ categoryName }) => {
@@ -65,6 +67,7 @@ export const Categories = ({ type = 'incomes' }) => {
           toast.error('Oops, something went wrong');
         });
       reset({ categoryName: '' });
+      setIsEditing(false);
     } else {
       dispatch(createCategoryThunk(categoryDate))
         .unwrap()
@@ -78,6 +81,12 @@ export const Categories = ({ type = 'incomes' }) => {
   };
 
   const deleteCategory = id => {
+    if (currentCategory && currentCategory._id === id) {
+      reset({ categoryName: '' });
+      setCurrentCategory(null);
+      setIsEditing(false);
+    }
+
     dispatch(deleteCategoryThunk(id))
       .unwrap()
       .catch(e => {
@@ -112,14 +121,16 @@ export const Categories = ({ type = 'incomes' }) => {
       >
         <SubmitForm action="" onSubmit={handleSubmit(submit)}>
           <InputTitleP>
-            {currentCategory ? 'Edit category' : 'New category'}
+            {isEditing ? 'Edit category' : 'New category'}
           </InputTitleP>
           <StyledInput
             type="text"
             placeholder="Enter the text"
             {...register('categoryName', { required: true, maxLength: 30 })}
+            autoFocus={currentCategory !== null}
+            key={currentCategory?._id}
           />
-          <button>{currentCategory ? 'Edit' : 'Add'}</button>
+          <button>{isEditing ? 'Edit' : 'Add'}</button>
         </SubmitForm>
         {errors?.categoryName && (
           <StyledErrorP>
