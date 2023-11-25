@@ -30,12 +30,20 @@ const Symbols = () => {
               d="M4 11.333h24M4 20.667h24"
             />
           </symbol>
-          <symbol id="icon-user-sign-down" viewBox="0 0 32 32">
+          <symbol id="user-icon-down" viewBox="0 0 32 32">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="3.2"
               d="m8 12 8 8 8-8"
+            />
+          </symbol>
+          <symbol id="user-icon-up" viewBox="0 0 32 32">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="3.2"
+              d="m8 20 8-8 8 8"
             />
           </symbol>
           <symbol id="icon-trash-icon" viewBox="0 0 32 32">
@@ -111,7 +119,7 @@ const Symbols = () => {
           <symbol id="icon-default-svg" viewBox="0 0 32 32">
             <path d="M29.298 26.25a15.421 15.421 0 0 0-7.597-6.654 9.502 9.502 0 0 0-.145-15.307 9.5 9.5 0 0 0-11.255 15.307 15.42 15.42 0 0 0-7.598 6.654 1.5 1.5 0 1 0 2.595 1.501c2.265-3.915 6.265-6.25 10.701-6.25s8.436 2.336 10.701 6.25a1.502 1.502 0 0 0 2.024.507 1.502 1.502 0 0 0 .572-2.006zM9.5 12a6.5 6.5 0 1 1 6.5 6.5A6.507 6.507 0 0 1 9.5 12z" />
           </symbol>
-          <symbol id="icon-succes" viewBox="0 0 32 32">
+          <symbol id="icon-success" viewBox="0 0 32 32">
             <path d="M0 16C0 7.162 7.162 0 16 0s16 7.162 16 16c0 8.837-7.163 16-16 16S0 24.837 0 16zm23.237-2.762c.681-.681.681-1.794 0-2.475s-1.794-.681-2.475 0l-6.763 6.762-2.763-2.762c-.681-.681-1.794-.681-2.475 0s-.681 1.794 0 2.475l4 4a1.755 1.755 0 0 0 2.475 0l8-8z" />
           </symbol>
           <symbol id="icon-error" viewBox="0 0 32 32">
