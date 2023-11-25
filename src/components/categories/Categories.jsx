@@ -17,6 +17,7 @@ import {
   CategoriesPlugP,
   InputTitleP,
   StyledErrorP,
+  StyledInput,
   SubmitForm,
   TransactionType,
 } from './StyledCategories';
@@ -107,7 +108,7 @@ export const Categories = ({ type = 'incomes' }) => {
         <InputTitleP>
           {currentCategory ? 'Edit category' : 'New category'}
         </InputTitleP>
-        <input
+        <StyledInput
           type="text"
           placeholder="Enter the text"
           {...register('categoryName', { required: true, maxLength: 30 })}
@@ -115,7 +116,9 @@ export const Categories = ({ type = 'incomes' }) => {
         <button>{currentCategory ? 'Edit' : 'Add'}</button>
       </SubmitForm>
       {errors?.categoryName && (
-        <StyledErrorP>Максимальна кількість символів - 30</StyledErrorP>
+        <StyledErrorP>
+          Max length of category name is 16 or less symbols
+        </StyledErrorP>
       )}
     </CategoriesDiv>
   );

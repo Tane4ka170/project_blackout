@@ -1,11 +1,19 @@
 import styled from 'styled-components';
 
 export const StyledLi = styled.li`
+  @media (max-width: 767px) {
+    padding-left: 20px;
+  }
+
   position: relative;
   padding: 12px 0px;
   padding-left: 40px;
 
   p {
+    @media (max-width: 767px) {
+      font-size: 14px;
+    }
+
     color: #fafafa;
     font-size: 16px;
     font-style: normal;
@@ -21,6 +29,7 @@ export const StyledLi = styled.li`
 
   &:hover {
     div {
+      opacity: 1;
       transition: opacity 0.3s ease;
       top: 50%;
       left: 80%;
@@ -56,9 +65,5 @@ export const StyledLi = styled.li`
     &:hover {
       animation: wiggle 0.5s ease infinite;
     }
-  }
-
-  &:hover div {
-    opacity: 1;
   }
 `;
