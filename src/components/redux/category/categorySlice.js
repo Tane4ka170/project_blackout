@@ -33,7 +33,7 @@ const categoriesSlice = createSlice({
       })
       .addCase(deleteCategoryThunk.fulfilled, (state, { payload }) => {
         state.categories.items = state.categories.items.filter(
-          item => item.id !== payload.id
+          item => item._id !== payload
         );
         state.categories.isLoading = false;
       })
@@ -43,10 +43,10 @@ const categoriesSlice = createSlice({
       })
       .addCase(updateCategoryThunk.fulfilled, (state, { payload }) => {
         const categoryIndex = state.categories.items.findIndex(
-          item => item.id === payload.id
+          item => item._id === payload._id
         );
-        const { name } = state.categories.items[categoryIndex];
-        if (name !== payload.name) {
+        const { categoryName } = state.categories.items[categoryIndex];
+        if (categoryName !== payload.categoryName) {
           toast.success('You have successfully changed the name of category');
         }
         state.categories.items[categoryIndex] = payload;

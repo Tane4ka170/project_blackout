@@ -1,8 +1,6 @@
 // import Login from "pages/Login/Login";
 // import { Link } from "react-router-dom/dist";
 // import { Link } from 'react-router-dom';
-import LoginForm from 'components/LoginForm/LoginForm';
-import RegisterForm from 'components/RegisterForm/RegisterForm';
 import { NavLink } from 'react-router-dom/dist';
 import { Avatar, Content, ContentInfo, ContentUsers, First, H1, H2, H2span, H3, ImagePack, Links, Second, SignUp, Text, TextDown, Third, WrapBtn, Wrapper } from './Home.styled';
 import homeimg from '../../images/home/Rectangle 1.png'

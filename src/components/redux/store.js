@@ -18,7 +18,7 @@ import { categoriesReducer } from './category/categorySlice';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['accessToken', 'sid', 'refreshToken'],
 };
 
 export const store = configureStore({
