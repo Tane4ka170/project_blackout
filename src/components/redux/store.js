@@ -14,6 +14,7 @@ import { authReducer } from './auth/authSlice';
 import { userReducer } from './user/userSlice';
 import { transactionReducer } from './transactions/transactionsSlice';
 import { categoriesReducer } from './category/categorySlice';
+import { filterReducer } from './filter/filterSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -27,6 +28,7 @@ export const store = configureStore({
     user: userReducer,
     transaction: transactionReducer,
     categories: categoriesReducer,
+    filter: filterReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
