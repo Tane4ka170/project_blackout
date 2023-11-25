@@ -51,7 +51,7 @@ button {
   padding: 0;
 }
 
-img {
+img, svg {
   display: block;
   max-width: 100%;
   height: auto;
