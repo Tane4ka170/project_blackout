@@ -11,7 +11,7 @@ import Home from 'pages/Home/Home';
 import Register from 'pages/Register/Register';
 import Login from 'pages/Login/Login';
 import { Categories } from './categories/Categories';
-import NotFound from 'pages/NotFound/NotFound';
+// import NotFound from 'pages/NotFound/NotFound';
 
 // const HomePage = lazy(() => import('../pages/Home/Home'));
 // const RegisterPage = lazy(() => import('../pages/Register/Register'));
@@ -55,7 +55,7 @@ function App() {
           {/* <Route path="*" element={<Navigate to="/" />} />{' '} */}
           {/* redirect to home page */}
         </Route>
-        <Route path="*" element={<NotFound />} />
+        {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
       <Categories />
     </div>
