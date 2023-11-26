@@ -12,9 +12,11 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   AllCategoriesP,
+  CancelButton,
   CategoriesDiv,
   CategoriesList,
   CategoriesPlugP,
+  EditButton,
   InputTitleP,
   StyledErrorP,
   StyledInput,
@@ -58,6 +60,12 @@ export const Categories = ({ type = 'incomes' }) => {
     setCurrentCategory(category);
     reset({ categoryName: category.categoryName });
     setIsEditing(true);
+  };
+
+  const onCancel = () => {
+    reset({ categoryName: '' });
+    setCurrentCategory(null);
+    setIsEditing(false);
   };
 
   const submit = ({ categoryName }) => {
@@ -122,7 +130,7 @@ export const Categories = ({ type = 'incomes' }) => {
         transition={{ type: 'spring', stiffness: 200, damping: 20 }}
       >
         <SubmitForm action="" onSubmit={handleSubmit(submit)}>
-          <InputTitleP>
+          <InputTitleP $error={errors?.categoryName}>
             {isEditing ? 'Edit category' : 'New category'}
           </InputTitleP>
           <StyledInput
@@ -131,8 +139,12 @@ export const Categories = ({ type = 'incomes' }) => {
             {...register('categoryName', { required: true, maxLength: 30 })}
             autoFocus={currentCategory !== null}
             key={currentCategory?._id}
+            $error={errors?.categoryName}
           />
-          <button>{isEditing ? 'Edit' : 'Add'}</button>
+          <EditButton $error={errors?.categoryName}>
+            {isEditing ? 'Edit' : 'Add'}
+          </EditButton>
+          {isEditing && <CancelButton onClick={onCancel}>Cancel</CancelButton>}
         </SubmitForm>
         {errors?.categoryName && (
           <StyledErrorP>{errors.categoryName.message}</StyledErrorP>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const CategoriesDiv = styled.div`
   @media (max-width: 767px) {
@@ -81,32 +81,6 @@ export const SubmitForm = styled.form`
   max-width: 420px;
   position: relative;
   margin-bottom: 10px;
-
-  button {
-    @media (max-width: 767px) {
-      font-size: 14px;
-    }
-
-    position: absolute;
-    right: 0%;
-    bottom: 0%;
-    border-radius: 12px;
-    background: #0ef387;
-    padding: 15px 44px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #0c0d0d;
-    font-size: 16px;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: -0.02em;
-
-    &:hover,
-    &:focus {
-      background: #0ebb69;
-    }
-  }
 `;
 
 export const StyledInput = styled.input`
@@ -129,6 +103,11 @@ export const StyledInput = styled.input`
 
   &:focus {
     border: 1px solid #0ef387;
+    ${({ $error }) =>
+      $error &&
+      css`
+        border: 1px solid red;
+      `}
   }
   &:focus:not(.focus-visible) {
     outline: none;
@@ -146,6 +125,86 @@ export const InputTitleP = styled.p`
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.02em;
+  ${({ $error }) =>
+    $error &&
+    css`
+      color: #e74a3b;
+    `}
+`;
+
+export const EditButton = styled.button`
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
+
+  position: absolute;
+  right: 0%;
+  bottom: 0%;
+  border-radius: 12px;
+  background: #0ef387;
+  padding: 15px 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #0c0d0d;
+  font-size: 16px;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.02em;
+
+  ${({ $error }) =>
+    $error &&
+    css`
+      background-color: #e74a3b;
+    `}
+
+  &:hover,
+  &:focus {
+    background: #0ebb69;
+
+    ${({ $error }) =>
+      $error &&
+      css`
+        background-color: #b83326;
+      `}
+  }
+`;
+
+export const CancelButton = styled.button`
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
+
+  position: absolute;
+  right: 0%;
+  bottom: 75%;
+  display: flex;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+  color: #e74a3b;
+  font-size: 16px;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.02em;
+
+  &::before {
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    background-color: #e74a3b;
+    transition: opacity 0.3s;
+  }
+
+  &:hover,
+  &:focus {
+    &::before {
+      opacity: 1;
+    }
+  }
 `;
 
 export const StyledErrorP = styled.p`
