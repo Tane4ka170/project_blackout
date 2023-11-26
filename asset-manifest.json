@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/project_blackout/static/css/main.c3777d34.css",
-    "main.js": "/project_blackout/static/js/main.dfe069fb.js",
+    "main.js": "/project_blackout/static/js/main.7fbe239b.js",
     "static/media/Rectangle 1.png": "/project_blackout/static/media/Rectangle 1.7b8413bdbd40263d05fd.png",
     "static/media/SuisseIntl-Regular.ttf": "/project_blackout/static/media/SuisseIntl-Regular.7ea99720633194a9e3c4.ttf",
     "static/media/Suisse-Intl-Bold.ttf": "/project_blackout/static/media/Suisse-Intl-Bold.6e9941f2a44c1939c4ef.ttf",
@@ -14,10 +14,10 @@
     "static/media/Sprite.svg": "/project_blackout/static/media/Sprite.620a1ed8a1fe0667f732c0511e31080a.svg",
     "static/media/eye.svg": "/project_blackout/static/media/eye.eeff295c23781fcaf0988e367a1f8870.svg",
     "main.c3777d34.css.map": "/project_blackout/static/css/main.c3777d34.css.map",
-    "main.dfe069fb.js.map": "/project_blackout/static/js/main.dfe069fb.js.map"
+    "main.7fbe239b.js.map": "/project_blackout/static/js/main.7fbe239b.js.map"
   },
   "entrypoints": [
     "static/css/main.c3777d34.css",
-    "static/js/main.dfe069fb.js"
+    "static/js/main.7fbe239b.js"
   ]
 }
