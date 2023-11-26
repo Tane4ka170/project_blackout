@@ -2,7 +2,7 @@
 // import { Link } from "react-router-dom/dist";
 // import { Link } from 'react-router-dom';
 
-import { Avatar, Content, ContentInfo, ContentUsers, First, H1, H2, H2span, H3, ImagePack, Links, Second, SignUp, Text, TextDown, Third, WrapBtn, Wrapper } from './Home.styled';
+import { Avatar, Content, ContentInfo, ContentUsers, First, H1, H2, H2span, H3, ImagePack, Img, Linkss, Second, SignUp, Text, TextDown, Third, WrapBtn, Wrapper } from './Home.styled';
 import homeimg from '../../images/home/Rectangle 1.png'
 import first from '../../images/home/first.jpg'
 import second from '../../images/home/second.png'
@@ -13,7 +13,7 @@ import third from '../../images/home/third.png'
 const Home = () => (
 
   <Wrapper >
-    <img src={homeimg} alt="Main " />
+    <Img src={homeimg} alt="Main " />
     <div>
       <Content>
         <H1 >Expense log</H1>
@@ -22,7 +22,7 @@ const Home = () => (
         <WrapBtn>
           <SignUp to="/register">Sign Up</SignUp>
 
-          <Links to="/login">Sign In</Links>
+          <Linkss to="/login">Sign In</Linkss>
         </WrapBtn>
       </Content>
       <ContentUsers>
