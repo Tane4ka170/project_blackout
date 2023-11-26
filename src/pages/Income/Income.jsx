@@ -1,13 +1,7 @@
 import { Filter } from 'components/filter/Filter';
-import {
-  selectFilter,
-  selectStartDate,
-} from 'components/redux/filter/filterSelector';
-import {
-  deleteTransactionThunk,
-  getTransactionsThunk,
-} from 'components/redux/transactions/operations';
-import { selectTransaction } from 'components/redux/transactions/selectors';
+import { selectFilter, selectStartDate } from 'redux/filter/filterSelector';
+import { getTransactionsThunk } from 'redux/transactions/operations';
+import { selectTransaction } from 'redux/transactions/selectors';
 import { SectionTransaction } from 'components/sectionTransactionList/sectionTransaction';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
