@@ -128,7 +128,16 @@ export const WrapInp = styled.div`
   gap: 20px;
 `;
 
+export const WrapInPass = styled.div`
+  position: relative;
+  width: 250px;
+`;
+
 export const StyledPasswordInput = styled.input`
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-right: 40px;
+  border-radius: 12px;
   && {
     background-color: #0c0d0d;
     color: rgba(250, 250, 250, 0.4);
@@ -183,10 +192,10 @@ export const StyledPasswordInput = styled.input`
 export const PasswordToggle = styled.button`
   /* ваші стилі для кнопки показу/приховування пароля тут */
   display: flex;
-  /* position: absolute;
+  position: absolute;
   top: 50%;
   right: 15px;
-  transform: translateY(-50%); */
+  transform: translateY(-50%);
   background: none;
   border: none;
   color: rgba(250, 250, 250, 0.6);
@@ -196,11 +205,13 @@ export const PasswordToggle = styled.button`
 
 export const WrapPassword = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  /* position: relative; */
 `;
 
 export const Err = styled.p`
   color: red;
+  margin-top: 5px;
 `;
 
 export const Line = styled.span`

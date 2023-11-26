@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { ButtonSign, Err, Line, PasswordToggle, StyledInput, StyledPasswordInput, WrapBt, WrapInp, WrapPassword } from './RegisterForm.styled';
+import { ButtonSign, Err, Line, PasswordToggle, StyledInput, StyledPasswordInput, WrapBt, WrapInPass, WrapInp, WrapPassword } from './RegisterForm.styled';
 import { ReactComponent as ShowsIco } from '../../images/home/eye.svg'
 import { ReactComponent as HideIco } from '../../images/home/eye-off.svg'
 
@@ -78,28 +78,29 @@ export const RegisterForm = () => {
           )}
         </div>
         <WrapPassword >
+          <WrapInPass>
+            <StyledPasswordInput
+              {...register('password', {
+                required: 'Please enter your password',
+                minLength: {
+                  value: 6,
+                  message: 'Make sure your password is at least 6 characters long',
+                },
+              })}
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Password"
+              autoComplete="new-password"
+              hasError={!!formErrors.password}
 
-          <StyledPasswordInput
-            {...register('password', {
-              required: 'Please enter your password',
-              minLength: {
-                value: 6,
-                message: 'Make sure your password is at least 6 characters long',
-              },
-            })}
-            type={showPassword ? 'text' : 'password'}
-            placeholder="Password"
-            autoComplete="new-password"
-            hasError={!!formErrors.password}
-
-          />
-          <PasswordToggle onClick={togglePasswordVisibility} type="button">
-            {showPassword ? (
-              <HideIco />
-            ) : (
-              <ShowsIco />
-            )}
-          </PasswordToggle>
+            />
+            <PasswordToggle onClick={togglePasswordVisibility} type="button">
+              {showPassword ? (
+                <HideIco />
+              ) : (
+                <ShowsIco />
+              )}
+            </PasswordToggle>
+          </WrapInPass>
           {formErrors.password && (
             <Err >{formErrors.password.message}</Err>
           )}
