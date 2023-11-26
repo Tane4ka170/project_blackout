@@ -1,12 +1,15 @@
 import { Filter } from 'components/filter/Filter';
 import { selectFilter, selectStartDate } from 'redux/filter/filterSelector';
-import { getTransactionsThunk } from 'redux/transactions/operations';
+import {
+  deleteTransactionThunk,
+  getTransactionsThunk,
+} from 'redux/transactions/operations';
 import { selectTransaction } from 'redux/transactions/selectors';
 import { SectionTransaction } from 'components/sectionTransactionList/sectionTransaction';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { DIV, H2, PH } from './Income.styled';
+import { DIVL, DIVMAIN, DIVTR, H2, PH } from './Income.styled';
 
 export const Income = () => {
   const dispatch = useDispatch();
@@ -43,35 +46,44 @@ export const Income = () => {
 
   return (
     <div>
-      <DIV>
-        <H2>All Income</H2>
-        <PH>
-          Track and celebrate every bit of earnings effortlessly! Gain insights
-          into your total revenue in a snap.
-        </PH>
-      </DIV>
-      <div></div>
-      <div>
+      <DIVMAIN>
+        <DIVL>
+          <H2>All Income</H2>
+          <PH>
+            Track and celebrate every bit of earnings effortlessly! Gain
+            insights into your total revenue in a snap.
+          </PH>
+        </DIVL>
+        <div>
+          <ul>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </DIVMAIN>
+      <DIVTR>
         <Filter />
-      </div>
-      <SectionTransaction />
-      <div>
-        {transactions.map(transaction => (
-          <div key={transaction._id}>
-            <p>{transaction.category.categoryName}</p>
-            <p>{transaction.comment}</p>
-            <p>{transaction.date}</p>
-            <p>{transaction.time}</p>
-            <p>{transaction.sum}</p>
-            <button>Edit</button>
-            <button
-              onClick={() => handleDelete(transaction._id, transaction.comment)}
-            >
-              Delete
-            </button>
-          </div>
-        ))}
-      </div>
+        <SectionTransaction />
+        <div>
+          {transactions.map(transaction => (
+            <div key={transaction._id}>
+              <p>{transaction.category.categoryName}</p>
+              <p>{transaction.comment}</p>
+              <p>{transaction.date}</p>
+              <p>{transaction.time}</p>
+              <p>{transaction.sum}</p>
+              <button>Edit</button>
+              <button
+                onClick={() =>
+                  handleDelete(transaction._id, transaction.comment)
+                }
+              >
+                Delete
+              </button>
+            </div>
+          ))}
+        </div>
+      </DIVTR>
     </div>
   );
 };

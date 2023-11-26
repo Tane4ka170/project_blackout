@@ -1,6 +1,9 @@
 import { Filter } from 'components/filter/Filter';
 import { selectFilter, selectStartDate } from 'redux/filter/filterSelector';
-import { getTransactionsThunk } from 'redux/transactions/operations';
+import {
+  deleteTransactionThunk,
+  getTransactionsThunk,
+} from 'redux/transactions/operations';
 import { selectTransaction } from 'redux/transactions/selectors';
 import { SectionTransaction } from 'components/sectionTransactionList/sectionTransaction';
 import React, { useEffect } from 'react';
@@ -38,6 +41,7 @@ export const Expense = () => {
           landscape, all in one place.
         </p>
       </div>
+      <div></div>
       <div>
         <Filter />
       </div>
