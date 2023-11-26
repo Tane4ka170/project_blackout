@@ -1,10 +1,11 @@
-const { createSlice, isAnyOf } = require('@reduxjs/toolkit');
-const {
-  getCategoriesThunk,
-  deleteCategoryThunk,
+import {
   createCategoryThunk,
+  deleteCategoryThunk,
+  getCategoriesThunk,
   updateCategoryThunk,
-} = require('./operations');
+} from './operations';
+
+const { createSlice, isAnyOf } = require('@reduxjs/toolkit');
 const { toast } = require('react-toastify');
 
 const initialState = {
@@ -38,7 +39,11 @@ const categoriesSlice = createSlice({
         state.categories.isLoading = false;
       })
       .addCase(createCategoryThunk.fulfilled, (state, { payload }) => {
-        state.categories.items.push(payload);
+        if (Array.isArray(state.categories.items)) {
+          state.categories.items.push(payload);
+        } else {
+          state.categories.items = [payload];
+        }
         state.categories.isLoading = false;
       })
       .addCase(updateCategoryThunk.fulfilled, (state, { payload }) => {
