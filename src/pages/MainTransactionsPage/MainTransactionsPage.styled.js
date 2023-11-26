@@ -5,7 +5,7 @@ export const StyledSection = styled.section`
   width: 375px;
   padding-left: 20px;
   padding-right: 20px;
-  padding-bottom: 80px;
+  margin-bottom: 80px;
 
   background-color: #0C0D0D;
 
@@ -15,6 +15,7 @@ export const StyledSection = styled.section`
 // headers
 export const StyledHeadersWrapper = styled.div`
 width: 335px;
+margin-bottom: 40px;
 `
 
 export const StyledHeaders = styled.h1`
@@ -47,6 +48,8 @@ export const StyledTotalUl = styled.ul`
   flex-direction: column;
 
   list-style: none;
+
+  margin-bottom: 40px;
 `
 
 export const StyledMain = styled.main`
