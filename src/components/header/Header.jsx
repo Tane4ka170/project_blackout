@@ -27,10 +27,10 @@ import {
 } from './headerStyled';
 import Symbols from 'images/svg/Symbols';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoggedIn } from 'components/redux/auth/selectors';
-import { selectUser } from 'components/redux/user/selectors';
-import { logoutThunk } from 'components/redux/auth/operations';
-import { useLocation } from 'react-router-dom';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { selectUser } from 'redux/user/selectors';
+import { logoutThunk } from 'redux/auth/operations';
+
 const Header = () => {
   const location = useLocation();
   const isLoggedIn = useSelector(selectIsLoggedIn);

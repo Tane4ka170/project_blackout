@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 // import { Categories } from './categories/Categories';
 import { useAuth } from './hooks';
 import { useEffect } from 'react';
-import { refreshThunk } from './redux/auth/operations';
+import { refreshThunk } from '../redux/auth/operations';
 import { Route, Routes } from 'react-router-dom/dist';
 // import { Navigate, Route, Routes, Link } from 'react-router-dom';
 import Layout from './layout/Layout';
