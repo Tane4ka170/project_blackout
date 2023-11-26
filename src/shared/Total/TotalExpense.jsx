@@ -5,7 +5,7 @@ import React from "react";
 import arrow from '../../images/Sprite.svg';
 
 // components
-import Currency from "components/currency/Currency";
+import Currency from './Currency'
 
 // styled
 import { StyledWrapper, StyledSvgWrapper, StyledSvg, StyledHeaders, StyledMoney, StyledTotalWrapper } from "./StyledTotal";
