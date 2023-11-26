@@ -3,26 +3,42 @@ import {
   selectFilter,
   selectStartDate,
 } from 'components/redux/filter/filterSelector';
-import { getTransactionsThunk } from 'components/redux/transactions/operations';
+import {
+  deleteTransactionThunk,
+  getTransactionsThunk,
+} from 'components/redux/transactions/operations';
 import { selectTransaction } from 'components/redux/transactions/selectors';
 import { SectionTransaction } from 'components/sectionTransactionList/sectionTransaction';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 export const Expense = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
   const startDate = useSelector(selectStartDate);
   const transactions = useSelector(selectTransaction);
+  console.log(transactions);
 
   useEffect(() => {
     dispatch(getTransactionsThunk({ type: 'expenses', date: startDate }));
   }, [dispatch, filter, startDate]);
 
+  const handleDelete = (transactionId, transactionComment) => {
+    console.log(transactionId);
+    dispatch(
+      deleteTransactionThunk({
+        type: 'expenses',
+        id: transactionId,
+      })
+    );
+    toast.success(`Transaction ${transactionComment} was deleted`);
+  };
+
   return (
     <div>
       <div>
-        <h1>All Expense</h1>
+        <h2>All Expense</h2>
         <p>
           View and manage every transaction seamlessly! Your entire financial
           landscape, all in one place.
@@ -41,7 +57,11 @@ export const Expense = () => {
             <p>{transaction.time}</p>
             <p>{transaction.sum}</p>
             <button>Edit</button>
-            <button>Delete</button>
+            <button
+              onClick={() => handleDelete(transaction._id, transaction.comment)}
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>

@@ -31,9 +31,7 @@ export const deleteTransactionThunk = createAsyncThunk(
   'deleteTransaction',
   async ({ type, id }, thunkApi) => {
     try {
-      const { data } = await expenseApi.delete(`transaction/${type}`, {
-        params: { id },
-      });
+      const { data } = await expenseApi.delete(`transactions/${type}/${id}`);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

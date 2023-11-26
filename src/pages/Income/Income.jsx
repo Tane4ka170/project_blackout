@@ -3,11 +3,16 @@ import {
   selectFilter,
   selectStartDate,
 } from 'components/redux/filter/filterSelector';
-import { getTransactionsThunk } from 'components/redux/transactions/operations';
+import {
+  deleteTransactionThunk,
+  getTransactionsThunk,
+} from 'components/redux/transactions/operations';
 import { selectTransaction } from 'components/redux/transactions/selectors';
 import { SectionTransaction } from 'components/sectionTransactionList/sectionTransaction';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { DIV, H2, PH } from './Income.styled';
 
 export const Income = () => {
   const dispatch = useDispatch();
@@ -19,15 +24,39 @@ export const Income = () => {
     dispatch(getTransactionsThunk({ type: 'incomes', date: startDate }));
   }, [dispatch, filter, startDate]);
 
+  const handleDelete = (transactionId, transactionComment) => {
+    console.log(transactionId);
+    dispatch(
+      deleteTransactionThunk({
+        type: 'incomes',
+        id: transactionId,
+      })
+    );
+    toast.success(`Transaction ${transactionComment} was deleted`);
+  };
+
+  const filterContacts = transactions.filter(
+    transaction =>
+      transaction.category.categoryName
+        .toLowerCase()
+        .trim()
+        .includes(filter.toLowerCase().trim()) ||
+      transaction.comment
+        .toLowerCase()
+        .trim()
+        .includes(filter.toLowerCase().trim())
+  );
+
   return (
     <div>
-      <div>
-        <h1>All Expense</h1>
-        <p>
-          View and manage every transaction seamlessly! Your entire financial
-          landscape, all in one place.
-        </p>
-      </div>
+      <DIV>
+        <H2>All Income</H2>
+        <PH>
+          Track and celebrate every bit of earnings effortlessly! Gain insights
+          into your total revenue in a snap.
+        </PH>
+      </DIV>
+      <div></div>
       <div>
         <Filter />
       </div>
@@ -41,7 +70,11 @@ export const Income = () => {
             <p>{transaction.time}</p>
             <p>{transaction.sum}</p>
             <button>Edit</button>
-            <button>Delete</button>
+            <button
+              onClick={() => handleDelete(transaction._id, transaction.comment)}
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>
