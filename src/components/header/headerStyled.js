@@ -9,6 +9,10 @@ export const EmptyHeaderStyled = styled.div`
   background: #0c0d0d;
   padding: 13px 20px;
   color: white;
+  margin-bottom: 66px;
+  @media screen and (min-width: 767px) {
+    margin-bottom: 59px;
+  }
   @media screen and (min-width: 1440px) {
     padding: 18px 100px;
   }
@@ -22,6 +26,10 @@ export const HeaderStyled = styled(motion.div)`
   padding: 13px 20px;
   color: white;
   border-bottom: 1px solid rgba(250, 250, 250, 0.1);
+  margin-bottom: 66px;
+  @media screen and (min-width: 767px) {
+    margin-bottom: 59px;
+  }
   @media screen and (max-width: 1439px) {
     justify-content: space-between;
   }
@@ -52,10 +60,10 @@ export const MobileMenu = styled.div`
   height: 100vh;
   overflow: hidden;
 
-  @media screen and (min-width: 425px) {
+  @media screen and (min-width: 768px) {
     max-width: 385px;
   }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1025px) {
     display: none !important;
   }
 `;
@@ -159,17 +167,17 @@ export const MenuBtn = styled(motion.button)`
   }
 `;
 
-export const CloseBtn = styled.button`
+export const CloseBtn = styled(motion.button)`
   background-color: transparent;
   border: none;
   stroke: black;
 
-  @media (min-width: 769px) {
+  @media (min-width: 1439px) {
     display: none;
   }
 `;
 
-export const ProfileBtn = styled.button`
+export const ProfileBtn = styled(motion.button)`
   display: flex;
   align-items: center;
   padding: 6px 16px;
@@ -177,6 +185,7 @@ export const ProfileBtn = styled.button`
   gap: 8px;
   border-radius: 30px;
   background: #171719;
+  z-index: 7;
 `;
 
 export const ExpensesBtn = styled(NavLink)`
@@ -185,14 +194,14 @@ export const ExpensesBtn = styled(NavLink)`
   text-decoration: none;
   padding: 12px 21px;
   border-radius: 30px;
-  background: #0c0d0d;
-  border: 1px solid transparent;
-  color: white;
+  background: #0ef387;
+  border: 1px solid black;
+  color: black;
   cursor: pointer;
   &.active {
-    background: #0ef387;
+    background: #0c0d0d;
     border: 1px solid black;
-    color: black;
+    color: white;
   }
 `;
 export const IncomeBtn = styled(NavLink)`
@@ -200,15 +209,15 @@ export const IncomeBtn = styled(NavLink)`
   justify-content: center;
   text-decoration: none;
   padding: 12px 21px;
-  background: #0c0d0d;
+  background: #0ef387;
   border-radius: 30px;
   border: 1px solid rgba(12, 13, 13, 0.4);
-  color: white;
+  color: black;
   cursor: pointer;
   &.active {
-    background: #0ef387;
+    background: #0c0d0d;
     border: 1px solid black;
-    color: black;
+    color: white;
   }
 `;
 export const ExpensesLink = styled(motion(NavLink))`

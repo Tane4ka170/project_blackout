@@ -73,8 +73,6 @@ const Symbols = () => {
           <symbol id="icon-close" viewBox="0 0 32 32">
             <path
               fill="none"
-              stroke="#fafafa"
-              style={{ stroke: 'var(#fafafa)' }}
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2.667"
