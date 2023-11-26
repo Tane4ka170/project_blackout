@@ -17,10 +17,9 @@ import PreSelectType from "components/preSelectType/PreSelectType";
 // Form components
 import RadioBtn from "components/transactionForm/radioBtn/StyledRadioBtn";
 import DateInput from "components/transactionForm/dateInput/StyledDateInput";
-
-import CategoryInput from "components/transactionForm/categoryInput/CategoryInput";
-import SumInput from "components/transactionForm/sumInput/SumInput";
-import DescriptionInput from "components/transactionForm/descriptionInput/DescriptionInput";
+import CategoryInput from "components/transactionForm/categoryInput/StyledCategoryInput";
+import SumInput from "components/transactionForm/sumInput/StyledSumInput";
+import DescriptionInput from "components/transactionForm/descriptionInput/StyledDescriptionInput";
 
 // styled
 import { StyledFormWrapper } from "./OperationForm";
