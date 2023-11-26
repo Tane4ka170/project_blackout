@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { getCurrentUserThunk } from '../user/operations';
+
+import { getCurrentUserThunk } from 'redux/user/operations';
 
 export const expenseApi = axios.create({
   baseURL: 'https://expense-tracker.b.goit.study/api/',

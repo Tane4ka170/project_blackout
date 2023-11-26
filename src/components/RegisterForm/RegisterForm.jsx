@@ -1,14 +1,15 @@
-import { registerThunk } from 'components/redux/auth/operations';
-import { selectIsLoggedIn } from 'components/redux/auth/selectors';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
+import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { registerThunk } from 'redux/auth/operations';
+
 import { ButtonSign, Err, Line, PasswordToggle, StyledInput, StyledPasswordInput, WrapBt, WrapInp, WrapPassword } from './RegisterForm.styled';
 import { ReactComponent as ShowsIco } from '../../images/home/eye.svg'
 import { ReactComponent as HideIco } from '../../images/home/eye-off.svg'
-
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();

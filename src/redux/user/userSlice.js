@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import {
-  getCurrentUserThunk,
-  updateUserInfoThunk,
   changeAvatarThunk,
   deleteAvatarThunk,
-} from './operations.js';
-import { loginThunk } from '../auth/operations.js';
+  getCurrentUserThunk,
+  updateUserInfoThunk,
+} from './operations';
+import { loginThunk } from 'redux/auth/operations';
 
 const initialState = {
   user: {

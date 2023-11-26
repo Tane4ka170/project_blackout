@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import {
   createTransactionThunk,
-  getTransactionsThunk,
   deleteTransactionThunk,
+  getTransactionsThunk,
   updateTransactionThunk,
 } from './operations';
 

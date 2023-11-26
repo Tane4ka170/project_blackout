@@ -1,15 +1,18 @@
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+
 import { OneCategory } from 'components/oneCategory/OneCategory';
-import { selectIsLoggedIn } from 'components/redux/auth/selectors';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { selectCategories } from 'redux/category/selectors';
 import {
   createCategoryThunk,
   deleteCategoryThunk,
   getCategoriesThunk,
   updateCategoryThunk,
-} from 'components/redux/category/operations';
-import { selectCategories } from 'components/redux/category/selectors';
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+} from 'redux/category/operations';
+
 import {
   AllCategoriesP,
   CategoriesDiv,
@@ -21,7 +24,6 @@ import {
   TransactionType,
 } from './StyledCategories';
 // import { useParams } from 'react-router';
-import { toast } from 'react-toastify';
 
 export const Categories = ({ type = 'incomes' }) => {
   const categories = useSelector(selectCategories);

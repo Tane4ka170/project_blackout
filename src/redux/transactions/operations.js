@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { expenseApi } from '../auth/operations';
+
+import { expenseApi } from 'redux/auth/operations';
 
 export const createTransactionThunk = createAsyncThunk(
   'createTransaction',

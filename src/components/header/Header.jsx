@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { selectUser } from 'redux/user/selectors';
+
 import {
   HeaderLink,
   HeaderStyled,
@@ -25,9 +30,6 @@ import {
   ProfileContainer,
 } from './headerStyled';
 import Symbols from 'images/svg/Symbols';
-import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from 'components/redux/auth/selectors';
-import { selectUser } from 'components/redux/user/selectors';
 
 const Header = () => {
   const { name, avatar } = useSelector(selectUser);

@@ -2,8 +2,10 @@ import { useDispatch } from 'react-redux';
 // import { Categories } from './categories/Categories';
 import { useAuth } from './hooks';
 import { useEffect } from 'react';
-import { refreshThunk } from './redux/auth/operations';
 import { Route, Routes } from 'react-router-dom/dist';
+
+import { refreshThunk } from 'redux/auth/operations';
+
 // import { Navigate, Route, Routes, Link } from 'react-router-dom';
 import Layout from './layout/Layout';
 import Loader from './loader/Loader';
@@ -11,7 +13,6 @@ import Home from 'pages/Home/Home';
 import Register from 'pages/Register/Register';
 import Login from 'pages/Login/Login';
 import { Categories } from './categories/Categories';
-
 import NotFound from 'pages/NotFoundPage/NotFound';
 import { Expense } from 'pages/Expense/Expense';
 import { Income } from 'pages/Income/Income';
