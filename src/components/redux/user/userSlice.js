@@ -5,11 +5,12 @@ import {
   changeAvatarThunk,
   deleteAvatarThunk,
 } from './operations.js';
-import { loginThunk } from '../auth/operations.js';
+import { loginThunk, registerThunk } from '../auth/operations.js';
 
 const initialState = {
   user: {
     name: '',
+    email: '',
     currency: '',
     avatar: null,
   },
@@ -29,6 +30,11 @@ const userSlice = createSlice({
       .addCase(getCurrentUserThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
+      })
+      .addCase(registerThunk.fulfilled, (state, { payload }) => {
+        state.user.name = payload.name;
+        state.user.email = payload.email;
+        state.isLoggedIn = true;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.user = action.payload.user;

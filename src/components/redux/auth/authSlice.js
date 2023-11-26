@@ -7,7 +7,9 @@ import {
 } from './operations';
 
 const initialState = {
-  token: '',
+  accessToken: '',
+  refreshToken: '',
+  sid: '',
   isLoggedIn: false,
   isRefreshing: false,
   error: null,
@@ -20,22 +22,25 @@ const authSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
-        state.token = payload.token;
         state.isLoggedIn = true;
       })
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
-        state.token = payload.token;
+        state.accessToken = payload.accessToken;
+        state.refreshToken = payload.refreshToken;
+        state.sid = payload.sid;
         state.isLoggedIn = true;
+        state.error = null;
       })
       .addCase(logoutThunk.fulfilled, state => {
-        state.user = null;
-        state.token = null;
-        state.isLoggedIn = false;
+        return (state = initialState);
       })
       .addCase(refreshThunk.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(refreshThunk.fulfilled, (state, { payload }) => {
+        state.accessToken = payload.accessToken;
+        state.refreshToken = payload.refreshToken;
+        state.sid = payload.sid;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })

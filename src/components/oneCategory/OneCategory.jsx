@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyledLi } from './StyledOneCategory';
+import Symbols from 'images/svg/Symbols';
 
 export const OneCategory = ({
   _id,
@@ -11,6 +12,7 @@ export const OneCategory = ({
     <StyledLi>
       <p>{categoryName}</p>
       <div>
+        <Symbols />
         <button>
           <svg width={16} height={16}>
             <use xlinkHref="#icon-check" />

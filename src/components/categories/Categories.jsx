@@ -17,11 +17,15 @@ import {
   CategoriesPlugP,
   InputTitleP,
   StyledErrorP,
+  StyledInput,
   SubmitForm,
   TransactionType,
 } from './StyledCategories';
 // import { useParams } from 'react-router';
 import { toast } from 'react-toastify';
+import { motion } from 'framer-motion';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { schemaCategoryInput } from 'helpers/schemas';
 
 export const Categories = ({ type = 'incomes' }) => {
   const categories = useSelector(selectCategories);
@@ -31,13 +35,14 @@ export const Categories = ({ type = 'incomes' }) => {
   // const { transactionsType } = useParams();
 
   const [currentCategory, setCurrentCategory] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({ resolver: yupResolver(schemaCategoryInput) });
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -52,6 +57,7 @@ export const Categories = ({ type = 'incomes' }) => {
   const editCategory = category => {
     setCurrentCategory(category);
     reset({ categoryName: category.categoryName });
+    setIsEditing(true);
   };
 
   const submit = ({ categoryName }) => {
@@ -63,6 +69,7 @@ export const Categories = ({ type = 'incomes' }) => {
           toast.error('Oops, something went wrong');
         });
       reset({ categoryName: '' });
+      setIsEditing(false);
     } else {
       dispatch(createCategoryThunk(categoryDate))
         .unwrap()
@@ -76,6 +83,12 @@ export const Categories = ({ type = 'incomes' }) => {
   };
 
   const deleteCategory = id => {
+    if (currentCategory && currentCategory._id === id) {
+      reset({ categoryName: '' });
+      setCurrentCategory(null);
+      setIsEditing(false);
+    }
+
     dispatch(deleteCategoryThunk(id))
       .unwrap()
       .catch(e => {
@@ -103,20 +116,28 @@ export const Categories = ({ type = 'incomes' }) => {
           <CategoriesPlugP>There are no categories yet😭</CategoriesPlugP>
         )}
       </CategoriesList>
-      <SubmitForm action="" onSubmit={handleSubmit(submit)}>
-        <InputTitleP>
-          {currentCategory ? 'Edit category' : 'New category'}
-        </InputTitleP>
-        <input
-          type="text"
-          placeholder="Enter the text"
-          {...register('categoryName', { required: true, maxLength: 30 })}
-        />
-        <button>{currentCategory ? 'Edit' : 'Add'}</button>
-      </SubmitForm>
-      {errors?.categoryName && (
-        <StyledErrorP>Максимальна кількість символів - 30</StyledErrorP>
-      )}
+      <motion.div
+        initial={{ y: '100%' }}
+        animate={{ y: 0 }}
+        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+      >
+        <SubmitForm action="" onSubmit={handleSubmit(submit)}>
+          <InputTitleP>
+            {isEditing ? 'Edit category' : 'New category'}
+          </InputTitleP>
+          <StyledInput
+            type="text"
+            placeholder="Enter the text"
+            {...register('categoryName', { required: true, maxLength: 30 })}
+            autoFocus={currentCategory !== null}
+            key={currentCategory?._id}
+          />
+          <button>{isEditing ? 'Edit' : 'Add'}</button>
+        </SubmitForm>
+        {errors?.categoryName && (
+          <StyledErrorP>{errors.categoryName.message}</StyledErrorP>
+        )}
+      </motion.div>
     </CategoriesDiv>
   );
 };

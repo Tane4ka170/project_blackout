@@ -25,8 +25,10 @@ import {
   ProfileContainer,
 } from './headerStyled';
 import Symbols from 'images/svg/Symbols';
-import { useSelector } from 'react-redux';
-import { selectIsLoggedIn, selectUser } from 'components/redux/auth/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'components/redux/auth/selectors';
+import { selectUser } from 'components/redux/user/selectors';
+import { logoutThunk } from 'components/redux/auth/operations';
 
 const Header = () => {
   const { name, avatar } = useSelector(selectUser);
@@ -37,6 +39,8 @@ const Header = () => {
   const [hideOrShowList, setHideOrShowList] = useState({});
 
   const [isRotated, setIsRotated] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleMenu = () => {
     setIsOpen(prev => !prev);
@@ -154,7 +158,7 @@ const Header = () => {
               <UserLinkIcons width={16} height={16}>
                 <use xlinkHref="#icon-log-out" />
               </UserLinkIcons>
-              Log out
+              <button onClick={() => dispatch(logoutThunk())}>Log out</button>
             </UserLink>
           </BtnContainer>
           <CloseBtn onClick={handleMenu}>
