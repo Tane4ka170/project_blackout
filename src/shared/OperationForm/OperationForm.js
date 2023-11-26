@@ -1,51 +1,75 @@
-import styled from "styled-components";
+//Base 
+import React from "react";
+import { useParams } from "react-router-dom";
 
-export const StyledFormWrapper = styled.form`
-  width: 335px;
+// Form
+import { useForm } from "react-hook-form";
+import "react-datepicker/dist/react-datepicker.css";
 
-  border-radius: 30px;
-  background-color: #171719;
+// Validation
+import validationSchema from "./validationSchema/validationSchema";
+import { yupResolver } from '@hookform/resolvers/yup';
 
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+// Components
+import onSubmitTransaction from "components/onSubmitTransaction/onSubmitTransaction";
+import PreSelectType from "components/preSelectType/PreSelectType";
 
-  padding: 28px 20px;
-  box-sizing: border-box;
-`
+// Form components
+import RadioBtn from "components/transactionForm/radioBtn/RadioBtn";
+import DateInput from "components/transactionForm/dateInput/DateInput";
+import CategoryInput from "components/transactionForm/categoryInput/CategoryInput";
+import SumInput from "components/transactionForm/sumInput/SumInput";
+import DescriptionInput from "components/transactionForm/descriptionInput/StyledDescriptionInput";
 
-export const StyledBtn = styled.button`
-text-align: center;
-color: #0C0D0D;
-font-size: 16px;
-font-weight: 400;
-letter-spacing: -0.02em;
+// styled
+import { StyledBtn, StyledFormWrapper, StyledErrorMsg, StyledInputsWrapper } from "./OperationForm.styled";
 
-margin-right: auto;
-padding: 14px 44px;
-border-radius: 40px;
-border: none;
+const OperationForm = () => {
+  const { transactionsType } = useParams();
 
-background-color: #0EF387;
-transition: background-color 250ms ease-in-out;
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      type: '',
+      date: "",
+      time: "00:00:00",
+      category: '',
+      sum: '',
+      desc: '',
+    },
+    resolver: yupResolver(validationSchema)
+  })
+  return (
+    <StyledFormWrapper onSubmit={
+      handleSubmit(data => onSubmitTransaction(data, PreSelectType(transactionsType)))
+    }>
+      {/* type select */}
+      <RadioBtn control={control} />
+      {/* date inputs */}
+      <DateInput control={control} />
+      {/* category input */}
+      <StyledInputsWrapper>
+        <CategoryInput control={control} />
+        {errors.category && <StyledErrorMsg>{errors.category.message}</StyledErrorMsg>}
+      </StyledInputsWrapper>
+      {/* sum input */}
+      <StyledInputsWrapper>
+        <SumInput control={control} />
+        {errors.sum && <StyledErrorMsg>{'Sum is required'}</StyledErrorMsg>}
+      </StyledInputsWrapper>
+      {/* desc input */}
+      <StyledInputsWrapper>
+        <DescriptionInput control={control} />
+        {errors.desc && <StyledErrorMsg>{errors.desc.message}</StyledErrorMsg>}
+        {/* submit btn */}
+      </StyledInputsWrapper>
+      <StyledBtn type="submit">Add</StyledBtn>
+    </StyledFormWrapper>
+  );
+};
 
 
-&:hover {
-  background-color: #0EBB69;
-}
-`
-
-export const StyledInputsWrapper = styled.div`
-position: relative;
-`
-
-export const StyledErrorMsg = styled.p`
-position: absolute;
-left: 18px;
-
-margin: 0;
-
-font-size: 10px;
-font-weight: 400;
-color: #E74A3B;
-`
+export default OperationForm;

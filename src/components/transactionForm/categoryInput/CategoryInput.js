@@ -1,40 +1,46 @@
-import styled from "styled-components";
+// base
+import React from "react";
+import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
+
+// form
+import { Controller } from "react-hook-form";
+
+// components 
+import PreSelectType from "components/preSelectType/PreSelectType";
+
+// styled
+import {StyledInputWrapper, StyledLabel, StyledCategoryInput } from "./CategoryInput.styled";
+
+const CategoryInput = ({ control }) => {
+  const { transactionsType } = useParams();
+  const navigate = useNavigate();
+
+  const handleTypeChange = (value) => {
+    navigate(`/transactions/${value}`)
+    console.log(transactionsType)
+  };
+
+  return (
+      <Controller
+        name="category"
+        control={control}
+        render={({ field }) => (
+          <StyledInputWrapper>
+            <StyledLabel htmlFor="category">Category</StyledLabel>
+            <StyledCategoryInput
+              id="category"
+              type="textarea"
+              placeholder="Different"
+              {...field}
+              value=''
+              onClick={() => handleTypeChange(PreSelectType(transactionsType))}
+            />
+          </StyledInputWrapper>
+        )}
+      />
+  );
+};
 
 
-export const StyledInputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-`
-
-export const StyledLabel = styled.label`
-  color: #FAFAFA;
-  
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  
-  display: inline-block;
-`
-
-export const StyledCategoryInput = styled.input`
-  /* width: 140px; */
-  height: 42px;
-  padding: 12px 14px;
-
-  border: 1px solid rgba(250, 250, 250, 0.20);
-  border-radius: 12px;
-
-  background-color: transparent;
-  color: rgba(250, 250, 250, 0.40);
-
-  outline: none;
-  box-sizing: border-box;
-
-  transition: border-color 250ms ease-in-out;
-  
-  &:focus {
-    border-color: #0EF387;
-  }
-`
-
+export default CategoryInput;

@@ -3,7 +3,8 @@ import React from "react";
 
 // components
 import { TotalIncome, TotalExpense } from "shared/Total";
-import OperationForm from "shared/OperationForm/StyledOperationForm";
+import OperationForm from "shared/OperationForm/OperationForm";
+import DoughnutComponent from "components/doughnut/Doughnut";
 
 // styled
 import { StyledHeaders, StyledSection, StyledText, StyledHeadersWrapper, StyledTotalUl, StyledMain } from "./MainTransactionsPage.styled";
@@ -19,19 +20,16 @@ const MainTransactionsPage = () => {
       </StyledHeadersWrapper>
       <StyledTotalUl>
         <li>
-          {/* Тут будет компонент Total Income */}
           <TotalIncome />
         </li>
         <li>
-          {/* Тут будет компонент Total Expense */}
           <TotalExpense />
         </li>
       </StyledTotalUl>
       <StyledMain>
-          {/*  тут буде Form for login expense or income */}
           <OperationForm />
         <div>
-          {/* и будет Donut  */}
+          <DoughnutComponent/>
         </div>
       </StyledMain>
     </StyledSection>

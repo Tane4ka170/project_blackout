@@ -1,41 +1,71 @@
-import styled from "styled-components";
+// base
+import React, { useEffect, useState } from "react";
+import { Controller } from "react-hook-form";
+import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 
-// wrapper
-export const StyledWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
+// component
+import PreSelectType from "components/preSelectType/PreSelectType";
 
-  gap: 20px;
-`
+//styled
+import { StyledInputWrapper, StyledLabel, StyledWrapper, StyledInput } from "./RadioBtn.styled";
 
-export const StyledInputWrapper = styled.div`
-  display: flex;
-  gap: 8px;
+const RadioBtn = ({ control }) => {
+  const [type, setType] = useState();
+  const { transactionsType } = useParams();
+  const navigate = useNavigate();
 
-  align-items: center;
-`
+  useEffect(() => {
+    setType(PreSelectType(transactionsType)) ;
+  }, [transactionsType]);
 
-// input
-export const StyledLabel = styled.label`
-  color: #FAFAFA;
+  const handleTypeChange = (value) => {
+    navigate(`/transactions/${value}`)
+  };
 
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  return (
+    <StyledWrapper>
+      <Controller
+        name="type"
+        control={control}
+        defaultValue="income"
+        render={() => (
+          <StyledInputWrapper>
+            <StyledInput
+              id="income"
+              type="radio"
+              value='income'
+              onChange={() => {
+                handleTypeChange('income')
+              }}
+              checked={type === 'income'}
+            />
+            <StyledLabel htmlFor="income">Income</StyledLabel>
+          </StyledInputWrapper>
+        )}
+      />
+      <Controller
+        name="type"
+        control={control}
+        defaultValue=""
+        render={() => (
+          <StyledInputWrapper>
+            <StyledInput
+              id="expense"
+              type="radio"
+              value='expense'
+              onChange={() => {
+                handleTypeChange('expense')
+              }}
+              checked={type === 'expense'}
+            />
+            <StyledLabel htmlFor="expense">Expense</StyledLabel>
+          </StyledInputWrapper>
+        )}
+      />
+    </StyledWrapper>
+  );
+};
 
-  display: inline-block;
-`
 
-export const StyledInput = styled.input`
-  appearance: none;
-  border-radius: 10px;
-  width: 19px;
-  height: 19px;
-  outline: 2px solid rgba(250, 250, 250, 0.20);
-
-  &:checked {
-    border: 3px solid #171719;
-    outline: 2px solid #4DC274;
-    background-color: #4DC274;
-  }
-`
+export default RadioBtn;

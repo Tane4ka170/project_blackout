@@ -6,16 +6,26 @@ export const StyledSection = styled.section`
   padding-left: 20px;
   padding-right: 20px;
   margin-bottom: 80px;
+  margin-right: auto;
+  margin-left: auto;
 
-  background-color: #0C0D0D;
-
-  box-sizing: border-box;
+  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+    width: 768px;
+    padding-left: 32px;
+    padding-right: 32px;
+    margin-bottom: 80px;
+  }
+  
 `
 
 // headers
 export const StyledHeadersWrapper = styled.div`
 width: 335px;
 margin-bottom: 40px;
+
+@media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+    width: 500px;
+  }
 `
 
 export const StyledHeaders = styled.h1`
@@ -26,6 +36,12 @@ export const StyledHeaders = styled.h1`
   font-size: 32px;
   letter-spacing: -0.02em;
   line-height: normal;
+
+  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+    margin-bottom: 15px;
+
+    font-size: 38px;
+  }
 `
 
 export const StyledText = styled.p`
@@ -35,6 +51,12 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 letter-spacing: -0.02em;
+
+  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+    margin-bottom: 15px;
+    
+    font-size: 16px;
+  }
 `
 
 // total expense & income
@@ -50,8 +72,26 @@ export const StyledTotalUl = styled.ul`
   list-style: none;
 
   margin-bottom: 40px;
+
+  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+    width: 701px;
+
+    flex-direction: row;
+
+    gap: 0;
+    justify-content: space-between;
+  }
 `
 
 export const StyledMain = styled.main`
-  width: 335px;
+  /* width: 335px; */
+
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @media only screen and (min-width: 1440px) {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
 `
