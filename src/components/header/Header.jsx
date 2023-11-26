@@ -68,6 +68,7 @@ const Header = () => {
         return { display: 'flex' };
       });
     }
+    setIsRotated(!isRotated);
   };
   const hanldeSecondBtnList = () => {
     setIsRotated(prevState => !prevState);
@@ -81,6 +82,7 @@ const Header = () => {
         return { display: 'flex' };
       });
     }
+    setIsRotated(!isRotated);
   };
   if (!isLoggedIn) {
     return (
@@ -105,7 +107,7 @@ const Header = () => {
   return (
     <HeaderStyled>
       <HeaderLink
-        to="/"
+        to="/transactions/expense"
         initial={{ y: -250 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.7, type: 'spring', stiffness: 220 }}
@@ -158,7 +160,7 @@ const Header = () => {
           <UserArrowUp
             width={20}
             height={20}
-            style={{ transform: isRotated ? 'rotate(0)' : 'rotate(180deg)' }}
+            style={{ transform: isRotated ? 'rotate(180deg)' : 'rotate(0)' }}
           >
             <use xlinkHref="#user-icon-down" />
           </UserArrowUp>
@@ -191,7 +193,13 @@ const Header = () => {
       </MenuBtn>
       <MobileMenu style={hideOrShow}>
         <MenuHeader>
-          <ProfileBtn type="button" onClick={hanldeBtnList}>
+          <ProfileBtn
+            type="button"
+            onClick={hanldeBtnList}
+            initial={{ y: -250 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.6, type: 'spring', stiffness: 270 }}
+          >
             {avatar ? (
               <UserImgContainer>
                 <img src={avatar} alt="User" width={34} height={34} />
@@ -224,7 +232,12 @@ const Header = () => {
               Log out
             </UserLink>
           </BtnContainer>
-          <CloseBtn onClick={handleMenu}>
+          <CloseBtn
+            onClick={handleMenu}
+            initial={{ y: -250 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.8, type: 'spring', stiffness: 230 }}
+          >
             <svg width={30} height={30}>
               <use xlinkHref="#icon-close" />
             </svg>
