@@ -6,10 +6,10 @@ import { TotalIncome, TotalExpense } from "shared/Total";
 import OperationForm from "shared/OperationForm/StyledOperationForm";
 
 // styled
-import { StyledHeaders, StyledSection, StyledText, StyledHeadersWrapper, StyledTotalUl, StyledMain } from "./Home";
+import { StyledHeaders, StyledSection, StyledText, StyledHeadersWrapper, StyledTotalUl, StyledMain } from "./MainTransactionsPage.styled";
 
 
-const Home = () => {
+const MainTransactionsPage = () => {
 
   return (
     <StyledSection>
@@ -38,4 +38,4 @@ const Home = () => {
   );
 };
 
-export default Home
+export default MainTransactionsPage
