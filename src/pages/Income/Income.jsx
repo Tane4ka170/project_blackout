@@ -9,7 +9,25 @@ import { SectionTransaction } from 'components/sectionTransactionList/sectionTra
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { DIVL, DIVMAIN, DIVTR, H2, PH } from './Income.styled';
+import {
+  DIV,
+  DIVL,
+  DIVMAIN,
+  DIVTR,
+  DelBtn,
+  EditBtn,
+  H2,
+  LI,
+  P1,
+  P2,
+  P3,
+  P4,
+  P5,
+  PH,
+  TransactionsContainer,
+  ULL,
+} from './Income.styled';
+import { TotalExpense, TotalIncome } from 'shared/Total';
 
 export const Income = () => {
   const dispatch = useDispatch();
@@ -32,17 +50,17 @@ export const Income = () => {
     toast.success(`Transaction ${transactionComment} was deleted`);
   };
 
-  const filterContacts = transactions.filter(
-    transaction =>
-      transaction.category.categoryName
-        .toLowerCase()
-        .trim()
-        .includes(filter.toLowerCase().trim()) ||
-      transaction.comment
-        .toLowerCase()
-        .trim()
-        .includes(filter.toLowerCase().trim())
-  );
+  // const filterContacts = transactions.filter(
+  //   transaction =>
+  //     transaction.category.categoryName
+  //       .toLowerCase()
+  //       .trim()
+  //       .includes(filter.toLowerCase().trim()) ||
+  //     transaction.comment
+  //       .toLowerCase()
+  //       .trim()
+  //       .includes(filter.toLowerCase().trim())
+  // );
 
   return (
     <div>
@@ -54,35 +72,38 @@ export const Income = () => {
             insights into your total revenue in a snap.
           </PH>
         </DIVL>
-        <div>
-          <ul>
-            <li></li>
-            <li></li>
-          </ul>
-        </div>
+
+        <ULL>
+          <LI>
+            <TotalIncome />
+          </LI>
+          <LI>
+            <TotalExpense />
+          </LI>
+        </ULL>
       </DIVMAIN>
       <DIVTR>
         <Filter />
         <SectionTransaction />
-        <div>
+        <TransactionsContainer>
           {transactions.map(transaction => (
-            <div key={transaction._id}>
-              <p>{transaction.category.categoryName}</p>
-              <p>{transaction.comment}</p>
-              <p>{transaction.date}</p>
-              <p>{transaction.time}</p>
-              <p>{transaction.sum}</p>
-              <button>Edit</button>
-              <button
+            <DIV key={transaction._id}>
+              <P1>{transaction.category.categoryName}</P1>
+              <P2>{transaction.comment}</P2>
+              <P3>{transaction.date}</P3>
+              <P4>{transaction.time}</P4>
+              <P5>{transaction.sum} / UAH</P5>
+              <EditBtn>Edit</EditBtn>
+              <DelBtn
                 onClick={() =>
                   handleDelete(transaction._id, transaction.comment)
                 }
               >
                 Delete
-              </button>
-            </div>
+              </DelBtn>
+            </DIV>
           ))}
-        </div>
+        </TransactionsContainer>
       </DIVTR>
     </div>
   );
