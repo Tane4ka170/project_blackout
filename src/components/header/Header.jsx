@@ -57,31 +57,15 @@ const Header = () => {
     }
   };
   const hanldeBtnList = () => {
-    setIsRotated(prevState => !prevState);
-    setIsOpen(prev => !prev);
-    if (isOpen) {
-      setHideOrShowList(() => {
-        return { display: 'none' };
-      });
-    } else {
-      setHideOrShowList(() => {
-        return { display: 'flex' };
-      });
-    }
+    setHideOrShowList(prev => ({
+      display: prev.display === 'flex' ? 'none' : 'flex',
+    }));
     setIsRotated(!isRotated);
   };
   const hanldeSecondBtnList = () => {
-    setIsRotated(prevState => !prevState);
-    setIsOpen(prev => !prev);
-    if (isOpen) {
-      setHideOrShowSecondList(() => {
-        return {};
-      });
-    } else {
-      setHideOrShowSecondList(() => {
-        return { display: 'flex' };
-      });
-    }
+    setHideOrShowSecondList(prev => ({
+      display: prev.display === 'flex' ? 'none' : 'flex',
+    }));
     setIsRotated(!isRotated);
   };
   if (!isLoggedIn) {
