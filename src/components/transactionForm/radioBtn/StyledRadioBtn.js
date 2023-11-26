@@ -7,9 +7,6 @@ import { useNavigate } from "react-router-dom";
 // component
 import PreSelectType from "components/preSelectType/PreSelectType";
 
-// svg
-import radio from '../../../images/Sprite.svg';
-
 //styled
 import { StyledInputWrapper, StyledLabel, StyledWrapper, StyledInput } from "./RadioBtn";
 
