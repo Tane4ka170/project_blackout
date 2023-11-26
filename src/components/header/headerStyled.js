@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -8,20 +9,24 @@ export const EmptyHeaderStyled = styled.div`
   background: #0c0d0d;
   padding: 13px 20px;
   color: white;
+  @media screen and (min-width: 1440px) {
+    padding: 18px 100px;
+  }
 `;
 
-export const HeaderStyled = styled.div`
+export const HeaderStyled = styled(motion.div)`
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #0c0d0d;
   padding: 13px 20px;
   color: white;
+  border-bottom: 1px solid rgba(250, 250, 250, 0.1);
   @media screen and (max-width: 1439px) {
     justify-content: space-between;
   }
   @media screen and (min-width: 1440px) {
-    justify-content: space-around;
+    padding: 18px 100px;
   }
 `;
 export const MenuHeader = styled.div`
@@ -45,8 +50,13 @@ export const MobileMenu = styled.div`
   right: 0;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
+
   @media screen and (min-width: 425px) {
     max-width: 385px;
+  }
+  @media screen and (min-width: 1024px) {
+    display: none !important;
   }
 `;
 export const MenuMain = styled.div`
@@ -67,7 +77,7 @@ export const BtnContainer = styled.div`
   padding: 16px;
   position: absolute;
   z-index: 6;
-  top: 80px;
+  top: 75px;
   left: 20px;
   border-radius: 15px;
   border: 1px solid rgba(250, 250, 250, 0.1);
@@ -76,17 +86,37 @@ export const BtnContainer = styled.div`
 export const LinksContainer = styled.div`
   display: flex;
   gap: 16px;
-  @media screen and (max-width: 1439px) {
+  @media screen and (max-width: 1024px) {
     display: none;
   }
 `;
 
-export const ProfileContainer = styled.div`
-  @media screen and (max-width: 1439px) {
+export const ProfileContainer = styled(motion.div)`
+  @media screen and (max-width: 1024px) {
     display: none;
   }
 `;
-export const HeaderLink = styled(Link)`
+export const SecondBtnContainer = styled.div`
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  position: absolute;
+  z-index: 3;
+  top: 80px;
+  right: 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(250, 250, 250, 0.1);
+  background: #0c0d0d;
+  @media screen and (min-width: 1439px) {
+    right: 100px;
+  }
+  @media screen and (max-width: 1025px) {
+    display: none !important;
+  }
+`;
+
+export const HeaderLink = styled(motion(Link))`
   display: flex;
   text-decoration: none;
   color: #fafafa;
@@ -94,6 +124,10 @@ export const HeaderLink = styled(Link)`
   font-weight: 700;
   letter-spacing: -0.36px;
   text-transform: uppercase;
+  &:hover {
+    transform: scale(1.07);
+    text-shadow: 0 0 5px #0ef387;
+  }
   @media screen and (min-width: 1439px) {
     font-size: 20px;
   }
@@ -107,16 +141,20 @@ export const UserLink = styled(Link)`
   line-height: normal;
   display: flex;
   gap: 12px;
+  &:hover {
+    transform: scale(1.07);
+    text-shadow: 0 0 5px #0ef387;
+  }
 `;
 
 export const SiteIcon = styled.span``;
 
-export const MenuBtn = styled.button`
+export const MenuBtn = styled(motion.button)`
   background-color: transparent;
   border: none;
   stroke: white;
 
-  @media (min-width: 769px) {
+  @media (min-width: 1025px) {
     display: none;
   }
 `;
@@ -142,6 +180,8 @@ export const ProfileBtn = styled.button`
 `;
 
 export const ExpensesBtn = styled(NavLink)`
+  display: flex;
+  justify-content: center;
   text-decoration: none;
   padding: 12px 21px;
   border-radius: 30px;
@@ -149,17 +189,31 @@ export const ExpensesBtn = styled(NavLink)`
   border: 1px solid transparent;
   color: white;
   cursor: pointer;
+  &.active {
+    background: #0ef387;
+    border: 1px solid black;
+    color: black;
+  }
 `;
 export const IncomeBtn = styled(NavLink)`
+  display: flex;
+  justify-content: center;
   text-decoration: none;
   padding: 12px 21px;
-  background: transparent;
+  background: #0c0d0d;
   border-radius: 30px;
   border: 1px solid rgba(12, 13, 13, 0.4);
-  color: black;
+  color: white;
   cursor: pointer;
+  &.active {
+    background: #0ef387;
+    border: 1px solid black;
+    color: black;
+  }
 `;
-export const ExpensesLink = styled(NavLink)`
+export const ExpensesLink = styled(motion(NavLink))`
+  display: flex;
+  justify-content: center;
   text-decoration: none;
   padding: 12px 23px;
   border-radius: 30px;
@@ -167,8 +221,20 @@ export const ExpensesLink = styled(NavLink)`
   border: 1px solid white;
   color: white;
   cursor: pointer;
+  &:hover {
+    transform: scale(1.07);
+    text-shadow: 0 0 5px #0ef387;
+    box-shadow: 0 0 5px #0ef387;
+  }
+  &.active {
+    background: #0ef387;
+    border: 1px solid #0ef387;
+    color: black;
+  }
 `;
-export const IncomeLink = styled(NavLink)`
+export const IncomeLink = styled(motion(NavLink))`
+  display: flex;
+  justify-content: center;
   text-decoration: none;
   padding: 12px 23px;
   background: transparent;
@@ -176,11 +242,23 @@ export const IncomeLink = styled(NavLink)`
   border: 1px solid white;
   color: white;
   cursor: pointer;
+  &:hover {
+    transform: scale(1.07);
+    text-shadow: 0 0 5px #0ef387;
+    box-shadow: 0 0 5px #0ef387;
+  }
+  &.active {
+    background: #0ef387;
+    border: 1px solid #0ef387;
+    color: black;
+  }
 `;
 export const DefaultUserIcon = styled.svg`
   fill: rgba(14, 243, 135, 1);
   padding: 9px 8px;
   border-radius: 50px;
+  height: 42.2px;
+  width: 42px;
 `;
 export const UserArrowUp = styled.svg`
   stroke: rgba(14, 243, 135, 1);

@@ -12,6 +12,7 @@ import Register from 'pages/Register/Register';
 import Login from 'pages/Login/Login';
 import { Categories } from './categories/Categories';
 
+import MainTransactionsPage from 'pages/MainTransactionsPage/MainTransactionsPage';
 import NotFound from 'pages/NotFoundPage/NotFound';
 import { Expense } from 'pages/Expense/Expense';
 import { Income } from 'pages/Income/Income';
@@ -35,6 +36,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="/transactions/:transactionsType" element={<MainTransactionsPage />} />
           <Route path="/expenses" element={<Expense />} />
           <Route path="/incomes" element={<Income />} />
           <Route
