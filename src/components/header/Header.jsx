@@ -30,6 +30,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { selectUser } from 'redux/user/selectors';
 import { logoutThunk } from 'redux/auth/operations';
+import { useLocation } from 'react-router-dom';
 
 const Header = () => {
   const location = useLocation();
