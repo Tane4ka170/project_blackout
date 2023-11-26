@@ -31,6 +31,12 @@ export const StyledCategoryInput = styled.input`
   outline: none;
   box-sizing: border-box;
 
+  transition: border-color 250ms ease-in-out;
+
+  &:focus {
+    border-color: #0EF387;
+  }
+
   appearance: none;
 
   -moz-appearance: textfield;

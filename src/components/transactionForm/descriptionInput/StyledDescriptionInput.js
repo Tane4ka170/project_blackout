@@ -15,6 +15,7 @@ const DescriptionInput = ({ control }) => {
             <StyledDescriptionInput
               id="desc"
               type="textarea"
+              rows='4'
               placeholder="Enter the text"
               {...field}
             />

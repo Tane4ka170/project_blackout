@@ -22,7 +22,7 @@ import SumInput from "components/transactionForm/sumInput/StyledSumInput";
 import DescriptionInput from "components/transactionForm/descriptionInput/StyledDescriptionInput";
 
 // styled
-import { StyledFormWrapper } from "./OperationForm";
+import { StyledBtn, StyledFormWrapper, StyledErrorMsg, StyledInputsWrapper } from "./OperationForm";
 
 const OperationForm = () => {
   const { transactionsType } = useParams();
@@ -37,7 +37,7 @@ const OperationForm = () => {
       date: "",
       time: "00:00:00",
       category: '',
-      // sum: null,
+      sum: '',
       desc: '',
     },
     resolver: yupResolver(validationSchema)
@@ -49,18 +49,24 @@ const OperationForm = () => {
       {/* type select */}
       <RadioBtn control={control} />
       {/* date inputs */}
-      <DateInput control={ control }/>
+      <DateInput control={control} />
       {/* category input */}
-      <CategoryInput control={control} />
-      {errors.category && <p>{ errors.category.message }</p>}
+      <StyledInputsWrapper>
+        <CategoryInput control={control} />
+        {errors.category && <StyledErrorMsg>{errors.category.message}</StyledErrorMsg>}
+      </StyledInputsWrapper>
       {/* sum input */}
-      <SumInput control={ control }/>
-      {errors.sum && <p>{ errors.sum.message }</p>}
+      <StyledInputsWrapper>
+        <SumInput control={control} />
+        {errors.sum && <StyledErrorMsg>{'Sum is required'}</StyledErrorMsg>}
+      </StyledInputsWrapper>
       {/* desc input */}
-      <DescriptionInput control={control} />
-      {errors.desc && <p>{ errors.desc.message }</p>}
-      {/* submit btn */}
-      <button type="submit">Submit</button>
+      <StyledInputsWrapper>
+        <DescriptionInput control={control} />
+        {errors.desc && <StyledErrorMsg>{errors.desc.message}</StyledErrorMsg>}
+        {/* submit btn */}
+      </StyledInputsWrapper>
+      <StyledBtn type="submit">Add</StyledBtn>
     </StyledFormWrapper>
   );
 };
