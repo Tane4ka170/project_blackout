@@ -4,12 +4,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-
-import { ButtonSign, Err, Line, PasswordToggle, StyledInput, StyledPasswordInput, WrapBt, WrapInp, WrapPassword } from 'components/RegisterForm/RegisterForm.styled';
-import { loginThunk } from 'components/redux/auth/operations';
-import { selectIsLoggedIn } from 'components/redux/auth/selectors';
-import { ReactComponent as ShowsIco } from '../../images/home/eye.svg'
-import { ReactComponent as HideIco } from '../../images/home/eye-off.svg'
+import {
+  ButtonSign,
+  Err,
+  Line,
+  PasswordToggle,
+  StyledInput,
+  StyledPasswordInput,
+  WrapBt,
+  WrapInp,
+  WrapPassword,
+} from 'components/RegisterForm/RegisterForm.styled';
+import { loginThunk } from 'redux/auth/operations';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { ReactComponent as ShowsIco } from '../../images/home/eye.svg';
+import { ReactComponent as HideIco } from '../../images/home/eye-off.svg';
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const {
@@ -37,7 +46,7 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <WrapInp >
+      <WrapInp>
         <div>
           <StyledInput
             defaultValue=""
@@ -48,52 +57,41 @@ export const LoginForm = () => {
                 message: 'Ensure your email is at least 6 characters long',
               },
             })}
-
             type="email"
             placeholder="Email"
             autoComplete="new-email"
           />
-          {formErrors.email && (
-            <Err >{formErrors.email.message}</Err>
-          )}
+          {formErrors.email && <Err>{formErrors.email.message}</Err>}
         </div>
 
-        <WrapPassword >
+        <WrapPassword>
           <StyledPasswordInput
             {...register('password', {
               required: 'Please enter your password',
               minLength: {
                 value: 6,
-                message: 'Make sure your password is at least 6 characters long',
+                message:
+                  'Make sure your password is at least 6 characters long',
               },
             })}
-
             type={showPassword ? 'text' : 'password'}
             placeholder="Password"
             autoComplete="new-password"
           />
           <PasswordToggle onClick={togglePasswordVisibility} type="button">
-            {showPassword ? (
-              <HideIco />
-            ) : (
-              <ShowsIco />
-            )}
+            {showPassword ? <HideIco /> : <ShowsIco />}
           </PasswordToggle>
-          {formErrors.password && (
-            <Err >{formErrors.password.message}</Err>
-          )}
+          {formErrors.password && <Err>{formErrors.password.message}</Err>}
         </WrapPassword>
 
-
-        <WrapBt  >
-          <ButtonSign >Sign in</ButtonSign>
+        <WrapBt>
+          <ButtonSign>Sign in</ButtonSign>
         </WrapBt>
 
-        <Line >
+        <Line>
           New here? <Link to={'/register'}>Create an account</Link>
         </Line>
       </WrapInp>
-
     </form>
   );
 };

@@ -2,11 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import {
-  selectFilter,
-  selectStartDate,
-} from 'components/redux/filter/filterSelector';
-import { setFilter, setStartDate } from 'components/redux/filter/filterSlice';
+import { selectFilter, selectStartDate } from 'redux/filter/filterSelector';
+import { setFilter, setStartDate } from 'redux/filter/filterSlice';
 
 export const Filter = () => {
   const filter = useSelector(selectFilter);
