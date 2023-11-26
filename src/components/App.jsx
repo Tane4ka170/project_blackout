@@ -65,7 +65,6 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Categories />
-      React homework template
     </div>
   );
 }
