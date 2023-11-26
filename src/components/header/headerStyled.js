@@ -195,7 +195,7 @@ export const ExpensesBtn = styled(NavLink)`
   padding: 12px 21px;
   border-radius: 30px;
   background: #0ef387;
-  border: 1px solid black;
+  border: 1px solid rgba(12, 13, 13, 0.4);
   color: black;
   cursor: pointer;
   &.active {
