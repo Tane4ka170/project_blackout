@@ -32,6 +32,7 @@ import {
 } from './Income.styled';
 import { TotalExpense, TotalIncome } from 'shared/Total';
 import svg from '../../images/Sprite.svg';
+import { motion } from 'framer-motion';
 
 export const Income = () => {
   const dispatch = useDispatch();
@@ -80,44 +81,52 @@ export const Income = () => {
           </LI>
         </ULL>
       </DIVMAIN>
-      <DIVTR>
-        <Filter />
-        <DIV375>
-          <SectionTransaction />
-          {filterTransactions.length ? (
-            <TransactionsContainer>
-              {transactions.map(transaction => (
-                <DIV key={transaction._id}>
-                  <P1>{transaction.category.categoryName}</P1>
-                  <P2>{transaction.comment}</P2>
-                  <P3>{transaction.date}</P3>
-                  <P4>{transaction.time}</P4>
-                  <P5>{transaction.sum} / UAH</P5>
-                  <EditBtn>
-                    <svg width={16} height={16}>
-                      <use href={svg + '#icon-edit-2'}></use>
-                    </svg>
-                    <span>Edit</span>
-                  </EditBtn>
-                  <DelBtn
-                    onClick={() =>
-                      handleDelete(transaction._id, transaction.comment)
-                    }
-                  >
-                    <svg width={16} height={16}>
-                      <use href={svg + '#icon-trash-2'}></use>
-                    </svg>
-                    <span>Delete</span>
-                  </DelBtn>
-                </DIV>
-              ))}
-            </TransactionsContainer>
-          ) : null}
-          {filter.trim().length > 0 && !filterTransactions.length && (
-            <PEr>We couldn't find any transactions matching your request.</PEr>
-          )}
-        </DIV375>
-      </DIVTR>
+      <motion.div
+        initial={{ y: '100%' }}
+        animate={{ y: 0 }}
+        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+      >
+        <DIVTR>
+          <Filter />
+          <DIV375>
+            <SectionTransaction />
+            {filterTransactions.length ? (
+              <TransactionsContainer>
+                {transactions.map(transaction => (
+                  <DIV key={transaction._id}>
+                    <P1>{transaction.category.categoryName}</P1>
+                    <P2>{transaction.comment}</P2>
+                    <P3>{transaction.date}</P3>
+                    <P4>{transaction.time}</P4>
+                    <P5>{transaction.sum} / UAH</P5>
+                    <EditBtn>
+                      <svg width={16} height={16}>
+                        <use href={svg + '#icon-edit-2'}></use>
+                      </svg>
+                      <span>Edit</span>
+                    </EditBtn>
+                    <DelBtn
+                      onClick={() =>
+                        handleDelete(transaction._id, transaction.comment)
+                      }
+                    >
+                      <svg width={16} height={16}>
+                        <use href={svg + '#icon-trash-2'}></use>
+                      </svg>
+                      <span>Delete</span>
+                    </DelBtn>
+                  </DIV>
+                ))}
+              </TransactionsContainer>
+            ) : null}
+            {filter.trim().length > 0 && !filterTransactions.length && (
+              <PEr>
+                We couldn't find any transactions matching your request.
+              </PEr>
+            )}
+          </DIV375>
+        </DIVTR>
+      </motion.div>
     </MainWr>
   );
 };
