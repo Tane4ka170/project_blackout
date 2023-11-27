@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import {
   createTransactionThunk,
   getTransactionsThunk,
   deleteTransactionThunk,
   updateTransactionThunk,
 } from './operations';
+
 
 const initialState = {
   transactions: [],
@@ -28,6 +30,7 @@ const transactionsSlice = createSlice({
       .addCase(createTransactionThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+        toast.error('Oops, something went wrong, try again later')
       })
       .addCase(getTransactionsThunk.pending, state => {
         state.loading = true;
