@@ -28,6 +28,7 @@ import {
   DIV,
   PEr,
   DIV375,
+  MainWr,
 } from 'pages/Income/Income.styled';
 import { TotalExpense, TotalIncome } from 'shared/Total';
 import svg from '../../images/Sprite.svg';
@@ -39,20 +40,19 @@ export const Expense = () => {
   const transactions = useSelector(selectTransaction);
   const date = useSelector(selectStartDate);
 
-  console.log(date);
-  const formattedDate = `${date.year}-${String(date.month).padStart(
-    2,
-    '0'
-  )}-${String(date.day).padStart(2, '0')}`;
+  // console.log(date);
+  // const formattedDate = `${date.year}-${String(date.month).padStart(
+  //   2,
+  //   '0'
+  // )}-${String(date.day).padStart(2, '0')}`;
 
-  console.log(formattedDate);
+  // console.log(formattedDate);
 
   useEffect(() => {
     dispatch(getTransactionsThunk({ type: 'expenses', date: startDate }));
   }, [dispatch, filter, startDate]);
 
   const handleDelete = (transactionId, transactionComment) => {
-    console.log(transactionId);
     dispatch(
       deleteTransactionThunk({
         type: 'expenses',
@@ -70,7 +70,7 @@ export const Expense = () => {
   );
 
   return (
-    <div>
+    <MainWr>
       <DIVMAIN>
         <DIVL>
           <H2>All Expense</H2>
@@ -126,6 +126,6 @@ export const Expense = () => {
           )}
         </DIV375>
       </DIVTR>
-    </div>
+    </MainWr>
   );
 };

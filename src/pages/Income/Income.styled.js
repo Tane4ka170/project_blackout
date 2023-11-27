@@ -1,5 +1,30 @@
 import styled from 'styled-components';
 
+export const MainWr = styled.div`
+  padding-left: 20px;
+  padding-right: 20px;
+
+  width: 375px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 768px) and (max-width: 1439.8px) {
+    padding-left: 32px;
+    padding-right: 32px;
+    width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 1440px) {
+    padding-left: 100px;
+    padding-right: 100px;
+    width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+`;
+
 export const DIVL = styled.div`
   display: flex;
   flex-direction: column;
@@ -126,7 +151,6 @@ export const PH = styled.p`
 export const DIV375 = styled.div`
   overflow-x: auto;
   overflow-y: hidden;
-  position: relative;
 
   @media (max-width: 767.98px) {
     width: 335px;
@@ -134,18 +158,23 @@ export const DIV375 = styled.div`
 
   &::-webkit-scrollbar {
     width: 8px;
-    position: absolute;
+    height: 8px;
   }
 
   &::-webkit-scrollbar-thumb {
     width: 8px;
     height: 121px;
-    transform: rotate(-90deg);
-    flex-shrink: 0;
+
     border-radius: 12px;
     background: rgba(250, 250, 250, 0.2);
     position: absolute;
     top: 20px;
+  }
+  &::-webkit-scrollbar-track {
+    width: 8px;
+    height: 295px;
+    border-radius: 12px;
+    background: rgba(250, 250, 250, 0.2);
   }
 
   @media (min-width: 768px) {

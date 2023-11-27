@@ -19,6 +19,7 @@ import {
   EditBtn,
   H2,
   LI,
+  MainWr,
   P1,
   P2,
   P3,
@@ -39,14 +40,11 @@ export const Income = () => {
   const transactions = useSelector(selectTransaction);
   const date = useSelector(selectStartDate);
 
-  console.log(date);
-
   useEffect(() => {
     dispatch(getTransactionsThunk({ type: 'incomes', date: startDate }));
   }, [dispatch, filter, startDate]);
 
   const handleDelete = (transactionId, transactionComment) => {
-    console.log(transactionId);
     dispatch(
       deleteTransactionThunk({
         id: transactionId,
@@ -63,7 +61,7 @@ export const Income = () => {
   );
 
   return (
-    <div>
+    <MainWr>
       <DIVMAIN>
         <DIVL>
           <H2>All Income</H2>
@@ -120,6 +118,6 @@ export const Income = () => {
           )}
         </DIV375>
       </DIVTR>
-    </div>
+    </MainWr>
   );
 };
