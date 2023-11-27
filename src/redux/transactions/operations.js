@@ -20,6 +20,7 @@ export const getTransactionsThunk = createAsyncThunk(
       const { data } = await expenseApi.get(`transactions/${type}`, {
         params: { date },
       });
+      console.log(data);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -29,10 +30,11 @@ export const getTransactionsThunk = createAsyncThunk(
 
 export const deleteTransactionThunk = createAsyncThunk(
   'deleteTransaction',
-  async ({ id }, thunkApi) => {
+  async (id, thunkApi) => {
     try {
-      const { data } = await expenseApi.delete(`transactions/${id}`);
-      return data;
+      await expenseApi.delete(`transactions/${id}`);
+
+      return id;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
