@@ -30,4 +30,5 @@ export const CloseButton = styled.button`
   cursor: pointer;
   width: 24px;
   height: 24px;
+  z-index: 1200;
 `;
