@@ -7,7 +7,7 @@ import {
   updateCategoryThunk,
 } from 'redux/category/operations';
 import { selectCategories } from 'redux/category/selectors';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -29,13 +29,18 @@ import { motion } from 'framer-motion';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaCategoryInput } from 'helpers/schemas';
 
-export const Categories = ({ type = 'incomes' }) => {
+export const Categories = ({
+  type,
+  chooseCategories,
+  closeModal,
+  setCategoryId,
+}) => {
   const categories = useSelector(selectCategories);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
-
   const [currentCategory, setCurrentCategory] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const categoriesListRef = useRef();
 
   const {
     register,
@@ -52,7 +57,7 @@ export const Categories = ({ type = 'incomes' }) => {
           toast.error('Oops, something went wrong');
         });
     }
-  }, [dispatch, isLoggedIn]);
+  }, [dispatch, isLoggedIn, type]);
 
   const editCategory = category => {
     setCurrentCategory(category);
@@ -79,6 +84,12 @@ export const Categories = ({ type = 'incomes' }) => {
     } else {
       dispatch(createCategoryThunk(categoryDate))
         .unwrap()
+        .then(() => {
+          if (categoriesListRef.current) {
+            categoriesListRef.current.scrollTop =
+              categoriesListRef.current.scrollHeight;
+          }
+        })
         .catch(e => {
           toast.error('Oops, something went wrong');
         });
@@ -103,13 +114,16 @@ export const Categories = ({ type = 'incomes' }) => {
 
   return (
     <CategoriesDiv>
-      <TransactionType>Expenses</TransactionType>
+      <TransactionType>{type}</TransactionType>
       <AllCategoriesP>All categories</AllCategoriesP>
-      <CategoriesList>
-        {categories?.incomes?.length ? (
-          categories?.incomes?.map(category => {
+      <CategoriesList ref={categoriesListRef}>
+        {categories[type]?.length ? (
+          categories[type]?.map(category => {
             return (
               <OneCategory
+                setCategoryId={setCategoryId}
+                closeModal={closeModal}
+                chooseCategories={chooseCategories}
                 key={category._id}
                 {...category}
                 deleteCategory={() => deleteCategory(category._id)}

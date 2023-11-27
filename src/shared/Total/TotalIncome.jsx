@@ -1,6 +1,10 @@
 // base
 import React from "react";
 
+// selector
+import { useSelector } from "react-redux";
+import { selectUser } from "redux/user/selectors";
+
 // svg
 import arrow from '../../images/Sprite.svg'
 
@@ -12,11 +16,11 @@ import Currency from './Currency'
 import { StyledWrapper, StyledSvgWrapper, StyledSvg, StyledHeaders, StyledMoney, StyledTotalWrapper } from "./StyledTotal";
 
 
-
 const TotalIncome = () => {
-  // Место под юзСелектор но пока нету что селектить)
-  const totalIncome = 650
-  const currency = Currency('uah')
+  const user = useSelector(selectUser)
+
+  const totalIncome = user?.transactionsTotal?.incomes
+  const currency = Currency(user.currency)
 
   return (
     <StyledWrapper>

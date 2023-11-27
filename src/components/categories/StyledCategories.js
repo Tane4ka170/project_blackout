@@ -16,6 +16,7 @@ export const CategoriesDiv = styled.div`
 `;
 
 export const TransactionType = styled.h2`
+  text-transform: capitalize;
   @media (max-width: 767px) {
     font-size: 24px;
     margin-left: 20px;
@@ -46,7 +47,7 @@ export const AllCategoriesP = styled.p`
 `;
 
 export const CategoriesList = styled.ul`
-  max-height: 200px;
+  max-height: 150px;
   overflow-y: auto;
   margin-bottom: 28px;
 

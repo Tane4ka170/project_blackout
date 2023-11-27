@@ -44,7 +44,6 @@ const Modal = ({ children, closeModal }) => {
           </svg>
         </CloseButton>
         {children}
-        {/* <h1>Hello, modal</h1> */}
       </ContentWrapper>
     </StyledWrapper>,
     rootModal

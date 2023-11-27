@@ -2,10 +2,6 @@
 import React from "react";
 import { Controller } from "react-hook-form";
 
-
-// date picker
-// import DatePicker from "react-datepicker";
-
 // styled
 import { StyledWrapper, StyledInputWrapper, StyledLabel, StyledDatePicker, StyledTimePicker } from "./DateInput.styled";
 
