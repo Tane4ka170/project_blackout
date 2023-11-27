@@ -1,39 +1,66 @@
 // base
 import React from "react";
+import { useMediaQuery } from 'react-responsive'
 
 // components
 import { TotalIncome, TotalExpense } from "shared/Total";
-import OperationForm from "shared/OperationForm/StyledOperationForm";
+import OperationForm from "shared/OperationForm/OperationForm";
+import DoughnutComponent from "components/doughnut/Doughnut";
 
 // styled
-import { StyledHeaders, StyledSection, StyledText, StyledHeadersWrapper, StyledTotalUl, StyledMain } from "./MainTransactionsPage.styled";
+import { StyledHeaders, StyledSection, StyledText, StyledHeadersWrapper, StyledTotalUl, StyledMain, StyledWrapper } from "./MainTransactionsPage.styled";
 
 
 const MainTransactionsPage = () => {
+  const isNotDesktop = useMediaQuery({ query: '(max-width: 1439.98px' })
+  
+  const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' })
 
   return (
     <StyledSection>
-      <StyledHeadersWrapper>
-        <StyledHeaders>Expense log</StyledHeaders>
-        <StyledText>Capture and organize every penny spent with ease! A clear view of your financial habits at your fingertips.</StyledText>
-      </StyledHeadersWrapper>
-      <StyledTotalUl>
-        <li>
-          {/* Тут будет компонент Total Income */}
-          <TotalIncome />
-        </li>
-        <li>
-          {/* Тут будет компонент Total Expense */}
-          <TotalExpense />
-        </li>
-      </StyledTotalUl>
-      <StyledMain>
-          {/*  тут буде Form for login expense or income */}
+      
+      {isNotDesktop &&
+        <>
+          <StyledHeadersWrapper>
+            <StyledHeaders>Expense log</StyledHeaders>
+            <StyledText>Capture and organize every penny spent with ease! A clear view of your financial habits at your fingertips.</StyledText>
+          </StyledHeadersWrapper>
+          <StyledTotalUl>
+            <li>
+              <TotalIncome />
+            </li>
+            <li>
+              <TotalExpense />
+            </li>
+          </StyledTotalUl>
           <OperationForm />
-        <div>
-          {/* и будет Donut  */}
-        </div>
-      </StyledMain>
+          <StyledMain>
+            <DoughnutComponent />
+          </StyledMain>
+        </>
+      }
+      {isDesktop &&
+        <>
+        <StyledWrapper>
+          <StyledHeadersWrapper>
+            <StyledHeaders>Expense log</StyledHeaders>
+            <StyledText>Capture and organize every penny spent with ease! A clear view of your financial habits at your fingertips.</StyledText>
+          </StyledHeadersWrapper>
+          <StyledTotalUl>
+            <li>
+              <TotalIncome />
+            </li>
+            <li>
+              <TotalExpense />
+            </li>
+          </StyledTotalUl>
+          <StyledMain>
+            <DoughnutComponent />
+        </StyledMain>
+        </StyledWrapper>
+          <OperationForm />
+        </>
+      }
     </StyledSection>
   );
 };

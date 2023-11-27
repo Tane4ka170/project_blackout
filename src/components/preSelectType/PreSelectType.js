@@ -1,12 +1,12 @@
 
 const PreSelectType = transactionsType => {
   switch (transactionsType) {
-    case 'expense':
-      return 'expense'
-    case 'income':
-      return 'income'
+    case 'expenses':
+      return 'expenses'
+    case 'incomes':
+      return 'incomes'
     default:
-      return 'expense'
+      return 'expenses'
   };
 };
 

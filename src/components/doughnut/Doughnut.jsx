@@ -30,8 +30,14 @@ const DoughnutComponent = () => {
 
   const textCenter = {
     id: 'textCenter',
-    beforeDatasetDraw(chart, args, pluginOptions) {
-      const { ctx, data } = chart;
+    beforeDatasetDraw(chart,
+      args,
+      pluginOptions
+    ) {
+      const {
+        ctx,
+        // data
+      } = chart;
       const xCenter = chart.getDatasetMeta(0).data[0].x;
       const yCenter = chart.getDatasetMeta(0).data[0].y;
 

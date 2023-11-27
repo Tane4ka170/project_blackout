@@ -8,22 +8,27 @@ import {
   ButtonSign,
   Err,
   Line,
+  PasswordMessage,
   PasswordToggle,
+  Spn,
   StyledInput,
   StyledPasswordInput,
-  WrapBt,
+  WrapInPass,
   WrapInp,
   WrapPassword,
 } from 'components/RegisterForm/RegisterForm.styled';
-import { loginThunk } from 'redux/auth/operations';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
+
 import { ReactComponent as ShowsIco } from '../../images/home/eye.svg';
 import { ReactComponent as HideIco } from '../../images/home/eye-off.svg';
+import { WrapBts } from './LoginForm.styled';
+import { loginThunk } from 'redux/auth/operations';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const {
     handleSubmit,
     register,
+    setValue,
     formState: { errors: formErrors },
   } = useForm();
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -38,6 +43,16 @@ export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+  const [password, setPassword] = useState('');
+  const isPasswordValid = () => {
+    return password.length >= 6 && !formErrors.password;
+  };
+
+  const handlePasswordChange = e => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+    setValue('password', newPassword);
   };
 
   if (isLoggedIn) {
@@ -65,31 +80,52 @@ export const LoginForm = () => {
         </div>
 
         <WrapPassword>
-          <StyledPasswordInput
-            {...register('password', {
-              required: 'Please enter your password',
-              minLength: {
-                value: 6,
-                message:
-                  'Make sure your password is at least 6 characters long',
-              },
-            })}
-            type={showPassword ? 'text' : 'password'}
-            placeholder="Password"
-            autoComplete="new-password"
-          />
-          <PasswordToggle onClick={togglePasswordVisibility} type="button">
-            {showPassword ? <HideIco /> : <ShowsIco />}
-          </PasswordToggle>
-          {formErrors.password && <Err>{formErrors.password.message}</Err>}
+          <WrapInPass>
+            <StyledPasswordInput
+              {...register('password', {
+                required: 'Enter a valid Password',
+                minLength: {
+                  value: 6,
+                  // message: 'Make sure your password is at least 6 characters long',
+                },
+              })}
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Password"
+              autoComplete="new-password"
+              hasError={!!formErrors.password}
+              onChange={handlePasswordChange}
+              isGood={password.length >= 6}
+              className={`${
+                password.length === 0
+                  ? 'empty'
+                  : isPasswordValid()
+                  ? 'valid'
+                  : 'invalid'
+              }`}
+            />
+            <PasswordToggle onClick={togglePasswordVisibility} type="button">
+              {showPassword ? <HideIco /> : <ShowsIco />}
+            </PasswordToggle>
+          </WrapInPass>
+          {formErrors.password && password.length === 0 && (
+            <Err>{formErrors.password.message}</Err>
+          )}
+          {password.length > 0 && (
+            <PasswordMessage isGood={password.length >= 6}>
+              {password.length >= 6 ? 'Good password' : 'Short password'}
+            </PasswordMessage>
+          )}
         </WrapPassword>
 
-        <WrapBt>
-          <ButtonSign>Sign in</ButtonSign>
-        </WrapBt>
+        <WrapBts>
+          <ButtonSign>Sign In</ButtonSign>
+        </WrapBts>
 
         <Line>
-          New here? <Link to={'/register'}>Create an account</Link>
+          <p>New here?</p>
+          <Link to={'/register'}>
+            <Spn>Create an account</Spn>{' '}
+          </Link>
         </Line>
       </WrapInp>
     </form>

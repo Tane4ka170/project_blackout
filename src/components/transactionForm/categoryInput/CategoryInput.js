@@ -1,40 +1,63 @@
-import styled from "styled-components";
+// base
+import React from "react";
+import { useParams } from "react-router";
+
+// modal
+import Modal from "components/modal/Modal";
+import { useModal } from "components/hooks/useModal";
+
+// form
+import { Controller } from "react-hook-form";
+
+// components 
+import { Categories } from "components/categories/Categories";
+
+// styled
+import { StyledInputWrapper, StyledLabel, StyledCategoryInput } from "./CategoryInput.styled";
 
 
-export const StyledInputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-`
+const CategoryInput = ({ control, setValue, setCategoryId }) => {
+  const { isOpened, openModal, closeModal } = useModal();
+  const { transactionsType } = useParams();
 
-export const StyledLabel = styled.label`
-  color: #FAFAFA;
-  
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  
-  display: inline-block;
-`
+  const handleSetCategory = (selectedCategory) => {
+    setCategoryId(selectedCategory.id);
+    setValue("category", selectedCategory);
+  };
 
-export const StyledCategoryInput = styled.input`
-  /* width: 140px; */
-  height: 42px;
-  padding: 12px 14px;
 
-  border: 1px solid rgba(250, 250, 250, 0.20);
-  border-radius: 12px;
+  return (
+    <Controller
+      name="category"
+      control={control}
+      render={({ field }) => (
+        <StyledInputWrapper>
+          <StyledLabel htmlFor="category">Category</StyledLabel>
+          <StyledCategoryInput
+            id="category"
+            type="textarea"
+            placeholder="Different"
+            {...field}
+            value={field.value}
+            onClick={() => {
+              openModal()
+            }
+            }
+          />
+          {isOpened ? <Modal
+            children={
+              <Categories
+                type={transactionsType}
+                chooseCategories={handleSetCategory
+                }
+                closeModal={closeModal}
+                setCategoryId={setCategoryId}
+              />
+            } closeModal={closeModal} /> : null}
+        </StyledInputWrapper>
+      )}
+    />
+  );
+};
 
-  background-color: transparent;
-  color: rgba(250, 250, 250, 0.40);
-
-  outline: none;
-  box-sizing: border-box;
-
-  transition: border-color 250ms ease-in-out;
-  
-  &:focus {
-    border-color: #0EF387;
-  }
-`
-
+export default CategoryInput;
