@@ -409,6 +409,7 @@ export const TransactionsContainer = styled.div`
   &::-webkit-scrollbar {
     width: 8px;
     margin-right: 20px;
+    height: 12px;
   }
 
   &::-webkit-scrollbar-thumb {
