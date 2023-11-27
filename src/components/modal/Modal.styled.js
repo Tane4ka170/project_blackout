@@ -10,6 +10,7 @@ export const StyledWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 `;
 
 export const ContentWrapper = styled.div`
