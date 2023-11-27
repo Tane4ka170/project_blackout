@@ -29,7 +29,7 @@ import { motion } from 'framer-motion';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaCategoryInput } from 'helpers/schemas';
 
-export const Categories = ({ type, chooseCategories }) => {
+export const Categories = ({ type, chooseCategories, closeModal, setCategoryId }) => {
   const categories = useSelector(selectCategories);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
@@ -105,10 +105,14 @@ export const Categories = ({ type, chooseCategories }) => {
       <TransactionType>{type}</TransactionType>
       <AllCategoriesP>All categories</AllCategoriesP>
       <CategoriesList>
-        {categories?.type?.length ? (
-          categories?.type?.map(category => {
+        {
+          categories[type]?.length ? (
+          categories[type]?.map(category => {
             return (
               <OneCategory
+                setCategoryId= { setCategoryId } 
+                closeModal={ closeModal }
+                chooseCategories={chooseCategories}
                 key={category._id}
                 {...category}
                 deleteCategory={() => deleteCategory(category._id)}

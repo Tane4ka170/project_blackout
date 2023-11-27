@@ -1,7 +1,18 @@
-
-const onSubmitTransaction = (data, transactionsType) => {
+import { createTransactionThunk } from "redux/transactions/operations";
+const onSubmitTransaction = (data, transactionsType, categoryId ,dispatch) => {
   let transaction = data;
-  transaction.type = transactionsType
+  // set transaction type
+  transaction.type = transactionsType;
+
+  // set category id
+  transaction.category = categoryId;
+
+  // set proper time
+  transaction.time = data.time.slice(0, 5);
+  console.log(transaction.time);
+
+
+  // auto select current date
   if (data.date === '') {
     transaction.date = new Date().toISOString().substr(0, 10)
   } else {
@@ -10,6 +21,9 @@ const onSubmitTransaction = (data, transactionsType) => {
   if (data.time === '' || data.time === '00:00:00') {
     transaction.time = new Date().toTimeString().substr(0, 8)
   }
+
+  // dispatch
+  dispatch(createTransactionThunk(transaction))
   console.log(transaction);
 };
   
