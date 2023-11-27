@@ -26,7 +26,6 @@ import { StyledBtn, StyledFormWrapper, StyledErrorMsg, StyledInputsWrapper } fro
 
 const OperationForm = () => {
   const { transactionsType } = useParams();
-  console.log(transactionsType);
 
   const {
     control,

@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import React, { useCallback, useEffect } from 'react';
-import toast from 'react-toastify';
+// import toast from 'react-toastify';
 import Symbols from 'images/svg/Symbols';
 
 import { CloseButton, ContentWrapper, StyledWrapper } from './Modal.styled';
@@ -12,7 +12,7 @@ const Modal = ({ children, closeModal }) => {
     e => {
       if (e.key === 'Escape') {
         closeModal();
-        toast.info('Modal closed by Escape');
+        // toast.info('Modal closed by Escape');
       }
     },
     [closeModal]
@@ -44,15 +44,15 @@ const Modal = ({ children, closeModal }) => {
           </svg>
         </CloseButton>
         {children}
-        <h1>Hello, modal</h1>
+        {/* <h1>Hello, modal</h1> */}
       </ContentWrapper>
     </StyledWrapper>,
     rootModal
   );
 };
-console.log(Modal);
+// console.log(Modal);
 
-// export default Modal;
+export default Modal;
 
 // import { useModal } from 'components/hooks/useModal';
 
