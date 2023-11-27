@@ -15,7 +15,6 @@ import NotFound from 'pages/NotFoundPage/NotFound';
 import { Expense } from 'pages/Expense/Expense';
 import { Income } from 'pages/Income/Income';
 
-
 // const HomePage = lazy(() => import('../pages/Home/Home'));
 // const RegisterPage = lazy(() => import('../pages/Register/Register'));
 // const LoginPage = lazy(() => import('../pages/Login/Login'));

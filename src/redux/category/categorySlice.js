@@ -37,19 +37,22 @@ const categoriesSlice = createSlice({
         const deletingIncCategory = state.categories?.incomes?.find(
           category => category._id === payload
         );
+        const deletingExpCategory = state.categories?.expenses?.find(
+          category => category._id === payload
+        );
+
         if (deletingIncCategory) {
           state.categories.incomes = state.categories?.incomes?.filter(
             category => category !== deletingIncCategory
           );
+          toast.info('You deleted the category successfully');
         }
 
-        const deletingExpCategory = state.categories?.expenses?.find(
-          category => category._id === payload
-        );
         if (deletingExpCategory) {
           state.categories.expenses = state.categories?.expenses?.filter(
             category => category !== deletingExpCategory
           );
+          toast.info('You deleted the category successfully');
         }
 
         state.isLoading = false;
@@ -92,10 +95,12 @@ const categoriesSlice = createSlice({
 
         if (incomeCategory) {
           incomeCategory.categoryName = payload.categoryName;
+          toast.success('You changed the category successfully');
         }
 
         if (expenseCategory) {
           expenseCategory.categoryName = payload.categoryName;
+          toast.success('You changed the category successfully');
         }
       })
       .addMatcher(

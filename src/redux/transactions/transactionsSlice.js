@@ -51,9 +51,9 @@ const transactionsSlice = createSlice({
       })
       .addCase(deleteTransactionThunk.fulfilled, (state, action) => {
         state.loading = false;
-        const transactionId = action.payload;
+        const transactionId = action?.payload;
 
-        state.transactions = state.transactions.filter(
+        state.transactions = state.transactions?.filter(
           transaction => transaction._id !== transactionId
         );
       })

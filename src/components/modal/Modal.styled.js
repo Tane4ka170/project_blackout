@@ -10,6 +10,7 @@ export const StyledWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 `;
 
 export const ContentWrapper = styled.div`
@@ -30,4 +31,5 @@ export const CloseButton = styled.button`
   cursor: pointer;
   width: 24px;
   height: 24px;
-  `;
+  z-index: 1200;
+`;

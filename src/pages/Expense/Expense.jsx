@@ -26,45 +26,53 @@ import {
   TransactionsContainer,
   ULL,
   DIV,
+  PEr,
+  DIV375,
+  MainWr,
 } from 'pages/Income/Income.styled';
 import { TotalExpense, TotalIncome } from 'shared/Total';
+import svg from '../../images/Sprite.svg';
+import { motion } from 'framer-motion';
 
 export const Expense = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
-  const startDate = useSelector(selectStartDate);
+
   const transactions = useSelector(selectTransaction);
-  console.log(transactions);
+  const date = useSelector(selectStartDate);
+
+  const formattedDate = `${date.year}-${String(date.month).padStart(
+    2,
+    '0'
+  )}-${String(date.day).padStart(2, '0')}`;
 
   useEffect(() => {
-    dispatch(getTransactionsThunk({ type: 'expenses', date: startDate }));
-  }, [dispatch, filter, startDate]);
+    // const nowDate = new Date();
+    // if (!date) {
+    //   const year = nowDate.getFullYear();
+    //   const month = nowDate.getMonth() + 1;
+    //   const day = nowDate.getDate();
+    //   dispatch(
+    //     getTransactionsThunk({ type: 'incomes', date: { year, month, day } })
+    //   );
+    // }
+    dispatch(getTransactionsThunk({ type: 'expenses', date: formattedDate }));
+  }, [dispatch, filter, formattedDate, date]);
 
   const handleDelete = (transactionId, transactionComment) => {
-    console.log(transactionId);
-    dispatch(
-      deleteTransactionThunk({
-        type: 'expenses',
-        id: transactionId,
-      })
-    );
+    dispatch(deleteTransactionThunk(transactionId));
     toast.success(`Transaction ${transactionComment} was deleted`);
   };
 
-  // const filterContacts = transactions.filter(
-  //   transaction =>
-  //     transaction.category.categoryName
-  //       .toLowerCase()
-  //       .trim()
-  //       .includes(filter.toLowerCase().trim()) ||
-  //     transaction.comment
-  //       .toLowerCase()
-  //       .trim()
-  //       .includes(filter.toLowerCase().trim())
-  // );
+  const filterTransactions = transactions.filter(transaction =>
+    transaction.comment
+      .toLowerCase()
+      .trim()
+      .includes(filter.toLowerCase().trim())
+  );
 
   return (
-    <div>
+    <MainWr>
       <DIVMAIN>
         <DIVL>
           <H2>All Expense</H2>
@@ -82,30 +90,53 @@ export const Expense = () => {
           </LI>
         </ULL>
       </DIVMAIN>
-      <DIVTR>
-        <Filter />
 
-        <SectionTransaction />
-        <TransactionsContainer>
-          {transactions.map(transaction => (
-            <DIV key={transaction._id}>
-              <P1>{transaction.category.categoryName}</P1>
-              <P2>{transaction.comment}</P2>
-              <P3>{transaction.date}</P3>
-              <P4>{transaction.time}</P4>
-              <P5>{transaction.sum}</P5>
-              <EditBtn>Edit</EditBtn>
-              <DelBtn
-                onClick={() =>
-                  handleDelete(transaction._id, transaction.comment)
-                }
-              >
-                Delete
-              </DelBtn>
-            </DIV>
-          ))}
-        </TransactionsContainer>
-      </DIVTR>
-    </div>
+      <motion.div
+        initial={{ y: '100%' }}
+        animate={{ y: 0 }}
+        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+      >
+        <DIVTR>
+          <Filter />
+          <DIV375>
+            <SectionTransaction />
+            {filterTransactions?.length ? (
+              <TransactionsContainer>
+                {transactions?.map(transaction => (
+                  <DIV key={transaction._id}>
+                    <P1>{transaction.category.categoryName}</P1>
+                    <P2>{transaction.comment}</P2>
+                    <P3>{transaction.date}</P3>
+                    <P4>{transaction.time}</P4>
+                    <P5>{transaction.sum}</P5>
+                    <EditBtn>
+                      <svg width={16} height={16}>
+                        <use href={svg + '#icon-edit-2'}></use>
+                      </svg>
+                      <span>Edit</span>
+                    </EditBtn>
+                    <DelBtn
+                      onClick={() =>
+                        handleDelete(transaction._id, transaction.comment)
+                      }
+                    >
+                      <svg width={16} height={16}>
+                        <use href={svg + '#icon-trash-2'}></use>
+                      </svg>
+                      <span>Delete</span>
+                    </DelBtn>
+                  </DIV>
+                ))}
+              </TransactionsContainer>
+            ) : null}
+            {filter.trim().length > 0 && !filterTransactions.length && (
+              <PEr>
+                We couldn't find any transactions matching your request.
+              </PEr>
+            )}
+          </DIV375>
+        </DIVTR>
+      </motion.div>
+    </MainWr>
   );
 };
