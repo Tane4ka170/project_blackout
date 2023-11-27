@@ -1,5 +1,5 @@
-import { registerThunk } from 'components/redux/auth/operations';
-import { selectIsLoggedIn } from 'components/redux/auth/selectors';
+import { registerThunk } from 'redux/auth/operations';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -49,8 +49,7 @@ export const RegisterForm = () => {
 
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} >
-
+    <form onSubmit={handleSubmit(onSubmit)}>
       <WrapInp>
         <div>
           <StyledInput
@@ -65,12 +64,9 @@ export const RegisterForm = () => {
             placeholder="Name"
             autoComplete="new-name"
           />
-          {formErrors.name && (
-            <Err >{formErrors.name.message}</Err>
-          )}
+          {formErrors.name && <Err>{formErrors.name.message}</Err>}
         </div>
-        <div >
-
+        <div>
           <StyledInput
             defaultValue=""
             {...register('email', {
@@ -83,11 +79,8 @@ export const RegisterForm = () => {
             type="email"
             placeholder="Email"
             autoComplete="new-email"
-
           />
-          {formErrors.email && (
-            <Err >{formErrors.email.message}</Err>
-          )}
+          {formErrors.email && <Err>{formErrors.email.message}</Err>}
         </div>
         <WrapPassword >
           <WrapInPass>
@@ -131,8 +124,8 @@ export const RegisterForm = () => {
           )}
 
         </WrapPassword>
-        <WrapBt >
-          <ButtonSign >Sign up</ButtonSign>
+        <WrapBt>
+          <ButtonSign>Sign up</ButtonSign>
         </WrapBt>
 
         <Line ><p>Have an account already? </p>

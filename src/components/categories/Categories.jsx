@@ -1,12 +1,12 @@
 import { OneCategory } from 'components/oneCategory/OneCategory';
-import { selectIsLoggedIn } from 'components/redux/auth/selectors';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 import {
   createCategoryThunk,
   deleteCategoryThunk,
   getCategoriesThunk,
   updateCategoryThunk,
-} from 'components/redux/category/operations';
-import { selectCategories } from 'components/redux/category/selectors';
+} from 'redux/category/operations';
+import { selectCategories } from 'redux/category/selectors';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,7 +23,7 @@ import {
   SubmitForm,
   TransactionType,
 } from './StyledCategories';
-// import { useParams } from 'react-router';
+
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -33,8 +33,6 @@ export const Categories = ({ type = 'incomes' }) => {
   const categories = useSelector(selectCategories);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
-
-  // const { transactionsType } = useParams();
 
   const [currentCategory, setCurrentCategory] = useState(null);
   const [isEditing, setIsEditing] = useState(false);

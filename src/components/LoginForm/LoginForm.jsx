@@ -50,7 +50,7 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <WrapInp >
+      <WrapInp>
         <div>
           <StyledInput
             defaultValue=""
@@ -61,14 +61,11 @@ export const LoginForm = () => {
                 message: 'Ensure your email is at least 6 characters long',
               },
             })}
-
             type="email"
             placeholder="Email"
             autoComplete="new-email"
           />
-          {formErrors.email && (
-            <Err >{formErrors.email.message}</Err>
-          )}
+          {formErrors.email && <Err>{formErrors.email.message}</Err>}
         </div>
 
         <WrapPassword >
@@ -122,7 +119,6 @@ export const LoginForm = () => {
           <Link to={'/register'}><Spn>Create an account</Spn> </Link>
         </Line>
       </WrapInp>
-
     </form>
   );
 };

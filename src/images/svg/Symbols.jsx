@@ -74,11 +74,11 @@ const Symbols = () => {
             <path
               fill="none"
               stroke="#fafafa"
-              style={{ stroke: 'var(#fafafa)' }}
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2.667"
               d="M24 8 8 24M8 8l16 16"
+              style={{ stroke: 'var(#fafafa)' }}
             />
           </symbol>
           <symbol id="icon-clock" viewBox="0 0 32 32">
@@ -113,10 +113,12 @@ const Symbols = () => {
           </symbol>
           <symbol id="icon-user" viewBox="0 0 32 32">
             <path
+              stroke="#0ef387"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2.6"
               d="M26.667 28v-2.667A5.332 5.332 0 0 0 21.334 20H10.667a5.332 5.332 0 0 0-5.333 5.333V28M15.999 14.667a5.333 5.333 0 1 0 0-10.666 5.333 5.333 0 0 0 0 10.666z"
+              style={{ fill: 'var( #0ef387)' }}
             />
           </symbol>
           <symbol id="icon-default-svg" viewBox="0 0 32 32">

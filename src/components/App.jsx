@@ -1,8 +1,7 @@
 import { useDispatch } from 'react-redux';
-// import { Categories } from './categories/Categories';
 import { useAuth } from './hooks';
 import { useEffect } from 'react';
-import { refreshThunk } from './redux/auth/operations';
+import { refreshThunk } from '../redux/auth/operations';
 import { Route, Routes } from 'react-router-dom/dist';
 // import { Navigate, Route, Routes, Link } from 'react-router-dom';
 import Layout from './layout/Layout';
@@ -10,8 +9,8 @@ import Loader from './loader/Loader';
 import Home from 'pages/Home/Home';
 import Register from 'pages/Register/Register';
 import Login from 'pages/Login/Login';
-import { Categories } from './categories/Categories';
 
+import MainTransactionsPage from 'pages/MainTransactionsPage/MainTransactionsPage';
 import NotFound from 'pages/NotFoundPage/NotFound';
 import { Expense } from 'pages/Expense/Expense';
 import { Income } from 'pages/Income/Income';
@@ -31,10 +30,11 @@ function App() {
   return isRefreshing ? ( // if isRefreshing is true, then render Loader, else render Container
     <Loader /> // Loader - spinner
   ) : (
-    <div>
+    <>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="/transactions/:transactionsType" element={<MainTransactionsPage />} />
           <Route path="/expenses" element={<Expense />} />
           <Route path="/incomes" element={<Income />} />
           <Route
@@ -62,8 +62,7 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Categories />
-    </div>
+    </>
   );
 }
 
