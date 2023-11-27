@@ -38,7 +38,7 @@ export const Expense = () => {
   const filter = useSelector(selectFilter);
   const startDate = useSelector(selectStartDate);
   const transactions = useSelector(selectTransaction);
-  const date = useSelector(selectStartDate);
+  // const date = useSelector(selectStartDate);
 
   // console.log(date);
   // const formattedDate = `${date.year}-${String(date.month).padStart(

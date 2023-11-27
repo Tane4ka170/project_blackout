@@ -38,7 +38,7 @@ export const Income = () => {
   const filter = useSelector(selectFilter);
   const startDate = useSelector(selectStartDate);
   const transactions = useSelector(selectTransaction);
-  const date = useSelector(selectStartDate);
+  // const date = useSelector(selectStartDate);
 
   useEffect(() => {
     dispatch(getTransactionsThunk({ type: 'incomes', date: startDate }));
