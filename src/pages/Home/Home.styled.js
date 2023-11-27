@@ -6,7 +6,7 @@ export const Img = styled.img`
   height: 381px;
   object-fit: cover;
   border-radius: 20px;
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1439.8px) {
     width: 704px;
     height: 482px;
     object-fit: cover;
@@ -27,7 +27,7 @@ export const Text = styled.p`
   line-height: normal;
   letter-spacing: -0.28px;
   max-width: 335px;
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1439.8px) {
     color: rgba(250, 250, 250, 0.4);
     font-family: Suisse Intl;
     font-size: 16px;
@@ -62,7 +62,7 @@ export const H1 = styled.h1`
   line-height: normal;
   letter-spacing: 2.8px;
   text-transform: uppercase;
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1439.8px) {
     color: rgba(250, 250, 250, 0.4);
     font-family: Suisse Intl;
     font-size: 14px;
@@ -95,7 +95,7 @@ export const H2 = styled.h2`
   max-width: 335px;
   margin-top: 10px;
   margin-bottom: 14px;
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1439.8px) {
     font-size: 56px;
     letter-spacing: -1.12px;
     max-width: 575px;
@@ -122,7 +122,7 @@ export const H2span = styled.span`
   letter-spacing: -0.64px;
   text-decoration-line: underline;
 
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1439.8px) {
     font-size: 56px;
     letter-spacing: -1.12px;
   }
@@ -142,7 +142,7 @@ export const H3 = styled.h3`
   line-height: normal;
   letter-spacing: -0.56px;
   margin: 0;
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1439.8px) {
   }
 
   @media (min-width: 1440px) {
@@ -155,7 +155,7 @@ export const WrapBtn = styled.div`
   margin-bottom: 40px;
   margin-top: 30px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1439.8px) {
     margin-bottom: 36px;
     margin-top: 40px;
   }
@@ -168,7 +168,7 @@ export const WrapBtn = styled.div`
 export const Content = styled.div`
   /* padding-left: 54px; */
   /* width: 575px; */
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1439.8px) {
   }
 
   @media (min-width: 1440px) {
@@ -177,7 +177,7 @@ export const Content = styled.div`
 `;
 export const ContentUsers = styled.div`
   display: none;
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1439.8px) {
     display: none;
   }
 
@@ -231,7 +231,7 @@ export const Wrapper = styled.div`
   background: #0c0d0d;
   display: flex;
   flex-direction: column-reverse;
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1439.8px) {
     flex-direction: column-reverse;
     padding: 94px 32px 32px 32px;
   }
@@ -242,7 +242,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Linkss = styled(NavLink)`
+export const SignIn = styled(NavLink)`
   display: inline-flex;
   padding: 14px 44px;
   justify-content: center;
@@ -259,15 +259,16 @@ export const Linkss = styled(NavLink)`
   letter-spacing: -0.32px;
   text-decoration: none;
   &:hover {
-    border-radius: 40px;
-    border: 1px solid #0ef387;
-    @media (min-width: 768px) {
-      font-size: 16px;
-    }
+    /* border-radius: 40px; */
+    /* border: 1px solid #0ef387; */
+    border-color: #0ef387;
+  }
+  @media (min-width: 768px) and (max-width: 1439.8px) {
+    font-size: 16px;
+  }
 
-    @media (min-width: 1440px) {
-      font-size: 16px;
-    }
+  @media (min-width: 1440px) {
+    font-size: 16px;
   }
 `;
 
@@ -289,14 +290,19 @@ export const SignUp = styled(NavLink)`
   text-decoration: none;
 
   &:hover {
-    border-radius: 40px;
+    /* border-radius: 40px; */
     background: #0ebb69;
   }
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1439.8px) {
     font-size: 16px;
   }
 
   @media (min-width: 1440px) {
     font-size: 16px;
   }
+`;
+
+export const AdaptDiv = styled.div`
+  display: flex;
+  justify-content: center;
 `;

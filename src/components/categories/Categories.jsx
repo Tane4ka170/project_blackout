@@ -81,7 +81,6 @@ export const Categories = ({ type, chooseCategories }) => {
         .catch(e => {
           toast.error('Oops, something went wrong');
         });
-      // reset();
     }
     reset();
     setCurrentCategory(null);
