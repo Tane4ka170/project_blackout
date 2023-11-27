@@ -18,8 +18,12 @@ export const ContentWrapper = styled.div`
   background-color: rgba(23, 23, 25, 1);
   border: 1px solid rgba(250, 250, 250, 0.1);
   overflow: hidden;
-  width: 500px;
   border-radius: 30px;
+  max-width: 500px;
+
+  @media (max-width: 767px) {
+    max-width: 335px;
+  }
 `;
 
 export const CloseButton = styled.button`
