@@ -57,3 +57,13 @@ export const LogIn = styled.button`
     border: 1px solid #0ef387;
   }
 `;
+export const WrapBts = styled.div`
+  margin-top: 122px;
+  @media (min-width: 768px) and (max-width: 1439.8px) {
+    margin-top: 112px;
+  }
+
+  @media (min-width: 1440px) {
+    margin-top: 112px;
+  }
+`;

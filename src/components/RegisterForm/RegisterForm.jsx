@@ -5,27 +5,20 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import {
-  ButtonSign,
-  Err,
-  Line,
-  PasswordToggle,
-  StyledInput,
-  StyledPasswordInput,
-  WrapBt,
-  WrapInp,
-  WrapPassword,
-} from './RegisterForm.styled';
-import { ReactComponent as ShowsIco } from '../../images/home/eye.svg';
-import { ReactComponent as HideIco } from '../../images/home/eye-off.svg';
+import { ButtonSign, Err, Line, PasswordMessage, PasswordToggle, Spn, StyledInput, StyledPasswordInput, WrapBt, WrapInPass, WrapInp, WrapPassword } from './RegisterForm.styled';
+import { ReactComponent as ShowsIco } from '../../images/home/eye.svg'
+import { ReactComponent as HideIco } from '../../images/home/eye-off.svg'
+
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
   const {
     handleSubmit,
     register,
+    setValue,
     formState: { errors: formErrors },
   } = useForm();
+
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const onSubmit = data => {
@@ -39,10 +32,21 @@ export const RegisterForm = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+  const [password, setPassword] = useState('');
+  const isPasswordValid = () => {
+
+    return password.length >= 6 && !formErrors.password;
+  };
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+    setValue('password', newPassword);
+  };
 
   if (isLoggedIn) {
     return <Navigate to="/" />;
   }
+
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -68,8 +72,8 @@ export const RegisterForm = () => {
             {...register('email', {
               required: 'Please provide your email',
               minLength: {
-                value: 6,
-                message: 'Ensure your email is at least 6 characters long',
+                value: 3,
+                message: 'Ensure your email is at least 3 characters long',
               },
             })}
             type="email"
@@ -78,32 +82,54 @@ export const RegisterForm = () => {
           />
           {formErrors.email && <Err>{formErrors.email.message}</Err>}
         </div>
-        <WrapPassword>
-          <StyledPasswordInput
-            {...register('password', {
-              required: 'Please enter your password',
-              minLength: {
-                value: 6,
-                message:
-                  'Make sure your password is at least 6 characters long',
-              },
-            })}
-            type={showPassword ? 'text' : 'password'}
-            placeholder="Password"
-            autoComplete="new-password"
-            hasError={!!formErrors.password}
-          />
-          <PasswordToggle onClick={togglePasswordVisibility} type="button">
-            {showPassword ? <HideIco /> : <ShowsIco />}
-          </PasswordToggle>
-          {formErrors.password && <Err>{formErrors.password.message}</Err>}
+        <WrapPassword >
+          <WrapInPass>
+            <StyledPasswordInput
+              {...register('password', {
+                required: 'Enter a valid Password',
+                minLength: {
+                  value: 6,
+                  message: 'Make sure your password is at least 6 characters long',
+                },
+
+              })}
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Password"
+              autoComplete="new-password"
+              hasError={!!formErrors.password}
+
+              onChange={handlePasswordChange}
+              className={`${password.length === 0 ? 'empty' :
+                isPasswordValid() ? 'valid' :
+                  'invalid'
+                }`}
+
+            />
+            <PasswordToggle onClick={togglePasswordVisibility} type="button">
+              {showPassword ? (
+                <HideIco />
+              ) : (
+                <ShowsIco />
+              )}
+            </PasswordToggle>
+          </WrapInPass>
+          {formErrors.password && password.length === 0 && (
+            <Err>{formErrors.password.message}</Err>
+          )}
+
+          {password.length > 0 && (
+            <PasswordMessage isGood={password.length >= 6}>
+              {password.length >= 6 ? 'Good password' : 'Short password'}
+            </PasswordMessage>
+          )}
+
         </WrapPassword>
         <WrapBt>
           <ButtonSign>Sign up</ButtonSign>
         </WrapBt>
 
-        <Line>
-          Have an account already? <Link to={'/login'}>Log in now</Link>
+        <Line ><p>Have an account already? </p>
+          <Link to={'/login'}> <Spn>Log in now</Spn></Link>
         </Line>
       </WrapInp>
     </form>
