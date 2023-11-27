@@ -8,6 +8,8 @@ import {
 } from './operations';
 
 
+import { toast } from 'react-toastify';
+
 const initialState = {
   transactions: [],
   loading: false,
@@ -26,6 +28,7 @@ const transactionsSlice = createSlice({
       .addCase(createTransactionThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.transactions.push(action.payload);
+        toast.success('Transaction added')
       })
       .addCase(createTransactionThunk.rejected, (state, action) => {
         state.loading = false;

@@ -95,7 +95,7 @@ const Header = () => {
   return (
     <HeaderStyled>
       <HeaderLink
-        to="/transactions/expense"
+        to="/transactions/expenses"
         initial={{ y: -250 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.7, type: 'spring', stiffness: 220 }}
