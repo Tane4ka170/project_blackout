@@ -14,7 +14,7 @@ import MainTransactionsPage from 'pages/MainTransactionsPage/MainTransactionsPag
 import NotFound from 'pages/NotFoundPage/NotFound';
 import { Expense } from 'pages/Expense/Expense';
 import { Income } from 'pages/Income/Income';
-import { Categories } from './categories/Categories';
+
 
 // const HomePage = lazy(() => import('../pages/Home/Home'));
 // const RegisterPage = lazy(() => import('../pages/Register/Register'));
@@ -66,7 +66,6 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Categories />
     </>
   );
 }

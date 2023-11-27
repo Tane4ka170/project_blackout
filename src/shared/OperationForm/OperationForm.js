@@ -1,6 +1,7 @@
 //Base 
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 // Form
 import { useForm } from "react-hook-form";
@@ -25,11 +26,13 @@ import DescriptionInput from "components/transactionForm/descriptionInput/Descri
 import { StyledBtn, StyledFormWrapper, StyledErrorMsg, StyledInputsWrapper } from "./OperationForm.styled";
 
 const OperationForm = () => {
+  const dispatch = useDispatch()
   const { transactionsType } = useParams();
-  console.log(transactionsType);
+  const [categoryId, setCategoryId ] = useState('')
 
   const {
     control,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -39,13 +42,14 @@ const OperationForm = () => {
       time: "00:00:00",
       category: '',
       sum: '',
-      desc: '',
+      comment: '',
     },
     resolver: yupResolver(validationSchema)
   })
   return (
-    <StyledFormWrapper onSubmit={
-      handleSubmit(data => onSubmitTransaction(data, PreSelectType(transactionsType)))
+    <StyledFormWrapper autoComplete="off"
+      onSubmit={
+      handleSubmit(data => onSubmitTransaction(data, PreSelectType(transactionsType) , categoryId, dispatch ))
     }>
       {/* type select */}
       <RadioBtn control={control} />
@@ -53,7 +57,7 @@ const OperationForm = () => {
       <DateInput control={control} />
       {/* category input */}
       <StyledInputsWrapper>
-        <CategoryInput control={control} />
+        <CategoryInput control={control} setValue={setValue} setCategoryId={ setCategoryId } />
         {errors.category && <StyledErrorMsg>{errors.category.message}</StyledErrorMsg>}
       </StyledInputsWrapper>
       {/* sum input */}
@@ -61,10 +65,10 @@ const OperationForm = () => {
         <SumInput control={control} />
         {errors.sum && <StyledErrorMsg>{'Sum is required'}</StyledErrorMsg>}
       </StyledInputsWrapper>
-      {/* desc input */}
+      {/* comment input */}
       <StyledInputsWrapper>
         <DescriptionInput control={control} />
-        {errors.desc && <StyledErrorMsg>{errors.desc.message}</StyledErrorMsg>}
+        {errors.comment && <StyledErrorMsg>{errors.comment.message}</StyledErrorMsg>}
         {/* submit btn */}
       </StyledInputsWrapper>
       <StyledBtn type="submit">Add</StyledBtn>
