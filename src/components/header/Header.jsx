@@ -24,6 +24,7 @@ import {
   LinksContainer,
   ProfileContainer,
   SecondBtnContainer,
+  UserLinkbutton,
 } from './headerStyled';
 import Symbols from 'images/svg/Symbols';
 import Modal from 'components/modal/Modal';
@@ -34,6 +35,7 @@ import { logoutThunk } from 'redux/auth/operations';
 import { useLocation } from 'react-router-dom';
 import { useModal } from 'components/hooks/useModal';
 import UserSetsModal from 'components/userSetsModal/UserSetsModal';
+import LogOutModal from 'components/logOutModal/LogOutModal';
 
 const Header = () => {
   const location = useLocation();
@@ -164,12 +166,18 @@ const Header = () => {
         {isOpened ? (
           <Modal children={<UserSetsModal />} closeModal={closeModal} />
         ) : null}
-        <UserLink to="/" onClick={() => dispatch(logoutThunk())}>
+        <UserLinkbutton onClick={openModal}>
           <UserLinkIcons width={16} height={16}>
             <use xlinkHref="#icon-log-out" />
           </UserLinkIcons>
           Log out
-        </UserLink>
+        </UserLinkbutton>
+        {isOpened ? (
+          <Modal
+            children={<LogOutModal UserSetsModal />}
+            closeModal={closeModal}
+          />
+        ) : null}
       </SecondBtnContainer>
       <MenuBtn
         type="button"
