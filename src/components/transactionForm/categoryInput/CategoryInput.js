@@ -25,7 +25,6 @@ const CategoryInput = ({ control, setValue, setCategoryId }) => {
     setValue("category", selectedCategory);
   };
 
-
   return (
     <Controller
       name="category"
@@ -39,8 +38,9 @@ const CategoryInput = ({ control, setValue, setCategoryId }) => {
             placeholder="Different"
             {...field}
             value={field.value}
-            onClick={() => {
+            onClick={(event) => {
               openModal()
+              event.target.blur();
             }
             }
           />
