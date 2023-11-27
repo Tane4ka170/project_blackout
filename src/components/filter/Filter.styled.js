@@ -80,7 +80,7 @@ export const INP = styled.input`
   }
 `;
 
-export const Label = styled.label`
+export const Form = styled.form`
   position: relative;
 `;
 
