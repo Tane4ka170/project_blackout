@@ -9,7 +9,6 @@ const onSubmitTransaction = (data, transactionsType, categoryId ,dispatch) => {
 
   // set proper time
   transaction.time = data.time.slice(0, 5);
-  console.log(transaction.time);
 
 
   // auto select current date
@@ -24,7 +23,6 @@ const onSubmitTransaction = (data, transactionsType, categoryId ,dispatch) => {
 
   // dispatch
   dispatch(createTransactionThunk(transaction))
-  console.log(transaction);
 };
   
 export default onSubmitTransaction
