@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   filter: '',
-  startDate: null,
+  startDate: '2023-11-26',
 };
 
 export const filterSlice = createSlice({

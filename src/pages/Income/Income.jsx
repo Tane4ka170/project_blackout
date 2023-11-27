@@ -36,20 +36,30 @@ import svg from '../../images/Sprite.svg';
 export const Income = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
-  const startDate = useSelector(selectStartDate);
+
   const transactions = useSelector(selectTransaction);
-  // const date = useSelector(selectStartDate);
+  const date = useSelector(selectStartDate);
+
+  const formattedDate = `${date.year}-${String(date.month).padStart(
+    2,
+    '0'
+  )}-${String(date.day).padStart(2, '0')}`;
 
   useEffect(() => {
-    dispatch(getTransactionsThunk({ type: 'incomes', date: startDate }));
-  }, [dispatch, filter, startDate]);
+    // const nowDate = new Date();
+    // if (!date) {
+    //   const year = nowDate.getFullYear();
+    //   const month = nowDate.getMonth() + 1;
+    //   const day = nowDate.getDate();
+    //   dispatch(
+    //     getTransactionsThunk({ type: 'incomes', date: { year, month, day } })
+    //   );
+    // }
+    dispatch(getTransactionsThunk({ type: 'incomes', date: formattedDate }));
+  }, [dispatch, filter, formattedDate, date]);
 
   const handleDelete = (transactionId, transactionComment) => {
-    dispatch(
-      deleteTransactionThunk({
-        id: transactionId,
-      })
-    );
+    dispatch(deleteTransactionThunk(transactionId));
     toast.success(`Transaction ${transactionComment} was deleted`);
   };
 
