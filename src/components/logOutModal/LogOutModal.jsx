@@ -1,9 +1,7 @@
 import React from 'react';
-
 import { logoutThunk } from 'redux/auth/operations';
-
 import { useDispatch } from 'react-redux';
-import { useModal } from 'components/hooks/useModal';
+
 import {
   StyledLogOutButton,
   StyledLogOutButtonWrapper,
@@ -11,8 +9,7 @@ import {
   StyledLogOutWrapper,
 } from './LogOutModal.Styled';
 
-const LogOutModal = () => {
-  const { closeModal } = useModal();
+const LogOutModal = ({ closeModal }) => {
   const dispatch = useDispatch();
   return (
     <StyledLogOutWrapper>
