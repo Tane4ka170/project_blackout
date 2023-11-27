@@ -63,6 +63,7 @@ export const Categories = ({
     setCurrentCategory(category);
     reset({ categoryName: category.categoryName });
     setIsEditing(true);
+    console.log(editCategory);
   };
 
   const onCancel = () => {
