@@ -7,7 +7,7 @@ import {
   updateCategoryThunk,
 } from 'redux/category/operations';
 import { selectCategories } from 'redux/category/selectors';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -36,6 +36,7 @@ export const Categories = ({ type = 'incomes' }) => {
 
   const [currentCategory, setCurrentCategory] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const categoriesListRef = useRef();
 
   const {
     register,
@@ -79,6 +80,12 @@ export const Categories = ({ type = 'incomes' }) => {
     } else {
       dispatch(createCategoryThunk(categoryDate))
         .unwrap()
+        .then(() => {
+          if (categoriesListRef.current) {
+            categoriesListRef.current.scrollTop =
+              categoriesListRef.current.scrollHeight;
+          }
+        })
         .catch(e => {
           toast.error('Oops, something went wrong');
         });
@@ -105,7 +112,7 @@ export const Categories = ({ type = 'incomes' }) => {
     <CategoriesDiv>
       <TransactionType>Expenses</TransactionType>
       <AllCategoriesP>All categories</AllCategoriesP>
-      <CategoriesList>
+      <CategoriesList ref={categoriesListRef}>
         {categories?.incomes?.length ? (
           categories?.incomes?.map(category => {
             return (

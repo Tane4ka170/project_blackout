@@ -46,7 +46,7 @@ export const AllCategoriesP = styled.p`
 `;
 
 export const CategoriesList = styled.ul`
-  max-height: 200px;
+  max-height: 150px;
   overflow-y: auto;
   margin-bottom: 28px;
 
