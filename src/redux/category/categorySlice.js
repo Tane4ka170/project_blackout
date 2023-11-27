@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import {
   createCategoryThunk,
   deleteCategoryThunk,
@@ -54,11 +55,29 @@ const categoriesSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(createCategoryThunk.fulfilled, (state, { payload }) => {
+        const addedIncCategory = state.categories?.incomes?.find(
+          category => category?.categoryName === payload?.categoryName
+        );
+        console.log(addedIncCategory);
+        const addedExpCategory = state.categories?.expenses?.find(
+          category => category?.categoryName === payload.categoryName
+        );
+
         if (payload.type === 'incomes') {
-          state.categories.incomes.push(payload);
+          if (addedIncCategory) {
+            toast.warning('Category with this name exists already');
+            return;
+          } else {
+            state.categories?.incomes?.push(payload);
+          }
         }
         if (payload.type === 'expenses') {
-          state.categories.expenses.push(payload);
+          if (addedExpCategory) {
+            toast.warning('Category with this name exists already');
+            return;
+          } else {
+            state.categories?.expenses?.push(payload);
+          }
         }
 
         state.isLoading = false;
