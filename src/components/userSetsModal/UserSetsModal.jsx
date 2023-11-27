@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
 import { changeAvatarThunk, deleteAvatarThunk } from 'redux/user/operations';
@@ -15,6 +15,8 @@ const UserSetsModal = () => {
   const user = useSelector(selectUser);
   const inputRef = useRef(null);
 
+  const [selectedValue, setSelectedValue] = useState('');
+
   const handleUpdate = () => {
     const currentInput = inputRef?.current;
 
@@ -28,6 +30,11 @@ const UserSetsModal = () => {
     if (user?._id) {
       dispatch(deleteAvatarThunk(user._id));
     }
+  };
+
+  const handleSelectChange = ({ target }) => {
+    const value = target.value;
+    setSelectedValue(value);
   };
 
   const handleSave = () => {};
@@ -57,8 +64,8 @@ const UserSetsModal = () => {
           />
         </label>
         <GrayButton onClick={handleRemove}>Remove</GrayButton>
-        <select>
-          <option>UAH</option>
+        <select value={selectedValue} onChange={handleSelectChange}>
+          <option> UAH</option>
           <option>USD</option>
           <option>EUR</option>
         </select>
