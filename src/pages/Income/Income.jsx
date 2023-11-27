@@ -44,6 +44,7 @@ export const Income = () => {
     2,
     '0'
   )}-${String(date.day).padStart(2, '0')}`;
+  console.log(formattedDate);
 
   useEffect(() => {
     // const nowDate = new Date();
@@ -94,9 +95,9 @@ export const Income = () => {
         <Filter />
         <DIV375>
           <SectionTransaction />
-          {filterTransactions.length ? (
+          {filterTransactions?.length ? (
             <TransactionsContainer>
-              {transactions.map(transaction => (
+              {transactions?.map(transaction => (
                 <DIV key={transaction._id}>
                   <P1>{transaction.category.categoryName}</P1>
                   <P2>{transaction.comment}</P2>

@@ -1,8 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+const year = new Date().getFullYear();
+const month = new Date().getMonth() + 1;
+const day = new Date().getDate();
 
 const initialState = {
   filter: '',
-  startDate: '2023-11-26',
+  startDate: { year, month, day },
 };
 
 export const filterSlice = createSlice({

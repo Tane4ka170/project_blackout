@@ -55,7 +55,7 @@ export const Expense = () => {
     //     getTransactionsThunk({ type: 'incomes', date: { year, month, day } })
     //   );
     // }
-    dispatch(getTransactionsThunk({ type: 'incomes', date: formattedDate }));
+    dispatch(getTransactionsThunk({ type: 'expenses', date: formattedDate }));
   }, [dispatch, filter, formattedDate, date]);
 
   const handleDelete = (transactionId, transactionComment) => {
@@ -93,9 +93,9 @@ export const Expense = () => {
         <Filter />
         <DIV375>
           <SectionTransaction />
-          {filterTransactions.length ? (
+          {filterTransactions?.length ? (
             <TransactionsContainer>
-              {transactions.map(transaction => (
+              {transactions?.map(transaction => (
                 <DIV key={transaction._id}>
                   <P1>{transaction.category.categoryName}</P1>
                   <P2>{transaction.comment}</P2>
