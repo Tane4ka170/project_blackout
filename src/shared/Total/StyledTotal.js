@@ -14,16 +14,21 @@ export const StyledWrapper = styled.div`
   justify-content: left;
   align-items: center;
 
-    @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
-      padding-top: 32px;
-      padding-bottom: 32px;
-      padding-left: 23px;
-      padding-right: 23px;
+  @media only screen and (min-width: 768px) {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    padding-left: 23px;
+    padding-right: 23px;
+    border-radius: 30px;
 
-      border-radius: 30px;
-
-      width: 340px;
-    }
+    gap: 22px;
+  }
+  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+    width: 340px;
+  }
+  @media only screen and (min-width: 1440px) {
+    width: 303px;
+  }
 `
 
 
@@ -37,12 +42,12 @@ export const StyledSvgWrapper = styled.div`
 
   position: relative;
 
-    @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
-      width: 43px;
-      height: 43px;
+  @media only screen and (min-width: 768px) {
+    width: 43px;
+    height: 43px;
 
-      border-radius: 13px;
-    }
+    border-radius: 13px;
+  }
 `
 
 
@@ -51,7 +56,7 @@ export const StyledSvg = styled.svg`
   top: 9px;
   left: 9px;
 
-  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+  @media only screen and (min-width: 768px) {
     top: 13px;
     left: 13px;
   }
@@ -64,10 +69,11 @@ export const StyledTotalWrapper = styled.div`
 
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  justify-content: space-around;
+  /* gap: 4px; */
 
-  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
-    gap: 7px;
+  @media only screen and (min-width: 768px) {
+    gap: 15px;
   }
 `
 
@@ -80,7 +86,7 @@ export const StyledHeaders = styled.p`
 
   margin: 0;
 
-    @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+    @media only screen and (min-width: 768px) {
     font-size: 16px;
   }
 `
@@ -94,7 +100,7 @@ export const StyledMoney = styled.p`
 
   margin: 0;
 
-  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+  @media only screen and (min-width: 768px) {
     font-size: 24px;
   }
 `

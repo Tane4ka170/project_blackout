@@ -8,9 +8,8 @@ export const StyledWrapper = styled.div`
   flex-direction: row;
   gap: 14px;
 
-  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+  @media only screen and (min-width: 768px) {
     gap: 20px;
-
     height: 75px;
   }
 `
@@ -22,10 +21,9 @@ export const StyledLabel = styled.label`
   font-size: 14px;
   font-weight: 400;
   letter-spacing: -0.02em;
-  
   display: inline-block;
 
-  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+  @media only screen and (min-width: 768px) {
     font-size: 16px;
   }
   `
@@ -51,7 +49,7 @@ export const StyledDatePicker = styled(DatePicker)`
     border-color: #0EF387;
   }
 
-  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+  @media only screen and (min-width: 768px ) {
     width: 232px;
     height: 48px;
     padding: 12px 18px 12px 18px;
@@ -83,7 +81,7 @@ export const StyledTimePicker = styled.input`
     display: none;
   }
 
-    @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+    @media only screen and (min-width: 768px) {
     width: 232px;
     height: 48px;
     padding: 12px 18px 12px 18px;
@@ -99,7 +97,7 @@ export const StyledTimePicker = styled.input`
     position: relative;
     width: 140px;
   
-    @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+    @media only screen and (min-width: 768px) {
     gap: 8px;
     width: 235px;
   }

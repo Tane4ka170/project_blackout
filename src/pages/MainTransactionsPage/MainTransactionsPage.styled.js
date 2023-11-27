@@ -15,7 +15,16 @@ export const StyledSection = styled.section`
     padding-right: 32px;
     margin-bottom: 80px;
   }
-  
+
+  @media only screen and (min-width: 1440px) {
+    width: 1440px;
+    padding-left: 100px;
+    padding-right: 100px;
+    margin-bottom: 50px;
+
+    display: flex;
+    gap: 44px;
+  }
 `
 
 // headers
@@ -25,6 +34,10 @@ margin-bottom: 40px;
 
 @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
     width: 500px;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    width: 630px;
   }
 `
 
@@ -37,7 +50,7 @@ export const StyledHeaders = styled.h1`
   letter-spacing: -0.02em;
   line-height: normal;
 
-  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+  @media only screen and (min-width: 768px) {
     margin-bottom: 15px;
 
     font-size: 38px;
@@ -52,10 +65,11 @@ font-weight: 400;
 line-height: normal;
 letter-spacing: -0.02em;
 
-  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
-    margin-bottom: 15px;
-    
+  @media only screen and (min-width: 768px) {
     font-size: 16px;
+  }
+  @media only screen and (min-width: 1440px) {
+    width: 570px;
   }
 `
 
@@ -81,17 +95,33 @@ export const StyledTotalUl = styled.ul`
     gap: 0;
     justify-content: space-between;
   }
+
+  @media only screen and (min-width: 1440px) {
+    width: 630px;
+    
+    gap: 24px;
+    flex-direction: row;
+  }
 `
 
 export const StyledMain = styled.main`
-  /* width: 335px; */
+
+  width: 630px;
+  width: 335px; 
 
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 40px; 
 
   @media only screen and (min-width: 1440px) {
     flex-direction: row-reverse;
     justify-content: flex-end;
-  }
+
+    gap: 0px;
+  } 
+`
+
+
+export const StyledWrapper = styled.div`
+  width: 630px;
 `

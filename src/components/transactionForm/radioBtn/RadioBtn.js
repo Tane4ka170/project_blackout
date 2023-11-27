@@ -28,17 +28,17 @@ const RadioBtn = ({ control }) => {
       <Controller
         name="type"
         control={control}
-        defaultValue="income"
+        defaultValue="incomes"
         render={() => (
           <StyledInputWrapper>
             <StyledInput
               id="income"
               type="radio"
-              value='income'
+              value='incomes'
               onChange={() => {
-                handleTypeChange('income')
+                handleTypeChange('incomes')
               }}
-              checked={type === 'income'}
+              checked={type === 'incomes'}
             />
             <StyledLabel htmlFor="income">Income</StyledLabel>
           </StyledInputWrapper>
@@ -53,11 +53,11 @@ const RadioBtn = ({ control }) => {
             <StyledInput
               id="expense"
               type="radio"
-              value='expense'
+              value='expenses'
               onChange={() => {
-                handleTypeChange('expense')
+                handleTypeChange('expenses')
               }}
-              checked={type === 'expense'}
+              checked={type === 'expenses'}
             />
             <StyledLabel htmlFor="expense">Expense</StyledLabel>
           </StyledInputWrapper>

@@ -12,9 +12,18 @@ export const StyledFormWrapper = styled.form`
 
   padding: 28px 20px;
 
+  margin-bottom: 40px;
+
   @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
     width: 704px;
     padding: 40px 109px;
+  }
+  @media only screen and (min-width: 1440px) {
+    width: 566px;
+    padding: 40px;
+    height: 600px;
+
+    margin-bottom: none;
   }
 `
 

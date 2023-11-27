@@ -5,7 +5,7 @@ export const StyledInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
-  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+  @media only screen and (min-width: 768px) {
     gap: 8px;
   }
 `
@@ -40,7 +40,7 @@ export const StyledCategoryInput = styled.input`
     border-color: #0EF387;
   }
 
-  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+  @media only screen and (min-width: 768px) {
     padding: 12px 18px;
     height: 48px;
   }

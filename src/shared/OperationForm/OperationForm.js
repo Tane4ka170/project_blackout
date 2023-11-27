@@ -19,13 +19,14 @@ import RadioBtn from "components/transactionForm/radioBtn/RadioBtn";
 import DateInput from "components/transactionForm/dateInput/DateInput";
 import CategoryInput from "components/transactionForm/categoryInput/CategoryInput";
 import SumInput from "components/transactionForm/sumInput/SumInput";
-import DescriptionInput from "components/transactionForm/descriptionInput/StyledDescriptionInput";
+import DescriptionInput from "components/transactionForm/descriptionInput/DescriptionInput";
 
 // styled
 import { StyledBtn, StyledFormWrapper, StyledErrorMsg, StyledInputsWrapper } from "./OperationForm.styled";
 
 const OperationForm = () => {
   const { transactionsType } = useParams();
+  console.log(transactionsType);
 
   const {
     control,

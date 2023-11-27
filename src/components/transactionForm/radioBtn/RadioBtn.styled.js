@@ -25,7 +25,7 @@ export const StyledLabel = styled.label`
 
   display: inline-block;
 
-  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+  @media only screen and (min-width: 768px) {
     font-size: 16px;
   }
 `
@@ -43,9 +43,5 @@ export const StyledInput = styled.input`
     border: 3px solid #171719;
     outline: 2px solid #4DC274;
     background-color: #4DC274;
-  }
-
-  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
-    font-size: 16px;
   }
 `
