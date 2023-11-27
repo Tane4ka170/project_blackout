@@ -21,6 +21,8 @@ const onSubmitTransaction = (data, transactionsType, categoryId ,dispatch) => {
     transaction.time = new Date().toTimeString().substr(0, 8)
   }
 
+  console.log(transaction.time);
+
   // dispatch
   dispatch(createTransactionThunk(transaction))
 };
