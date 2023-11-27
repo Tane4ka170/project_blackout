@@ -24,8 +24,6 @@ export const Filter = () => {
     setTempFilter(e.target.value);
   };
 
-  console.log(filter);
-
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = date => {
