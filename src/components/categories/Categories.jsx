@@ -82,7 +82,6 @@ export const Categories = ({ type = 'incomes' }) => {
         .catch(e => {
           toast.error('Oops, something went wrong');
         });
-      // reset();
     }
     reset();
     setCurrentCategory(null);
@@ -107,8 +106,8 @@ export const Categories = ({ type = 'incomes' }) => {
       <TransactionType>Expenses</TransactionType>
       <AllCategoriesP>All categories</AllCategoriesP>
       <CategoriesList>
-        {categories.length ? (
-          categories?.map(category => {
+        {categories?.incomes?.length ? (
+          categories?.incomes?.map(category => {
             return (
               <OneCategory
                 key={category._id}

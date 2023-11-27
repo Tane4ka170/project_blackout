@@ -14,6 +14,7 @@ import MainTransactionsPage from 'pages/MainTransactionsPage/MainTransactionsPag
 import NotFound from 'pages/NotFoundPage/NotFound';
 import { Expense } from 'pages/Expense/Expense';
 import { Income } from 'pages/Income/Income';
+import { Categories } from './categories/Categories';
 
 // const HomePage = lazy(() => import('../pages/Home/Home'));
 // const RegisterPage = lazy(() => import('../pages/Register/Register'));
@@ -34,7 +35,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/transactions/:transactionsType" element={<MainTransactionsPage />} />
+          <Route
+            path="/transactions/:transactionsType"
+            element={<MainTransactionsPage />}
+          />
           <Route path="/expenses" element={<Expense />} />
           <Route path="/incomes" element={<Income />} />
           <Route
@@ -62,6 +66,7 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Categories />
     </>
   );
 }
