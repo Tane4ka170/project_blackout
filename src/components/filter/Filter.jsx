@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import 'react-datepicker/dist/react-datepicker.css';
 import { selectFilter, selectStartDate } from 'redux/filter/filterSelector';
+import {
+  DIV,
+  DivDatePicker,
+  INP,
+  Label,
+  StyledDatePicker,
+  SvgI,
+} from './Filter.styled';
 import { setFilter, setStartDate } from 'redux/filter/filterSlice';
-import { DIV, DivDatePicker, INP, StyledDatePicker } from './Filter.styled';
+import svg from '../../images/Sprite.svg';
 
 export const Filter = () => {
   const filter = useSelector(selectFilter);
@@ -15,44 +22,43 @@ export const Filter = () => {
     dispatch(setFilter(e.target.value));
   };
 
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   const handleDateChange = date => {
-    console.log(date);
     setSelectedDate(date);
     if (selectedDate) {
-      // Отримайте числове представлення дати
       const year = selectedDate.getFullYear();
-      const month = selectedDate.getMonth() + 1; // Місяці у JavaScript починаються з 0
+      const month = selectedDate.getMonth() + 1;
       const day = selectedDate.getDate();
+      console.log(day, month, year);
       dispatch(setStartDate({ year, month, day }));
-
-      // Використовуйте year, month і day за необхідності
-      console.log('Selected date:', `${year}-${month}-${day}`);
     }
   };
 
-  // const onDateChange = date => {
-  //   console.log(date);
-  //   dispatch(setStartDate(date));
-  // };
-
   return (
     <DIV>
-      <label>
+      <Label>
         <INP
           placeholder="Search for anything.."
           type="text"
           value={filter}
           onChange={onFilterChange}
         />
-      </label>
+        <SvgI width={20} height={20}>
+          <use href={svg + '#icon-search'}></use>
+        </SvgI>
+      </Label>
       <DivDatePicker>
         <StyledDatePicker
-          selected={startDate}
+          selected={selectedDate}
+          value={startDate}
           onChange={handleDateChange}
           dateFormat="dd/MM/yyyy"
           placeholderText="dd/mm/yyyy"
         />
+        <SvgI width={20} height={20}>
+          <use href={svg + '#icon-calendar'}></use>
+        </SvgI>
       </DivDatePicker>
     </DIV>
   );
