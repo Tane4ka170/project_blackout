@@ -46,8 +46,18 @@ const Header = () => {
   const [hideOrShowSecondList, setHideOrShowSecondList] = useState({});
   const [isRotated, setIsRotated] = useState(false);
   const { isOpened, openModal, closeModal } = useModal();
-  const [isLogOut, setIsLogOut] = useState(false);
-  const [isUserSet, setUserSet] = useState(false);
+  const [modal, setModal] = useState(null);
+
+  const openUserSetsModal = () => {
+    setModal(<UserSetsModal closeModal={closeModal} />);
+    openModal();
+  };
+
+  const openLogOutModal = () => {
+    setModal(<LogOutModal closeModal={closeModal} />);
+    openModal();
+  };
+
   const handleMenu = () => {
     setIsOpen(prev => !prev);
 
@@ -73,6 +83,7 @@ const Header = () => {
     }));
     setIsRotated(!isRotated);
   };
+
   if (!isLoggedIn) {
     return (
       <EmptyHeaderStyled>
@@ -156,38 +167,24 @@ const Header = () => {
         </ProfileBtn>
       </ProfileContainer>
       <SecondBtnContainer style={hideOrShowSecondList}>
-        <UserLink
-          to="/"
-          onClick={() => {
-            openModal();
-            setUserSet(true);
-          }}
-        >
+        <UserLink to="/" onClick={openUserSetsModal}>
           <UserLinkIcons width={16} height={16}>
             <use xlinkHref="#icon-user" />
           </UserLinkIcons>
           Profile settings
         </UserLink>
-        {isOpened & isUserSet ? (
-          <Modal children={<UserSetsModal />} closeModal={closeModal} />
-        ) : null}
-        <UserLinkbutton
-          onClick={() => {
-            openModal();
-            setIsLogOut(true);
-          }}
-        >
+        {isOpened && modal && (
+          <Modal children={modal} closeModal={closeModal} />
+        )}
+        <UserLinkbutton onClick={openLogOutModal}>
           <UserLinkIcons width={16} height={16}>
             <use xlinkHref="#icon-log-out" />
           </UserLinkIcons>
           Log out
         </UserLinkbutton>
-        {isOpened & isLogOut ? (
-          <Modal
-            children={<LogOutModal closeModal={closeModal} />}
-            closeModal={closeModal}
-          />
-        ) : null}
+        {isOpened && modal && (
+          <Modal children={modal} closeModal={closeModal} />
+        )}
       </SecondBtnContainer>
       <MenuBtn
         type="button"
@@ -228,38 +225,24 @@ const Header = () => {
             </UserArrowUp>
           </ProfileBtn>
           <BtnContainer style={hideOrShowList}>
-            <UserLink
-              to="/"
-              onClick={() => {
-                openModal();
-                setUserSet(true);
-              }}
-            >
+            <UserLink to="/" onClick={openUserSetsModal}>
               <UserLinkIcons width={16} height={16}>
                 <use xlinkHref="#icon-user" />
               </UserLinkIcons>
               Profile settings
             </UserLink>
-            {isOpened & isUserSet ? (
-              <Modal children={<UserSetsModal />} closeModal={closeModal} />
-            ) : null}
-            <UserLinkbutton
-              onClick={() => {
-                openModal();
-                setIsLogOut(true);
-              }}
-            >
+            {isOpened && modal && (
+              <Modal children={modal} closeModal={closeModal} />
+            )}
+            <UserLinkbutton onClick={openLogOutModal}>
               <UserLinkIcons width={16} height={16}>
                 <use xlinkHref="#icon-log-out" />
               </UserLinkIcons>
               Log out
             </UserLinkbutton>
-            {isOpened & isLogOut ? (
-              <Modal
-                children={<LogOutModal closeModal={closeModal} />}
-                closeModal={closeModal}
-              />
-            ) : null}
+            {isOpened && modal && (
+              <Modal children={modal} closeModal={closeModal} />
+            )}
           </BtnContainer>
           <CloseBtn
             onClick={handleMenu}
