@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-// import { Categories } from './categories/Categories';
 import { useAuth } from './hooks';
 import { useEffect } from 'react';
 import { refreshThunk } from '../redux/auth/operations';
@@ -63,7 +62,7 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </div>
+    </>
   );
 }
 
