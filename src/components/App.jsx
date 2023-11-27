@@ -10,7 +10,6 @@ import Loader from './loader/Loader';
 import Home from 'pages/Home/Home';
 import Register from 'pages/Register/Register';
 import Login from 'pages/Login/Login';
-import { Categories } from './categories/Categories';
 
 import MainTransactionsPage from 'pages/MainTransactionsPage/MainTransactionsPage';
 import NotFound from 'pages/NotFoundPage/NotFound';
@@ -64,7 +63,6 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Categories />
     </div>
   );
 }
