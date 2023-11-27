@@ -37,29 +37,30 @@ import { motion } from 'framer-motion';
 export const Expense = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
-  const startDate = useSelector(selectStartDate);
+
   const transactions = useSelector(selectTransaction);
-  // const date = useSelector(selectStartDate);
+  const date = useSelector(selectStartDate);
 
-  // console.log(date);
-  // const formattedDate = `${date.year}-${String(date.month).padStart(
-  //   2,
-  //   '0'
-  // )}-${String(date.day).padStart(2, '0')}`;
-
-  // console.log(formattedDate);
+  const formattedDate = `${date.year}-${String(date.month).padStart(
+    2,
+    '0'
+  )}-${String(date.day).padStart(2, '0')}`;
 
   useEffect(() => {
-    dispatch(getTransactionsThunk({ type: 'expenses', date: startDate }));
-  }, [dispatch, filter, startDate]);
+    // const nowDate = new Date();
+    // if (!date) {
+    //   const year = nowDate.getFullYear();
+    //   const month = nowDate.getMonth() + 1;
+    //   const day = nowDate.getDate();
+    //   dispatch(
+    //     getTransactionsThunk({ type: 'incomes', date: { year, month, day } })
+    //   );
+    // }
+    dispatch(getTransactionsThunk({ type: 'expenses', date: formattedDate }));
+  }, [dispatch, filter, formattedDate, date]);
 
   const handleDelete = (transactionId, transactionComment) => {
-    dispatch(
-      deleteTransactionThunk({
-        type: 'expenses',
-        id: transactionId,
-      })
-    );
+    dispatch(deleteTransactionThunk(transactionId));
     toast.success(`Transaction ${transactionComment} was deleted`);
   };
 
@@ -99,9 +100,9 @@ export const Expense = () => {
           <Filter />
           <DIV375>
             <SectionTransaction />
-            {filterTransactions.length ? (
+            {filterTransactions?.length ? (
               <TransactionsContainer>
-                {transactions.map(transaction => (
+                {transactions?.map(transaction => (
                   <DIV key={transaction._id}>
                     <P1>{transaction.category.categoryName}</P1>
                     <P2>{transaction.comment}</P2>
