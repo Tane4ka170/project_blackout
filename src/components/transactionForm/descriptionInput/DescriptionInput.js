@@ -1,41 +1,29 @@
-import styled from "styled-components";
+import React from "react";
+import { Controller } from "react-hook-form";
+
+// styled
+import { StyledInputWrapper, StyledLabel, StyledDescriptionInput } from "./DescriptionInput.styled";
+
+const DescriptionInput = ({ control }) => {
+  return (
+      <Controller
+        name="desc"
+        control={control}
+        render={({ field }) => (
+          <StyledInputWrapper>
+            <StyledLabel htmlFor="desc">Comment</StyledLabel>
+            <StyledDescriptionInput
+              id="desc"
+              type="textarea"
+              rows='4'
+              placeholder="Enter the text"
+              {...field}
+            />
+          </StyledInputWrapper>
+        )}
+      />
+  );
+};
 
 
-export const StyledInputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-`
-
-export const StyledLabel = styled.label`
-  color: #FAFAFA;
-  
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  
-  display: inline-block;
-`
-
-export const StyledDescriptionInput = styled.textarea`
-  /* width: 140px; */
-  /* height: 91px; */
-  padding: 12px 14px;
-  resize: none;
-  /* vertical-align: text-top; */
-
-  border: 1px solid rgba(250, 250, 250, 0.20);
-  border-radius: 12px;
-
-  background-color: transparent;
-  color: rgba(250, 250, 250, 0.40);
-
-  outline: none;
-  box-sizing: border-box;
-
-  transition: border-color 250ms ease-in-out;
-
-  &:focus {
-    border-color: #0EF387;
-  }
-`
+export default DescriptionInput;

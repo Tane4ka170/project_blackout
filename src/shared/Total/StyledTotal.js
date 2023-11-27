@@ -4,14 +4,31 @@ import styled from "styled-components";
 export const StyledWrapper = styled.div`
   background-color: #171719;
   border-radius: 20px;
-  padding: 20px 20px;
-
-
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 
   display: flex;
   gap: 12px;
   justify-content: left;
   align-items: center;
+
+  @media only screen and (min-width: 768px) {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    padding-left: 23px;
+    padding-right: 23px;
+    border-radius: 30px;
+
+    gap: 22px;
+  }
+  @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
+    width: 340px;
+  }
+  @media only screen and (min-width: 1440px) {
+    width: 303px;
+  }
 `
 
 
@@ -24,6 +41,13 @@ export const StyledSvgWrapper = styled.div`
   height: 36px;
 
   position: relative;
+
+  @media only screen and (min-width: 768px) {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 13px;
+  }
 `
 
 
@@ -31,6 +55,11 @@ export const StyledSvg = styled.svg`
   position: absolute;
   top: 9px;
   left: 9px;
+
+  @media only screen and (min-width: 768px) {
+    top: 13px;
+    left: 13px;
+  }
 `
 
 // total info
@@ -40,7 +69,12 @@ export const StyledTotalWrapper = styled.div`
 
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  justify-content: space-around;
+  /* gap: 4px; */
+
+  @media only screen and (min-width: 768px) {
+    gap: 15px;
+  }
 `
 
 export const StyledHeaders = styled.p`
@@ -51,6 +85,10 @@ export const StyledHeaders = styled.p`
   font-weight: 400;
 
   margin: 0;
+
+    @media only screen and (min-width: 768px) {
+    font-size: 16px;
+  }
 `
 
 
@@ -61,6 +99,10 @@ export const StyledMoney = styled.p`
   font-weight: 700;
 
   margin: 0;
+
+  @media only screen and (min-width: 768px) {
+    font-size: 24px;
+  }
 `
 
 

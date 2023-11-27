@@ -14,7 +14,7 @@ const Home = () => (
 
   <Wrapper >
     <Img src={homeimg} alt="Main " />
-    <div>
+    <>
       <Content>
         <H1 >Expense log</H1>
         <H2>Manage Your <H2span>Finances</H2span> Masterfully!</H2>
@@ -36,7 +36,7 @@ const Home = () => (
           <TextDown>Trusted by users for reliable expense tracking!</TextDown>
         </ContentInfo>
       </ContentUsers>
-    </div>
+    </>
   </Wrapper>
 
 

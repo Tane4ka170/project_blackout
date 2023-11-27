@@ -31,7 +31,7 @@ function App() {
   return isRefreshing ? ( // if isRefreshing is true, then render Loader, else render Container
     <Loader /> // Loader - spinner
   ) : (
-    <div>
+    <>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
