@@ -16,6 +16,7 @@ export const CategoriesDiv = styled.div`
 `;
 
 export const TransactionType = styled.h2`
+  text-transform: capitalize;
   @media (max-width: 767px) {
     font-size: 24px;
     margin-left: 20px;
