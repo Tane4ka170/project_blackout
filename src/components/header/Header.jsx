@@ -28,10 +28,9 @@ import {
 } from './headerStyled';
 import Symbols from 'images/svg/Symbols';
 import Modal from 'components/modal/Modal';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { selectUser } from 'redux/user/selectors';
-import { logoutThunk } from 'redux/auth/operations';
 import { useLocation } from 'react-router-dom';
 import { useModal } from 'components/hooks/useModal';
 import UserSetsModal from 'components/userSetsModal/UserSetsModal';
@@ -46,9 +45,9 @@ const Header = () => {
   const [hideOrShowList, setHideOrShowList] = useState({});
   const [hideOrShowSecondList, setHideOrShowSecondList] = useState({});
   const [isRotated, setIsRotated] = useState(false);
-  const dispatch = useDispatch();
   const { isOpened, openModal, closeModal } = useModal();
-
+  const [isLogOut, setIsLogOut] = useState(false);
+  const [isUserSet, setUserSet] = useState(false);
   const handleMenu = () => {
     setIsOpen(prev => !prev);
 
@@ -157,24 +156,35 @@ const Header = () => {
         </ProfileBtn>
       </ProfileContainer>
       <SecondBtnContainer style={hideOrShowSecondList}>
-        <UserLink to="/" onClick={openModal}>
+        <UserLink
+          to="/"
+          onClick={() => {
+            openModal();
+            setUserSet(true);
+          }}
+        >
           <UserLinkIcons width={16} height={16}>
             <use xlinkHref="#icon-user" />
           </UserLinkIcons>
           Profile settings
         </UserLink>
-        {isOpened ? (
+        {isOpened & isUserSet ? (
           <Modal children={<UserSetsModal />} closeModal={closeModal} />
         ) : null}
-        <UserLinkbutton onClick={openModal}>
+        <UserLinkbutton
+          onClick={() => {
+            openModal();
+            setIsLogOut(true);
+          }}
+        >
           <UserLinkIcons width={16} height={16}>
             <use xlinkHref="#icon-log-out" />
           </UserLinkIcons>
           Log out
         </UserLinkbutton>
-        {isOpened ? (
+        {isOpened & isLogOut ? (
           <Modal
-            children={<LogOutModal UserSetsModal />}
+            children={<LogOutModal closeModal={closeModal} />}
             closeModal={closeModal}
           />
         ) : null}
@@ -218,18 +228,38 @@ const Header = () => {
             </UserArrowUp>
           </ProfileBtn>
           <BtnContainer style={hideOrShowList}>
-            <UserLink to="/">
+            <UserLink
+              to="/"
+              onClick={() => {
+                openModal();
+                setUserSet(true);
+              }}
+            >
               <UserLinkIcons width={16} height={16}>
                 <use xlinkHref="#icon-user" />
               </UserLinkIcons>
               Profile settings
             </UserLink>
-            <UserLink to="/" onClick={() => dispatch(logoutThunk())}>
+            {isOpened & isUserSet ? (
+              <Modal children={<UserSetsModal />} closeModal={closeModal} />
+            ) : null}
+            <UserLinkbutton
+              onClick={() => {
+                openModal();
+                setIsLogOut(true);
+              }}
+            >
               <UserLinkIcons width={16} height={16}>
                 <use xlinkHref="#icon-log-out" />
               </UserLinkIcons>
               Log out
-            </UserLink>
+            </UserLinkbutton>
+            {isOpened & isLogOut ? (
+              <Modal
+                children={<LogOutModal closeModal={closeModal} />}
+                closeModal={closeModal}
+              />
+            ) : null}
           </BtnContainer>
           <CloseBtn
             onClick={handleMenu}
