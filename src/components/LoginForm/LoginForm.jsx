@@ -4,13 +4,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+import {
+  ButtonSign,
+  Err,
+  Line,
+  PasswordMessage,
+  PasswordToggle,
+  Spn,
+  StyledInput,
+  StyledPasswordInput,
+  WrapInPass,
+  WrapInp,
+  WrapPassword,
+} from 'components/RegisterForm/RegisterForm.styled';
 
-import { ButtonSign, Err, Line, PasswordMessage, PasswordToggle, Spn, StyledInput, StyledPasswordInput, WrapInPass, WrapInp, WrapPassword } from 'components/RegisterForm/RegisterForm.styled';
-import { loginThunk } from 'components/redux/auth/operations';
-import { selectIsLoggedIn } from 'components/redux/auth/selectors';
-import { ReactComponent as ShowsIco } from '../../images/home/eye.svg'
-import { ReactComponent as HideIco } from '../../images/home/eye-off.svg'
+import { ReactComponent as ShowsIco } from '../../images/home/eye.svg';
+import { ReactComponent as HideIco } from '../../images/home/eye-off.svg';
 import { WrapBts } from './LoginForm.styled';
+import { loginThunk } from 'redux/auth/operations';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const {
@@ -34,11 +46,10 @@ export const LoginForm = () => {
   };
   const [password, setPassword] = useState('');
   const isPasswordValid = () => {
-
     return password.length >= 6 && !formErrors.password;
   };
 
-  const handlePasswordChange = (e) => {
+  const handlePasswordChange = e => {
     const newPassword = e.target.value;
     setPassword(newPassword);
     setValue('password', newPassword);
@@ -68,7 +79,7 @@ export const LoginForm = () => {
           {formErrors.email && <Err>{formErrors.email.message}</Err>}
         </div>
 
-        <WrapPassword >
+        <WrapPassword>
           <WrapInPass>
             <StyledPasswordInput
               {...register('password', {
@@ -77,7 +88,6 @@ export const LoginForm = () => {
                   value: 6,
                   // message: 'Make sure your password is at least 6 characters long',
                 },
-
               })}
               type={showPassword ? 'text' : 'password'}
               placeholder="Password"
@@ -85,19 +95,16 @@ export const LoginForm = () => {
               hasError={!!formErrors.password}
               onChange={handlePasswordChange}
               isGood={password.length >= 6}
-              className={`${password.length === 0 ? 'empty' :
-                isPasswordValid() ? 'valid' :
-                  'invalid'
-                }`}
-
-
+              className={`${
+                password.length === 0
+                  ? 'empty'
+                  : isPasswordValid()
+                  ? 'valid'
+                  : 'invalid'
+              }`}
             />
             <PasswordToggle onClick={togglePasswordVisibility} type="button">
-              {showPassword ? (
-                <HideIco />
-              ) : (
-                <ShowsIco />
-              )}
+              {showPassword ? <HideIco /> : <ShowsIco />}
             </PasswordToggle>
           </WrapInPass>
           {formErrors.password && password.length === 0 && (
@@ -108,15 +115,17 @@ export const LoginForm = () => {
               {password.length >= 6 ? 'Good password' : 'Short password'}
             </PasswordMessage>
           )}
-
         </WrapPassword>
 
-        <WrapBts  >
-          <ButtonSign >Sign In</ButtonSign>
+        <WrapBts>
+          <ButtonSign>Sign In</ButtonSign>
         </WrapBts>
 
-        <Line ><p>New here?</p>
-          <Link to={'/register'}><Spn>Create an account</Spn> </Link>
+        <Line>
+          <p>New here?</p>
+          <Link to={'/register'}>
+            <Spn>Create an account</Spn>{' '}
+          </Link>
         </Line>
       </WrapInp>
     </form>
