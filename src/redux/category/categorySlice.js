@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import {
   createCategoryThunk,
   deleteCategoryThunk,
@@ -36,29 +37,50 @@ const categoriesSlice = createSlice({
         const deletingIncCategory = state.categories?.incomes?.find(
           category => category._id === payload
         );
+        const deletingExpCategory = state.categories?.expenses?.find(
+          category => category._id === payload
+        );
+
         if (deletingIncCategory) {
           state.categories.incomes = state.categories?.incomes?.filter(
             category => category !== deletingIncCategory
           );
+          toast.info('You deleted the category successfully');
         }
 
-        const deletingExpCategory = state.categories?.expenses?.find(
-          category => category._id === payload
-        );
         if (deletingExpCategory) {
           state.categories.expenses = state.categories?.expenses?.filter(
             category => category !== deletingExpCategory
           );
+          toast.info('You deleted the category successfully');
         }
 
         state.isLoading = false;
       })
       .addCase(createCategoryThunk.fulfilled, (state, { payload }) => {
+        const addedIncCategory = state.categories?.incomes?.find(
+          category => category?.categoryName === payload?.categoryName
+        );
+        console.log(addedIncCategory);
+        const addedExpCategory = state.categories?.expenses?.find(
+          category => category?.categoryName === payload.categoryName
+        );
+
         if (payload.type === 'incomes') {
-          state.categories.incomes.push(payload);
+          if (addedIncCategory) {
+            toast.warning('Category with this name exists already');
+            return;
+          } else {
+            state.categories?.incomes?.push(payload);
+          }
         }
         if (payload.type === 'expenses') {
-          state.categories.expenses.push(payload);
+          if (addedExpCategory) {
+            toast.warning('Category with this name exists already');
+            return;
+          } else {
+            state.categories?.expenses?.push(payload);
+          }
         }
 
         state.isLoading = false;
@@ -73,10 +95,12 @@ const categoriesSlice = createSlice({
 
         if (incomeCategory) {
           incomeCategory.categoryName = payload.categoryName;
+          toast.success('You changed the category successfully');
         }
 
         if (expenseCategory) {
           expenseCategory.categoryName = payload.categoryName;
+          toast.success('You changed the category successfully');
         }
       })
       .addMatcher(

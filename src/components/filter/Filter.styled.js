@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 
 export const StyledDatePicker = styled(DatePicker)`
   padding: 15px 30px;
+  width: auto;
 
   border-radius: 30px;
   border: 1px solid rgba(250, 250, 250, 0.2);
@@ -15,6 +16,9 @@ export const StyledDatePicker = styled(DatePicker)`
 
   transition: border-color 250ms ease-in-out;
 
+  &:hover {
+    border-color: #0ef387;
+  }
   &:focus {
     border-color: #0ef387;
   }
@@ -23,9 +27,13 @@ export const StyledDatePicker = styled(DatePicker)`
 export const DIV = styled.div`
   display: flex;
   flex-direction: column;
+
   gap: 10px;
   margin: 0 20px;
   margin-bottom: 20px;
+  @media (max-width: 767.98px) {
+    height: 110px;
+  }
   @media (min-width: 768px) {
     flex-direction: row;
     gap: 20px;
@@ -39,6 +47,7 @@ export const DIV = styled.div`
 
 export const INP = styled.input`
   display: inline-flex;
+  width: 100%;
   padding: 15px 30px;
   align-items: center;
   gap: 71px;
@@ -60,6 +69,9 @@ export const INP = styled.input`
   &:hover {
     border: 1px solid #0ef387;
   }
+  &:focus {
+    border: 1px solid #0ef387;
+  }
 
   @media (min-width: 768px) {
     gap: 30px;
@@ -68,11 +80,23 @@ export const INP = styled.input`
   }
 `;
 
+export const Form = styled.form`
+  position: relative;
+`;
+
+export const SvgI = styled.svg`
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  stroke: #0ef387;
+  fill: none;
+`;
+
 export const DivDatePicker = styled.div`
   position: relative;
   .react-datepicker-wrapper {
-    position: absolute;
-    bottom: 0;
+    /* position: absolute;
+    bottom: 0; */
     /* height: 36px; */
   }
 

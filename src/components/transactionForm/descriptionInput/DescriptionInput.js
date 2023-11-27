@@ -7,13 +7,13 @@ import { StyledInputWrapper, StyledLabel, StyledDescriptionInput } from "./Descr
 const DescriptionInput = ({ control }) => {
   return (
       <Controller
-        name="desc"
+        name="comment"
         control={control}
         render={({ field }) => (
           <StyledInputWrapper>
-            <StyledLabel htmlFor="desc">Comment</StyledLabel>
+            <StyledLabel htmlFor="comment">Comment</StyledLabel>
             <StyledDescriptionInput
-              id="desc"
+              id="comment"
               type="textarea"
               rows='4'
               placeholder="Enter the text"

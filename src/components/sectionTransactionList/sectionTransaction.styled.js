@@ -15,6 +15,9 @@ export const DIV = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  @media (max-width: 768px) {
+    width: 500px;
+  }
   @media (min-width: 768px) {
     font-size: 16px;
   }
@@ -23,8 +26,10 @@ export const DIV = styled.div`
 `;
 
 export const P1 = styled.p`
-  margin: 0 22px 0 20px;
+  width: 53px;
+  margin: 0 20px 0 20px;
   @media (min-width: 768px) {
+    width: auto;
     margin: 0 41px 0 32px;
   }
   @media (min-width: 1440px) {
@@ -33,8 +38,11 @@ export const P1 = styled.p`
 `;
 
 export const P2 = styled.p`
-  margin-right: 14px;
+  width: 60px;
+
+  margin-right: 10px;
   @media (min-width: 768px) {
+    width: auto;
     margin-right: 46px;
   }
   @media (min-width: 1440px) {
@@ -43,8 +51,10 @@ export const P2 = styled.p`
 `;
 
 export const P3 = styled.p`
-  margin-right: 39px;
+  width: 30px;
+  margin-right: 36px;
   @media (min-width: 768px) {
+    width: auto;
     margin-right: 65px;
   }
   @media (min-width: 1440px) {
@@ -53,8 +63,10 @@ export const P3 = styled.p`
 `;
 
 export const P4 = styled.p`
-  margin-right: 22px;
+  width: 30px;
+  margin-right: 20px;
   @media (min-width: 768px) {
+    width: auto;
     margin-right: 40px;
   }
   @media (min-width: 1440px) {
@@ -63,8 +75,10 @@ export const P4 = styled.p`
 `;
 
 export const P5 = styled.p`
-  margin-right: 25px;
+  width: 30px;
+  margin-right: 80px;
   @media (min-width: 768px) {
+    width: auto;
     margin-right: 102px;
   }
   @media (min-width: 1440px) {
