@@ -6,15 +6,15 @@ import {
 } from './operations';
 
 const { createSlice, isAnyOf } = require('@reduxjs/toolkit');
-const { toast } = require('react-toastify');
 
 const initialState = {
   categories: {
-    items: [],
-    error: null,
-    isLoading: false,
-    deletedId: null,
+    incomes: [],
+    expenses: [],
   },
+  error: null,
+  isLoading: false,
+  deletedId: null,
 };
 
 const categoriesSlice = createSlice({
@@ -22,40 +22,62 @@ const categoriesSlice = createSlice({
   initialState,
   reducers: {
     setCurrentId: (state, { payload }) => {
-      state.categories.deletedId = payload;
+      state.deletedId = payload;
     },
   },
 
   extraReducers: builder => {
     builder
       .addCase(getCategoriesThunk.fulfilled, (state, { payload }) => {
-        state.categories.items = payload;
-        state.categories.isLoading = false;
+        state.categories = payload;
+        state.isLoading = false;
       })
       .addCase(deleteCategoryThunk.fulfilled, (state, { payload }) => {
-        state.categories.items = state.categories.items.filter(
-          item => item._id !== payload
+        const deletingIncCategory = state.categories?.incomes?.find(
+          category => category._id === payload
         );
-        state.categories.isLoading = false;
+        if (deletingIncCategory) {
+          state.categories.incomes = state.categories?.incomes?.filter(
+            category => category !== deletingIncCategory
+          );
+        }
+
+        const deletingExpCategory = state.categories?.expenses?.find(
+          category => category._id === payload
+        );
+        if (deletingExpCategory) {
+          state.categories.expenses = state.categories?.expenses?.filter(
+            category => category !== deletingExpCategory
+          );
+        }
+
+        state.isLoading = false;
       })
       .addCase(createCategoryThunk.fulfilled, (state, { payload }) => {
-        if (Array.isArray(state.categories.items)) {
-          state.categories.items.push(payload);
-        } else {
-          state.categories.items = [payload];
+        if (payload.type === 'incomes') {
+          state.categories.incomes.push(payload);
         }
-        state.categories.isLoading = false;
+        if (payload.type === 'expenses') {
+          state.categories.expenses.push(payload);
+        }
+
+        state.isLoading = false;
       })
       .addCase(updateCategoryThunk.fulfilled, (state, { payload }) => {
-        const categoryIndex = state.categories.items.findIndex(
-          item => item._id === payload._id
+        const incomeCategory = state.categories?.incomes?.find(
+          category => category._id === payload._id
         );
-        const { categoryName } = state.categories.items[categoryIndex];
-        if (categoryName !== payload.categoryName) {
-          toast.success('You have successfully changed the name of category');
+        const expenseCategory = state.categories?.expenses?.find(
+          category => category._id === payload._id
+        );
+
+        if (incomeCategory) {
+          incomeCategory.categoryName = payload.categoryName;
         }
-        state.categories.items[categoryIndex] = payload;
-        state.categories.isLoading = false;
+
+        if (expenseCategory) {
+          expenseCategory.categoryName = payload.categoryName;
+        }
       })
       .addMatcher(
         isAnyOf(
@@ -65,8 +87,8 @@ const categoriesSlice = createSlice({
           updateCategoryThunk.pending
         ),
         (state, { payload }) => {
-          state.categories.isLoading = true;
-          state.categories.error = null;
+          state.isLoading = true;
+          state.error = null;
         }
       )
       .addMatcher(
@@ -77,8 +99,8 @@ const categoriesSlice = createSlice({
           updateCategoryThunk.rejected
         ),
         (state, { payload }) => {
-          state.categories.error = payload;
-          state.categories.isLoading = false;
+          state.error = payload;
+          state.isLoading = false;
         }
       );
   },

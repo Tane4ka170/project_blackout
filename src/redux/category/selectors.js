@@ -1,4 +1,4 @@
-export const selectCategories = state => state.categories.categories.items;
-export const selectIsLoading = state => state.categories.categories.isLoading;
-export const selectError = state => state.categories.categories.error;
-export const selectDeletedId = state => state.categories.categories.deletedId;
+export const selectCategories = state => state.categories.categories;
+export const selectIsLoading = state => state.categories.isLoading;
+export const selectError = state => state.categories.error;
+export const selectDeletedId = state => state.categories.deletedId;
