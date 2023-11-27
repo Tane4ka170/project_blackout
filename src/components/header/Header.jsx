@@ -26,11 +26,14 @@ import {
   SecondBtnContainer,
 } from './headerStyled';
 import Symbols from 'images/svg/Symbols';
+import Modal from 'components/modal/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { selectUser } from 'redux/user/selectors';
 import { logoutThunk } from 'redux/auth/operations';
 import { useLocation } from 'react-router-dom';
+import { useModal } from 'components/hooks/useModal';
+import UserSetsModal from 'components/userSetsModal/UserSetsModal';
 
 const Header = () => {
   const location = useLocation();
@@ -42,6 +45,7 @@ const Header = () => {
   const [hideOrShowSecondList, setHideOrShowSecondList] = useState({});
   const [isRotated, setIsRotated] = useState(false);
   const dispatch = useDispatch();
+  const { isOpened, openModal, closeModal } = useModal();
 
   const handleMenu = () => {
     setIsOpen(prev => !prev);
@@ -151,12 +155,15 @@ const Header = () => {
         </ProfileBtn>
       </ProfileContainer>
       <SecondBtnContainer style={hideOrShowSecondList}>
-        <UserLink to="/">
+        <UserLink to="/" onClick={openModal}>
           <UserLinkIcons width={16} height={16}>
             <use xlinkHref="#icon-user" />
           </UserLinkIcons>
           Profile settings
         </UserLink>
+        {isOpened ? (
+          <Modal children={<UserSetsModal />} closeModal={closeModal} />
+        ) : null}
         <UserLink to="/" onClick={() => dispatch(logoutThunk())}>
           <UserLinkIcons width={16} height={16}>
             <use xlinkHref="#icon-log-out" />
