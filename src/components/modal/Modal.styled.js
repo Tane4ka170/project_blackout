@@ -19,10 +19,10 @@ export const ContentWrapper = styled.div`
   border: 1px solid rgba(250, 250, 250, 0.1);
   overflow: hidden;
   border-radius: 30px;
-  max-width: 500px;
+  width: 500px;
 
   @media (max-width: 767px) {
-    max-width: 335px;
+    width: 335px;
   }
 `;
 

@@ -31,6 +31,11 @@ export const StyledSvgWrap = styled.div`
   display: flex;
   justify-content: center;
   overflow: hidden;
+
+  @media only screen and (min-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
 `;
 
 export const GrayButton = styled.button`
@@ -77,23 +82,48 @@ export const StyledBtnWrap = styled.div`
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px;
+
+  @media only screen and (min-width: 768px) {
+    margin: 20px 40px;
+  }
 `;
 
 export const StyledSelect = styled.select`
-  /* margin-left: 14px;
-  margin-top: 12px;
-  margin-bottom: 12px;
   color: rgba(250, 250, 250, 1);
+  background-color: rgba(23, 23, 25, 1);
+  padding: 12px 14px;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
-  height: fit-content; */
+  width: 98px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  border: 1px solid rgba(250, 250, 250, 0.4);
+
+  &:focus {
+    border-color: rgba(14, 243, 135, 1);
+    outline: none;
+  }
+
+  option {
+    border: 1px solid rgba(250, 250, 250, 0.4);
+    background-color: rgba(12, 13, 13, 1);
+    color: rgba(250, 250, 250, 0.4);
+  }
+
+  option:checked {
+    background-color: rgba(12, 13, 13, 1) !important;
+    color: rgba(250, 250, 250, 1);
+  }
+
+  @media only screen and (min-width: 768px) {
+    padding: 15px 14px;
+    width: 122px;
+  }
 `;
 
 export const StyledInputName = styled.input`
-  height: fit-content;
   color: rgba(250, 250, 250, 1);
   font-size: 14px;
   font-weight: 400;
@@ -101,7 +131,9 @@ export const StyledInputName = styled.input`
   border-radius: 12px;
   border: 1px solid rgba(250, 250, 250, 0.4);
   background-color: rgba(23, 23, 25, 1);
-  padding: 12px 14px;
+  padding: 10px 14px;
+  box-sizing: border-box;
+  width: 188px;
 
   &::placeholder {
     color: rgba(250, 250, 250, 1);
@@ -109,11 +141,13 @@ export const StyledInputName = styled.input`
 
   &:focus {
     border-color: rgba(14, 243, 135, 1);
+    outline: none;
   }
 
   @media only screen and (min-width: 768px) {
     font-size: 16px;
     padding: 12px 18px;
+    width: 290px;
   }
 `;
 
@@ -126,19 +160,20 @@ export const StyledSaveBtn = styled.button`
   font-size: 14px;
   font-weight: 400;
   letter-spacing: -0.28px;
-  margin-bottom: 60px;
+  margin: 0 20px 60px 20px;
   text-align: center;
-  width: 84%;
-  margin-left: 20px;
+  width: 295px;
+
   padding-top: 14px;
   padding-bottom: 14px;
 
   @media only screen and (min-width: 768px) {
     margin-left: 40px;
+    width: 420px;
   }
 
-  /* &:hover,
+  &:hover,
   &:focus {
-    color: rgba(250, 250, 250, 0.5);
-  } */
+    background-color: rgba(14, 187, 105, 1);
+  }
 `;

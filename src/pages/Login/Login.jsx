@@ -1,12 +1,18 @@
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { TotalIncome } from 'shared/Total';
 
 import LoginForm from 'components/LoginForm/LoginForm';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { AdaptDiv, H2 } from 'pages/Home/Home.styled';
-import homeimg from '../../images/home/Rectangle 1.png'
-import { Texts, WrapForm, WrapperS } from 'pages/Register/Register.styled';
+import { PlugDivs, TableDivs, Texts, WrapForm, WrapperS } from 'pages/Register/Register.styled';
 import { ImgAuth } from 'components/RegisterForm/RegisterForm.styled';
 
+import homeimg from '../../images/home/Rectangle 1x.png'
+
+
 export default function Login() {
+  const isLoggedIn = useSelector(selectIsLoggedIn)
   return (
     <HelmetProvider>
       <div>
@@ -15,9 +21,12 @@ export default function Login() {
         </Helmet>
         <AdaptDiv>
           <WrapperS>
-            <ImgAuth src={homeimg} alt="Main " />
+            <PlugDivs>
+              <TableDivs>{!isLoggedIn && <TotalIncome />}</TableDivs>
+              <ImgAuth src={homeimg} alt="Main " />
+            </PlugDivs>
             <WrapForm>
-              <H2>Sign Up</H2>
+              <H2>Sign In</H2>
               <Texts>Step into a world of hassle-free expense management! Your journey towards financial mastery begins here.</Texts>
               <LoginForm />
             </WrapForm>

@@ -36,7 +36,7 @@ import { motion } from 'framer-motion';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { Navigate } from 'react-router-dom';
 
-export const Expense = () => {
+const Expense = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
 
@@ -154,3 +154,4 @@ export const Expense = () => {
     </MainWr>
   );
 };
+export default Expense;

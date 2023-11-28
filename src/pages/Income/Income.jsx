@@ -154,3 +154,4 @@ export const Income = () => {
     </MainWr>
   );
 };
+export default Income;

@@ -60,8 +60,8 @@ export const StyledInput = styled.input`
     &:-webkit-autofill:focus,
     &:-webkit-autofill:active {
       transition: background-color 5000s ease-in-out 0s;
-      background-color: #0c0d0d !important;
-      color: rgba(250, 250, 250, 0.4) !important;
+      -webkit-text-fill-color: #fafafa !important;
+      caret-color: #fafafa !important;
     }
   }
   @media (min-width: 768px) and (max-width: 1439.8px) {
@@ -186,8 +186,8 @@ export const StyledPasswordInput = styled.input`
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
-    background-color: #0c0d0d !important;
-    color: rgba(250, 250, 250, 0.4) !important;
+    -webkit-text-fill-color: #fafafa !important;
+    caret-color: #fafafa !important;
   }
 
   &.empty {
@@ -200,10 +200,10 @@ export const StyledPasswordInput = styled.input`
   }
 
   &.invalid {
-    border-color: #e74a3b;
+    border-color: #e74a3b !important;
 
     &:not(:focus):not(:placeholder-shown):invalid {
-      border-color: #e74a3b;
+      border-color: #e74a3b !important;
     }
   }
 
@@ -282,7 +282,7 @@ export const Spn = styled.div`
 export const PasswordMessage = styled.p`
   font-size: 12px;
   /* color: #0ef387; */
-  color: ${props => (props.isGood ? '#0ef387' : '#E74A3B')};
+  color: ${props => (props.$isGood ? '#0ef387' : '#E74A3B')};
   margin-top: 5px;
   padding-left: 12px;
 `;
@@ -294,5 +294,7 @@ export const ImgAuth = styled.img`
 
   @media (min-width: 1440px) {
     display: block;
+    width: 611px;
+    height: 568px;
   }
 `;
