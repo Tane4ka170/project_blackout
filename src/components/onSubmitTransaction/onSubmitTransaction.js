@@ -27,7 +27,6 @@ const onSubmitTransaction = (data, transactionsType, categoryId, dispatch, reset
       const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
       transaction.date = formattedDate;
     };
-    console.log(transaction.date);
   }
   if (data.time === '' || data.time === '00:00') {
     const now = new Date();

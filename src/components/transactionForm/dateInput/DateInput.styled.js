@@ -6,10 +6,19 @@ import DatePicker from "react-datepicker";
 
 export const StyledSvg = styled.svg`
 position: absolute;
-bottom: 14px;
-right: 18px;
+width: 20px;
+height: 20px;
+bottom: 13px;
+right: 14px;
 stroke: #FAFAFA;
-/* fill: transparent; */
+fill: #171719;
+
+  @media only screen and (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+    bottom: 14px;
+    right: 18px;
+  }
 `
 
 // wrappers
@@ -42,8 +51,8 @@ export const StyledLabel = styled.label`
 export const StyledDatePicker = styled(DatePicker)`
   width: 140px;
   height: 42px;
-  padding: 12px 14px;
-  
+  padding: 12px 35px 12px 12px;
+      
   border: 1px solid rgba(250, 250, 250, 0.20);
   border-radius: 12px;
   
@@ -62,7 +71,7 @@ export const StyledDatePicker = styled(DatePicker)`
   @media only screen and (min-width: 768px ) {
     width: 232px;
     height: 48px;
-    padding: 12px 18px 12px 18px;
+    padding: 12px 45px 12px 12px;
   }
   `
 
@@ -70,7 +79,7 @@ export const StyledDatePicker = styled(DatePicker)`
 export const StyledTimePicker = styled.input`
   width: 140px;
   height: 42px;
-  padding: 12px 14px;
+  padding: 12px 35px 12px 12px;
   
   border: 1px solid rgba(250, 250, 250, 0.20);
   border-radius: 12px;
@@ -94,7 +103,7 @@ export const StyledTimePicker = styled.input`
     @media only screen and (min-width: 768px) {
     width: 232px;
     height: 48px;
-    padding: 12px 18px 12px 18px;
+    padding: 12px 45px 12px 12px;
   }
   `
 // datePickerCalendar

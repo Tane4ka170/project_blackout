@@ -56,3 +56,19 @@ export const StyledCategoryInput = styled.input`
     margin: 0;
   }
 `
+export const CurrencySelected = styled.p`
+position: absolute;
+right: 14px;
+bottom: 12px;
+
+font-size: 14px;
+line-height: 1.2;
+color: #FAFAFA66;
+text-transform: uppercase;
+
+@media only screen and (min-width: 768px) {
+  font-size: 16px;
+  right: 18px;
+  bottom: 14px;
+  }
+`
