@@ -17,7 +17,11 @@ const TransactionDateInput = ({ control }) => {
         control={control}
         render={({ field }) => (
           <StyledInputWrapper>
-            <StyledLabel htmlFor="date">Date</StyledLabel>
+            <StyledLabel htmlFor="date">Date
+            <StyledSvg width={20} height={20}>
+              <use href={svg + '#icon-calendar'} />
+            </StyledSvg>
+            </StyledLabel>
             <StyledDatePicker
               id="date"
               selected={field.value}
@@ -25,9 +29,6 @@ const TransactionDateInput = ({ control }) => {
               dateFormat="dd/MM/yyyy"
               placeholderText="dd/mm/yyyy"
             />
-            <StyledSvg width={20} height={20}>
-              <use href={svg + '#icon-calendar'} />
-            </StyledSvg>
           </StyledInputWrapper>
         )}
       />
@@ -36,16 +37,17 @@ const TransactionDateInput = ({ control }) => {
         control={control}
         render={({ field }) => (
           <StyledInputWrapper>
-            <StyledLabel htmlFor="time">Time</StyledLabel>
+            <StyledLabel htmlFor="time">Time
+            <StyledSvg width={20} height={20}>
+              <use href={svg + '#icon-clock'} />
+              </StyledSvg>
+            </StyledLabel>
             <StyledTimePicker
               id="time"
               type="time"
               step={1}
               {...field}
             />
-            <StyledSvg width={20} height={20}>
-              <use href={svg + '#icon-clock'} />
-            </StyledSvg>
           </StyledInputWrapper>
         )}
       />
