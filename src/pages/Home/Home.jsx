@@ -1,21 +1,14 @@
-// import Login from "pages/Login/Login";
-// import { Link } from "react-router-dom/dist";
-// import { Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "redux/auth/selectors.js";
+import { Navigate } from 'react-router-dom';
+import { TotalIncome } from "shared/Total";
 
-  import { useSelector } from "react-redux";
+import { AdaptDiv, Avatar, Content, ContentInfo, ContentUsers, First, H1, H2, H2span, H3, ImagePack, Img, PlugDiv, Second, SignIn, SignUp, TableDiv, Text, TextDown, Third, WrapBtn, Wrapper } from './Home.styled';
 
-import { AdaptDiv, Avatar, Content, ContentInfo, ContentUsers, First, H1, H2, H2span, H3, ImagePack, Img, Second, SignIn, SignUp, Text, TextDown, Third, WrapBtn, Wrapper } from './Home.styled';
-import homeimg from '../../images/home/Rectangle 1.png'
+import homeimg from '../../images/home/Rectangle 1x.png'
 import first from '../../images/home/first.jpg'
 import second from '../../images/home/second.png'
 import third from '../../images/home/third.png'
-
-
-import { selectIsLoggedIn } from "redux/auth/selectors.js";
-import { Navigate } from 'react-router-dom';
-
-
-
 
 
 const Home = () => {
@@ -28,7 +21,10 @@ const Home = () => {
   return (
     <AdaptDiv>
       <Wrapper >
-        <Img src={homeimg} alt="Main " />
+        <PlugDiv>
+          <TableDiv>{!isLoggedIn && <TotalIncome />}</TableDiv>
+          <Img src={homeimg} alt="Main " />
+        </PlugDiv>
         <div>
           <Content>
             <H1 >Expense log</H1>

@@ -227,18 +227,18 @@ export const ImagePack = styled.div`
   flex-direction: row;
 `;
 export const Wrapper = styled.div`
-  padding: 44px 20px 20px 20px;
+  padding: 47px 20px 20px 20px;
   background: #0c0d0d;
   display: flex;
   flex-direction: column-reverse;
   @media (min-width: 768px) and (max-width: 1439.8px) {
     flex-direction: column-reverse;
-    padding: 94px 32px 32px 32px;
+    padding: 88px 32px 20px 32px;
   }
 
   @media (min-width: 1440px) {
     flex-direction: row;
-    padding: 74px 100px 100px 100px;
+    padding: 56px 100px 20px 100px;
   }
 `;
 
@@ -305,4 +305,27 @@ export const SignUp = styled(NavLink)`
 export const AdaptDiv = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+export const PlugDiv = styled.div`
+  position: relative;
+`;
+export const TableDiv = styled.div`
+  position: absolute;
+  top: 240px;
+  left: -10px;
+  width: 248px;
+  height: 81px;
+
+  @media (min-width: 768px) and (max-width: 1439.8px) {
+    top: 315px;
+    left: -16px;
+  }
+
+  @media (min-width: 1440px) {
+    top: 315px;
+    left: -50px;
+    width: 303px;
+    height: 121px;
+  }
 `;

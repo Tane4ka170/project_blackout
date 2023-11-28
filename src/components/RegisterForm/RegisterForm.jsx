@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 import { ButtonSign, Err, Line, PasswordMessage, PasswordToggle, Spn, StyledInput, StyledPasswordInput, WrapBt, WrapInPass, WrapInp, WrapPassword } from './RegisterForm.styled';
 import { ReactComponent as ShowsIco } from '../../images/home/eye.svg'
 import { ReactComponent as HideIco } from '../../images/home/eye-off.svg'
@@ -96,7 +97,7 @@ export const RegisterForm = () => {
               type={showPassword ? 'text' : 'password'}
               placeholder="Password"
               autoComplete="new-password"
-              hasError={!!formErrors.password}
+              // hasError={!!formErrors.password}
 
               onChange={handlePasswordChange}
               className={`${password.length === 0 ? 'empty' :
@@ -118,7 +119,7 @@ export const RegisterForm = () => {
           )}
 
           {password.length > 0 && (
-            <PasswordMessage isGood={password.length >= 6}>
+            <PasswordMessage $isGood={password.length >= 6}>
               {password.length >= 6 ? 'Good password' : 'Short password'}
             </PasswordMessage>
           )}
