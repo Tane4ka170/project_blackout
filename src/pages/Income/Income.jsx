@@ -33,11 +33,14 @@ import {
 import { TotalExpense, TotalIncome } from 'shared/Total';
 import svg from '../../images/Sprite.svg';
 import { motion } from 'framer-motion';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { Navigate } from 'react-router-dom';
 
 export const Income = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
 
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const transactions = useSelector(selectTransaction);
   const date = useSelector(selectStartDate);
 
@@ -71,6 +74,10 @@ export const Income = () => {
       .trim()
       .includes(filter.toLowerCase().trim())
   );
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />;
+  }
 
   return (
     <MainWr>
