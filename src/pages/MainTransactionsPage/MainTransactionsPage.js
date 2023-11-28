@@ -22,6 +22,9 @@ import {
   StyledWrapper,
 } from './MainTransactionsPage.styled';
 
+// framer animation
+import { motion } from 'framer-motion';
+
 
 import { Navigate } from 'react-router-dom';
 import { getTransactionsThunk } from "redux/transactions/operations";
@@ -51,37 +54,24 @@ const MainTransactionsPage = () => {
     <StyledSection>
       {isNotDesktop && (
         <>
-          <StyledHeadersWrapper>
-            <StyledHeaders>Expense log</StyledHeaders>
-            <StyledText>
-              Capture and organize every penny spent with ease! A clear view of
-              your financial habits at your fingertips.
-            </StyledText>
-          </StyledHeadersWrapper>
-          <StyledTotalUl>
-            <li>
-              <TotalIncome />
-            </li>
-            <li>
-              <TotalExpense />
-            </li>
-          </StyledTotalUl>
-          <OperationForm />
-          <StyledMain>
-            <DoughnutComponent />
-          </StyledMain>
-        </>
-      )}
-      {isDesktop && (
-        <>
-          <StyledWrapper>
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+          >
             <StyledHeadersWrapper>
               <StyledHeaders>Expense log</StyledHeaders>
               <StyledText>
-                Capture and organize every penny spent with ease! A clear view
-                of your financial habits at your fingertips.
+                Capture and organize every penny spent with ease! A clear view of
+                your financial habits at your fingertips.
               </StyledText>
             </StyledHeadersWrapper>
+          </motion.div>
+          <motion.div
+            initial={{ x: '-100%' }}
+            animate={{ x: 0 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+          >
             <StyledTotalUl>
               <li>
                 <TotalIncome />
@@ -90,10 +80,47 @@ const MainTransactionsPage = () => {
                 <TotalExpense />
               </li>
             </StyledTotalUl>
+          </motion.div>
+          <OperationForm />
+          <motion.div
+            initial={{ x: '-100%' }}
+            animate={{ x: 0 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+          >
             <StyledMain>
               <DoughnutComponent />
             </StyledMain>
-          </StyledWrapper>
+          </motion.div>
+        </>
+      )}
+      {isDesktop && (
+        <>
+          <motion.div
+            initial={{ x: '-100%' }}
+            animate={{ x: 0 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+          >
+          <StyledWrapper>
+              <StyledHeadersWrapper>
+                <StyledHeaders>Expense log</StyledHeaders>
+                <StyledText>
+                  Capture and organize every penny spent with ease! A clear view
+                  of your financial habits at your fingertips.
+                </StyledText>
+              </StyledHeadersWrapper>
+              <StyledTotalUl>
+                <li>
+                  <TotalIncome />
+                </li>
+                <li>
+                  <TotalExpense />
+                </li>
+              </StyledTotalUl>
+            <StyledMain>
+              <DoughnutComponent />
+            </StyledMain>
+            </StyledWrapper>
+            </motion.div>
           <OperationForm />
         </>
       )}
