@@ -78,6 +78,13 @@ export const Income = () => {
     return <Navigate to="/login" />;
   }
 
+  const isDeletedCategory = (catName) => {
+    if (!catName) {
+      return `Deleted Category`
+    }
+    return catName;
+  };
+
   return (
     <MainWr>
       <DIVMAIN>
@@ -109,9 +116,9 @@ export const Income = () => {
             <SectionTransaction />
             {filterTransactions?.length ? (
               <TransactionsContainer>
-                {transactions?.map(transaction => (
+                {filterTransactions?.map(transaction => (
                   <DIV key={transaction._id}>
-                    <P1>{transaction.category?.categoryName}</P1>
+                    <P1>{isDeletedCategory(transaction.category?.categoryName)}</P1>
                     <P2>{transaction.comment}</P2>
                     <P3>{transaction.date}</P3>
                     <P4>{transaction.time}</P4>

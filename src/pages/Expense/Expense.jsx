@@ -116,7 +116,7 @@ export const Expense = () => {
             <SectionTransaction />
             {filterTransactions?.length ? (
               <TransactionsContainer>
-                {transactions?.map(transaction => (
+                {filterTransactions?.map(transaction => (
                   <DIV key={transaction._id}>
                     <P1>{isDeletedCategory(transaction.category?.categoryName)}</P1>
                     <P2>{transaction.comment}</P2>
