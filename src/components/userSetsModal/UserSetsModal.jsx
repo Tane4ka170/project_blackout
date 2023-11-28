@@ -11,6 +11,13 @@ import Symbols from 'images/svg/Symbols';
 
 import {
   GrayButton,
+  StyledBtnWrap,
+  StyledInputName,
+  StyledInputUpd,
+  StyledLabelUpd,
+  StyledSaveBtn,
+  StyledSelect,
+  StyledSvgWrap,
   StyledTitle,
   StyledWrap,
 } from 'components/userSetsModal/UserSetsModal.styled';
@@ -50,7 +57,7 @@ const UserSetsModal = () => {
   };
 
   const handleSave = e => {
-    e.preventDafault();
+    e.preventDefault();
     const data = {
       name: userName,
       currency: selectedValue,
@@ -64,42 +71,50 @@ const UserSetsModal = () => {
       <StyledTitle>Profile settings</StyledTitle>
       <StyledWrap>
         {user?.avatarUrl ? (
-          <img src={user.avatarUrl} alt="user avatar" />
+          <StyledSvgWrap>
+            <img src={user.avatarUrl} alt="user avatar" />
+          </StyledSvgWrap>
         ) : (
-          <div>
+          <StyledSvgWrap>
             <Symbols />
-            <svg width={38} height={38}>
+            <svg width={30} height={30}>
               <use xlinkHref="#icon-user" />
             </svg>
-          </div>
+          </StyledSvgWrap>
         )}
 
-        <label>
-          Upload new photo
-          <input
+        <StyledBtnWrap>
+          <StyledLabelUpd htmlFor="uploadAvatar" className="upload-btn">
+            Upload new photo
+          </StyledLabelUpd>
+          <StyledInputUpd
+            id="uploadAvatar"
             type="file"
             ref={inputRef}
             accept="image/*"
             onChange={handleChangeAvatar}
           />
-        </label>
-        <GrayButton onClick={handleRemove}>Remove</GrayButton>
+          <GrayButton onClick={handleRemove}>Remove</GrayButton>
+        </StyledBtnWrap>
+
         <form onSubmit={handleSave}>
-          <select value={selectedValue} onChange={handleSelectChange}>
-            {CURRENCIES.map(currency => (
-              <option key={currency.value} value={currency.value}>
-                {currency.label}
-              </option>
-            ))}
-          </select>
-          <input
-            type="text"
-            placeholder={userName}
-            onChange={({ target }) => {
-              setUserName(target.value);
-            }}
-          />
-          <button type="submit">Save</button>
+          <StyledBtnWrap>
+            <StyledSelect value={selectedValue} onChange={handleSelectChange}>
+              {CURRENCIES.map(currency => (
+                <option key={currency.value} value={currency.value}>
+                  {currency.label}
+                </option>
+              ))}
+            </StyledSelect>
+            <StyledInputName
+              type="text"
+              placeholder={userName}
+              onChange={({ target }) => {
+                setUserName(target.value);
+              }}
+            />
+          </StyledBtnWrap>
+          <StyledSaveBtn type="submit">Save</StyledSaveBtn>
         </form>
       </StyledWrap>
     </div>
