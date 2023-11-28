@@ -1,6 +1,10 @@
 // base
-import React from "react";
+import React, { useEffect } from "react";
 import { useMediaQuery } from 'react-responsive'
+
+// selectors
+  import { useDispatch, useSelector } from "react-redux";
+  import { selectIsLoggedIn } from "redux/auth/selectors.js";
 
 // components
 import { TotalIncome, TotalExpense } from "shared/Total";
@@ -9,12 +13,24 @@ import DoughnutComponent from "components/doughnut/Doughnut";
 
 // styled
 import { StyledHeaders, StyledSection, StyledText, StyledHeadersWrapper, StyledTotalUl, StyledMain, StyledWrapper } from "./MainTransactionsPage.styled";
+import { getTransactionsThunk } from "redux/transactions/operations";
 
 
 const MainTransactionsPage = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+
+  const dispatch = useDispatch()
+
   const isNotDesktop = useMediaQuery({ query: '(max-width: 1439.98px' })
   
   const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' })
+
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(getTransactionsThunk({type: 'expenses', date: ''}))
+    }
+  }, [dispatch, isLoggedIn])
 
   return (
     <StyledSection>

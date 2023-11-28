@@ -20,7 +20,6 @@ export const getTransactionsThunk = createAsyncThunk(
       const { data } = await expenseApi.get(`transactions/${type}`, {
         params: { date },
       });
-      console.log(data);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
