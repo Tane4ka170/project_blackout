@@ -21,9 +21,10 @@ import {
   StyledMain,
   StyledWrapper,
 } from './MainTransactionsPage.styled';
-import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
-import { Navigate } from 'react-router-dom';import { getTransactionsThunk } from "redux/transactions/operations";
+
+
+import { Navigate } from 'react-router-dom';
+import { getTransactionsThunk } from "redux/transactions/operations";
 
 
 const MainTransactionsPage = () => {
@@ -31,13 +32,21 @@ const MainTransactionsPage = () => {
   
   const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' })
 
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(getTransactionsThunk({type: 'expenses', date: ''}))
     }
+    
   }, [dispatch, isLoggedIn])
 
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />;
+  }
+  
   return (
     <StyledSection>
       {isNotDesktop && (
