@@ -56,7 +56,7 @@ export const LoginForm = () => {
   };
 
   if (isLoggedIn) {
-    return <Navigate to="/" />;
+    return <Navigate to="/transactions/expenses" />;
   }
 
   return (
