@@ -18,7 +18,7 @@ import {
 } from './AllCategories.styled.js';
 import { CategoryForm } from '../categoryForm/CategoryForm';
 import { useForm } from 'react-hook-form';
-import { OneCategory } from 'components/oneCategory/OneCategory';
+import { OneCategory } from 'components/categories/oneCategory/OneCategory.jsx';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaCategoryInput } from 'helpers/schemas';
 
@@ -43,7 +43,9 @@ export const AllCategories = ({
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schemaCategoryInput) });
+  } = useForm({
+    resolver: yupResolver(schemaCategoryInput),
+  });
 
   useEffect(() => {
     if (isLoggedIn) {

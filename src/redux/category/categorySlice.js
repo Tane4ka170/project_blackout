@@ -67,12 +67,27 @@ const categoriesSlice = createSlice({
           return;
         }
 
-        if (payload.type === 'incomes') {
-          state.categories.incomes.push(payload);
+        if (!state.categories) {
+          state.categories = {};
         }
 
-        if (payload.type === 'expenses') {
-          state.categories.expenses.push(payload);
+        switch (payload.type) {
+          case 'incomes':
+            if (!state.categories.incomes) {
+              state.categories.incomes = [];
+            }
+            state.categories.incomes.push(payload);
+            break;
+
+          case 'expenses':
+            if (!state.categories.expenses) {
+              state.categories.expenses = [];
+            }
+            state.categories.expenses.push(payload);
+            break;
+
+          default:
+            break;
         }
 
         state.isLoading = false;
