@@ -3,7 +3,11 @@ import React from "react";
 import { Controller } from "react-hook-form";
 
 // styled
-import { StyledWrapper, StyledInputWrapper, StyledLabel, StyledDatePicker, StyledTimePicker } from "./DateInput.styled";
+import { StyledWrapper, StyledInputWrapper, StyledLabel, StyledDatePicker, StyledTimePicker, StyledSvg } from "./DateInput.styled";
+
+import svg from '../../../images/Sprite.svg'
+
+
 
 const TransactionDateInput = ({ control }) => {
   return (
@@ -21,6 +25,9 @@ const TransactionDateInput = ({ control }) => {
               dateFormat="dd/MM/yyyy"
               placeholderText="dd/mm/yyyy"
             />
+            <StyledSvg width={20} height={20}>
+              <use href={svg + '#icon-calendar'} />
+            </StyledSvg>
           </StyledInputWrapper>
         )}
       />
@@ -36,6 +43,9 @@ const TransactionDateInput = ({ control }) => {
               step={1}
               {...field}
             />
+            <StyledSvg width={20} height={20}>
+              <use href={svg + '#icon-clock'} />
+            </StyledSvg>
           </StyledInputWrapper>
         )}
       />
