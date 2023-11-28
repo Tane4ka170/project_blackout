@@ -113,12 +113,16 @@ const Symbols = () => {
           </symbol>
           <symbol id="icon-user" viewBox="0 0 32 32">
             <path
+              fill="#0C0D0D80"
               stroke="#0ef387"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2.6"
               d="M26.667 28v-2.667A5.332 5.332 0 0 0 21.334 20H10.667a5.332 5.332 0 0 0-5.333 5.333V28M15.999 14.667a5.333 5.333 0 1 0 0-10.666 5.333 5.333 0 0 0 0 10.666z"
-              style={{ fill: 'var( #0ef387)' }}
+              style={{
+                stroke: 'var( #0ef387)',
+                fill: 'var(#0C0D0D80)',
+              }}
             />
           </symbol>
           <symbol id="icon-default-svg" viewBox="0 0 32 32">
