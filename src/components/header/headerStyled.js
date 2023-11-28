@@ -26,10 +26,6 @@ export const HeaderStyled = styled(motion.div)`
   padding: 13px 20px;
   color: white;
   border-bottom: 1px solid rgba(250, 250, 250, 0.1);
-  margin-bottom: 66px;
-  @media screen and (min-width: 767px) {
-    margin-bottom: 59px;
-  }
   @media screen and (max-width: 1439px) {
     justify-content: space-between;
   }
