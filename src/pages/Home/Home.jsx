@@ -2,6 +2,8 @@
 // import { Link } from "react-router-dom/dist";
 // import { Link } from 'react-router-dom';
 
+  import { useSelector } from "react-redux";
+
 import { AdaptDiv, Avatar, Content, ContentInfo, ContentUsers, First, H1, H2, H2span, H3, ImagePack, Img, Second, SignIn, SignUp, Text, TextDown, Third, WrapBtn, Wrapper } from './Home.styled';
 import homeimg from '../../images/home/Rectangle 1.png'
 import first from '../../images/home/first.jpg'
@@ -9,37 +11,51 @@ import second from '../../images/home/second.png'
 import third from '../../images/home/third.png'
 
 
+import { selectIsLoggedIn } from "redux/auth/selectors.js";
+import { Navigate } from 'react-router-dom';
 
-const Home = () => (
-  <AdaptDiv>
-    <Wrapper >
-      <Img src={homeimg} alt="Main " />
-      <div>
-        <Content>
-          <H1 >Expense log</H1>
-          <H2>Manage Your <H2span>Finances</H2span> Masterfully!</H2>
-          <Text>ExpenseTracker effortlessly empowers you to take control of your finances! With intuitive features, it simplifies the process of tracking and managing expenses, allowing for a stress-free mastery over your financial world.</Text>
-          <WrapBtn>
-            <SignUp to="/register">Sign Up</SignUp>
 
-            <SignIn to="/login">Sign In</SignIn>
-          </WrapBtn>
-        </Content>
-        <ContentUsers>
-          <ImagePack>
-            <First><Avatar src={first} width="48px" height="48px" alt="" /></First>
-            <Second><Avatar src={second} width="48px" height="48px" alt="" /></Second>
-            <Third><Avatar src={third} width="48px" height="48px" alt="" /></Third>
-          </ImagePack>
-          <ContentInfo>
-            <H3>1000 users +</H3>
-            <TextDown>Trusted by users for reliable expense tracking!</TextDown>
-          </ContentInfo>
-        </ContentUsers>
-      </div>
-    </Wrapper>
-  </AdaptDiv>
 
-);
+
+
+const Home = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+
+  if (isLoggedIn) {
+    return <Navigate to="/transactions/expenses" />;
+  }
+
+  return (
+    <AdaptDiv>
+      <Wrapper >
+        <Img src={homeimg} alt="Main " />
+        <div>
+          <Content>
+            <H1 >Expense log</H1>
+            <H2>Manage Your <H2span>Finances</H2span> Masterfully!</H2>
+            <Text>ExpenseTracker effortlessly empowers you to take control of your finances! With intuitive features, it simplifies the process of tracking and managing expenses, allowing for a stress-free mastery over your financial world.</Text>
+            <WrapBtn>
+              <SignUp to="/register">Sign Up</SignUp>
+
+              <SignIn to="/login">Sign In</SignIn>
+            </WrapBtn>
+          </Content>
+          <ContentUsers>
+            <ImagePack>
+              <First><Avatar src={first} width="48px" height="48px" alt="" /></First>
+              <Second><Avatar src={second} width="48px" height="48px" alt="" /></Second>
+              <Third><Avatar src={third} width="48px" height="48px" alt="" /></Third>
+            </ImagePack>
+            <ContentInfo>
+              <H3>1000 users +</H3>
+              <TextDown>Trusted by users for reliable expense tracking!</TextDown>
+            </ContentInfo>
+          </ContentUsers>
+        </div>
+      </Wrapper>
+    </AdaptDiv>
+
+  )
+};
 
 export default Home;
