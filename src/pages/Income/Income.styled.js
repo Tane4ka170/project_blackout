@@ -1,12 +1,36 @@
 import styled from 'styled-components';
 
+export const MainWr = styled.div`
+  padding-left: 20px;
+  padding-right: 20px;
+
+  width: 375px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 768px) and (max-width: 1439.8px) {
+    padding-left: 32px;
+    padding-right: 32px;
+    width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 1440px) {
+    padding-left: 100px;
+    padding-right: 100px;
+    width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+`;
+
 export const DIVL = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
   width: 335px;
-  height: auto;
 
   @media (min-width: 768px) {
     gap: 15px;
@@ -124,20 +148,56 @@ export const PH = styled.p`
   }
 `;
 
+export const DIV375 = styled.div`
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  @media (max-width: 767.98px) {
+    width: 335px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    width: 8px;
+    height: 121px;
+
+    border-radius: 12px;
+    background: rgba(250, 250, 250, 0.2);
+    position: absolute;
+    top: 20px;
+  }
+  &::-webkit-scrollbar-track {
+    width: 8px;
+    height: 295px;
+    border-radius: 12px;
+    background: rgba(250, 250, 250, 0.2);
+  }
+
+  @media (min-width: 768px) {
+    overflow-x: hidden;
+  }
+`;
+
 export const DIVTR = styled.div`
   width: 335px;
   height: 516px;
-  flex-shrink: 0;
+
+  background: #171719;
+
   padding: 20px 0;
   flex-direction: column;
-
   border-radius: 30px;
   background: #171719;
 
   @media (min-width: 768px) {
+    overflow-y: hidden;
+    overflow-x: hidden;
     width: 704px;
     height: 544px;
-
     padding: 32px 0;
     flex-direction: column;
   }
@@ -169,10 +229,14 @@ export const DIV = styled.div`
 `;
 
 export const P1 = styled.p`
-  width: 92px;
-  margin: 0 20px 0 20px;
+  width: 59px;
+  margin: 0 14px 0 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @media (min-width: 768px) {
-    margin: 0 41px 0 32px;
+    width: 83px;
+    margin: 0 31px 0 32px;
   }
   @media (min-width: 1440px) {
     width: 97px;
@@ -181,23 +245,30 @@ export const P1 = styled.p`
 `;
 
 export const P2 = styled.p`
+  width: 56px;
   margin-right: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @media (min-width: 768px) {
-    margin-right: 46px;
+    width: 89px;
+    margin-right: 26px;
   }
   @media (min-width: 1440px) {
     width: 120px;
     margin-right: 74px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 `;
 
 export const P3 = styled.p`
-  margin-right: 39px;
+  width: 56px;
+  margin-right: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @media (min-width: 768px) {
-    margin-right: 65px;
+    width: 74px;
+    margin-right: 26px;
   }
   @media (min-width: 1440px) {
     width: 130px;
@@ -206,9 +277,14 @@ export const P3 = styled.p`
 `;
 
 export const P4 = styled.p`
-  margin-right: 22px;
+  width: 38px;
+  margin-right: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @media (min-width: 768px) {
-    margin-right: 40px;
+    width: 52px;
+    margin-right: 25px;
   }
   @media (min-width: 1440px) {
     width: 54px;
@@ -217,13 +293,39 @@ export const P4 = styled.p`
 `;
 
 export const P5 = styled.p`
-  margin-right: 25px;
+  width: 90px;
+  margin-right: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @media (min-width: 768px) {
-    margin-right: 102px;
+    width: 96px;
+    margin-right: 40px;
   }
   @media (min-width: 1440px) {
     width: 90px;
     margin-right: 90px;
+  }
+`;
+
+export const PEr = styled.p`
+  color: rgba(250, 250, 250, 0.4);
+
+  font-family: Suisse Intl;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @media (min-width: 768px) {
+    font-size: 22px;
+    width: auto;
+  }
+  @media (min-width: 1440px) {
+    font-size: 26px;
   }
 `;
 
@@ -237,10 +339,28 @@ export const EditBtn = styled.button`
 
   border-radius: 40px;
   margin-right: 8px;
-  @media (min-width: 768px) {
+  transition: background-color 250ms ease-in-out;
+
+  /* Скрыть текст при ширине экрана до 1440px */
+  @media (max-width: 1440px) {
+    span {
+      display: none;
+    }
   }
+
+  stroke: white;
+  fill: transparent;
+  &:hover {
+    stroke: black;
+  }
+
+  &:hover {
+    background-color: #0ef387;
+  }
+
   @media (min-width: 1440px) {
     padding: 14px 30px;
+    gap: 10px;
 
     color: #fafafa;
 
@@ -249,6 +369,14 @@ export const EditBtn = styled.button`
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.32px;
+
+    span {
+      display: inline-block;
+    }
+
+    &:hover {
+      color: #0c0d0d;
+    }
   }
 `;
 
@@ -261,29 +389,56 @@ export const DelBtn = styled.button`
   background: #0c0d0d;
 
   border-radius: 40px;
+  transition: background-color 250ms ease-in-out;
 
-  @media (min-width: 768px) {
-    padding: 14px 30px;
+  stroke: white;
+  fill: transparent;
+  &:hover {
+    stroke: black;
   }
-  @media (min-width: 1440px) {
-    color: #fafafa;
 
+  @media (max-width: 1440px) {
+    span {
+      display: none;
+    }
+  }
+
+  &:hover {
+    background-color: #0ef387;
+  }
+
+  @media (min-width: 1440px) {
+    padding: 14px 30px;
+    gap: 10px;
+
+    color: #fafafa;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.32px;
     margin-right: 8px;
+
+    span {
+      display: inline-block;
+    }
+
+    &:hover {
+      color: #0c0d0d;
+    }
   }
 `;
 
 export const TransactionsContainer = styled.div`
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: 238px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 245px;
 
   &::-webkit-scrollbar {
     width: 8px;
+    margin-right: 20px;
+    height: 12px;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -291,5 +446,23 @@ export const TransactionsContainer = styled.div`
     height: 150px;
     border-radius: 12px;
     background: rgba(250, 250, 250, 0.2);
+    margin-right: 20px;
+  }
+
+  @media (max-width: 768px) {
+    width: 500px;
+  }
+
+  @media (min-width: 768px) {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 230px;
+    width: 704px;
+  }
+
+  @media (min-width: 1440px) {
+    height: 238px;
+    width: 1240px;
+    margin-right: 20px;
   }
 `;

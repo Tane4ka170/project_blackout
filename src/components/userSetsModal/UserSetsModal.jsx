@@ -1,7 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from 'redux/auth/selectors';
-import { changeAvatarThunk, deleteAvatarThunk } from 'redux/user/operations';
+import { selectUser } from 'redux/user/selectors';
+
+import {
+  changeAvatarThunk,
+  deleteAvatarThunk,
+  updateUserInfoThunk,
+} from 'redux/user/operations';
 import Symbols from 'images/svg/Symbols';
 
 import {
@@ -10,14 +15,21 @@ import {
   StyledWrap,
 } from 'components/userSetsModal/UserSetsModal.styled';
 
+const CURRENCIES = [
+  { value: 'uah', label: '₴ UAH' },
+  { value: 'usd', label: '$ USD' },
+  { value: 'eur', label: '€ EUR' },
+];
+
 const UserSetsModal = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const inputRef = useRef(null);
 
   const [selectedValue, setSelectedValue] = useState('');
+  const [userName, setUserName] = useState(user.name);
 
-  const handleUpdate = () => {
+  const handleChangeAvatar = () => {
     const currentInput = inputRef?.current;
 
     if (currentInput && currentInput.files.length > 0) {
@@ -27,7 +39,7 @@ const UserSetsModal = () => {
   };
 
   const handleRemove = () => {
-    if (user?._id) {
+    if (user._id) {
       dispatch(deleteAvatarThunk(user._id));
     }
   };
@@ -37,7 +49,15 @@ const UserSetsModal = () => {
     setSelectedValue(value);
   };
 
-  const handleSave = () => {};
+  const handleSave = e => {
+    e.preventDafault();
+    const data = {
+      name: userName,
+      currency: selectedValue,
+    };
+
+    dispatch(updateUserInfoThunk(data));
+  };
 
   return (
     <div>
@@ -60,17 +80,27 @@ const UserSetsModal = () => {
             type="file"
             ref={inputRef}
             accept="image/*"
-            onChange={handleUpdate}
+            onChange={handleChangeAvatar}
           />
         </label>
         <GrayButton onClick={handleRemove}>Remove</GrayButton>
-        <select value={selectedValue} onChange={handleSelectChange}>
-          <option> UAH</option>
-          <option>USD</option>
-          <option>EUR</option>
-        </select>
-        <input type="text" />
-        <button onClick={handleSave}>Save</button>
+        <form onSubmit={handleSave}>
+          <select value={selectedValue} onChange={handleSelectChange}>
+            {CURRENCIES.map(currency => (
+              <option key={currency.value} value={currency.value}>
+                {currency.label}
+              </option>
+            ))}
+          </select>
+          <input
+            type="text"
+            placeholder={userName}
+            onChange={({ target }) => {
+              setUserName(target.value);
+            }}
+          />
+          <button type="submit">Save</button>
+        </form>
       </StyledWrap>
     </div>
   );

@@ -154,7 +154,24 @@ export const UserLink = styled(Link)`
     text-shadow: 0 0 5px #0ef387;
   }
 `;
+export const UserLinkbutton = styled.button`
+  text-decoration: none;
+  color: rgba(250, 250, 250, 0.5);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: flex;
+  gap: 12px;
+  background: transparent;
 
+  cursor: pointer;
+  border: none;
+  &:hover {
+    transform: scale(1.07);
+    text-shadow: 0 0 5px #0ef387;
+  }
+`;
 export const SiteIcon = styled.span``;
 
 export const MenuBtn = styled(motion.button)`

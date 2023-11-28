@@ -1,10 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import {
   createTransactionThunk,
   getTransactionsThunk,
   deleteTransactionThunk,
   updateTransactionThunk,
 } from './operations';
+
+
+import { toast } from 'react-toastify';
 
 const initialState = {
   transactions: [],
@@ -24,10 +28,12 @@ const transactionsSlice = createSlice({
       .addCase(createTransactionThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.transactions.push(action.payload);
+        toast.success('Transaction added')
       })
       .addCase(createTransactionThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+        toast.error('Oops, something went wrong, try again later')
       })
       .addCase(getTransactionsThunk.pending, state => {
         state.loading = true;
@@ -45,9 +51,9 @@ const transactionsSlice = createSlice({
       })
       .addCase(deleteTransactionThunk.fulfilled, (state, action) => {
         state.loading = false;
-        const transactionId = action.payload;
+        const transactionId = action?.payload;
 
-        state.transactions = state.transactions.filter(
+        state.transactions = state.transactions?.filter(
           transaction => transaction._id !== transactionId
         );
       })
