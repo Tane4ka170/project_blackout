@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo  } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Doughnut } from 'react-chartjs-2';
@@ -22,8 +22,9 @@ const DoughnutComponent = () => {
   const [allSums, setAllSums] = useState(null);
   const [items, setItems] = useState(null);
 
-  const colors = [
-    '#007E7E',
+  const colors = useMemo(() => {
+    return [
+      '#007E7E',
     '#00FF00',
     '#57FF57',
     '#008A8A',
@@ -64,7 +65,9 @@ const DoughnutComponent = () => {
     '#00A9A9',
     '#009090',
     '#000000',
-  ];
+    ];
+  }, []);
+
   const chartOptions = {
     hoverOffset: [30],
     rotation: [-90],
@@ -136,6 +139,7 @@ const DoughnutComponent = () => {
     }
   }, [queryTransactions]);
 
+
   useEffect(() => {
     if (items) {
       const sumByCategory = items.reduce((acc, transaction) => {
@@ -172,7 +176,7 @@ const DoughnutComponent = () => {
       );
       setAllSums(totalSum);
     }
-  }, [items]);
+  }, [colors, items]);
 
   return (
     <Wrapper>
