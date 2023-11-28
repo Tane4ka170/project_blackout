@@ -103,6 +103,7 @@ const Header = () => {
       setHideOrShowSecondList({ display: 'none' });
       setHideOrShow({ display: 'none' });
       setIsRotated(false);
+      document.body.style.overflow = 'visible';
     }
   };
   useEffect(() => {
@@ -119,6 +120,7 @@ const Header = () => {
       setHideOrShowSecondList({ display: 'none' });
       setHideOrShow({ display: 'none' });
       setIsRotated(false);
+      document.body.style.overflow = 'visible';
     }
   };
   const handleBackDropForLinks = ({ currentTarget, target }) => {
