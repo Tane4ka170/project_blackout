@@ -8,16 +8,40 @@ export const Wrapper = styled.div`
   border-radius: 30px;
   background: #171719;
   color: rgba(250, 250, 250, 0.5);
+
+  @media only screen and ((min-width: 768px) and (max-width:1439.98px)) {
+    width: 704px;
+    height: 302px;
+    display: flex;
+    flex-direction: column;
+    gap: 37px;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    width: 630px;
+    height: 302px;
+    display: flex;
+    flex-direction: column;
+    gap: 37px;
+    padding: 40px 60px 0 40px;
+  }
 `;
 
 export const TitleStyled = styled.p`
   margin-bottom: 55px;
 
-  font-family: Suisse Intl;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+
+  @media only screen and (min-width: 768px) {
+    color: rgba(250, 250, 250, 0.5);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 `;
 
 export const MainWrapper = styled.div`
@@ -25,20 +49,18 @@ export const MainWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 40px;
+  @media only screen and ((min-width: 768px) and (max-width:1439.98px)) {
+    flex-direction: row;
+  }
+  @media only screen and (min-width: 1440px) {
+    flex-direction: row;
+    gap: 40px;
+  }
 `;
 
 export const DoughnutWrapper = styled.div`
   width: 292px;
   height: 142px;
-`;
-
-export const ListStyled = styled.ul`
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-  list-style-type: none;
-  padding-left: 20px;
 `;
 
 export const ListWrapper = styled.div`
@@ -62,12 +84,26 @@ export const ListWrapper = styled.div`
     border-radius: 12px;
     background-color: #444446;
   }
+
+  @media only screen and (min-width: 1440px) {
+    width: 217px;
+  }
+`;
+
+export const ListStyled = styled.ul`
+  width: 230px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  list-style-type: none;
+  padding-left: 20px;
+  padding-right: 20px;
 `;
 
 export const ItemStyled = styled.li`
   width: 269px;
   display: flex;
-  /* justify-content: space-around; */
   align-items: center;
   position: relative;
   padding-left: 8px;
@@ -75,7 +111,7 @@ export const ItemStyled = styled.li`
   & ::before {
     content: '•';
     color: ${props => props.color || 'black'};
-    font-size: 30px; /* Задати розмір маркера */
+    font-size: 30px;
     position: absolute;
     top: -10px;
     left: -10px;
@@ -98,5 +134,13 @@ export const ItemStyled = styled.li`
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+  }
+
+  @media only screen and ((min-width: 768px) and (max-width:1439.98px)) {
+    width: 269px;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    width: 191px;
   }
 `;

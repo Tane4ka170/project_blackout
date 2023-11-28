@@ -109,7 +109,6 @@ const DoughnutComponent = () => {
     if (queryTransactions) {
       const categorySums = {};
 
-      // Розрахунок сум для кожної унікальної категорії
       queryTransactions.forEach(item => {
         const categoryName = item.category?.categoryName;
 
@@ -122,13 +121,11 @@ const DoughnutComponent = () => {
         }
       });
 
-      // Загальна сума всіх транзакцій
       const totalSum = queryTransactions.reduce(
         (acc, item) => acc + item.sum,
         0
       );
 
-      // Створення масиву об'єктів для відображення в графіку та списку
       const items = Object.keys(categorySums).map(categoryName => ({
         category: { categoryName },
         sum: categorySums[categoryName],
@@ -179,7 +176,7 @@ const DoughnutComponent = () => {
 
   return (
     <Wrapper>
-      <h2>Категорії витрат</h2>
+      <h2>Expenses categories</h2>
       <MainWrapper>
         <DoughnutWrapper>
           <Doughnut
