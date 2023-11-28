@@ -27,6 +27,7 @@ const transactionsSlice = createSlice({
       })
       .addCase(createTransactionThunk.fulfilled, (state, action) => {
         state.loading = false;
+        // state = { ...state }
         state.transactions.push(action.payload);
         toast.success('Transaction added')
       })

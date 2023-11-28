@@ -6,6 +6,7 @@ import {
   deleteAvatarThunk,
 } from './operations.js';
 import { loginThunk, registerThunk } from '../auth/operations.js';
+import { createTransactionThunk } from 'redux/transactions/operations.js';
 
 const initialState = {
   user: {
@@ -83,7 +84,11 @@ const userSlice = createSlice({
       .addCase(deleteAvatarThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
+      })
+      .addCase(createTransactionThunk.fulfilled, (state, { payload }) => {
+        state.user.transactionsTotal[payload.type] += payload.sum
+      })
+
   },
 });
 
