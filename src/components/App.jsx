@@ -1,23 +1,21 @@
 import { useDispatch } from 'react-redux';
 import { useAuth } from './hooks';
-import { useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { refreshThunk } from '../redux/auth/operations';
 import { Route, Routes } from 'react-router-dom/dist';
 // import { Navigate, Route, Routes, Link } from 'react-router-dom';
 import Layout from './layout/Layout';
 import Loader from './loader/Loader';
-import Home from 'pages/Home/Home';
-import Register from 'pages/Register/Register';
-import Login from 'pages/Login/Login';
 
-import MainTransactionsPage from 'pages/MainTransactionsPage/MainTransactionsPage';
-import NotFound from 'pages/NotFoundPage/NotFound';
-import { Expense } from 'pages/Expense/Expense';
-import { Income } from 'pages/Income/Income';
-
-// const HomePage = lazy(() => import('../pages/Home/Home'));
-// const RegisterPage = lazy(() => import('../pages/Register/Register'));
-// const LoginPage = lazy(() => import('../pages/Login/Login'));
+const Home = lazy(() => import('pages/Home/Home'));
+const Register = lazy(() => import('pages/Register/Register'));
+const Login = lazy(() => import('pages/Login/Login'));
+const MainTransactionsPage = lazy(() =>
+  import('pages/MainTransactionsPage/MainTransactionsPage')
+);
+const Expense = lazy(() => import('pages/Expense/Expense'));
+const Income = lazy(() => import('pages/Income/Income'));
+const NotFound = lazy(() => import('pages/NotFoundPage/NotFound'));
 
 function App() {
   const dispatch = useDispatch();
@@ -27,45 +25,27 @@ function App() {
     dispatch(refreshThunk());
   }, [dispatch]);
 
-  return isRefreshing ? ( // if isRefreshing is true, then render Loader, else render Container
-    <Loader /> // Loader - spinner
-  ) : (
-    <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route
-            path="/transactions/:transactionsType"
-            element={<MainTransactionsPage />}
-          />
-          <Route path="/expenses" element={<Expense />} />
-          <Route path="/incomes" element={<Income />} />
-          <Route
-            path="register"
-            element={
-              <Register />
-              // <PrivateRoute
-              //   redirectTo="/register"
-              //   component={<Register />}
-              // />
-            }
-          />
-          <Route
-            path="login"
-            element={
-              <Login />
-              // <PrivateRoute
-              //   redirectTo="/contacts"
-              //   component={<Login />}
-              // />
-            }
-          />
-          {/* <Route path="*" element={<Navigate to="/" />} />{' '} */}
-          {/* redirect to home page */}
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </>
+  return (
+    <Suspense>
+      {isRefreshing ? (
+        <Loader />
+      ) : (
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route
+              path="/transactions/:transactionsType"
+              element={<MainTransactionsPage />}
+            />
+            <Route path="/expenses" element={<Expense />} />
+            <Route path="/incomes" element={<Income />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      )}
+    </Suspense>
   );
 }
 
