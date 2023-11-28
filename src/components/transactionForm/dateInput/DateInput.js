@@ -18,7 +18,7 @@ const TransactionDateInput = ({ control }) => {
         render={({ field }) => (
           <StyledInputWrapper>
             <StyledLabel htmlFor="date">Date
-            <StyledSvg width={20} height={20}>
+            <StyledSvg width={16} height={16}>
               <use href={svg + '#icon-calendar'} />
             </StyledSvg>
             </StyledLabel>
@@ -38,7 +38,7 @@ const TransactionDateInput = ({ control }) => {
         render={({ field }) => (
           <StyledInputWrapper>
             <StyledLabel htmlFor="time">Time
-            <StyledSvg width={20} height={20}>
+            <StyledSvg>
               <use href={svg + '#icon-clock'} />
               </StyledSvg>
             </StyledLabel>
