@@ -262,10 +262,18 @@ const Header = () => {
           </CloseBtn>
         </MenuHeader>
         <MenuMain>
-          <ExpensesBtn to="/expenses" state={{ from: location }}>
+          <ExpensesBtn
+            to="/expenses"
+            state={{ from: location }}
+            onClick={handleMenu}
+          >
             All Expense
           </ExpensesBtn>
-          <IncomeBtn to="/incomes" state={{ from: location }}>
+          <IncomeBtn
+            to="/incomes"
+            state={{ from: location }}
+            onClick={handleMenu}
+          >
             All Income
           </IncomeBtn>
         </MenuMain>
