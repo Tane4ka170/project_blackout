@@ -61,7 +61,7 @@ const categoriesSlice = createSlice({
         const addedIncCategory = state.categories?.incomes?.find(
           category => category?.categoryName === payload?.categoryName
         );
-        console.log(addedIncCategory);
+
         const addedExpCategory = state.categories?.expenses?.find(
           category => category?.categoryName === payload.categoryName
         );
