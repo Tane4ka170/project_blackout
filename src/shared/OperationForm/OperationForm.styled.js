@@ -23,8 +23,10 @@ export const StyledFormWrapper = styled.form`
     padding: 40px;
     height: 600px;
 
-    margin-bottom: none;
+    margin-bottom: 0;
+
   }
+
 `
 
 export const StyledBtn = styled.button`

@@ -1,5 +1,5 @@
 import { createTransactionThunk } from "redux/transactions/operations";
-const onSubmitTransaction = (data, transactionsType, categoryId ,dispatch) => {
+const onSubmitTransaction = (data, transactionsType, categoryId, dispatch, reset) => {
   let transaction = data;
   // set transaction type
   transaction.type = transactionsType;
@@ -13,18 +13,32 @@ const onSubmitTransaction = (data, transactionsType, categoryId ,dispatch) => {
 
   // auto select current date
   if (data.date === '') {
-    transaction.date = new Date().toISOString().substr(0, 10)
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    transaction.date = formattedDate;
   } else {
-    transaction.date = data.date.toISOString().substr(0, 10)
+    if (data.date) {
+      const year = data.date.getFullYear();
+      const month = data.date.getMonth() + 1;
+      const day = data.date.getDate();
+      const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+      transaction.date = formattedDate;
+    };
+    console.log(transaction.date);
   }
-  if (data.time === '' || data.time === '00:00:00') {
-    transaction.time = new Date().toTimeString().substr(0, 8)
+  if (data.time === '' || data.time === '00:00') {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const formattedTime = `${hours}:${minutes}`;
+    transaction.time = formattedTime;
   }
-
-  console.log(transaction.time);
-
-  // dispatch
-  dispatch(createTransactionThunk(transaction))
+  // dispatch and reset form
+  dispatch(createTransactionThunk(transaction, reset))
+  reset();
 };
   
 export default onSubmitTransaction

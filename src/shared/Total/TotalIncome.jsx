@@ -4,7 +4,7 @@ import React from "react";
 // selector
 import { useSelector } from "react-redux";
 import { selectUser } from "redux/user/selectors";
-
+import { selectIsLoggedIn } from "redux/auth/selectors.js";
 // svg
 import arrow from '../../images/Sprite.svg'
 
@@ -16,11 +16,24 @@ import Currency from './Currency'
 import { StyledWrapper, StyledSvgWrapper, StyledSvg, StyledHeaders, StyledMoney, StyledTotalWrapper } from "./StyledTotal";
 
 
+
+
+
 const TotalIncome = () => {
   const user = useSelector(selectUser)
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+  
 
-  const totalIncome = user?.transactionsTotal?.incomes
-  const currency = Currency(user.currency)
+  const MockData = () => {
+    let totalIncome = user?.transactionsTotal?.incomes
+    let currency = Currency(user.currency)
+    if (!isLoggedIn) {
+      currency = '$'
+      totalIncome = '12.000'
+      return `${currency}${totalIncome}`
+    }
+    return `${currency}${totalIncome}`
+  }
 
   return (
     <StyledWrapper>
@@ -31,7 +44,7 @@ const TotalIncome = () => {
       </StyledSvgWrapper>
       <StyledTotalWrapper>
         <StyledHeaders>Total income</StyledHeaders>
-        <StyledMoney>{`${currency}${totalIncome}`}</StyledMoney>
+        <StyledMoney>{MockData()}</StyledMoney>
       </StyledTotalWrapper>
     </StyledWrapper>
   );
