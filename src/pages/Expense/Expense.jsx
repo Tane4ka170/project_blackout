@@ -111,7 +111,7 @@ const Expense = () => {
               <TransactionsContainer>
                 {transactions?.map(transaction => (
                   <DIV key={transaction._id}>
-                    <P1>{transaction.category.categoryName}</P1>
+                    <P1>{transaction.category?.categoryName}</P1>
                     <P2>{transaction.comment}</P2>
                     <P3>{transaction.date}</P3>
                     <P4>{transaction.time}</P4>
