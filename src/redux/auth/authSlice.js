@@ -14,6 +14,7 @@ const initialState = {
   isRefreshing: false,
   error: null,
   isLoading: false,
+  isRegistered: false,
 };
 
 const authSlice = createSlice({
@@ -22,7 +23,8 @@ const authSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
-        state.isLoggedIn = true;
+        state.error = null;
+        state.isRegistered = true;
       })
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
         state.accessToken = payload.accessToken;

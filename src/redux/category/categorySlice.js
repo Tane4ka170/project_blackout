@@ -58,29 +58,21 @@ const categoriesSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(createCategoryThunk.fulfilled, (state, { payload }) => {
-        const addedIncCategory = state.categories?.incomes?.find(
+        const addedCategory = state.categories[payload.type]?.find(
           category => category?.categoryName === payload?.categoryName
         );
 
-        const addedExpCategory = state.categories?.expenses?.find(
-          category => category?.categoryName === payload.categoryName
-        );
+        if (addedCategory) {
+          toast.warning('Category with this name already exists');
+          return;
+        }
 
         if (payload.type === 'incomes') {
-          if (addedIncCategory) {
-            toast.warning('Category with this name exists already');
-            return;
-          } else {
-            state.categories?.incomes?.push(payload);
-          }
+          state.categories.incomes.push(payload);
         }
+
         if (payload.type === 'expenses') {
-          if (addedExpCategory) {
-            toast.warning('Category with this name exists already');
-            return;
-          } else {
-            state.categories?.expenses?.push(payload);
-          }
+          state.categories.expenses.push(payload);
         }
 
         state.isLoading = false;
