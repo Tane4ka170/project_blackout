@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { loginThunk } from 'redux/auth/operations';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 
 import {
   ButtonSign,
@@ -21,8 +23,7 @@ import {
 import { ReactComponent as ShowsIco } from '../../images/home/eye.svg';
 import { ReactComponent as HideIco } from '../../images/home/eye-off.svg';
 import { WrapBts } from './LoginForm.styled';
-import { loginThunk } from 'redux/auth/operations';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
+
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const {
@@ -92,16 +93,15 @@ export const LoginForm = () => {
               type={showPassword ? 'text' : 'password'}
               placeholder="Password"
               autoComplete="new-password"
-              hasError={!!formErrors.password}
+              // hasError={!!formErrors.password}
               onChange={handlePasswordChange}
-              isGood={password.length >= 6}
-              className={`${
-                password.length === 0
-                  ? 'empty'
-                  : isPasswordValid()
+              // isGood={password.length >= 6}
+              className={`${password.length === 0
+                ? 'empty'
+                : isPasswordValid()
                   ? 'valid'
                   : 'invalid'
-              }`}
+                }`}
             />
             <PasswordToggle onClick={togglePasswordVisibility} type="button">
               {showPassword ? <HideIco /> : <ShowsIco />}
@@ -111,7 +111,7 @@ export const LoginForm = () => {
             <Err>{formErrors.password.message}</Err>
           )}
           {password.length > 0 && (
-            <PasswordMessage isGood={password.length >= 6}>
+            <PasswordMessage $isGood={password.length >= 6}>
               {password.length >= 6 ? 'Good password' : 'Short password'}
             </PasswordMessage>
           )}
