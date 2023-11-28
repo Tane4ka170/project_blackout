@@ -9,13 +9,25 @@ import {
   StyledLogOutWrapper,
 } from './LogOutModal.Styled';
 
-const LogOutModal = ({ closeModal }) => {
+const LogOutModal = ({ closeModal, setHideOrShow, setHideOrShowList }) => {
   const dispatch = useDispatch();
   return (
     <StyledLogOutWrapper>
       <StyledLogOutText>Are you sure you want to log out?</StyledLogOutText>
       <StyledLogOutButtonWrapper>
-        <StyledLogOutButton onClick={() => dispatch(logoutThunk())}>
+        <StyledLogOutButton
+          onClick={() =>
+            dispatch(logoutThunk())
+              .unwrap()
+              .then(() => {
+                setHideOrShowList(prev => ({ display: 'none' }));
+                closeModal();
+                setHideOrShow({
+                  display: 'none',
+                });
+              })
+          }
+        >
           Log out
         </StyledLogOutButton>
         <StyledLogOutButton onClick={closeModal}>Cancel</StyledLogOutButton>

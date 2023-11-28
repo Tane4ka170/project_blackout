@@ -54,7 +54,13 @@ const Header = () => {
   };
 
   const openLogOutModal = () => {
-    setModal(<LogOutModal closeModal={closeModal} />);
+    setModal(
+      <LogOutModal
+        setHideOrShow={setHideOrShow}
+        setHideOrShowList={setHideOrShowSecondList}
+        closeModal={closeModal}
+      />
+    );
     openModal();
   };
 
