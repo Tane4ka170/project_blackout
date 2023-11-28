@@ -167,7 +167,7 @@ const Header = () => {
         </ProfileBtn>
       </ProfileContainer>
       <SecondBtnContainer style={hideOrShowSecondList}>
-        <UserLink to="/" onClick={openUserSetsModal}>
+        <UserLink onClick={openUserSetsModal}>
           <UserLinkIcons width={16} height={16}>
             <use xlinkHref="#icon-user" />
           </UserLinkIcons>
@@ -225,7 +225,7 @@ const Header = () => {
             </UserArrowUp>
           </ProfileBtn>
           <BtnContainer style={hideOrShowList}>
-            <UserLink to="/" onClick={openUserSetsModal}>
+            <UserLink onClick={openUserSetsModal}>
               <UserLinkIcons width={16} height={16}>
                 <use xlinkHref="#icon-user" />
               </UserLinkIcons>
