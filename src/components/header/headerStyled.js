@@ -9,10 +9,6 @@ export const EmptyHeaderStyled = styled.div`
   background: #0c0d0d;
   padding: 13px 20px;
   color: white;
-  margin-bottom: 66px;
-  @media screen and (min-width: 767px) {
-    margin-bottom: 59px;
-  }
   @media screen and (min-width: 1440px) {
     padding: 18px 100px;
   }
