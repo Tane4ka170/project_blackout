@@ -12,7 +12,7 @@ const initialState = {
     name: '',
     email: '',
     currency: '',
-    avatar: null,
+    avatarUrl: null,
   },
   loading: false,
   error: null,
@@ -48,7 +48,12 @@ const userSlice = createSlice({
       })
       .addCase(updateUserInfoThunk.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.user = {
+          ...state.user,
+          _id: action.payload?._id,
+          name: action.payload?.name,
+          currency: action.payload?.currency,
+        };
       })
       .addCase(updateUserInfoThunk.rejected, (state, action) => {
         state.loading = false;
@@ -59,7 +64,10 @@ const userSlice = createSlice({
       })
       .addCase(changeAvatarThunk.fulfilled, (state, action) => {
         state.loading = false;
-        state.user.avatar = action.payload;
+        state.user = {
+          ...state.user,
+          avatarUrl: action.payload?.avatarUrl,
+        };
       })
       .addCase(changeAvatarThunk.rejected, (state, action) => {
         state.loading = false;
@@ -70,7 +78,7 @@ const userSlice = createSlice({
       })
       .addCase(deleteAvatarThunk.fulfilled, (state, action) => {
         state.loading = false;
-        state.user.avatar = action.payload;
+        state.user = { ...state.user, avatarUrl: action.payload?.avatarUrl };
       })
       .addCase(deleteAvatarThunk.rejected, (state, action) => {
         state.loading = false;

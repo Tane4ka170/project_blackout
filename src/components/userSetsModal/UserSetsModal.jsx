@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/user/selectors';
-
 import {
   changeAvatarThunk,
   deleteAvatarThunk,
@@ -28,7 +27,7 @@ const CURRENCIES = [
   { value: 'eur', label: '€ EUR' },
 ];
 
-const UserSetsModal = () => {
+const UserSetsModal = ({ closeModal }) => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const inputRef = useRef(null);
@@ -39,7 +38,7 @@ const UserSetsModal = () => {
   const handleChangeAvatar = () => {
     const currentInput = inputRef?.current;
 
-    if (currentInput && currentInput.files.length > 0) {
+    if (currentInput) {
       const avatar = currentInput.files[0];
       dispatch(changeAvatarThunk(avatar));
     }
@@ -49,6 +48,7 @@ const UserSetsModal = () => {
     if (user._id) {
       dispatch(deleteAvatarThunk(user._id));
     }
+    console.log('1');
   };
 
   const handleSelectChange = ({ target }) => {
@@ -64,6 +64,8 @@ const UserSetsModal = () => {
     };
 
     dispatch(updateUserInfoThunk(data));
+
+    closeModal();
   };
 
   return (
@@ -91,7 +93,6 @@ const UserSetsModal = () => {
             id="uploadAvatar"
             type="file"
             ref={inputRef}
-            accept="image/*"
             onChange={handleChangeAvatar}
           />
           <GrayButton onClick={handleRemove}>Remove</GrayButton>
