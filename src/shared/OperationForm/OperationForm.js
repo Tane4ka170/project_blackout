@@ -43,6 +43,7 @@ const OperationForm = () => {
     control,
     setValue,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -68,7 +69,8 @@ const OperationForm = () => {
             data,
             PreSelectType(transactionsType),
             categoryId,
-            dispatch
+            dispatch,
+            reset,
           )
         )}
       >

@@ -111,9 +111,8 @@ export const H2 = styled.h2`
     margin-bottom: 20px;
   }
 `;
-export const H2span = styled.span`
+export const H2span = styled.a`
   color: #0ef387;
-  font-family: Suisse Intl;
   font-family: Suisse Intl;
   font-size: 32px;
   font-style: normal;

@@ -9,11 +9,14 @@ export const StyledSection = styled.section`
   margin-right: auto;
   margin-left: auto;
 
+  margin-top: 66px;
+
   @media only screen and ((min-width: 768px) and ( max-width: 1439.98px)) {
     width: 768px;
     padding-left: 32px;
     padding-right: 32px;
     margin-bottom: 80px;
+    margin-top: 59px;
   }
 
   @media only screen and (min-width: 1440px) {
@@ -24,6 +27,7 @@ export const StyledSection = styled.section`
 
     display: flex;
     gap: 44px;
+    margin-top: 59px;
   }
 `
 

@@ -28,6 +28,7 @@ export const StyledWrapper = styled.div`
   }
   @media only screen and (min-width: 1440px) {
     width: 303px;
+    height: 121px;
   }
 `
 

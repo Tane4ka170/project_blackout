@@ -23,7 +23,7 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 37px;
-    padding: 40px 60px 0 40px;
+    padding: 40px 40px 0 40px;
   }
 `;
 

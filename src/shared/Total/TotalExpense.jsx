@@ -4,6 +4,7 @@ import React from "react";
 // selector
 import { useSelector } from "react-redux";
 import { selectUser } from "redux/user/selectors";
+
 // svg
 import arrow from '../../images/Sprite.svg';
 
@@ -20,6 +21,15 @@ const TotalExpense = () => {
   const totalExpense = user?.transactionsTotal?.expenses
   const currency = Currency(user.currency)
 
+    const formatNumber = () => {
+    const inputString = totalExpense?.toString();
+    const isLessThanFourDigits = inputString?.length < 4;
+
+    return isLessThanFourDigits
+      ? inputString
+      : inputString?.replace(/(\d)(?=(\d{3})+$)/g, '$1.');
+  };
+
   return (
     <StyledWrapper>
       <StyledSvgWrapper>
@@ -29,7 +39,7 @@ const TotalExpense = () => {
       </StyledSvgWrapper>
       <StyledTotalWrapper>
         <StyledHeaders>Total expense</StyledHeaders>
-        <StyledMoney>{`${currency}${totalExpense}`}</StyledMoney>
+        <StyledMoney>{`${currency}${formatNumber()}`}</StyledMoney>
       </StyledTotalWrapper>
     </StyledWrapper>
   );

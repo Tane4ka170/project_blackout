@@ -69,7 +69,7 @@ const DoughnutComponent = () => {
   }, []);
 
   const chartOptions = {
-    hoverOffset: [30],
+    hoverOffset: [20],
     rotation: [-90],
     circumference: [180],
     maintainAspectRatio: false,

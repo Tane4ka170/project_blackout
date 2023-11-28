@@ -16,8 +16,9 @@ const RadioBtn = ({ control }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setType(PreSelectType(transactionsType)) ;
-  }, [transactionsType]);
+    setType(PreSelectType(transactionsType));
+    navigate(`/transactions/${PreSelectType(transactionsType)}`)
+  }, [navigate, transactionsType]);
 
   const handleTypeChange = (value) => {
     navigate(`/transactions/${value}`)

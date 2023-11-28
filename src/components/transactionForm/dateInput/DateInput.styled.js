@@ -2,6 +2,16 @@ import styled from "styled-components";
 import DatePicker from "react-datepicker";
 
 
+
+
+export const StyledSvg = styled.svg`
+position: absolute;
+bottom: 14px;
+right: 18px;
+stroke: #FAFAFA;
+/* fill: transparent; */
+`
+
 // wrappers
 export const StyledWrapper = styled.div`
   display: flex;
