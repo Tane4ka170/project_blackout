@@ -28,11 +28,10 @@ const Home = () => {
         <div>
           <Content>
             <H1 >Expense log</H1>
-            <H2>Manage Your <H2span>Finances</H2span> Masterfully!</H2>
+            <H2>Manage Your <H2span href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">Finances</H2span> Masterfully!</H2>
             <Text>ExpenseTracker effortlessly empowers you to take control of your finances! With intuitive features, it simplifies the process of tracking and managing expenses, allowing for a stress-free mastery over your financial world.</Text>
             <WrapBtn>
               <SignUp to="/register">Sign Up</SignUp>
-
               <SignIn to="/login">Sign In</SignIn>
             </WrapBtn>
           </Content>
