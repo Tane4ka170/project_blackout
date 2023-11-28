@@ -1,35 +1,28 @@
-import { OneCategory } from 'components/oneCategory/OneCategory';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import {
+  getCategoriesThunk,
   createCategoryThunk,
   deleteCategoryThunk,
-  getCategoriesThunk,
   updateCategoryThunk,
 } from 'redux/category/operations';
 import { selectCategories } from 'redux/category/selectors';
-import React, { useEffect, useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 import {
-  AllCategoriesP,
-  CancelButton,
   CategoriesDiv,
   CategoriesList,
   CategoriesPlugP,
-  EditButton,
-  InputTitleP,
-  StyledErrorP,
-  StyledInput,
-  SubmitForm,
+  AllCategoriesP,
   TransactionType,
-} from './StyledCategories';
-
-import { toast } from 'react-toastify';
-import { motion } from 'framer-motion';
+} from './AllCategories.styled.js';
+import { CategoryForm } from '../categoryForm/CategoryForm';
+import { useForm } from 'react-hook-form';
+import { OneCategory } from 'components/oneCategory/OneCategory';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaCategoryInput } from 'helpers/schemas';
 
-export const Categories = ({
+export const AllCategories = ({
   type,
   chooseCategories,
   closeModal,
@@ -38,8 +31,11 @@ export const Categories = ({
   const categories = useSelector(selectCategories);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
+
   const [currentCategory, setCurrentCategory] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [addedCategories, setAddedCategories] = useState([]);
+
   const categoriesListRef = useRef();
 
   const {
@@ -59,6 +55,12 @@ export const Categories = ({
     }
   }, [dispatch, isLoggedIn, type]);
 
+  useEffect(() => {
+    if (categories[type]) {
+      setAddedCategories(categories[type]);
+    }
+  }, [categories, type]);
+
   const editCategory = category => {
     setCurrentCategory(category);
     reset({ categoryName: category.categoryName });
@@ -73,6 +75,16 @@ export const Categories = ({
 
   const submit = ({ categoryName }) => {
     const categoryDate = { type, categoryName };
+
+    const addedCategory = addedCategories.find(
+      category => category.categoryName === categoryName
+    );
+
+    if (addedCategory) {
+      toast.warning('Category with this name already exists');
+      return;
+    }
+
     if (currentCategory) {
       dispatch(updateCategoryThunk({ id: currentCategory._id, categoryName }))
         .unwrap()
@@ -118,49 +130,30 @@ export const Categories = ({
       <AllCategoriesP>All categories</AllCategoriesP>
       <CategoriesList ref={categoriesListRef}>
         {categories[type]?.length ? (
-          categories[type]?.map(category => {
-            return (
-              <OneCategory
-                setCategoryId={setCategoryId}
-                closeModal={closeModal}
-                chooseCategories={chooseCategories}
-                key={category._id}
-                {...category}
-                deleteCategory={() => deleteCategory(category._id)}
-                editCategory={() => editCategory(category)}
-              />
-            );
-          })
+          categories[type]?.map(category => (
+            <OneCategory
+              setCategoryId={setCategoryId}
+              closeModal={closeModal}
+              chooseCategories={chooseCategories}
+              key={category._id}
+              {...category}
+              deleteCategory={() => deleteCategory(category._id)}
+              editCategory={() => editCategory(category)}
+            />
+          ))
         ) : (
           <CategoriesPlugP>There are no categories yet😭</CategoriesPlugP>
         )}
       </CategoriesList>
-      <motion.div
-        initial={{ y: '100%' }}
-        animate={{ y: 0 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-      >
-        <SubmitForm action="" onSubmit={handleSubmit(submit)}>
-          <InputTitleP $error={errors?.categoryName}>
-            {isEditing ? 'Edit category' : 'New category'}
-          </InputTitleP>
-          <StyledInput
-            type="text"
-            placeholder="Enter the text"
-            {...register('categoryName', { required: true, maxLength: 30 })}
-            autoFocus={currentCategory !== null}
-            key={currentCategory?._id}
-            $error={errors?.categoryName}
-          />
-          <EditButton $error={errors?.categoryName}>
-            {isEditing ? 'Edit' : 'Add'}
-          </EditButton>
-          {isEditing && <CancelButton onClick={onCancel}>Cancel</CancelButton>}
-        </SubmitForm>
-        {errors?.categoryName && (
-          <StyledErrorP>{errors.categoryName.message}</StyledErrorP>
-        )}
-      </motion.div>
+      <CategoryForm
+        isEditing={isEditing}
+        currentCategory={currentCategory}
+        handleSubmit={handleSubmit}
+        submit={submit}
+        register={register}
+        errors={errors}
+        onCancel={onCancel}
+      />
     </CategoriesDiv>
   );
 };

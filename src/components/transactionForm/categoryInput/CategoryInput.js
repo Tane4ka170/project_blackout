@@ -1,28 +1,31 @@
 // base
-import React from "react";
-import { useParams } from "react-router";
+import React from 'react';
+import { useParams } from 'react-router';
 
 // modal
-import Modal from "components/modal/Modal";
-import { useModal } from "components/hooks/useModal";
+import Modal from 'components/modal/Modal';
+import { useModal } from 'components/hooks/useModal';
 
 // form
-import { Controller } from "react-hook-form";
+import { Controller } from 'react-hook-form';
 
-// components 
-import { Categories } from "components/categories/Categories";
+// components
+import { AllCategories } from 'components/categories/allCategories/AllCategories';
 
 // styled
-import { StyledInputWrapper, StyledLabel, StyledCategoryInput } from "./CategoryInput.styled";
-
+import {
+  StyledInputWrapper,
+  StyledLabel,
+  StyledCategoryInput,
+} from './CategoryInput.styled';
 
 const CategoryInput = ({ control, setValue, setCategoryId }) => {
   const { isOpened, openModal, closeModal } = useModal();
   const { transactionsType } = useParams();
 
-  const handleSetCategory = (selectedCategory) => {
+  const handleSetCategory = selectedCategory => {
     setCategoryId(selectedCategory.id);
-    setValue("category", selectedCategory);
+    setValue('category', selectedCategory);
   };
 
   return (
@@ -38,22 +41,24 @@ const CategoryInput = ({ control, setValue, setCategoryId }) => {
             placeholder="Different"
             {...field}
             value={field.value}
-            onClick={(event) => {
-              openModal()
+            onClick={event => {
+              openModal();
               event.target.blur();
-            }
-            }
+            }}
           />
-          {isOpened ? <Modal
-            children={
-              <Categories
-                type={transactionsType}
-                chooseCategories={handleSetCategory
-                }
-                closeModal={closeModal}
-                setCategoryId={setCategoryId}
-              />
-            } closeModal={closeModal} /> : null}
+          {isOpened ? (
+            <Modal
+              children={
+                <AllCategories
+                  type={transactionsType}
+                  chooseCategories={handleSetCategory}
+                  closeModal={closeModal}
+                  setCategoryId={setCategoryId}
+                />
+              }
+              closeModal={closeModal}
+            />
+          ) : null}
         </StyledInputWrapper>
       )}
     />
