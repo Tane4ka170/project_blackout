@@ -40,10 +40,12 @@ const Symbols = () => {
           </symbol>
           <symbol id="user-icon-up" viewBox="0 0 32 32">
             <path
+              stroke="#fafafa"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="3.2"
               d="m8 20 8-8 8 8"
+              style={{ stroke: 'var(#fafafa)' }}
             />
           </symbol>
           <symbol id="icon-trash-icon" viewBox="0 0 32 32">
@@ -157,7 +159,13 @@ const Symbols = () => {
             />
           </symbol>
           <symbol id="icon-arrow-up" viewBox="0 0 32 32">
-            <path d="M25.905 1.613A1.882 1.882 0 0 0 23.772.02L7.006 2.448a1.882 1.882 0 1 0 .54 3.726l14.903-2.159 2.159 14.903a1.882 1.882 0 1 0 3.726-.54L25.906 1.612zM5.273 30.154 25.55 3.009 22.534.756 2.257 27.901l3.016 2.253z" />
+            <path
+              fill="#fafafa"
+              d="M25.905 1.613A1.882 1.882 0 0 0 23.772.02L7.006 2.448a1.882 1.882 0 1 0 .54 3.726l14.903-2.159 2.159 14.903a1.882 1.882 0 1 0 3.726-.54L25.906 1.612zM5.273 30.154 25.55 3.009 22.534.756 2.257 27.901l3.016 2.253z"
+              style={{
+                fill: 'var( #fafafa)',
+              }}
+            />
           </symbol>
           <symbol id="icon-arrow-down" viewBox="0 0 32 32">
             <path d="M4.201 29.5a2 2 0 0 0 2.221 1.751l17.876-2.113a2 2 0 1 0-.47-3.972L7.939 27.044 6.061 11.155a2 2 0 1 0-3.972.47l2.113 17.876zM26.125.753 4.617 28.027l3.141 2.477L29.266 3.23 26.125.753z" />

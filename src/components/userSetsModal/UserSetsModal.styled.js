@@ -89,7 +89,7 @@ export const StyledBtnWrap = styled.div`
   }
 `;
 
-export const StyledSelect = styled.select`
+export const StyledSelect = styled.div`
   color: rgba(250, 250, 250, 1);
   background-color: rgba(23, 23, 25, 1);
   padding: 12px 14px;
@@ -97,29 +97,47 @@ export const StyledSelect = styled.select`
   font-weight: 400;
   line-height: 1.5;
   width: 98px;
-  box-sizing: border-box;
+  height: 43px;
   border-radius: 12px;
   border: 1px solid rgba(250, 250, 250, 0.4);
-
-  &:focus {
-    border-color: rgba(14, 243, 135, 1);
-    outline: none;
-  }
-
-  option {
-    border: 1px solid rgba(250, 250, 250, 0.4);
-    background-color: rgba(12, 13, 13, 1);
-    color: rgba(250, 250, 250, 0.4);
-  }
-
-  option:checked {
-    background-color: rgba(12, 13, 13, 1) !important;
-    color: rgba(250, 250, 250, 1);
-  }
+  cursor: pointer;
+  position: relative;
 
   @media only screen and (min-width: 768px) {
     padding: 15px 14px;
     width: 122px;
+    height: 49px;
+  }
+
+  .select-options {
+    color: rgba(250, 250, 250, 0.4);
+    background-color: rgba(12, 13, 13, 1);
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    width: 98px;
+    border-radius: 12px;
+    border: 1px solid rgba(250, 250, 250, 0.4);
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    li {
+      &:hover,
+      &:focus {
+        color: rgba(250, 250, 250, 1);
+      }
+    }
+
+    @media only screen and (min-width: 768px) {
+      padding: 10px 14px;
+      width: 122px;
+      top: 110%;
+    }
   }
 `;
 
@@ -175,5 +193,21 @@ export const StyledSaveBtn = styled.button`
   &:hover,
   &:focus {
     background-color: rgba(14, 187, 105, 1);
+  }
+`;
+
+export const SvgArrow = styled.svg`
+  position: absolute;
+  top: 28%;
+  left: 70%;
+  transform: rotate(0);
+
+  @media only screen and (min-width: 768px) {
+    top: 30%;
+    left: 75%;
+  }
+
+  &.select-open {
+    transform: rotate(180deg);
   }
 `;
