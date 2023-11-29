@@ -17,7 +17,7 @@
 
 </span>
 
-<h3 align="center"> ℹ️ Blackout 🌚 <h3>
+<h3 align="center"> 📌 Blackout 🌚 <h3>
 <span align="center">
 
 <a align="center" href="https://github.com/Olena3333">![GitHub](https://img.shields.io/badge/-Olena-05122A?style=flat&logo=github)</a>
@@ -76,4 +76,4 @@ user operations
 ✔️ Serghii Kolodiazhnyi - Main transactions page ◼ Transactions total amount ◼
 Transaction form ◼ Code review
 
-✔️ Kyrylo Ivanov - Welcome page ◼ Register Ppage ◼ Auth form
+✔️ Kyrylo Ivanov - Welcome page ◼ Register page ◼ Auth form
