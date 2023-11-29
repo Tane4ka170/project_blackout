@@ -4,6 +4,7 @@ export const WrapForm = styled.div`
   margin-left: 0;
 
   @media (min-width: 768px) and (max-width: 1439.8px) {
+    max-width: 399px;
     margin-left: 0;
   }
 
