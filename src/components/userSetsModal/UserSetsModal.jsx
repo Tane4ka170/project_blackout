@@ -84,7 +84,7 @@ const UserSetsModal = ({ closeModal }) => {
           <StyledSvgWrap>
             <Symbols />
             <svg width={38} height={38}>
-              <use xlinkHref="#icon-user" />
+              <use xlinkHref="#icon-default-svg" />
             </svg>
           </StyledSvgWrap>
         )}

@@ -37,3 +37,7 @@ export const CloseButton = styled.button`
   height: 24px;
   z-index: 1200;
 `;
+
+export const StyledSvgUser = styled.svg`
+  stroke: rgba(250, 250, 250, 1);
+`;
