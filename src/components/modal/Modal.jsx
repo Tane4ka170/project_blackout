@@ -7,7 +7,7 @@ import { CloseButton, ContentWrapper, StyledWrapper } from './Modal.styled';
 
 const rootModal = document.querySelector('#modal');
 
-const Modal = ({ setHideOrShow, children, closeModal }) => {
+const Modal = ({ children, closeModal }) => {
   const handleKeyDown = useCallback(
     e => {
       if (e.key === 'Escape') {
@@ -23,13 +23,10 @@ const Modal = ({ setHideOrShow, children, closeModal }) => {
     document.body.style.overflow = 'hidden';
 
     return () => {
-      if (setHideOrShow === 'flex') {
-        document.body.style.overflow = 'visible';
-      } else {
-        document.body.style.overflow = 'hidden';
-      }
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'visible';
     };
-  }, [setHideOrShow, closeModal, handleKeyDown]);
+  }, [closeModal, handleKeyDown]);
 
   const handleBackDrop = ({ currentTarget, target }) => {
     if (currentTarget === target) {
