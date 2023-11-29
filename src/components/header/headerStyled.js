@@ -44,18 +44,17 @@ export const MobileMenu = styled.div`
   justify-content: space-between;
   align-items: center;
   background: #0ef387;
-  position: absolute;
+  position: fixed;
   z-index: 5;
   top: 0;
   right: 0;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
 
   @media screen and (min-width: 768px) {
     max-width: 385px;
   }
-  @media screen and (min-width: 1025px) {
+  @media screen and (min-width: 1439.97px) {
     display: none !important;
   }
 `;
@@ -86,13 +85,13 @@ export const BtnContainer = styled.div`
 export const LinksContainer = styled.div`
   display: flex;
   gap: 16px;
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1439.97px) {
     display: none;
   }
 `;
 
 export const ProfileContainer = styled(motion.div)`
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1439.97px) {
     display: none;
   }
 `;
@@ -111,9 +110,34 @@ export const SecondBtnContainer = styled.div`
   @media screen and (min-width: 1439px) {
     right: 100px;
   }
-  @media screen and (max-width: 1025px) {
+  @media screen and (max-width: 1439.97px) {
     display: none !important;
   }
+`;
+
+export const DarkBackDrop = styled.div`
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 4;
+  height: 100vh;
+  background: rgba(12, 13, 13, 0.6);
+  @media screen and (min-width: 1439.97px) {
+    z-index: -1;
+  }
+`;
+
+export const HeaderBtnsContainer = styled.div``;
+
+export const UsualBackDrop = styled.div`
+  position: fixed;
+  top: 100px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
 `;
 
 export const HeaderLink = styled(motion(Link))`
@@ -171,7 +195,7 @@ export const MenuBtn = styled(motion.button)`
   border: none;
   stroke: white;
 
-  @media (min-width: 1025px) {
+  @media (min-width: 1440px) {
     display: none;
   }
 `;
@@ -181,7 +205,7 @@ export const CloseBtn = styled(motion.button)`
   border: none;
   stroke: black;
 
-  @media (min-width: 1439px) {
+  @media (min-width: 1440px) {
     display: none;
   }
 `;
@@ -195,6 +219,9 @@ export const ProfileBtn = styled(motion.button)`
   border-radius: 30px;
   background: #171719;
   z-index: 7;
+  /* @media (max-width: 1439.97px) {
+    display: none;
+  } */
 `;
 
 export const ExpensesBtn = styled(NavLink)`

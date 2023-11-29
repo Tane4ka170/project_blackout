@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   HeaderLink,
   HeaderStyled,
@@ -25,6 +25,9 @@ import {
   ProfileContainer,
   SecondBtnContainer,
   UserLinkbutton,
+  DarkBackDrop,
+  HeaderBtnsContainer,
+  UsualBackDrop,
 } from './headerStyled';
 import Symbols from 'images/svg/Symbols';
 import Modal from 'components/modal/Modal';
@@ -39,7 +42,7 @@ import LogOutModal from 'components/logOutModal/LogOutModal';
 const Header = () => {
   const location = useLocation();
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const { name, avatar } = useSelector(selectUser);
+  const { name, avatarUrl } = useSelector(selectUser);
   const [isOpen, setIsOpen] = useState(false);
   const [hideOrShow, setHideOrShow] = useState({});
   const [hideOrShowList, setHideOrShowList] = useState({});
@@ -57,7 +60,8 @@ const Header = () => {
     setModal(
       <LogOutModal
         setHideOrShow={setHideOrShow}
-        setHideOrShowList={setHideOrShowSecondList}
+        setHideOrShowList={setHideOrShowList}
+        setHideOrShowSecondList={setHideOrShowSecondList}
         closeModal={closeModal}
       />
     );
@@ -69,11 +73,15 @@ const Header = () => {
 
     if (isOpen) {
       setHideOrShow(() => {
+        document.body.style.overflow = 'visible';
         return {};
       });
     } else {
       setHideOrShow(() => {
-        return { display: 'flex' };
+        document.body.style.overflow = 'hidden';
+        return {
+          display: 'flex',
+        };
       });
     }
   };
@@ -89,7 +97,38 @@ const Header = () => {
     }));
     setIsRotated(!isRotated);
   };
+  const handleKeyDown = event => {
+    if (event.key === 'Escape') {
+      setHideOrShowList({ display: 'none' });
+      setHideOrShowSecondList({ display: 'none' });
+      setHideOrShow({ display: 'none' });
+      setIsRotated(false);
+      document.body.style.overflow = 'visible';
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
 
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  const handleBackDrop = ({ currentTarget, target }) => {
+    if (currentTarget === target) {
+      setHideOrShowList({ display: 'none' });
+      setHideOrShowSecondList({ display: 'none' });
+      setHideOrShow({ display: 'none' });
+      setIsRotated(false);
+      document.body.style.overflow = 'visible';
+    }
+  };
+  const handleBackDropForLinks = ({ currentTarget, target }) => {
+    if (currentTarget === target) {
+      setHideOrShowList({ display: 'none' });
+      setHideOrShowSecondList({ display: 'none' });
+    }
+  };
   if (!isLoggedIn) {
     return (
       <EmptyHeaderStyled>
@@ -111,7 +150,8 @@ const Header = () => {
     );
   }
   return (
-    <HeaderStyled>
+    <HeaderStyled onClick={handleBackDrop}>
+      <UsualBackDrop onClick={handleBackDrop} />
       <HeaderLink
         to="/transactions/expenses"
         initial={{ y: -250 }}
@@ -147,31 +187,44 @@ const Header = () => {
           All Income
         </IncomeLink>
       </LinksContainer>
-      <ProfileContainer
-        initial={{ y: -250 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.7, type: 'spring', stiffness: 220 }}
-      >
-        <ProfileBtn type="button" onClick={hanldeSecondBtnList}>
-          {avatar ? (
-            <UserImgContainer>
-              <img src={avatar} alt="User" width={34} height={34} />
-            </UserImgContainer>
-          ) : (
-            <DefaultUserIcon width={26} height={25}>
-              <use xlinkHref="#icon-default-svg" />
-            </DefaultUserIcon>
-          )}
-          <UserName>{name}</UserName>
-          <UserArrowUp
-            width={20}
-            height={20}
-            style={{ transform: isRotated ? 'rotate(180deg)' : 'rotate(0)' }}
-          >
-            <use xlinkHref="#user-icon-down" />
-          </UserArrowUp>
-        </ProfileBtn>
-      </ProfileContainer>
+      <HeaderBtnsContainer>
+        <MenuBtn
+          type="button"
+          onClick={handleMenu}
+          initial={{ y: -250 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 1, type: 'spring', stiffness: 250 }}
+        >
+          <svg width={36} height={36}>
+            <use xlinkHref="#icon-burger-menu" />
+          </svg>
+        </MenuBtn>
+        <ProfileContainer
+          initial={{ y: -250 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.7, type: 'spring', stiffness: 220 }}
+        >
+          <ProfileBtn type="button" onClick={hanldeSecondBtnList}>
+            {avatarUrl ? (
+              <UserImgContainer>
+                <img src={avatarUrl} alt="User" width={34} height={34} />
+              </UserImgContainer>
+            ) : (
+              <DefaultUserIcon width={26} height={25}>
+                <use xlinkHref="#icon-default-svg" />
+              </DefaultUserIcon>
+            )}
+            <UserName>{name}</UserName>
+            <UserArrowUp
+              width={20}
+              height={20}
+              style={{ transform: isRotated ? 'rotate(180deg)' : 'rotate(0)' }}
+            >
+              <use xlinkHref="#user-icon-down" />
+            </UserArrowUp>
+          </ProfileBtn>
+        </ProfileContainer>
+      </HeaderBtnsContainer>
       <SecondBtnContainer style={hideOrShowSecondList}>
         <UserLink onClick={openUserSetsModal}>
           <UserLinkIcons width={16} height={16}>
@@ -192,18 +245,9 @@ const Header = () => {
           <Modal children={modal} closeModal={closeModal} />
         )}
       </SecondBtnContainer>
-      <MenuBtn
-        type="button"
-        onClick={handleMenu}
-        initial={{ y: -250 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 1, type: 'spring', stiffness: 250 }}
-      >
-        <svg width={36} height={36}>
-          <use xlinkHref="#icon-burger-menu" />
-        </svg>
-      </MenuBtn>
-      <MobileMenu style={hideOrShow}>
+
+      <DarkBackDrop style={hideOrShow} onClick={handleBackDrop} />
+      <MobileMenu style={hideOrShow} onClick={handleBackDropForLinks}>
         <MenuHeader>
           <ProfileBtn
             type="button"
@@ -212,9 +256,9 @@ const Header = () => {
             animate={{ y: 0 }}
             transition={{ duration: 0.6, type: 'spring', stiffness: 270 }}
           >
-            {avatar ? (
+            {avatarUrl ? (
               <UserImgContainer>
-                <img src={avatar} alt="User" width={34} height={34} />
+                <img src={avatarUrl} alt="User" width={34} height={34} />
               </UserImgContainer>
             ) : (
               <DefaultUserIcon width={26} height={25}>
