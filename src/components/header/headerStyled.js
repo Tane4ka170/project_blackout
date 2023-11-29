@@ -132,6 +132,7 @@ export const DarkBackDrop = styled.div`
 export const HeaderBtnsContainer = styled.div``;
 
 export const UsualBackDrop = styled.div`
+  display: none;
   position: fixed;
   top: 100px;
   left: 0;

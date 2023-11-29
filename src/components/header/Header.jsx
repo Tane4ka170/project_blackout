@@ -151,7 +151,7 @@ const Header = () => {
   }
   return (
     <HeaderStyled onClick={handleBackDrop}>
-      <UsualBackDrop onClick={handleBackDrop} />
+      <UsualBackDrop onClick={handleBackDrop} style={hideOrShowSecondList} />
       <HeaderLink
         to="/transactions/expenses"
         initial={{ y: -250 }}
