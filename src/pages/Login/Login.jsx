@@ -16,9 +16,15 @@ import {
 import { ImgAuth } from 'components/RegisterForm/RegisterForm.styled';
 
 import homeimg from '../../images/home/Rectangle 1x.png';
+import { Navigate } from 'react-router-dom';
 
 export default function Login() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  if (isLoggedIn) {
+    return <Navigate to="/transactions/expenses" />;
+  }
+
   return (
     <HelmetProvider>
       <div>
