@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, Navigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { loginThunk } from 'redux/auth/operations';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
 
 import {
   ButtonSign,
@@ -33,7 +32,6 @@ export const LoginForm = () => {
     setValue,
     formState: { errors: formErrors },
   } = useForm();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const onSubmit = data => {
     dispatch(loginThunk(data))
@@ -56,10 +54,6 @@ export const LoginForm = () => {
     setPassword(newPassword);
     setValue('password', newPassword);
   };
-
-  if (isLoggedIn) {
-    return <Navigate to="/transactions/expenses" />;
-  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

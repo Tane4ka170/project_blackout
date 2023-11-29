@@ -41,6 +41,8 @@ import {
 } from './headerStyled';
 import Symbols from 'images/svg/Symbols';
 
+import { motion } from 'framer-motion';
+
 const Header = () => {
   const location = useLocation();
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -87,18 +89,21 @@ const Header = () => {
       });
     }
   };
+
   const hanldeBtnList = () => {
     setHideOrShowList(prev => ({
       display: prev.display === 'flex' ? 'none' : 'flex',
     }));
     setIsRotated(!isRotated);
   };
+
   const hanldeSecondBtnList = () => {
     setHideOrShowSecondList(prev => ({
       display: prev.display === 'flex' ? 'none' : 'flex',
     }));
     setIsRotated(!isRotated);
   };
+
   const handleKeyDown = event => {
     if (event.key === 'Escape') {
       setHideOrShowList({ display: 'none' });
@@ -134,12 +139,33 @@ const Header = () => {
   if (!isLoggedIn) {
     return (
       <EmptyHeaderStyled>
-        <HeaderLink
-          to="/"
-          initial={{ y: -250 }}
+        <motion.div
+          initial={{ y: '-100%' }}
           animate={{ y: 0 }}
-          transition={{ duration: 0.7, type: 'spring', stiffness: 220 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 20 }}
         >
+          <HeaderLink to="/">
+            <SiteIcon>
+              <Symbols />
+              <svg width={27} height={16}>
+                <use xlinkHref="#site-icon" />
+              </svg>
+            </SiteIcon>
+            ExpenseTracker
+          </HeaderLink>
+        </motion.div>
+      </EmptyHeaderStyled>
+    );
+  }
+  return (
+    <HeaderStyled onClick={handleBackDrop}>
+      <UsualBackDrop onClick={handleBackDrop} style={hideOrShowSecondList} />
+      <motion.div
+        initial={{ y: '-100%' }}
+        animate={{ y: 0 }}
+        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+      >
+        <HeaderLink to="/transactions/expenses">
           <SiteIcon>
             <Symbols />
             <svg width={27} height={16}>
@@ -148,85 +174,61 @@ const Header = () => {
           </SiteIcon>
           ExpenseTracker
         </HeaderLink>
-      </EmptyHeaderStyled>
-    );
-  }
-  return (
-    <HeaderStyled onClick={handleBackDrop}>
-      <UsualBackDrop onClick={handleBackDrop} style={hideOrShowSecondList} />
-      <HeaderLink
-        to="/transactions/expenses"
-        initial={{ y: -250 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.7, type: 'spring', stiffness: 220 }}
-      >
-        <SiteIcon>
-          <Symbols />
-          <svg width={27} height={16}>
-            <use xlinkHref="#site-icon" />
-          </svg>
-        </SiteIcon>
-        ExpenseTracker
-      </HeaderLink>
+      </motion.div>
 
-      <LinksContainer>
-        <ExpensesLink
-          to="/expenses"
-          state={{ from: location }}
-          initial={{ y: -250 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.8, type: 'spring', stiffness: 230 }}
-        >
-          All Expense
-        </ExpensesLink>
-        <IncomeLink
-          to="/incomes"
-          state={{ from: location }}
-          initial={{ y: -250 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.6, type: 'spring', stiffness: 250 }}
-        >
-          All Income
-        </IncomeLink>
-      </LinksContainer>
-      <HeaderBtnsContainer>
-        <MenuBtn
-          type="button"
-          onClick={handleMenu}
-          initial={{ y: -250 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 1, type: 'spring', stiffness: 250 }}
-        >
-          <svg width={36} height={36}>
-            <use xlinkHref="#icon-burger-menu" />
-          </svg>
-        </MenuBtn>
-        <ProfileContainer
-          initial={{ y: -250 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.7, type: 'spring', stiffness: 220 }}
-        >
-          <ProfileBtn type="button" onClick={hanldeSecondBtnList}>
-            {avatarUrl ? (
-              <UserImgContainer>
-                <img src={avatarUrl} alt="User" width={34} height={34} />
-              </UserImgContainer>
-            ) : (
-              <DefaultUserIcon width={26} height={25}>
-                <use xlinkHref="#icon-default-svg" />
-              </DefaultUserIcon>
-            )}
-            <UserName>{name}</UserName>
-            <UserArrowUp
-              width={20}
-              height={20}
-              style={{ transform: isRotated ? 'rotate(180deg)' : 'rotate(0)' }}
-            >
-              <use xlinkHref="#user-icon-down" />
-            </UserArrowUp>
-          </ProfileBtn>
-        </ProfileContainer>
-      </HeaderBtnsContainer>
+      <motion.div
+        initial={{ y: '-100%' }}
+        animate={{ y: 0 }}
+        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+      >
+        <LinksContainer>
+          <ExpensesLink to="/expenses" state={{ from: location }}>
+            All Expense
+          </ExpensesLink>
+          <IncomeLink to="/incomes" state={{ from: location }}>
+            All Income
+          </IncomeLink>
+        </LinksContainer>
+      </motion.div>
+
+      <motion.div
+        initial={{ y: '-100%' }}
+        animate={{ y: 0 }}
+        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+      >
+        <HeaderBtnsContainer>
+          <MenuBtn type="button" onClick={handleMenu}>
+            <svg width={36} height={36}>
+              <use xlinkHref="#icon-burger-menu" />
+            </svg>
+          </MenuBtn>
+
+          <ProfileContainer>
+            <ProfileBtn type="button" onClick={hanldeSecondBtnList}>
+              {avatarUrl ? (
+                <UserImgContainer>
+                  <img src={avatarUrl} alt="User" width={34} height={34} />
+                </UserImgContainer>
+              ) : (
+                <DefaultUserIcon width={26} height={25}>
+                  <use xlinkHref="#icon-default-svg" />
+                </DefaultUserIcon>
+              )}
+              <UserName>{name}</UserName>
+              <UserArrowUp
+                width={20}
+                height={20}
+                style={{
+                  transform: isRotated ? 'rotate(180deg)' : 'rotate(0)',
+                }}
+              >
+                <use xlinkHref="#user-icon-down" />
+              </UserArrowUp>
+            </ProfileBtn>
+          </ProfileContainer>
+        </HeaderBtnsContainer>
+      </motion.div>
+
       <SecondBtnContainer style={hideOrShowSecondList}>
         <UserLink onClick={openUserSetsModal}>
           <UserLinkIcons width={16} height={16}>
@@ -271,7 +273,9 @@ const Header = () => {
             <UserArrowUp
               width={20}
               height={20}
-              style={{ transform: isRotated ? 'rotate(180deg)' : 'rotate(0)' }}
+              style={{
+                transform: isRotated ? 'rotate(180deg)' : 'rotate(0)',
+              }}
             >
               <use xlinkHref="#user-icon-down" />
             </UserArrowUp>
@@ -307,6 +311,7 @@ const Header = () => {
             </svg>
           </CloseBtn>
         </MenuHeader>
+
         <MenuMain>
           <ExpensesBtn
             to="/expenses"

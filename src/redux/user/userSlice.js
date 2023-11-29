@@ -35,7 +35,6 @@ const userSlice = createSlice({
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
         state.user.name = payload.name;
         state.user.email = payload.email;
-        state.isRegistered = true;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.user = action.payload.user;
@@ -86,9 +85,8 @@ const userSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(createTransactionThunk.fulfilled, (state, { payload }) => {
-        state.user.transactionsTotal[payload.type] += payload.sum
-      })
-
+        state.user.transactionsTotal[payload.type] += payload.sum;
+      });
   },
 });
 
