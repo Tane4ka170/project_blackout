@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import 'react-datepicker/dist/react-datepicker.css';
+
 import { selectFilter, selectStartDate } from 'redux/filter/filterSelector';
+import { setFilter, setStartDate } from 'redux/filter/filterSlice';
+
 import {
   DIV,
   DivDatePicker,
@@ -10,7 +13,6 @@ import {
   StyledDatePicker,
   SvgI,
 } from './Filter.styled';
-import { setFilter, setStartDate } from 'redux/filter/filterSlice';
 import svg from '../../images/Sprite.svg';
 
 export const Filter = () => {

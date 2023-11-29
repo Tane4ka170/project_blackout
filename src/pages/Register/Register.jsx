@@ -1,9 +1,11 @@
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { selectIsLoggedIn, selectIsRegistered } from 'redux/auth/selectors';
 import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
+import { selectIsLoggedIn, selectIsRegistered } from 'redux/auth/selectors';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
 import { TotalIncome } from 'shared/Total';
+
 import { AdaptDiv, H2 } from 'pages/Home/Home.styled';
 import {
   PlugDivs,
@@ -15,7 +17,6 @@ import {
 import { ImgAuth } from 'components/RegisterForm/RegisterForm.styled';
 
 import homeimg from '../../images/home/Rectangle 1x.png';
-import { Navigate } from 'react-router-dom';
 
 export default function Register() {
   const isLoggedIn = useSelector(selectIsLoggedIn);

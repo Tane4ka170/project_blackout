@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
-import { useAuth } from './hooks';
 import { Suspense, lazy, useEffect } from 'react';
-import { refreshThunk } from '../redux/auth/operations';
 import { Route, Routes } from 'react-router-dom/dist';
-// import { Navigate, Route, Routes, Link } from 'react-router-dom';
+
+import { useAuth } from './hooks';
+import { refreshThunk } from '../redux/auth/operations';
 import Layout from './layout/Layout';
 import Loader from './loader/Loader';
 

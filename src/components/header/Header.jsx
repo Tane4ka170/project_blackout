@@ -1,4 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+
+import Modal from 'components/modal/Modal';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { selectUser } from 'redux/user/selectors';
+import { useModal } from 'components/hooks/useModal';
+import UserSetsModal from 'components/userSetsModal/UserSetsModal';
+import LogOutModal from 'components/logOutModal/LogOutModal';
+
 import {
   HeaderLink,
   HeaderStyled,
@@ -30,14 +40,6 @@ import {
   UsualBackDrop,
 } from './headerStyled';
 import Symbols from 'images/svg/Symbols';
-import Modal from 'components/modal/Modal';
-import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
-import { selectUser } from 'redux/user/selectors';
-import { useLocation } from 'react-router-dom';
-import { useModal } from 'components/hooks/useModal';
-import UserSetsModal from 'components/userSetsModal/UserSetsModal';
-import LogOutModal from 'components/logOutModal/LogOutModal';
 
 const Header = () => {
   const location = useLocation();

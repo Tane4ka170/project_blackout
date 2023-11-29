@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 import { loginThunk } from 'redux/auth/operations';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 
@@ -96,12 +97,13 @@ export const LoginForm = () => {
               // hasError={!!formErrors.password}
               onChange={handlePasswordChange}
               // isGood={password.length >= 6}
-              className={`${password.length === 0
-                ? 'empty'
-                : isPasswordValid()
+              className={`${
+                password.length === 0
+                  ? 'empty'
+                  : isPasswordValid()
                   ? 'valid'
                   : 'invalid'
-                }`}
+              }`}
             />
             <PasswordToggle onClick={togglePasswordVisibility} type="button">
               {showPassword ? <HideIco /> : <ShowsIco />}

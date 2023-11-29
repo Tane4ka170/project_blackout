@@ -1,6 +1,8 @@
 import React from 'react';
-import { logoutThunk } from 'redux/auth/operations';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
+import { logoutThunk } from 'redux/auth/operations';
 
 import {
   StyledLogOutButton,
@@ -8,7 +10,6 @@ import {
   StyledLogOutText,
   StyledLogOutWrapper,
 } from './LogOutModal.Styled';
-import { useNavigate } from 'react-router-dom';
 
 const LogOutModal = ({ closeModal, setHideOrShow, setHideOrShowList }) => {
   const dispatch = useDispatch();

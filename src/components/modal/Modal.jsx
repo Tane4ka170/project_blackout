@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import React, { useCallback, useEffect } from 'react';
-import Symbols from 'images/svg/Symbols';
 
+import Symbols from 'images/svg/Symbols';
 import { CloseButton, ContentWrapper, StyledWrapper } from './Modal.styled';
 
 const rootModal = document.querySelector('#modal');
