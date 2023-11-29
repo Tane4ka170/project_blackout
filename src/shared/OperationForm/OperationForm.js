@@ -33,6 +33,10 @@ import {
 // Framer
 import { motion } from 'framer-motion';
 
+// date fns
+
+
+
 const OperationForm = ({editData, edit}) => {
   const dispatch = useDispatch();
   const { transactionsType } = useParams();
@@ -47,15 +51,16 @@ const OperationForm = ({editData, edit}) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      type: editData?.type ? editData?.type : '',
-      date: editData?.date ? editData?.date : '',
-      time: '00:00:00',
-      category: editData?.category?.categoryName ? editData?.category?.categoryName : '',
-      sum: editData?.sum ? editData?.sum : '',
-      comment: editData?.comment ? editData?.comment : '',
+    type: editData?.type || '',
+    date: '',
+    time: editData?.time || '00:00:00',
+    category: editData?.category?.categoryName || '',
+    sum: editData?.sum || '',
+    comment: editData?.comment || '',
     },
     resolver: yupResolver(validationSchema),
   });
+
 
   const ifEditSubmit = (data) => {
     if (!edit) {
