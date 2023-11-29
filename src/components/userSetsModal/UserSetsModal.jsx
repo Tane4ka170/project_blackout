@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { selectUser } from 'redux/user/selectors';
 import {
   changeAvatarThunk,
   deleteAvatarThunk,
   updateUserInfoThunk,
 } from 'redux/user/operations';
-import Symbols from 'images/svg/Symbols';
 
+import Symbols from 'images/svg/Symbols';
 import {
   GrayButton,
   StyledBtnWrap,

@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+
 import {
   getCategoriesThunk,
   createCategoryThunk,
@@ -17,9 +20,7 @@ import {
   TransactionType,
 } from './AllCategories.styled.js';
 import { CategoryForm } from '../categoryForm/CategoryForm';
-import { useForm } from 'react-hook-form';
 import { OneCategory } from 'components/categories/oneCategory/OneCategory.jsx';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaCategoryInput } from 'helpers/schemas';
 
 export const AllCategories = ({

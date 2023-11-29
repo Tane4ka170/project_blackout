@@ -1,15 +1,28 @@
-import { registerThunk } from 'redux/auth/operations';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { ButtonSign, Err, Line, PasswordMessage, PasswordToggle, Spn, StyledInput, StyledPasswordInput, WrapBt, WrapInPass, WrapInp, WrapPassword } from './RegisterForm.styled';
-import { ReactComponent as ShowsIco } from '../../images/home/eye.svg'
-import { ReactComponent as HideIco } from '../../images/home/eye-off.svg'
+import { registerThunk } from 'redux/auth/operations';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 
+import {
+  ButtonSign,
+  Err,
+  Line,
+  PasswordMessage,
+  PasswordToggle,
+  Spn,
+  StyledInput,
+  StyledPasswordInput,
+  WrapBt,
+  WrapInPass,
+  WrapInp,
+  WrapPassword,
+} from './RegisterForm.styled';
+import { ReactComponent as ShowsIco } from '../../images/home/eye.svg';
+import { ReactComponent as HideIco } from '../../images/home/eye-off.svg';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -35,10 +48,9 @@ export const RegisterForm = () => {
   };
   const [password, setPassword] = useState('');
   const isPasswordValid = () => {
-
     return password.length >= 6 && !formErrors.password;
   };
-  const handlePasswordChange = (e) => {
+  const handlePasswordChange = e => {
     const newPassword = e.target.value;
     setPassword(newPassword);
     setValue('password', newPassword);
@@ -47,7 +59,6 @@ export const RegisterForm = () => {
   if (isLoggedIn) {
     return <Navigate to="/" />;
   }
-
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -83,16 +94,16 @@ export const RegisterForm = () => {
           />
           {formErrors.email && <Err>{formErrors.email.message}</Err>}
         </div>
-        <WrapPassword >
+        <WrapPassword>
           <WrapInPass>
             <StyledPasswordInput
               {...register('password', {
                 required: 'Enter a valid Password',
                 minLength: {
                   value: 6,
-                  message: 'Make sure your password is at least 6 characters long',
+                  message:
+                    'Make sure your password is at least 6 characters long',
                 },
-
               })}
               type={showPassword ? 'text' : 'password'}
               placeholder="Password"
@@ -100,18 +111,16 @@ export const RegisterForm = () => {
               // hasError={!!formErrors.password}
 
               onChange={handlePasswordChange}
-              className={`${password.length === 0 ? 'empty' :
-                isPasswordValid() ? 'valid' :
-                  'invalid'
-                }`}
-
+              className={`${
+                password.length === 0
+                  ? 'empty'
+                  : isPasswordValid()
+                  ? 'valid'
+                  : 'invalid'
+              }`}
             />
             <PasswordToggle onClick={togglePasswordVisibility} type="button">
-              {showPassword ? (
-                <HideIco />
-              ) : (
-                <ShowsIco />
-              )}
+              {showPassword ? <HideIco /> : <ShowsIco />}
             </PasswordToggle>
           </WrapInPass>
           {formErrors.password && password.length === 0 && (
@@ -123,14 +132,17 @@ export const RegisterForm = () => {
               {password.length >= 6 ? 'Good password' : 'Short password'}
             </PasswordMessage>
           )}
-
         </WrapPassword>
         <WrapBt>
           <ButtonSign>Sign up</ButtonSign>
         </WrapBt>
 
-        <Line ><p>Have an account already? </p>
-          <Link to={'/login'}> <Spn>Log in now</Spn></Link>
+        <Line>
+          <p>Have an account already? </p>
+          <Link to={'/login'}>
+            {' '}
+            <Spn>Log in now</Spn>
+          </Link>
         </Line>
       </WrapInp>
     </form>

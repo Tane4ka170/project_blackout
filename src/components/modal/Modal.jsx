@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom';
 import React, { useCallback, useEffect } from 'react';
-import Symbols from 'images/svg/Symbols';
 
 import {
   CloseButton,
@@ -8,6 +7,7 @@ import {
   StyledSvgUser,
   StyledWrapper,
 } from './Modal.styled';
+import Symbols from 'images/svg/Symbols';
 
 const rootModal = document.querySelector('#modal');
 
