@@ -64,16 +64,16 @@ windows ◼ Modal window for Profile settings
 
 ✔️ Vugar Gasimov - Header ◼ Mobile menu
 
-✔️ Oleksandr Hembaruk - Transactions Chart
+✔️ Oleksandr Hembaruk - Transactions chart
 
-✔️ Kyrylo Shyrokov - CategoriesModal ◼ Redux slice for categories ◼ Code review
+✔️ Kyrylo Shyrokov - Categories modal ◼ Redux slice for categories ◼ Code review
 
 ✔️ Olena Solonikova - Loader ◼ Layout ◼ Logout modal ◼ Public and private routes
 
-✔️ Anton Popkov - Transactions History Page ◼ Functions for transactions and
+✔️ Anton Popkov - Transactions history page ◼ Functions for transactions and
 user operations
 
-✔️ Serghii Kolodiazhnyi - Main Transactions Page ◼ Transactions Total Amount ◼
-Transaction Form ◼ Code review
+✔️ Serghii Kolodiazhnyi - Main transactions page ◼ Transactions total amount ◼
+Transaction form ◼ Code review
 
-✔️ Kyrylo Ivanov - Welcome Page ◼ Register Page ◼ Auth Form
+✔️ Kyrylo Ivanov - Welcome page ◼ Register Ppage ◼ Auth form
