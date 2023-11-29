@@ -1,8 +1,13 @@
 import ReactDOM from 'react-dom';
 import React, { useCallback, useEffect } from 'react';
 
+import {
+  CloseButton,
+  ContentWrapper,
+  StyledSvgUser,
+  StyledWrapper,
+} from './Modal.styled';
 import Symbols from 'images/svg/Symbols';
-import { CloseButton, ContentWrapper, StyledWrapper } from './Modal.styled';
 
 const rootModal = document.querySelector('#modal');
 
@@ -37,9 +42,9 @@ const Modal = ({ children, closeModal }) => {
       <ContentWrapper>
         <CloseButton onClick={closeModal}>
           <Symbols />
-          <svg width={24} height={24}>
+          <StyledSvgUser width={24} height={24}>
             <use xlinkHref="#icon-close" />
-          </svg>
+          </StyledSvgUser>
         </CloseButton>
         {children}
       </ContentWrapper>
