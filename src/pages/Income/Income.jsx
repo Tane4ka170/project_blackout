@@ -6,7 +6,7 @@ import {
 } from 'redux/transactions/operations';
 import { selectTransaction } from 'redux/transactions/selectors';
 import { SectionTransaction } from 'components/sectionTransactionList/sectionTransaction';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
@@ -36,9 +36,18 @@ import { motion } from 'framer-motion';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { Navigate } from 'react-router-dom';
 
+// edit modal
+import Modal from 'components/modal/Modal';
+import { useModal } from 'components/hooks/useModal';
+import OperationForm from 'shared/OperationForm/OperationForm';
+
+
 export const Income = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
+
+  const { isOpened, openModal, closeModal } = useModal();
+  const [ editData, setEditData ] = useState('')
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const transactions = useSelector(selectTransaction);
@@ -123,7 +132,7 @@ export const Income = () => {
                     <P3>{transaction.date}</P3>
                     <P4>{transaction.time}</P4>
                     <P5>{transaction.sum} / UAH</P5>
-                    <EditBtn>
+                    <EditBtn onClick={() => {setEditData(transaction); openModal()}}>
                       <svg width={16} height={16}>
                         <use href={svg + '#icon-edit-2'}></use>
                       </svg>
@@ -151,6 +160,12 @@ export const Income = () => {
           </DIV375>
         </DIVTR>
       </motion.div>
+      {isOpened ? (
+            <Modal
+              children={<OperationForm edit={ true } editData={editData} />}
+              closeModal={closeModal}
+            />
+          ) : null}
     </MainWr>
   );
 };

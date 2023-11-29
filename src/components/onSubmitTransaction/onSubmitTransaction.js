@@ -1,5 +1,5 @@
-import { createTransactionThunk } from "redux/transactions/operations";
-const onSubmitTransaction = (data, transactionsType, categoryId, dispatch, reset) => {
+import { createTransactionThunk, updateTransactionThunk } from "redux/transactions/operations";
+const onSubmitTransaction = (data, transactionsType, categoryId, dispatch, reset, edit) => {
   let transaction = data;
   // set transaction type
   transaction.type = transactionsType;
@@ -36,8 +36,13 @@ const onSubmitTransaction = (data, transactionsType, categoryId, dispatch, reset
     transaction.time = formattedTime;
   }
   // dispatch and reset form
-  dispatch(createTransactionThunk(transaction, reset))
-  reset();
+  if (!edit) {
+    dispatch(createTransactionThunk(transaction))
+    reset();
+  } else {
+    dispatch(updateTransactionThunk(transaction))
+    reset();
+  };
 };
-  
+
 export default onSubmitTransaction

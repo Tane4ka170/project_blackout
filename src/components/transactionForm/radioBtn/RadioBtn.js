@@ -10,15 +10,26 @@ import PreSelectType from "components/preSelectType/PreSelectType";
 //styled
 import { StyledInputWrapper, StyledLabel, StyledWrapper, StyledInput } from "./RadioBtn.styled";
 
-const RadioBtn = ({ control }) => {
+const RadioBtn = ({ control, edit }) => {
   const [type, setType] = useState();
   const { transactionsType } = useParams();
   const navigate = useNavigate();
 
+
+const currentPath = window.location.pathname;
+  const lastSegment = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+
+  
   useEffect(() => {
-    setType(PreSelectType(transactionsType));
-    navigate(`/transactions/${PreSelectType(transactionsType)}`)
-  }, [navigate, transactionsType]);
+    if (!edit) {
+      setType(PreSelectType(transactionsType));
+      navigate(`/transactions/${PreSelectType(transactionsType)}`)
+    } else {
+      setType(PreSelectType(lastSegment));
+      // console.log();
+      // navigate(`/${PreSelectType(searchParams)}`)
+    }
+  }, [edit, lastSegment, navigate, transactionsType]);
 
   const handleTypeChange = (value) => {
     navigate(`/transactions/${value}`)
@@ -37,6 +48,7 @@ const RadioBtn = ({ control }) => {
               type="radio"
               value='incomes'
               onChange={() => {
+                if(edit) return 
                 handleTypeChange('incomes')
               }}
               checked={type === 'incomes'}
@@ -56,6 +68,7 @@ const RadioBtn = ({ control }) => {
               type="radio"
               value='expenses'
               onChange={() => {
+                if(edit) return 
                 handleTypeChange('expenses')
               }}
               checked={type === 'expenses'}

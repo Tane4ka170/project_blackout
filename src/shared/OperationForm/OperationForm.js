@@ -33,7 +33,7 @@ import {
 // Framer
 import { motion } from 'framer-motion';
 
-const OperationForm = () => {
+const OperationForm = ({editData, edit}) => {
   const dispatch = useDispatch();
   const { transactionsType } = useParams();
 
@@ -47,43 +47,70 @@ const OperationForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      type: '',
-      date: '',
+      type: editData?.type ? editData?.type : '',
+      date: editData?.date ? editData?.date : '',
       time: '00:00:00',
-      category: '',
-      sum: '',
-      comment: '',
+      category: editData?.category?.categoryName ? editData?.category?.categoryName : '',
+      sum: editData?.sum ? editData?.sum : '',
+      comment: editData?.comment ? editData?.comment : '',
     },
     resolver: yupResolver(validationSchema),
   });
+
+  const ifEditSubmit = (data) => {
+    if (!edit) {
+      onSubmitTransaction(
+        data,
+        PreSelectType(transactionsType),
+        categoryId,
+        dispatch,
+        reset,
+      )
+    } else {
+      onSubmitTransaction(
+        data,
+        PreSelectType(transactionsType),
+        categoryId,
+        dispatch,
+        reset,
+        edit
+      )
+    }
+  }
+
+    // style
+  const wrapperStyle = {
+    padding: edit ? '40px' : '',
+    width: edit ? '100%' : '',
+    marginBottom: edit? '0' : '',
+  };
+
+
+
   return (
     <motion.div
       initial={{ x: '100%' }}
       animate={{ x: 0 }}
       transition={{ type: 'spring', stiffness: 200, damping: 20 }}
     >
-      <StyledFormWrapper
+      <StyledFormWrapper style={wrapperStyle}
         autoComplete="off"
-        onSubmit={handleSubmit(data =>
-          onSubmitTransaction(
-            data,
-            PreSelectType(transactionsType),
-            categoryId,
-            dispatch,
-            reset,
-          )
+        onSubmit={
+          handleSubmit(data => 
+          ifEditSubmit(data)
         )}
       >
         {/* type select */}
-        <RadioBtn control={control} />
+        <RadioBtn control={control} edit={edit} editData={ editData } />
         {/* date inputs */}
-        <DateInput control={control} />
+        <DateInput control={control} editData={ editData } />
         {/* category input */}
         <StyledInputsWrapper>
           <CategoryInput
             control={control}
             setValue={setValue}
             setCategoryId={setCategoryId}
+            editData= { editData }
           />
           {errors.category && (
             <StyledErrorMsg>{errors.category.message}</StyledErrorMsg>
@@ -91,12 +118,12 @@ const OperationForm = () => {
         </StyledInputsWrapper>
         {/* sum input */}
         <StyledInputsWrapper>
-          <SumInput control={control} />
+          <SumInput control={control} editData= { editData }/>
           {errors.sum && <StyledErrorMsg>{'Sum is required'}</StyledErrorMsg>}
         </StyledInputsWrapper>
         {/* comment input */}
         <StyledInputsWrapper>
-          <DescriptionInput control={control} />
+          <DescriptionInput control={control} editData= { editData }/>
           {errors.comment && (
             <StyledErrorMsg>{errors.comment.message}</StyledErrorMsg>
           )}
