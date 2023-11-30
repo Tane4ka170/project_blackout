@@ -24,7 +24,7 @@
 <a align="center" href="https://github.com/Kreal11">![GitHub](https://img.shields.io/badge/-Kyrylo-05122A?style=flat&logo=github)</a>
 <a align="center" href="https://github.com/AnnaMartsinovska">![GitHub](https://img.shields.io/badge/-Anna-05122A?style=flat&logo=github)</a>
 <a align="center" href="https://github.com/Apopkov1996">![GitHub](https://img.shields.io/badge/-Anton-05122A?style=flat&logo=github)</a>
-<a align="center" href="https://github.com/AsphaltHedgehog">![GitHub](https://img.shields.io/badge/-Sergii-05122A?style=flat&logo=github)</a>
+<a align="center" href="https://github.com/AsphaltHedgehog">![GitHub](https://img.shields.io/badge/-Serhii-05122A?style=flat&logo=github)</a>
 <a align="center" href="https://github.com/Tane4ka170">![GitHub](https://img.shields.io/badge/-Tanya-05122A?style=flat&logo=github)</a>
 <a align="center" href="https://github.com/lirikape">![GitHub](https://img.shields.io/badge/-Kyrylo-05122A?style=flat&logo=github)</a>
 <a align="center" href="https://github.com/overmind777">![GitHub](https://img.shields.io/badge/-Oleksandr-05122A?style=flat&logo=github)</a>
@@ -73,7 +73,7 @@ windows ◼ Modal window for Profile settings
 ✔️ Anton Popkov - Transactions history page ◼ Functions for transactions and
 user operations
 
-✔️ Serghii Kolodiazhnyi - Main transactions page ◼ Transactions total amount ◼
+✔️ Serhii Kolodiazhnyi - Main transactions page ◼ Transactions total amount ◼
 Transaction form ◼ Code review
 
 ✔️ Kyrylo Ivanov - Welcome page ◼ Register page ◼ Auth form
