@@ -33,15 +33,13 @@ import {
 // Framer
 import { motion } from 'framer-motion';
 
-// date fns
 
-
-
-const OperationForm = ({editData, edit}) => {
+const OperationForm = ({editData, closeModal}) => {
   const dispatch = useDispatch();
   const { transactionsType } = useParams();
 
   const [categoryId, setCategoryId] = useState('');
+  const [ datePicker, setDatePicker] = useState('');
 
   const {
     control,
@@ -52,7 +50,6 @@ const OperationForm = ({editData, edit}) => {
   } = useForm({
     defaultValues: {
     type: editData?.type || '',
-    date: '',
     time: editData?.time || '00:00:00',
     category: editData?.category?.categoryName || '',
     sum: editData?.sum || '',
@@ -61,33 +58,35 @@ const OperationForm = ({editData, edit}) => {
     resolver: yupResolver(validationSchema),
   });
 
-
   const ifEditSubmit = (data) => {
-    if (!edit) {
+    if (!editData) {
       onSubmitTransaction(
         data,
         PreSelectType(transactionsType),
         categoryId,
         dispatch,
         reset,
+        datePicker
       )
     } else {
       onSubmitTransaction(
         data,
-        PreSelectType(transactionsType),
+        editData.type,
         categoryId,
         dispatch,
         reset,
-        edit
+        editData,
+        datePicker
       )
+      closeModal();
     }
   }
 
     // style
   const wrapperStyle = {
-    padding: edit ? '40px' : '',
-    width: edit ? '100%' : '',
-    marginBottom: edit? '0' : '',
+    padding: editData ? '40px' : '',
+    width: editData ? '100%' : '',
+    marginBottom: editData? '0' : '',
   };
 
 
@@ -106,16 +105,16 @@ const OperationForm = ({editData, edit}) => {
         )}
       >
         {/* type select */}
-        <RadioBtn control={control} edit={edit} editData={ editData } />
+        <RadioBtn control={control} editData={ editData } />
         {/* date inputs */}
-        <DateInput control={control} editData={ editData } />
+        <DateInput control={control} editData={ editData } datePiker={setDatePicker} />
         {/* category input */}
         <StyledInputsWrapper>
           <CategoryInput
             control={control}
             setValue={setValue}
             setCategoryId={setCategoryId}
-            editData= { editData }
+            type = { editData.type }
           />
           {errors.category && (
             <StyledErrorMsg>{errors.category.message}</StyledErrorMsg>
@@ -134,7 +133,7 @@ const OperationForm = ({editData, edit}) => {
           )}
           {/* submit btn */}
         </StyledInputsWrapper>
-        <StyledBtn type="submit">Add</StyledBtn>
+        <StyledBtn type="submit">{editData ? 'Edit' : 'Add'}</StyledBtn>
       </StyledFormWrapper>
     </motion.div>
   );

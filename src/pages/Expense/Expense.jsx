@@ -166,7 +166,7 @@ const Expense = () => {
       </motion.div>
       {isOpened ? (
             <Modal
-              children={<OperationForm edit={ true } editData={editData} />}
+              children={<OperationForm editData={editData} closeModal={closeModal}/>}
               closeModal={closeModal}
             />
           ) : null}

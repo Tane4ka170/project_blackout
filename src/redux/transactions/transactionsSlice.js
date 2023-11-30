@@ -66,9 +66,11 @@ const transactionsSlice = createSlice({
         state.loading = true;
       })
       .addCase(updateTransactionThunk.fulfilled, (state, action) => {
-        state.loading = false;
-        const item = state.transactions.findIndex(action.payload.id);
-        state.transactions.splice(item, 1, action.payload);
+        const itemIndex = state.transactions.findIndex(item => item._id === action.payload._id);
+        if (itemIndex !== -1) {
+          state.loading = false;
+          state.transactions?.splice(itemIndex, 1, action.payload);
+        }
       })
       .addCase(updateTransactionThunk.rejected, (state, action) => {
         state.loading = false;

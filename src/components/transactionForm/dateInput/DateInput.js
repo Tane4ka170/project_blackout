@@ -1,5 +1,5 @@
 // base
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Controller } from "react-hook-form";
 
 // styled
@@ -7,17 +7,31 @@ import { StyledWrapper, StyledInputWrapper, StyledLabel, StyledDatePicker, Style
 
 import svg from '../../../images/Sprite.svg'
 
-const convertDateFormat = (originalDate) => {
-  console.log(originalDate);
-  const [year, month, day] = originalDate.split("-");
-  console.log(year, month, day);
+const TransactionDateInput = ({ editData, control, datePiker}) => {
+  const [defaultDate, setDefaultDate] = useState('05/05/2005');
+
+
+  function convertDateFormat(inputDate) {
+    console.log(inputDate);
+  const date = new Date(inputDate);
+  
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  
+
   const formattedDate = `${day}/${month}/${year}`;
-  return formattedDate;
-};
+    return formattedDate;
+  }
+  
+  useEffect(() => {
+    if (editData?.date) {
+      setDefaultDate(convertDateFormat(editData?.date))
+    }
+    }, [editData])
+    
 
-
-const TransactionDateInput = ({ editData, control }) => {
-  console.log(editData.date);
+  // editDate();
 
   return (
     <StyledWrapper>
@@ -34,10 +48,13 @@ const TransactionDateInput = ({ editData, control }) => {
               <StyledDatePicker
                 id="date"
                 selected={field.value}
-                onChange={(date) => field.onChange(date)}
+                onChange={(date) => {
+                  setDefaultDate(convertDateFormat(date))
+                  datePiker(convertDateFormat(date))
+                }}
                 dateFormat="dd/MM/yyyy"
                 placeholderText="dd/mm/yyyy"
-                value={editData && editData.date ? convertDateFormat(editData.date) : ""}
+                value={defaultDate}
               />
             </StyledInputWrapper>
           )}

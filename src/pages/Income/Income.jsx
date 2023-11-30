@@ -162,7 +162,7 @@ export const Income = () => {
       </motion.div>
       {isOpened ? (
             <Modal
-              children={<OperationForm edit={ true } editData={editData} />}
+              children={<OperationForm edit={ true } editData={editData} closeModal={closeModal}/>}
               closeModal={closeModal}
             />
           ) : null}
