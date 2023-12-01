@@ -41,7 +41,7 @@ import {
 } from './headerStyled';
 import Symbols from 'images/svg/Symbols';
 
-import { motion } from 'framer-motion';
+import { FramerMotion } from 'helpers/framer-motion';
 
 const Header = () => {
   const location = useLocation();
@@ -139,11 +139,7 @@ const Header = () => {
   if (!isLoggedIn) {
     return (
       <EmptyHeaderStyled>
-        <motion.div
-          initial={{ y: '-100%' }}
-          animate={{ y: 0 }}
-          transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-        >
+        <FramerMotion $variant="header">
           <HeaderLink to="/">
             <SiteIcon>
               <Symbols />
@@ -153,18 +149,14 @@ const Header = () => {
             </SiteIcon>
             ExpenseTracker
           </HeaderLink>
-        </motion.div>
+        </FramerMotion>
       </EmptyHeaderStyled>
     );
   }
   return (
     <HeaderStyled onClick={handleBackDrop}>
       <UsualBackDrop onClick={handleBackDrop} style={hideOrShowSecondList} />
-      <motion.div
-        initial={{ y: '-100%' }}
-        animate={{ y: 0 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-      >
+      <FramerMotion $variant="header">
         <HeaderLink to="/transactions/expenses">
           <SiteIcon>
             <Symbols />
@@ -174,13 +166,9 @@ const Header = () => {
           </SiteIcon>
           ExpenseTracker
         </HeaderLink>
-      </motion.div>
+      </FramerMotion>
 
-      <motion.div
-        initial={{ y: '-100%' }}
-        animate={{ y: 0 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-      >
+      <FramerMotion $variant="header">
         <LinksContainer>
           <ExpensesLink to="/expenses" state={{ from: location }}>
             All Expense
@@ -189,13 +177,9 @@ const Header = () => {
             All Income
           </IncomeLink>
         </LinksContainer>
-      </motion.div>
+      </FramerMotion>
 
-      <motion.div
-        initial={{ y: '-100%' }}
-        animate={{ y: 0 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-      >
+      <FramerMotion $variant="header">
         <HeaderBtnsContainer>
           <MenuBtn type="button" onClick={handleMenu}>
             <svg width={36} height={36}>
@@ -227,7 +211,7 @@ const Header = () => {
             </ProfileBtn>
           </ProfileContainer>
         </HeaderBtnsContainer>
-      </motion.div>
+      </FramerMotion>
 
       <SecondBtnContainer style={hideOrShowSecondList}>
         <UserLink onClick={openUserSetsModal}>
