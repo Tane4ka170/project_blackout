@@ -8,6 +8,7 @@ import {
   StyledWrapper,
 } from './Modal.styled';
 import Symbols from 'images/svg/Symbols';
+import { FramerMotion } from 'helpers/framer-motion';
 
 const rootModal = document.querySelector('#modal');
 
@@ -39,15 +40,17 @@ const Modal = ({ children, closeModal }) => {
 
   return ReactDOM.createPortal(
     <StyledWrapper onClick={handleBackDrop}>
-      <ContentWrapper>
-        <CloseButton onClick={closeModal}>
-          <Symbols />
-          <StyledSvgUser width={24} height={24}>
-            <use xlinkHref="#icon-close" />
-          </StyledSvgUser>
-        </CloseButton>
-        {children}
-      </ContentWrapper>
+      <FramerMotion $variant="modal">
+        <ContentWrapper>
+          <CloseButton onClick={closeModal}>
+            <Symbols />
+            <StyledSvgUser width={24} height={24}>
+              <use xlinkHref="#icon-close" />
+            </StyledSvgUser>
+          </CloseButton>
+          {children}
+        </ContentWrapper>
+      </FramerMotion>
     </StyledWrapper>,
     rootModal
   );

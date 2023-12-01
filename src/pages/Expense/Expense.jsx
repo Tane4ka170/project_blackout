@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { motion } from 'framer-motion';
 import { Navigate } from 'react-router-dom';
 
 import { Filter } from 'components/filter/Filter';
@@ -37,6 +36,7 @@ import {
   MainWr,
 } from 'pages/Income/Income.styled';
 import svg from '../../images/Sprite.svg';
+import { FramerMotion } from 'helpers/framer-motion';
 
 const Expense = () => {
   const dispatch = useDispatch();
@@ -107,11 +107,7 @@ const Expense = () => {
         </ULL>
       </DIVMAIN>
 
-      <motion.div
-        initial={{ y: '100%' }}
-        animate={{ y: 0 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-      >
+      <FramerMotion $variant="allExpensesList">
         <DIVTR>
           <Filter />
           <DIV375>
@@ -154,7 +150,7 @@ const Expense = () => {
             )}
           </DIV375>
         </DIVTR>
-      </motion.div>
+      </FramerMotion>
     </MainWr>
   );
 };

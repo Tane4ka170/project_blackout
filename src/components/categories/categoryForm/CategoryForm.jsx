@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+
 import {
   CancelButton,
   EditButton,
@@ -8,6 +8,7 @@ import {
   StyledInput,
   SubmitForm,
 } from './CategoryForm.styled';
+import { FramerMotion } from 'helpers/framer-motion';
 
 export const CategoryForm = ({
   isEditing,
@@ -18,11 +19,7 @@ export const CategoryForm = ({
   submit,
   register,
 }) => (
-  <motion.div
-    initial={{ y: '100%' }}
-    animate={{ y: 0 }}
-    transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-  >
+  <FramerMotion $variant="categoryForm">
     <SubmitForm action="" onSubmit={handleSubmit(submit)}>
       <InputTitleP $error={errors?.categoryName}>
         {isEditing ? 'Edit category' : 'New category'}
@@ -43,5 +40,5 @@ export const CategoryForm = ({
     {errors?.categoryName && (
       <StyledErrorP>{errors.categoryName.message}</StyledErrorP>
     )}
-  </motion.div>
+  </FramerMotion>
 );
