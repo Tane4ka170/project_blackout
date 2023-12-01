@@ -4,7 +4,6 @@ export const Wrapper = styled.div`
   width: 335px;
   height: 471px;
   padding: 28px 22px 0 21px;
-
   border-radius: 30px;
   background: #171719;
   color: rgba(250, 250, 250, 0.5);
@@ -142,5 +141,16 @@ export const ItemStyled = styled.li`
 
   @media only screen and (min-width: 1440px) {
     width: 191px;
+  }
+`;
+
+export const StatisticsPlug = styled.p`
+  font-size: 16px;
+  margin-top: 140px;
+  text-align: center;
+
+  @media only screen and (min-width: 768px) {
+    font-size: 18px;
+    margin-top: 40px;
   }
 `;

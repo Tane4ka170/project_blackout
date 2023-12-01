@@ -30,9 +30,6 @@ import {
   StyledInputsWrapper,
 } from './OperationForm.styled';
 
-// Framer
-import { motion } from 'framer-motion';
-
 const OperationForm = () => {
   const dispatch = useDispatch();
   const { transactionsType } = useParams();
@@ -57,54 +54,48 @@ const OperationForm = () => {
     resolver: yupResolver(validationSchema),
   });
   return (
-    <motion.div
-      initial={{ x: '100%' }}
-      animate={{ x: 0 }}
-      transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+    <StyledFormWrapper
+      autoComplete="off"
+      onSubmit={handleSubmit(data =>
+        onSubmitTransaction(
+          data,
+          PreSelectType(transactionsType),
+          categoryId,
+          dispatch,
+          reset
+        )
+      )}
     >
-      <StyledFormWrapper
-        autoComplete="off"
-        onSubmit={handleSubmit(data =>
-          onSubmitTransaction(
-            data,
-            PreSelectType(transactionsType),
-            categoryId,
-            dispatch,
-            reset,
-          )
+      {/* type select */}
+      <RadioBtn control={control} />
+      {/* date inputs */}
+      <DateInput control={control} />
+      {/* category input */}
+      <StyledInputsWrapper>
+        <CategoryInput
+          control={control}
+          setValue={setValue}
+          setCategoryId={setCategoryId}
+        />
+        {errors.category && (
+          <StyledErrorMsg>{errors.category.message}</StyledErrorMsg>
         )}
-      >
-        {/* type select */}
-        <RadioBtn control={control} />
-        {/* date inputs */}
-        <DateInput control={control} />
-        {/* category input */}
-        <StyledInputsWrapper>
-          <CategoryInput
-            control={control}
-            setValue={setValue}
-            setCategoryId={setCategoryId}
-          />
-          {errors.category && (
-            <StyledErrorMsg>{errors.category.message}</StyledErrorMsg>
-          )}
-        </StyledInputsWrapper>
-        {/* sum input */}
-        <StyledInputsWrapper>
-          <SumInput control={control} />
-          {errors.sum && <StyledErrorMsg>{'Sum is required'}</StyledErrorMsg>}
-        </StyledInputsWrapper>
-        {/* comment input */}
-        <StyledInputsWrapper>
-          <DescriptionInput control={control} />
-          {errors.comment && (
-            <StyledErrorMsg>{errors.comment.message}</StyledErrorMsg>
-          )}
-          {/* submit btn */}
-        </StyledInputsWrapper>
-        <StyledBtn type="submit">Add</StyledBtn>
-      </StyledFormWrapper>
-    </motion.div>
+      </StyledInputsWrapper>
+      {/* sum input */}
+      <StyledInputsWrapper>
+        <SumInput control={control} />
+        {errors.sum && <StyledErrorMsg>{'Sum is required'}</StyledErrorMsg>}
+      </StyledInputsWrapper>
+      {/* comment input */}
+      <StyledInputsWrapper>
+        <DescriptionInput control={control} />
+        {errors.comment && (
+          <StyledErrorMsg>{errors.comment.message}</StyledErrorMsg>
+        )}
+        {/* submit btn */}
+      </StyledInputsWrapper>
+      <StyledBtn type="submit">Add</StyledBtn>
+    </StyledFormWrapper>
   );
 };
 
