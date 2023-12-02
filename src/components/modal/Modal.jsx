@@ -16,7 +16,6 @@ const rootModal = document.querySelector('#modal');
 const Modal = ({ children, closeModal }) => {
   const handleKeyDown = useCallback(
     e => {
-      console.log(e);
       if (e.key === 'Escape') {
         closeModal();
       }

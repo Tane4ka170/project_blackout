@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Navigate } from 'react-router-dom';
@@ -38,9 +38,18 @@ import {
 import svg from '../../images/Sprite.svg';
 import { FramerMotion } from 'helpers/framer-motion';
 
+// edit modal
+import Modal from 'components/modal/Modal';
+import { useModal } from 'components/hooks/useModal';
+import OperationForm from 'shared/OperationForm/OperationForm';
+
+
 export const Income = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
+
+  const { isOpened, openModal, closeModal } = useModal();
+  const [ editData, setEditData ] = useState('')
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const transactions = useSelector(selectTransaction);
@@ -123,7 +132,7 @@ export const Income = () => {
                     <P3>{transaction.date}</P3>
                     <P4>{transaction.time}</P4>
                     <P5>{transaction.sum} / UAH</P5>
-                    <EditBtn>
+                    <EditBtn onClick={() => { setEditData(transaction); openModal() }}>
                       <svg width={16} height={16}>
                         <use href={svg + '#icon-edit-2'}></use>
                       </svg>
@@ -151,6 +160,12 @@ export const Income = () => {
           </DIV375>
         </DIVTR>
       </FramerMotion>
+      {isOpened ? (
+        <Modal
+          children={<OperationForm edit={true} editData={editData} closeModal={closeModal} />}
+          closeModal={closeModal}
+        />
+      ) : null}
     </MainWr>
   );
 };
