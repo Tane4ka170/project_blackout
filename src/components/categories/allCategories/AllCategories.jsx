@@ -53,7 +53,7 @@ export const AllCategories = ({
       dispatch(getCategoriesThunk())
         .unwrap()
         .catch(e => {
-          toast.error('Oops, something went wrong');
+          toast.error('Oops, something went wrong. Try to reload page');
         });
     }
   }, [dispatch, isLoggedIn, type]);
@@ -92,7 +92,7 @@ export const AllCategories = ({
       dispatch(updateCategoryThunk({ id: currentCategory._id, categoryName }))
         .unwrap()
         .catch(e => {
-          toast.error('Oops, something went wrong');
+          toast.error('Oops, something went wrong. Try to reload page');
         });
       reset({ categoryName: '' });
       setIsEditing(false);
@@ -106,7 +106,7 @@ export const AllCategories = ({
           }
         })
         .catch(e => {
-          toast.error('Oops, something went wrong');
+          toast.error('Oops, something went wrong. Try to reload page');
         });
     }
     reset();
@@ -123,7 +123,7 @@ export const AllCategories = ({
     dispatch(deleteCategoryThunk(id))
       .unwrap()
       .catch(e => {
-        toast.error('Oops, something went wrong');
+        toast.error('Oops, something went wrong. Try to reload page');
       });
   };
 
