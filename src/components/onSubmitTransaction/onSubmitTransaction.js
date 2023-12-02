@@ -43,7 +43,11 @@ const onSubmitTransaction = (data, transactionsType, categoryId, dispatch, reset
       const formattedDate = `${year}-${month}-${day}`;
       transaction.date = formattedDate;
     } else {
-      const [day, month, year] = datePicker.split('/');
+      let [day, month, year] = datePicker.split('/');
+      day = day.padStart(2, '0');
+      month = month.toString().padStart(2, '0');
+      console.log(day);
+      console.log(month);
       const formattedDate = `${year}-${month}-${day}`;
       transaction.date = formattedDate;
     }
