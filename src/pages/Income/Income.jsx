@@ -1,3 +1,9 @@
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { Navigate } from 'react-router-dom';
+
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { Filter } from 'components/filter/Filter';
 import { selectFilter, selectStartDate } from 'redux/filter/filterSelector';
 import {
@@ -6,9 +12,8 @@ import {
 } from 'redux/transactions/operations';
 import { selectTransaction } from 'redux/transactions/selectors';
 import { SectionTransaction } from 'components/sectionTransactionList/sectionTransaction';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
+import { TotalExpense, TotalIncome } from 'shared/Total';
+
 import {
   DIV,
   DIV375,
@@ -30,11 +35,8 @@ import {
   TransactionsContainer,
   ULL,
 } from './Income.styled';
-import { TotalExpense, TotalIncome } from 'shared/Total';
 import svg from '../../images/Sprite.svg';
-import { motion } from 'framer-motion';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
-import { Navigate } from 'react-router-dom';
+import { FramerMotion } from 'helpers/framer-motion';
 
 // edit modal
 import Modal from 'components/modal/Modal';
@@ -87,9 +89,9 @@ export const Income = () => {
     return <Navigate to="/login" />;
   }
 
-  const isDeletedCategory = (catName) => {
+  const isDeletedCategory = catName => {
     if (!catName) {
-      return `Deleted Category`
+      return `Deleted Category`;
     }
     return catName;
   };
@@ -114,11 +116,7 @@ export const Income = () => {
           </LI>
         </ULL>
       </DIVMAIN>
-      <motion.div
-        initial={{ y: '100%' }}
-        animate={{ y: 0 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-      >
+      <FramerMotion $variant="allIncomesList">
         <DIVTR>
           <Filter />
           <DIV375>
@@ -127,12 +125,14 @@ export const Income = () => {
               <TransactionsContainer>
                 {filterTransactions?.map(transaction => (
                   <DIV key={transaction._id}>
-                    <P1>{isDeletedCategory(transaction.category?.categoryName)}</P1>
+                    <P1>
+                      {isDeletedCategory(transaction.category?.categoryName)}
+                    </P1>
                     <P2>{transaction.comment}</P2>
                     <P3>{transaction.date}</P3>
                     <P4>{transaction.time}</P4>
                     <P5>{transaction.sum} / UAH</P5>
-                    <EditBtn onClick={() => {setEditData(transaction); openModal()}}>
+                    <EditBtn onClick={() => { setEditData(transaction); openModal() }}>
                       <svg width={16} height={16}>
                         <use href={svg + '#icon-edit-2'}></use>
                       </svg>
@@ -159,13 +159,13 @@ export const Income = () => {
             )}
           </DIV375>
         </DIVTR>
-      </motion.div>
+      </FramerMotion>
       {isOpened ? (
-            <Modal
-              children={<OperationForm edit={ true } editData={editData} closeModal={closeModal}/>}
-              closeModal={closeModal}
-            />
-          ) : null}
+        <Modal
+          children={<OperationForm edit={true} editData={editData} closeModal={closeModal} />}
+          closeModal={closeModal}
+        />
+      ) : null}
     </MainWr>
   );
 };

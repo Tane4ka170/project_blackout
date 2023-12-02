@@ -1,6 +1,8 @@
 import React from 'react';
-import { logoutThunk } from 'redux/auth/operations';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
+import { logoutThunk } from 'redux/auth/operations';
 
 import {
   StyledLogOutButton,
@@ -11,23 +13,27 @@ import {
 
 const LogOutModal = ({ closeModal, setHideOrShow, setHideOrShowList }) => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const handleOnClickLogout = () => {
+    dispatch(logoutThunk())
+      .unwrap()
+      .then(() => {
+        setHideOrShowList(prev => ({ display: 'none' }));
+        closeModal();
+        setHideOrShow({
+          display: 'none',
+        });
+        navigate('/login');
+      });
+  };
+
   return (
     <StyledLogOutWrapper>
       <StyledLogOutText>Are you sure you want to log out?</StyledLogOutText>
       <StyledLogOutButtonWrapper>
-        <StyledLogOutButton
-          onClick={() =>
-            dispatch(logoutThunk())
-              .unwrap()
-              .then(() => {
-                setHideOrShowList(prev => ({ display: 'none' }));
-                closeModal();
-                setHideOrShow({
-                  display: 'none',
-                });
-              })
-          }
-        >
+        <StyledLogOutButton onClick={handleOnClickLogout}>
           Log out
         </StyledLogOutButton>
         <StyledLogOutButton onClick={closeModal}>Cancel</StyledLogOutButton>

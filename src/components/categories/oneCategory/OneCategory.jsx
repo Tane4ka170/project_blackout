@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { StyledLi } from './StyledOneCategory';
 import Symbols from 'images/svg/Symbols';
 
@@ -11,19 +12,21 @@ export const OneCategory = ({
   deleteCategory,
   editCategory,
 }) => {
-
-
   const handleOnClick = (catName, catId) => {
     chooseCategories(catName);
-    setCategoryId(catId)
+    setCategoryId(catId);
     closeModal();
-  }
+  };
   return (
     <StyledLi>
       <p>{categoryName}</p>
       <div>
         <Symbols />
-        <button onClick={() => {handleOnClick(categoryName, _id)}}>
+        <button
+          onClick={() => {
+            handleOnClick(categoryName, _id);
+          }}
+        >
           <svg width={16} height={16}>
             <use xlinkHref="#icon-check" />
           </svg>

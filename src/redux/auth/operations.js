@@ -15,9 +15,14 @@ const clearToken = () => {
 
 export const registerThunk = createAsyncThunk(
   'register',
-  async (credential, thunkApi) => {
+  async ({ name, email, password }, thunkApi) => {
     try {
-      const { data } = await expenseApi.post('auth/register', credential);
+      const { data } = await expenseApi.post('auth/register', {
+        name,
+        email,
+        password,
+      });
+      await thunkApi.dispatch(loginThunk({ email, password }));
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

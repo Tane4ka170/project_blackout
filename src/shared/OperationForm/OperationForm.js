@@ -30,9 +30,6 @@ import {
   StyledInputsWrapper,
 } from './OperationForm.styled';
 
-// Framer
-import { motion } from 'framer-motion';
-
 
 const OperationForm = ({editData, closeModal}) => {
   const dispatch = useDispatch();
@@ -92,18 +89,25 @@ const OperationForm = ({editData, closeModal}) => {
 
 
   return (
-    <motion.div
-      initial={{ x: '100%' }}
-      animate={{ x: 0 }}
-      transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-    >
+    // <StyledFormWrapper
+    //   autoComplete="off"
+    //   onSubmit={handleSubmit(data =>
+    //     onSubmitTransaction(
+    //       data,
+    //       PreSelectType(transactionsType),
+    //       categoryId,
+    //       dispatch,
+    //       reset
+    //     )
+    //   )}
+    // >
       <StyledFormWrapper style={wrapperStyle}
         autoComplete="off"
         onSubmit={
           handleSubmit(data => 
           ifEditSubmit(data)
         )}
-      >
+      > 
         {/* type select */}
         <RadioBtn control={control} editData={ editData } />
         {/* date inputs */}
@@ -135,7 +139,6 @@ const OperationForm = ({editData, closeModal}) => {
         </StyledInputsWrapper>
         <StyledBtn type="submit">{editData ? 'Edit' : 'Add'}</StyledBtn>
       </StyledFormWrapper>
-    </motion.div>
   );
 };
 

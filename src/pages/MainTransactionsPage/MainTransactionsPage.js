@@ -1,10 +1,10 @@
 // base
-import React, { useEffect } from "react";
-import { useMediaQuery } from 'react-responsive'
+import React, { useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 // selectors
-import { useDispatch, useSelector } from "react-redux";
-import { selectIsLoggedIn } from "redux/auth/selectors.js";
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/selectors.js';
 
 // components
 import { TotalIncome, TotalExpense } from 'shared/Total';
@@ -22,53 +22,44 @@ import {
   StyledWrapper,
 } from './MainTransactionsPage.styled';
 
-// framer animation
-import { motion } from 'framer-motion';
-
 // thunk's
-import { getTransactionsThunk } from "redux/transactions/operations";
-
+import { getTransactionsThunk } from 'redux/transactions/operations';
+import { Navigate } from 'react-router-dom';
+import { FramerMotion } from 'helpers/framer-motion';
 
 const MainTransactionsPage = () => {
   // adaptive design
-  const isNotDesktop = useMediaQuery({ query: '(max-width: 1439.98px' })
-  const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' })
+  const isNotDesktop = useMediaQuery({ query: '(max-width: 1439.98px' });
+  const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
 
-
-  
   // dispatch to get all transactions
-  const isLoggedIn = useSelector(selectIsLoggedIn)
-  const dispatch = useDispatch()
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(getTransactionsThunk({type: 'expenses', date: ''}))
+      dispatch(getTransactionsThunk({ type: 'expenses', date: '' }));
     }
-    
-  }, [dispatch, isLoggedIn])
+  }, [dispatch, isLoggedIn]);
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />;
+  }
 
   return (
     <StyledSection>
       {isNotDesktop && (
         <>
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-          >
+          <FramerMotion $variant="mainTransactionsHeaderNotDesktop">
             <StyledHeadersWrapper>
               <StyledHeaders>Expense log</StyledHeaders>
               <StyledText>
-                Capture and organize every penny spent with ease! A clear view of
-                your financial habits at your fingertips.
+                Capture and organize every penny spent with ease! A clear view
+                of your financial habits at your fingertips.
               </StyledText>
             </StyledHeadersWrapper>
-          </motion.div>
-          <motion.div
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-          >
+          </FramerMotion>
+          <FramerMotion $variant="mainTransactionsListNotDesktop">
             <StyledTotalUl>
               <li>
                 <TotalIncome />
@@ -77,27 +68,21 @@ const MainTransactionsPage = () => {
                 <TotalExpense />
               </li>
             </StyledTotalUl>
-          </motion.div>
-          <OperationForm />
-          <motion.div
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-          >
+          </FramerMotion>
+          <FramerMotion $variant="operationForm">
+            <OperationForm />
+          </FramerMotion>
+          <FramerMotion $variant="doughnut">
             <StyledMain>
               <DoughnutComponent />
             </StyledMain>
-          </motion.div>
+          </FramerMotion>
         </>
       )}
       {isDesktop && (
         <>
-          <motion.div
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-          >
-          <StyledWrapper>
+          <FramerMotion $variant="mainTransactionsInfoDesktop">
+            <StyledWrapper>
               <StyledHeadersWrapper>
                 <StyledHeaders>Expense log</StyledHeaders>
                 <StyledText>
@@ -113,12 +98,14 @@ const MainTransactionsPage = () => {
                   <TotalExpense />
                 </li>
               </StyledTotalUl>
-            <StyledMain>
-              <DoughnutComponent />
-            </StyledMain>
+              <StyledMain>
+                <DoughnutComponent />
+              </StyledMain>
             </StyledWrapper>
-            </motion.div>
-          <OperationForm />
+          </FramerMotion>
+          <FramerMotion $variant="operationForm">
+            <OperationForm />
+          </FramerMotion>
         </>
       )}
     </StyledSection>

@@ -1,18 +1,24 @@
 import ReactDOM from 'react-dom';
 import React, { useCallback, useEffect } from 'react';
-// import toast from 'react-toastify';
+
+import { FramerMotion } from 'helpers/framer-motion';
 import Symbols from 'images/svg/Symbols';
 
-import { CloseButton, ContentWrapper, StyledWrapper } from './Modal.styled';
+import {
+  CloseButton,
+  ContentWrapper,
+  StyledSvgUser,
+  StyledWrapper,
+} from './Modal.styled';
 
 const rootModal = document.querySelector('#modal');
 
 const Modal = ({ children, closeModal }) => {
   const handleKeyDown = useCallback(
     e => {
+      console.log(e);
       if (e.key === 'Escape') {
         closeModal();
-        // toast.info('Modal closed by Escape');
       }
     },
     [closeModal]
@@ -36,28 +42,20 @@ const Modal = ({ children, closeModal }) => {
 
   return ReactDOM.createPortal(
     <StyledWrapper onClick={handleBackDrop}>
-      <ContentWrapper>
-        <CloseButton onClick={closeModal}>
-          <Symbols />
-          <svg width={24} height={24}>
-            <use xlinkHref="#icon-close" />
-          </svg>
-        </CloseButton>
-        {children}
-      </ContentWrapper>
+      <FramerMotion $variant="modal">
+        <ContentWrapper>
+          <CloseButton onClick={closeModal}>
+            <Symbols />
+            <StyledSvgUser width={24} height={24}>
+              <use xlinkHref="#icon-close" />
+            </StyledSvgUser>
+          </CloseButton>
+          {children}
+        </ContentWrapper>
+      </FramerMotion>
     </StyledWrapper>,
     rootModal
   );
 };
 
 export default Modal;
-
-// import { useModal } from 'components/hooks/useModal';
-
-// const { isOpen, openModal, closeModal } = useModal();
-
-// <div>
-//   <button onClick={openModal}>open</button>
-//   {isOpen ? <Modal closeModal={closeModal} /> : null}
-// </div>;
-// Передати ці значення на Header кнопка UserSettings!!!!

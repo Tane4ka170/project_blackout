@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, Navigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 import { loginThunk } from 'redux/auth/operations';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
 
 import {
   ButtonSign,
@@ -32,7 +32,6 @@ export const LoginForm = () => {
     setValue,
     formState: { errors: formErrors },
   } = useForm();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const onSubmit = data => {
     dispatch(loginThunk(data))
@@ -55,10 +54,6 @@ export const LoginForm = () => {
     setPassword(newPassword);
     setValue('password', newPassword);
   };
-
-  if (isLoggedIn) {
-    return <Navigate to="/transactions/expenses" />;
-  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -96,12 +91,13 @@ export const LoginForm = () => {
               // hasError={!!formErrors.password}
               onChange={handlePasswordChange}
               // isGood={password.length >= 6}
-              className={`${password.length === 0
-                ? 'empty'
-                : isPasswordValid()
+              className={`${
+                password.length === 0
+                  ? 'empty'
+                  : isPasswordValid()
                   ? 'valid'
                   : 'invalid'
-                }`}
+              }`}
             />
             <PasswordToggle onClick={togglePasswordVisibility} type="button">
               {showPassword ? <HideIco /> : <ShowsIco />}

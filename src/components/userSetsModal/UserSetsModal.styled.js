@@ -38,6 +38,23 @@ export const StyledSvgWrap = styled.div`
   }
 `;
 
+export const StyledLoader = styled.div`
+  border-radius: 50%;
+  background-color: transparent;
+  width: 80px;
+  height: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+
+  @media only screen and (min-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
+`;
+
 export const GrayButton = styled.button`
   color: rgba(250, 250, 250, 1);
   background-color: rgba(41, 41, 43, 1);
@@ -53,6 +70,7 @@ export const GrayButton = styled.button`
   &:hover,
   &:focus {
     color: rgba(250, 250, 250, 0.5);
+    transition: background-color 250ms ease-in-out;
   }
 `;
 
@@ -89,7 +107,7 @@ export const StyledBtnWrap = styled.div`
   }
 `;
 
-export const StyledSelect = styled.select`
+export const StyledSelect = styled.div`
   color: rgba(250, 250, 250, 1);
   background-color: rgba(23, 23, 25, 1);
   padding: 12px 14px;
@@ -97,29 +115,70 @@ export const StyledSelect = styled.select`
   font-weight: 400;
   line-height: 1.5;
   width: 98px;
-  box-sizing: border-box;
+  height: 43px;
   border-radius: 12px;
   border: 1px solid rgba(250, 250, 250, 0.4);
-
-  &:focus {
-    border-color: rgba(14, 243, 135, 1);
-    outline: none;
-  }
-
-  option {
-    border: 1px solid rgba(250, 250, 250, 0.4);
-    background-color: rgba(12, 13, 13, 1);
-    color: rgba(250, 250, 250, 0.4);
-  }
-
-  option:checked {
-    background-color: rgba(12, 13, 13, 1) !important;
-    color: rgba(250, 250, 250, 1);
-  }
+  cursor: pointer;
+  position: relative;
 
   @media only screen and (min-width: 768px) {
     padding: 15px 14px;
     width: 122px;
+    height: 49px;
+  }
+
+  &:hover {
+    border: 1px solid rgba(14, 243, 135, 1);
+    transition: background-color 250ms ease-in-out;
+  }
+
+  .svg-arrow {
+    position: absolute;
+    top: 28%;
+    left: 70%;
+    transform: rotate(180deg);
+    transition: 250ms ease-in-out;
+
+    @media only screen and (min-width: 768px) {
+      top: 30%;
+      left: 75%;
+    }
+  }
+
+  &.select-open .svg-arrow {
+    transform: rotate(0);
+    transition: 250ms ease-in-out;
+  }
+
+  .select-options {
+    color: rgba(250, 250, 250, 0.4);
+    background-color: rgba(12, 13, 13, 1);
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    width: 98px;
+    border-radius: 12px;
+    border: 1px solid rgba(250, 250, 250, 0.4);
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    li {
+      &:hover,
+      &:focus {
+        color: rgba(250, 250, 250, 1);
+      }
+    }
+
+    @media only screen and (min-width: 768px) {
+      padding: 10px 14px;
+      width: 122px;
+      top: 110%;
+    }
   }
 `;
 
@@ -142,6 +201,7 @@ export const StyledInputName = styled.input`
   &:focus {
     border-color: rgba(14, 243, 135, 1);
     outline: none;
+    transition: background-color 250ms ease-in-out;
   }
 
   @media only screen and (min-width: 768px) {
@@ -175,5 +235,6 @@ export const StyledSaveBtn = styled.button`
   &:hover,
   &:focus {
     background-color: rgba(14, 187, 105, 1);
+    transition: background-color 250ms ease-in-out;
   }
 `;

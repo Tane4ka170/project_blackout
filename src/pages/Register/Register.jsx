@@ -1,9 +1,10 @@
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { selectIsLoggedIn, selectIsRegistered } from 'redux/auth/selectors';
 import { useSelector } from 'react-redux';
 
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
 import { TotalIncome } from 'shared/Total';
+
 import { AdaptDiv, H2 } from 'pages/Home/Home.styled';
 import {
   PlugDivs,
@@ -19,10 +20,9 @@ import { Navigate } from 'react-router-dom';
 
 export default function Register() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isRegistered = useSelector(selectIsRegistered);
 
-  if (isRegistered) {
-    return <Navigate to="/login" />;
+  if (isLoggedIn) {
+    return <Navigate to="/transactions/expenses" />;
   }
 
   return (

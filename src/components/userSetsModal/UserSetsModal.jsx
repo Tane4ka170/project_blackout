@@ -1,19 +1,22 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from 'redux/user/selectors';
+
+import { selectLoading, selectUser } from 'redux/user/selectors';
 import {
   changeAvatarThunk,
   deleteAvatarThunk,
   updateUserInfoThunk,
 } from 'redux/user/operations';
-import Symbols from 'images/svg/Symbols';
+import { CirclesWithBar } from 'react-loader-spinner';
 
+import Symbols from 'images/svg/Symbols';
 import {
   GrayButton,
   StyledBtnWrap,
   StyledInputName,
   StyledInputUpd,
   StyledLabelUpd,
+  StyledLoader,
   StyledSaveBtn,
   StyledSelect,
   StyledSvgWrap,
@@ -30,10 +33,20 @@ const CURRENCIES = [
 const UserSetsModal = ({ closeModal }) => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  const loading = useSelector(selectLoading);
   const inputRef = useRef(null);
 
-  const [selectedValue, setSelectedValue] = useState('');
   const [userName, setUserName] = useState(user.name);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(
+    CURRENCIES.find(option => option.value === user.currency)
+  );
+
+  const handleOptionClick = option => {
+    setSelectedOption(option);
+    setIsOpen(false);
+  };
 
   const handleChangeAvatar = () => {
     const currentInput = inputRef?.current;
@@ -48,19 +61,13 @@ const UserSetsModal = ({ closeModal }) => {
     if (user._id) {
       dispatch(deleteAvatarThunk(user._id));
     }
-    console.log('1');
-  };
-
-  const handleSelectChange = ({ target }) => {
-    const value = target.value;
-    setSelectedValue(value);
   };
 
   const handleSave = e => {
     e.preventDefault();
     const data = {
       name: userName,
-      currency: selectedValue,
+      currency: selectedOption.value,
     };
 
     dispatch(updateUserInfoThunk(data));
@@ -74,14 +81,26 @@ const UserSetsModal = ({ closeModal }) => {
       <StyledWrap>
         {user?.avatarUrl ? (
           <StyledSvgWrap>
-            <img src={user.avatarUrl} alt="user avatar" />
+            {loading ? (
+              <StyledLoader>
+                <CirclesWithBar />
+              </StyledLoader>
+            ) : (
+              <img src={user.avatarUrl} alt="user avatar" />
+            )}
           </StyledSvgWrap>
         ) : (
           <StyledSvgWrap>
             <Symbols />
-            <svg width={30} height={30}>
-              <use xlinkHref="#icon-user" />
-            </svg>
+            {loading ? (
+              <StyledLoader>
+                <CirclesWithBar />
+              </StyledLoader>
+            ) : (
+              <svg width={38} height={38}>
+                <use xlinkHref="#icon-default-svg" />
+              </svg>
+            )}
           </StyledSvgWrap>
         )}
 
@@ -93,6 +112,7 @@ const UserSetsModal = ({ closeModal }) => {
             id="uploadAvatar"
             type="file"
             ref={inputRef}
+            accept="image/*"
             onChange={handleChangeAvatar}
           />
           <GrayButton onClick={handleRemove}>Remove</GrayButton>
@@ -100,12 +120,31 @@ const UserSetsModal = ({ closeModal }) => {
 
         <form onSubmit={handleSave}>
           <StyledBtnWrap>
-            <StyledSelect value={selectedValue} onChange={handleSelectChange}>
-              {CURRENCIES.map(currency => (
-                <option key={currency.value} value={currency.value}>
-                  {currency.label}
-                </option>
-              ))}
+            <StyledSelect className={isOpen ? 'select-open' : ''}>
+              <div
+                onClick={() => {
+                  setIsOpen(!isOpen);
+                }}
+              >
+                <div>{selectedOption.label}</div>
+
+                <Symbols />
+                <svg className="svg-arrow" width={20} height={20}>
+                  <use xlinkHref="#user-icon-up" />
+                </svg>
+              </div>
+              {isOpen && (
+                <ul className="select-options">
+                  {CURRENCIES.map(option => (
+                    <li
+                      key={option.value}
+                      onClick={() => handleOptionClick(option)}
+                    >
+                      <span>{option.label} </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </StyledSelect>
             <StyledInputName
               type="text"

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { DIV, P1, P2, P3, P4, P5 } from './sectionTransaction.styled';
 
 export const SectionTransaction = () => {
