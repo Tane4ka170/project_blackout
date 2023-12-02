@@ -36,6 +36,13 @@ import third from '../../images/home/third.png';
 
 const Home = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  // const sessionError = useSelector(selectSessionError);
+
+  // useEffect(() => {
+  //   if (isLoggedIn && sessionError) {
+  //     toast.error('Session is expired. Please, log in again');
+  //   }
+  // }, [sessionError, isLoggedIn]);
 
   if (isLoggedIn) {
     return <Navigate to="/transactions/expenses" />;
