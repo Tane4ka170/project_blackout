@@ -41,8 +41,6 @@ import {
 } from './headerStyled';
 import Symbols from 'images/svg/Symbols';
 
-import { FramerMotion } from 'helpers/framer-motion';
-
 const Header = () => {
   const location = useLocation();
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -139,25 +137,7 @@ const Header = () => {
   if (!isLoggedIn) {
     return (
       <EmptyHeaderStyled>
-        <FramerMotion $variant="header">
-          <HeaderLink to="/">
-            <SiteIcon>
-              <Symbols />
-              <svg width={27} height={16}>
-                <use xlinkHref="#site-icon" />
-              </svg>
-            </SiteIcon>
-            ExpenseTracker
-          </HeaderLink>
-        </FramerMotion>
-      </EmptyHeaderStyled>
-    );
-  }
-  return (
-    <HeaderStyled onClick={handleBackDrop}>
-      <UsualBackDrop onClick={handleBackDrop} style={hideOrShowSecondList} />
-      <FramerMotion $variant="header">
-        <HeaderLink to="/transactions/expenses">
+        <HeaderLink to="/">
           <SiteIcon>
             <Symbols />
             <svg width={27} height={16}>
@@ -166,52 +146,62 @@ const Header = () => {
           </SiteIcon>
           ExpenseTracker
         </HeaderLink>
-      </FramerMotion>
+      </EmptyHeaderStyled>
+    );
+  }
+  return (
+    <HeaderStyled onClick={handleBackDrop}>
+      <UsualBackDrop onClick={handleBackDrop} style={hideOrShowSecondList} />
+      <HeaderLink to="/transactions/expenses">
+        <SiteIcon>
+          <Symbols />
+          <svg width={27} height={16}>
+            <use xlinkHref="#site-icon" />
+          </svg>
+        </SiteIcon>
+        ExpenseTracker
+      </HeaderLink>
 
-      <FramerMotion $variant="header">
-        <LinksContainer>
-          <ExpensesLink to="/expenses" state={{ from: location }}>
-            All Expense
-          </ExpensesLink>
-          <IncomeLink to="/incomes" state={{ from: location }}>
-            All Income
-          </IncomeLink>
-        </LinksContainer>
-      </FramerMotion>
+      <LinksContainer>
+        <ExpensesLink to="/expenses" state={{ from: location }}>
+          All Expense
+        </ExpensesLink>
+        <IncomeLink to="/incomes" state={{ from: location }}>
+          All Income
+        </IncomeLink>
+      </LinksContainer>
 
-      <FramerMotion $variant="header">
-        <HeaderBtnsContainer>
-          <MenuBtn type="button" onClick={handleMenu}>
-            <svg width={36} height={36}>
-              <use xlinkHref="#icon-burger-menu" />
-            </svg>
-          </MenuBtn>
+      <HeaderBtnsContainer>
+        <MenuBtn type="button" onClick={handleMenu}>
+          <svg width={36} height={36}>
+            <use xlinkHref="#icon-burger-menu" />
+          </svg>
+        </MenuBtn>
 
-          <ProfileContainer>
-            <ProfileBtn type="button" onClick={hanldeSecondBtnList}>
-              {avatarUrl ? (
-                <UserImgContainer>
-                  <img src={avatarUrl} alt="User" width={34} height={34} />
-                </UserImgContainer>
-              ) : (
-                <DefaultUserIcon width={26} height={25}>
-                  <use xlinkHref="#icon-default-svg" />
-                </DefaultUserIcon>
-              )}
-              <UserName>{name}</UserName>
-              <UserArrowUp
-                width={20}
-                height={20}
-                style={{
-                  transform: isRotated ? 'rotate(180deg)' : 'rotate(0)',
-                }}
-              >
-                <use xlinkHref="#user-icon-down" />
-              </UserArrowUp>
-            </ProfileBtn>
-          </ProfileContainer>
-        </HeaderBtnsContainer>
-      </FramerMotion>
+        <ProfileContainer>
+          <ProfileBtn type="button" onClick={hanldeSecondBtnList}>
+            {avatarUrl ? (
+              <UserImgContainer>
+                <img src={avatarUrl} alt="User" width={34} height={34} />
+              </UserImgContainer>
+            ) : (
+              <DefaultUserIcon width={26} height={25}>
+                <use xlinkHref="#icon-default-svg" />
+              </DefaultUserIcon>
+            )}
+            <UserName>{name}</UserName>
+            <UserArrowUp
+              width={20}
+              height={20}
+              style={{
+                transform: isRotated ? 'rotate(180deg)' : 'rotate(0)',
+              }}
+            >
+              <use xlinkHref="#user-icon-down" />
+            </UserArrowUp>
+          </ProfileBtn>
+        </ProfileContainer>
+      </HeaderBtnsContainer>
 
       <SecondBtnContainer style={hideOrShowSecondList}>
         <UserLink onClick={openUserSetsModal}>
