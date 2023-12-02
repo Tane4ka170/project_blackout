@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Suspense, lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom/dist';
 
@@ -6,6 +6,8 @@ import { useAuth } from './hooks';
 import { refreshThunk } from '../redux/auth/operations';
 import Layout from './layout/Layout';
 import Loader from './loader/Loader';
+import { selectSessionError } from 'redux/auth/selectors';
+import { toast } from 'react-toastify';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Register = lazy(() => import('pages/Register/Register'));
@@ -20,10 +22,15 @@ const NotFound = lazy(() => import('pages/NotFoundPage/NotFound'));
 function App() {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
+  const sessionError = useSelector(selectSessionError);
 
   useEffect(() => {
     dispatch(refreshThunk());
   }, [dispatch]);
+
+  if (sessionError) {
+    toast.error('Sorry, your session is expired. Please, log in again!');
+  }
 
   return (
     <Suspense>

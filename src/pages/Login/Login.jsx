@@ -17,11 +17,15 @@ import { ImgAuth } from 'components/RegisterForm/RegisterForm.styled';
 
 import homeimg from '../../images/home/Rectangle 1x.png';
 import { Navigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { selectUser } from 'redux/user/selectors';
 
 export default function Login() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { name } = useSelector(selectUser);
 
   if (isLoggedIn) {
+    toast.success(`Welcome, ${name}`);
     return <Navigate to="/transactions/expenses" />;
   }
 

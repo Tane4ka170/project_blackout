@@ -23,6 +23,7 @@ import {
   StyledTitle,
   StyledWrap,
 } from 'components/userSetsModal/UserSetsModal.styled';
+import { toast } from 'react-toastify';
 
 const CURRENCIES = [
   { value: 'uah', label: '₴ UAH' },
@@ -53,13 +54,29 @@ const UserSetsModal = ({ closeModal }) => {
 
     if (currentInput) {
       const avatar = currentInput.files[0];
-      dispatch(changeAvatarThunk(avatar));
+      dispatch(changeAvatarThunk(avatar))
+        .unwrap()
+        .then(() => {
+          toast.success('Avatar has been updated successfully!');
+        })
+        .catch(e => {
+          toast.error(
+            'Oops, something went wrong! Try again or upload smaller photo!'
+          );
+        });
     }
   };
 
   const handleRemove = () => {
     if (user._id) {
-      dispatch(deleteAvatarThunk(user._id));
+      dispatch(deleteAvatarThunk(user._id))
+        .unwrap()
+        .then(() => {
+          toast.success('Avatar has been removed successfully!');
+        })
+        .catch(e => {
+          toast.error('Oops, something went wrong! Try again!');
+        });
     }
   };
 
@@ -71,6 +88,9 @@ const UserSetsModal = ({ closeModal }) => {
     };
 
     dispatch(updateUserInfoThunk(data));
+    if (selectedOption.value !== user.currency || userName !== user.name) {
+      toast.success('Your profile info has been changed successfully!');
+    }
 
     closeModal();
   };

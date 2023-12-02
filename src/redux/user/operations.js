@@ -37,7 +37,6 @@ export const changeAvatarThunk = createAsyncThunk(
           'Content-Type': 'multipart/form-data',
         },
       });
-
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
