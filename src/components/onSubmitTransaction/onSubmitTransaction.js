@@ -1,7 +1,7 @@
 import { createTransactionThunk, updateTransactionThunk } from "redux/transactions/operations";
 
+
 const onSubmitTransaction = (data, transactionsType, categoryId, dispatch, reset, editData, datePicker) => {
-  console.log(data);
   let transaction = data;
   // set transaction type
   transaction.type = transactionsType;
@@ -17,27 +17,44 @@ const onSubmitTransaction = (data, transactionsType, categoryId, dispatch, reset
   // set proper time
   transaction.time = data.time.slice(0, 5);
 
+  // convert datePicker to proper format
+  function convertDateFormat(inputDate) {
+  const parts = inputDate.split('/');
+  const day = parts[0].padStart(2, '0');
+  const month = (parts[1]).toString().padStart(2, '0');
+  const year = parts[2];
+  const formattedDate = `${year}-${month}-${day}`;
+  return formattedDate;
+  }
 
-  transaction.date = datePicker;
-  console.log(transaction.date);
 
-  // auto select current date
-  // if (data.date === '' || data.date === '0000-00-00') {
-  //   console.log(data.date);
-  //   console.log(1);
-  //   const now = new Date();
-  //   const year = now.getFullYear();
-  //   const month = (now.getMonth() + 1).toString().padStart(2, '0');
-  //   const day = now.getDate().toString().padStart(2, '0');
-  //   const formattedDate = `${year}-${month}-${day}`;
-  //   transaction.date = formattedDate;
-  // } else {
-  //     const year = data.date.getFullYear();
-  //     const month = data.date.getMonth() + 1;
-  //     const day = data.date.getDate();
-  //     const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-  //     transaction.date = formattedDate;
-  // }
+  if (editData) {
+    console.log(editData.date);
+    console.log(datePicker);
+    if (editData.date === datePicker) {
+      transaction.date = editData.date;
+    } else {
+      transaction.date = convertDateFormat(datePicker);
+    }
+  } else {
+    // auto select current date
+    if (data.date === '' || data.date === '0000-00-00') {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = (now.getMonth() + 1).toString().padStart(2, '0');
+      const day = now.getDate().toString().padStart(2, '0');
+      const formattedDate = `${year}-${month}-${day}`;
+      transaction.date = formattedDate;
+    } else {
+      const year = data.date.getFullYear();
+      const month = data.date.getMonth() + 1;
+      const day = data.date.getDate();
+      const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+      transaction.date = formattedDate;
+    }
+  }
+
+  // auto select current time
   if (data.time === '' || data.time === '00:00') {
     const now = new Date();
     const hours = now.getHours().toString().padStart(2, '0');
@@ -45,6 +62,7 @@ const onSubmitTransaction = (data, transactionsType, categoryId, dispatch, reset
     const formattedTime = `${hours}:${minutes}`;
     transaction.time = formattedTime;
   }
+
   // dispatch and reset form
   if (!editData) {
     dispatch(createTransactionThunk(transaction))

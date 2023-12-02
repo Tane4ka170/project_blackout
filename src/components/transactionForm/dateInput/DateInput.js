@@ -12,16 +12,15 @@ const TransactionDateInput = ({ editData, control, datePiker}) => {
 
 
   function convertDateFormat(inputDate) {
-    console.log(inputDate);
   const date = new Date(inputDate);
-  
+
   const day = date.getDate();
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
   
 
   const formattedDate = `${day}/${month}/${year}`;
-    return formattedDate;
+  return formattedDate;
   }
   
   useEffect(() => {

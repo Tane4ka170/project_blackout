@@ -35,8 +35,8 @@ const OperationForm = ({editData, closeModal}) => {
   const dispatch = useDispatch();
   const { transactionsType } = useParams();
 
-  const [categoryId, setCategoryId] = useState('');
-  const [ datePicker, setDatePicker] = useState('');
+  const [ categoryId, setCategoryId] = useState('');
+  const [ datePicker, setDatePicker] = useState(editData ? editData.date : '');
 
   const {
     control,
