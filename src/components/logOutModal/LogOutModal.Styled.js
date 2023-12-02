@@ -40,6 +40,7 @@ export const StyledLogOutButton = styled.button`
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.32px;
+  transition: background-color 250ms ease-in-out;
   @media screen and (min-width: 768px) {
     font-size: 16px;
     padding: 14px 44px;
