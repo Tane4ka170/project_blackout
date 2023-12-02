@@ -8,7 +8,7 @@ import { StyledWrapper, StyledInputWrapper, StyledLabel, StyledDatePicker, Style
 import svg from '../../../images/Sprite.svg'
 
 const TransactionDateInput = ({ editData, control, datePiker}) => {
-  const [defaultDate, setDefaultDate] = useState('05/05/2005');
+  const [defaultDate, setDefaultDate] = useState('');
 
 
   function convertDateFormat(inputDate) {
