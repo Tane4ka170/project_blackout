@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom';
 import React, { useCallback, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 import {
   CloseButton,
@@ -15,6 +16,7 @@ const rootModal = document.querySelector('#modal');
 const Modal = ({ children, closeModal }) => {
   const handleKeyDown = useCallback(
     e => {
+      console.log(e);
       if (e.key === 'Escape') {
         closeModal();
       }
@@ -41,6 +43,7 @@ const Modal = ({ children, closeModal }) => {
   return ReactDOM.createPortal(
     <StyledWrapper onClick={handleBackDrop}>
       <FramerMotion $variant="modal">
+
         <ContentWrapper>
           <CloseButton onClick={closeModal}>
             <Symbols />
@@ -50,6 +53,7 @@ const Modal = ({ children, closeModal }) => {
           </CloseButton>
           {children}
         </ContentWrapper>
+
       </FramerMotion>
     </StyledWrapper>,
     rootModal
