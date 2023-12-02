@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/project_blackout/static/css/main.5e4ffa51.css",
-    "main.js": "/project_blackout/static/js/main.84981f3b.js",
+    "main.js": "/project_blackout/static/js/main.20cb4e93.js",
     "static/js/950.01cf6023.chunk.js": "/project_blackout/static/js/950.01cf6023.chunk.js",
     "static/js/915.1e1ad8e8.chunk.js": "/project_blackout/static/js/915.1e1ad8e8.chunk.js",
     "static/js/755.7097a345.chunk.js": "/project_blackout/static/js/755.7097a345.chunk.js",
@@ -15,7 +15,7 @@
     "static/js/50.13c9392e.chunk.js": "/project_blackout/static/js/50.13c9392e.chunk.js",
     "static/js/794.c66866a6.chunk.js": "/project_blackout/static/js/794.c66866a6.chunk.js",
     "static/js/597.ca76cf77.chunk.js": "/project_blackout/static/js/597.ca76cf77.chunk.js",
-    "static/js/876.b2e51a21.chunk.js": "/project_blackout/static/js/876.b2e51a21.chunk.js",
+    "static/js/876.edf2cbcb.chunk.js": "/project_blackout/static/js/876.edf2cbcb.chunk.js",
     "static/js/919.e9c0db1d.chunk.js": "/project_blackout/static/js/919.e9c0db1d.chunk.js",
     "static/media/SuisseIntl-Regular.ttf": "/project_blackout/static/media/SuisseIntl-Regular.7ea99720633194a9e3c4.ttf",
     "static/media/Suisse-Intl-Bold.ttf": "/project_blackout/static/media/Suisse-Intl-Bold.6e9941f2a44c1939c4ef.ttf",
@@ -29,7 +29,7 @@
     "index.html": "/project_blackout/index.html",
     "static/media/eye.svg": "/project_blackout/static/media/eye.eeff295c23781fcaf0988e367a1f8870.svg",
     "main.5e4ffa51.css.map": "/project_blackout/static/css/main.5e4ffa51.css.map",
-    "main.84981f3b.js.map": "/project_blackout/static/js/main.84981f3b.js.map",
+    "main.20cb4e93.js.map": "/project_blackout/static/js/main.20cb4e93.js.map",
     "950.01cf6023.chunk.js.map": "/project_blackout/static/js/950.01cf6023.chunk.js.map",
     "915.1e1ad8e8.chunk.js.map": "/project_blackout/static/js/915.1e1ad8e8.chunk.js.map",
     "755.7097a345.chunk.js.map": "/project_blackout/static/js/755.7097a345.chunk.js.map",
@@ -43,11 +43,11 @@
     "50.13c9392e.chunk.js.map": "/project_blackout/static/js/50.13c9392e.chunk.js.map",
     "794.c66866a6.chunk.js.map": "/project_blackout/static/js/794.c66866a6.chunk.js.map",
     "597.ca76cf77.chunk.js.map": "/project_blackout/static/js/597.ca76cf77.chunk.js.map",
-    "876.b2e51a21.chunk.js.map": "/project_blackout/static/js/876.b2e51a21.chunk.js.map",
+    "876.edf2cbcb.chunk.js.map": "/project_blackout/static/js/876.edf2cbcb.chunk.js.map",
     "919.e9c0db1d.chunk.js.map": "/project_blackout/static/js/919.e9c0db1d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5e4ffa51.css",
-    "static/js/main.84981f3b.js"
+    "static/js/main.20cb4e93.js"
   ]
 }
