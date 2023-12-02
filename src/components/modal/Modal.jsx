@@ -1,6 +1,8 @@
 import ReactDOM from 'react-dom';
 import React, { useCallback, useEffect } from 'react';
-import { motion } from 'framer-motion';
+
+import { FramerMotion } from 'helpers/framer-motion';
+import Symbols from 'images/svg/Symbols';
 
 import {
   CloseButton,
@@ -8,8 +10,6 @@ import {
   StyledSvgUser,
   StyledWrapper,
 } from './Modal.styled';
-import Symbols from 'images/svg/Symbols';
-import { FramerMotion } from 'helpers/framer-motion';
 
 const rootModal = document.querySelector('#modal');
 
@@ -43,7 +43,6 @@ const Modal = ({ children, closeModal }) => {
   return ReactDOM.createPortal(
     <StyledWrapper onClick={handleBackDrop}>
       <FramerMotion $variant="modal">
-
         <ContentWrapper>
           <CloseButton onClick={closeModal}>
             <Symbols />
@@ -53,7 +52,6 @@ const Modal = ({ children, closeModal }) => {
           </CloseButton>
           {children}
         </ContentWrapper>
-
       </FramerMotion>
     </StyledWrapper>,
     rootModal
