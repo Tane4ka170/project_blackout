@@ -102,24 +102,27 @@ const Header = () => {
     setIsRotated(!isRotated);
   };
 
-  const handleKeyDown = event => {
-    // if (event.key === 'Escape') {
-    //   setHideOrShowList({ display: 'none' });
-    //   setHideOrShowSecondList({ display: 'none' });
-    //   setHideOrShow({ display: 'none' });
-    //   setIsRotated(false);
-    //   document.body.style.overflow = 'visible';
-    // }
-    //Замінити функцію закриття бургер меню на esk
-  };
-
   useEffect(() => {
+    const handleKeyDown = event => {
+      if (isOpened) {
+        return;
+      }
+
+      if (event.key === 'Escape') {
+        setHideOrShowList({ display: 'none' });
+        setHideOrShowSecondList({ display: 'none' });
+        setHideOrShow({ display: 'none' });
+        setIsRotated(false);
+        document.body.style.overflow = 'visible';
+      }
+    };
+
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [isOpened]);
 
   const handleBackDrop = ({ currentTarget, target }) => {
     if (currentTarget === target) {
