@@ -54,7 +54,6 @@ const OperationForm = ({editData, closeModal}) => {
     },
     resolver: yupResolver(validationSchema),
   });
-
   const ifEditSubmit = (data) => {
     if (!editData) {
       onSubmitTransaction(
@@ -63,6 +62,7 @@ const OperationForm = ({editData, closeModal}) => {
         categoryId,
         dispatch,
         reset,
+        undefined,
         datePicker
       )
     } else {
@@ -118,7 +118,7 @@ const OperationForm = ({editData, closeModal}) => {
             control={control}
             setValue={setValue}
             setCategoryId={setCategoryId}
-            type = { editData.type }
+            type = { editData?.type }
           />
           {errors.category && (
             <StyledErrorMsg>{errors.category.message}</StyledErrorMsg>

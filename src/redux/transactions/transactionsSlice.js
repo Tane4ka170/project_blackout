@@ -28,7 +28,9 @@ const transactionsSlice = createSlice({
       .addCase(createTransactionThunk.fulfilled, (state, action) => {
         state.loading = false;
         // state = { ...state }
-        state.transactions.push(action.payload);
+        if (action?.payload?.type === 'expenses') {
+          state.transactions.push(action.payload);
+        }
         toast.success('Transaction added')
       })
       .addCase(createTransactionThunk.rejected, (state, action) => {
@@ -71,6 +73,7 @@ const transactionsSlice = createSlice({
           state.loading = false;
           state.transactions?.splice(itemIndex, 1, action.payload);
         }
+        toast.success('Transaction updated')
       })
       .addCase(updateTransactionThunk.rejected, (state, action) => {
         state.loading = false;

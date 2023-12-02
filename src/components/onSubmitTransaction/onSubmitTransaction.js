@@ -27,10 +27,7 @@ const onSubmitTransaction = (data, transactionsType, categoryId, dispatch, reset
   return formattedDate;
   }
 
-
   if (editData) {
-    console.log(editData.date);
-    console.log(datePicker);
     if (editData.date === datePicker) {
       transaction.date = editData.date;
     } else {
@@ -38,7 +35,7 @@ const onSubmitTransaction = (data, transactionsType, categoryId, dispatch, reset
     }
   } else {
     // auto select current date
-    if (data.date === '' || data.date === '0000-00-00') {
+    if (datePicker === '') {
       const now = new Date();
       const year = now.getFullYear();
       const month = (now.getMonth() + 1).toString().padStart(2, '0');
@@ -46,10 +43,8 @@ const onSubmitTransaction = (data, transactionsType, categoryId, dispatch, reset
       const formattedDate = `${year}-${month}-${day}`;
       transaction.date = formattedDate;
     } else {
-      const year = data.date.getFullYear();
-      const month = data.date.getMonth() + 1;
-      const day = data.date.getDate();
-      const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+      const [day, month, year] = datePicker.split('/');
+      const formattedDate = `${year}-${month}-${day}`;
       transaction.date = formattedDate;
     }
   }
@@ -68,7 +63,6 @@ const onSubmitTransaction = (data, transactionsType, categoryId, dispatch, reset
     dispatch(createTransactionThunk(transaction))
     reset();
   } else {
-    console.log(transaction);
     dispatch(updateTransactionThunk(transaction))
     reset();
   };

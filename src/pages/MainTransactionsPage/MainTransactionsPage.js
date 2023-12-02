@@ -70,7 +70,7 @@ const MainTransactionsPage = () => {
             </StyledTotalUl>
           </FramerMotion>
           <FramerMotion $variant="operationForm">
-            <OperationForm />
+            <OperationForm editData={null}/>
           </FramerMotion>
           <FramerMotion $variant="doughnut">
             <StyledMain>

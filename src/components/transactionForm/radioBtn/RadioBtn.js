@@ -18,13 +18,13 @@ const RadioBtn = ({ control, editData }) => {
 
   
   useEffect(() => {
-    if (!editData.type) {
+    if (!editData?.type) {
       setType(PreSelectType(transactionsType));
       navigate(`/transactions/${PreSelectType(transactionsType)}`)
     } else {
-      setType(PreSelectType(editData.type));
+      setType(PreSelectType(editData?.type));
     }
-  }, [editData.type, navigate, transactionsType]);
+  }, [editData?.type, navigate, transactionsType]);
 
   const handleTypeChange = (value) => {
     navigate(`/transactions/${value}`)
