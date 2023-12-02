@@ -9,6 +9,7 @@ import {
   StyledWrapper,
 } from './Modal.styled';
 import Symbols from 'images/svg/Symbols';
+import { FramerMotion } from 'helpers/framer-motion';
 
 const rootModal = document.querySelector('#modal');
 
@@ -41,12 +42,8 @@ const Modal = ({ children, closeModal }) => {
 
   return ReactDOM.createPortal(
     <StyledWrapper onClick={handleBackDrop}>
-      <motion.div
-        initial={{ x: '100%', y: '-100%' }}
-        animate={{ x: 0, y: 0 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-        exit={{ x: '100%', y: '-100%' }}
-      >
+      <FramerMotion $variant="modal">
+
         <ContentWrapper>
           <CloseButton onClick={closeModal}>
             <Symbols />
@@ -56,7 +53,8 @@ const Modal = ({ children, closeModal }) => {
           </CloseButton>
           {children}
         </ContentWrapper>
-      </motion.div>
+
+      </FramerMotion>
     </StyledWrapper>,
     rootModal
   );
