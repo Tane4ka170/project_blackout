@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const MainWr = styled.div`
   padding-left: 20px;
   padding-right: 20px;
-
+  padding-bottom: 80px;
   width: 375px;
   margin-left: auto;
   margin-right: auto;
@@ -11,6 +11,7 @@ export const MainWr = styled.div`
   @media (min-width: 768px) and (max-width: 1439.8px) {
     padding-left: 32px;
     padding-right: 32px;
+    padding-bottom: 32px;
     width: 768px;
     margin-left: auto;
     margin-right: auto;
@@ -19,6 +20,7 @@ export const MainWr = styled.div`
   @media (min-width: 1440px) {
     padding-left: 100px;
     padding-right: 100px;
+    padding-bottom: 50px;
     width: 1440px;
     margin-left: auto;
     margin-right: auto;

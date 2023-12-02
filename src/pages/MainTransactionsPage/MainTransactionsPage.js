@@ -22,12 +22,10 @@ import {
   StyledWrapper,
 } from './MainTransactionsPage.styled';
 
-// framer animation
-import { motion } from 'framer-motion';
-
 // thunk's
 import { getTransactionsThunk } from 'redux/transactions/operations';
 import { Navigate } from 'react-router-dom';
+import { FramerMotion } from 'helpers/framer-motion';
 
 const MainTransactionsPage = () => {
   // adaptive design
@@ -52,11 +50,7 @@ const MainTransactionsPage = () => {
     <StyledSection>
       {isNotDesktop && (
         <>
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-          >
+          <FramerMotion $variant="mainTransactionsHeaderNotDesktop">
             <StyledHeadersWrapper>
               <StyledHeaders>Expense log</StyledHeaders>
               <StyledText>
@@ -64,12 +58,8 @@ const MainTransactionsPage = () => {
                 of your financial habits at your fingertips.
               </StyledText>
             </StyledHeadersWrapper>
-          </motion.div>
-          <motion.div
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-          >
+          </FramerMotion>
+          <FramerMotion $variant="mainTransactionsListNotDesktop">
             <StyledTotalUl>
               <li>
                 <TotalIncome />
@@ -78,26 +68,20 @@ const MainTransactionsPage = () => {
                 <TotalExpense />
               </li>
             </StyledTotalUl>
-          </motion.div>
-          <OperationForm />
-          <motion.div
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-          >
+          </FramerMotion>
+          <FramerMotion $variant="operationForm">
+            <OperationForm editData={null}/>
+          </FramerMotion>
+          <FramerMotion $variant="doughnut">
             <StyledMain>
               <DoughnutComponent />
             </StyledMain>
-          </motion.div>
+          </FramerMotion>
         </>
       )}
       {isDesktop && (
         <>
-          <motion.div
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-          >
+          <FramerMotion $variant="mainTransactionsInfoDesktop">
             <StyledWrapper>
               <StyledHeadersWrapper>
                 <StyledHeaders>Expense log</StyledHeaders>
@@ -118,8 +102,10 @@ const MainTransactionsPage = () => {
                 <DoughnutComponent />
               </StyledMain>
             </StyledWrapper>
-          </motion.div>
-          <OperationForm />
+          </FramerMotion>
+          <FramerMotion $variant="operationForm">
+            <OperationForm />
+          </FramerMotion>
         </>
       )}
     </StyledSection>

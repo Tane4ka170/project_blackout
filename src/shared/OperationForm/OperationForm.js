@@ -30,14 +30,13 @@ import {
   StyledInputsWrapper,
 } from './OperationForm.styled';
 
-// Framer
-import { motion } from 'framer-motion';
 
-const OperationForm = () => {
+const OperationForm = ({editData, closeModal}) => {
   const dispatch = useDispatch();
   const { transactionsType } = useParams();
 
-  const [categoryId, setCategoryId] = useState('');
+  const [ categoryId, setCategoryId] = useState('');
+  const [ datePicker, setDatePicker] = useState(editData ? editData.date : '');
 
   const {
     control,
@@ -47,43 +46,79 @@ const OperationForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      type: '',
-      date: '',
-      time: '00:00:00',
-      category: '',
-      sum: '',
-      comment: '',
+    type: editData?.type || '',
+    time: editData?.time || '00:00:00',
+    category: editData?.category?.categoryName || '',
+    sum: editData?.sum || '',
+    comment: editData?.comment || '',
     },
     resolver: yupResolver(validationSchema),
   });
+  const ifEditSubmit = (data) => {
+    if (!editData) {
+      onSubmitTransaction(
+        data,
+        PreSelectType(transactionsType),
+        categoryId,
+        dispatch,
+        reset,
+        undefined,
+        datePicker
+      )
+    } else {
+      onSubmitTransaction(
+        data,
+        editData.type,
+        categoryId,
+        dispatch,
+        reset,
+        editData,
+        datePicker
+      )
+      closeModal();
+    }
+  }
+
+    // style
+  const wrapperStyle = {
+    padding: editData ? '40px' : '',
+    width: editData ? '100%' : '',
+    marginBottom: editData? '0' : '',
+  };
+
+
+
   return (
-    <motion.div
-      initial={{ x: '100%' }}
-      animate={{ x: 0 }}
-      transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-    >
-      <StyledFormWrapper
+    // <StyledFormWrapper
+    //   autoComplete="off"
+    //   onSubmit={handleSubmit(data =>
+    //     onSubmitTransaction(
+    //       data,
+    //       PreSelectType(transactionsType),
+    //       categoryId,
+    //       dispatch,
+    //       reset
+    //     )
+    //   )}
+    // >
+      <StyledFormWrapper style={wrapperStyle}
         autoComplete="off"
-        onSubmit={handleSubmit(data =>
-          onSubmitTransaction(
-            data,
-            PreSelectType(transactionsType),
-            categoryId,
-            dispatch,
-            reset,
-          )
+        onSubmit={
+          handleSubmit(data => 
+          ifEditSubmit(data)
         )}
-      >
+      > 
         {/* type select */}
-        <RadioBtn control={control} />
+        <RadioBtn control={control} editData={ editData } />
         {/* date inputs */}
-        <DateInput control={control} />
+        <DateInput control={control} editData={ editData } datePiker={setDatePicker} />
         {/* category input */}
         <StyledInputsWrapper>
           <CategoryInput
             control={control}
             setValue={setValue}
             setCategoryId={setCategoryId}
+            type = { editData?.type }
           />
           {errors.category && (
             <StyledErrorMsg>{errors.category.message}</StyledErrorMsg>
@@ -91,20 +126,19 @@ const OperationForm = () => {
         </StyledInputsWrapper>
         {/* sum input */}
         <StyledInputsWrapper>
-          <SumInput control={control} />
+          <SumInput control={control} editData= { editData }/>
           {errors.sum && <StyledErrorMsg>{'Sum is required'}</StyledErrorMsg>}
         </StyledInputsWrapper>
         {/* comment input */}
         <StyledInputsWrapper>
-          <DescriptionInput control={control} />
+          <DescriptionInput control={control} editData= { editData }/>
           {errors.comment && (
             <StyledErrorMsg>{errors.comment.message}</StyledErrorMsg>
           )}
           {/* submit btn */}
         </StyledInputsWrapper>
-        <StyledBtn type="submit">Add</StyledBtn>
+        <StyledBtn type="submit">{editData ? 'Edit' : 'Add'}</StyledBtn>
       </StyledFormWrapper>
-    </motion.div>
   );
 };
 

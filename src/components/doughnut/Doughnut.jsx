@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useMemo  } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Doughnut } from 'react-chartjs-2';
@@ -10,6 +10,7 @@ import {
   ListStyled,
   ListWrapper,
   MainWrapper,
+  StatisticsPlug,
   Wrapper,
 } from './Doughnut.styled';
 import { selectTransaction } from 'redux/transactions/selectors';
@@ -25,46 +26,46 @@ const DoughnutComponent = () => {
   const colors = useMemo(() => {
     return [
       '#007E7E',
-    '#00FF00',
-    '#57FF57',
-    '#008A8A',
-    '#009A9A',
-    '#00C5C5',
-    '#006666',
-    '#00B2B2',
-    '#00DADA',
-    '#005C5C',
-    '#007272',
-    '#00E5E5',
-    '#004040',
-    '#00A5A5',
-    '#00F0F0',
-    '#003434',
-    '#009292',
-    '#00CDCD',
-    '#002E2E',
-    '#00FFFF',
-    '#001919',
-    '#00D5D5',
-    '#006262',
-    '#003D3D',
-    '#00AAAA',
-    '#002323',
-    '#00BFBF',
-    '#00ECEC',
-    '#004747',
-    '#00F5F5',
-    '#000A0A',
-    '#00CACA',
-    '#005353',
-    '#00F2F2',
-    '#008080',
-    '#001E1E',
-    '#00F7F7',
-    '#000505',
-    '#00A9A9',
-    '#009090',
-    '#000000',
+      '#00FF00',
+      '#57FF57',
+      '#008A8A',
+      '#009A9A',
+      '#00C5C5',
+      '#006666',
+      '#00B2B2',
+      '#00DADA',
+      '#005C5C',
+      '#007272',
+      '#00E5E5',
+      '#004040',
+      '#00A5A5',
+      '#00F0F0',
+      '#003434',
+      '#009292',
+      '#00CDCD',
+      '#002E2E',
+      '#00FFFF',
+      '#001919',
+      '#00D5D5',
+      '#006262',
+      '#003D3D',
+      '#00AAAA',
+      '#002323',
+      '#00BFBF',
+      '#00ECEC',
+      '#004747',
+      '#00F5F5',
+      '#000A0A',
+      '#00CACA',
+      '#005353',
+      '#00F2F2',
+      '#008080',
+      '#001E1E',
+      '#00F7F7',
+      '#000505',
+      '#00A9A9',
+      '#009090',
+      '#000000',
     ];
   }, []);
 
@@ -139,7 +140,6 @@ const DoughnutComponent = () => {
     }
   }, [queryTransactions]);
 
-
   useEffect(() => {
     if (items) {
       const sumByCategory = items.reduce((acc, transaction) => {
@@ -181,6 +181,11 @@ const DoughnutComponent = () => {
   return (
     <Wrapper>
       <h2>Expenses categories</h2>
+      {!items?.length && (
+        <StatisticsPlug>
+          Add at least 1 expense to see "doughnut" chart here📊
+        </StatisticsPlug>
+      )}
       <MainWrapper>
         <DoughnutWrapper>
           <Doughnut

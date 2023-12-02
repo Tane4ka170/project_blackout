@@ -19,7 +19,7 @@ import {
   StyledCategoryInput,
 } from './CategoryInput.styled';
 
-const CategoryInput = ({ control, setValue, setCategoryId }) => {
+const CategoryInput = ({ control, setValue, setCategoryId, type }) => {
   const { isOpened, openModal, closeModal } = useModal();
   const { transactionsType } = useParams();
 
@@ -50,7 +50,7 @@ const CategoryInput = ({ control, setValue, setCategoryId }) => {
             <Modal
               children={
                 <AllCategories
-                  type={transactionsType}
+                  type={type ? type : transactionsType}
                   chooseCategories={handleSetCategory}
                   closeModal={closeModal}
                   setCategoryId={setCategoryId}

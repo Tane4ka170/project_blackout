@@ -40,4 +40,11 @@ export const CloseButton = styled.button`
 
 export const StyledSvgUser = styled.svg`
   stroke: rgba(250, 250, 250, 1);
+
+  &:hover,
+  &:focus {
+    stroke: rgba(250, 250, 250, 0.5);
+    transition: background-color 500ms ease-in-out;
+    transform: scale(1.2);
+  }
 `;

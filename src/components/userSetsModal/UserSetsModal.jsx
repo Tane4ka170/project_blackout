@@ -1,12 +1,13 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectUser } from 'redux/user/selectors';
+import { selectLoading, selectUser } from 'redux/user/selectors';
 import {
   changeAvatarThunk,
   deleteAvatarThunk,
   updateUserInfoThunk,
 } from 'redux/user/operations';
+import { CirclesWithBar } from 'react-loader-spinner';
 
 import Symbols from 'images/svg/Symbols';
 import {
@@ -15,13 +16,14 @@ import {
   StyledInputName,
   StyledInputUpd,
   StyledLabelUpd,
+  StyledLoader,
   StyledSaveBtn,
   StyledSelect,
   StyledSvgWrap,
   StyledTitle,
   StyledWrap,
-  SvgArrow,
 } from 'components/userSetsModal/UserSetsModal.styled';
+import { toast } from 'react-toastify';
 
 const CURRENCIES = [
   { value: 'uah', label: '₴ UAH' },
@@ -32,6 +34,7 @@ const CURRENCIES = [
 const UserSetsModal = ({ closeModal }) => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  const loading = useSelector(selectLoading);
   const inputRef = useRef(null);
 
   const [userName, setUserName] = useState(user.name);
@@ -51,13 +54,29 @@ const UserSetsModal = ({ closeModal }) => {
 
     if (currentInput) {
       const avatar = currentInput.files[0];
-      dispatch(changeAvatarThunk(avatar));
+      dispatch(changeAvatarThunk(avatar))
+        .unwrap()
+        .then(() => {
+          toast.success('Avatar has been updated successfully!');
+        })
+        .catch(e => {
+          toast.error(
+            'Oops, something went wrong! Try again or upload smaller photo!'
+          );
+        });
     }
   };
 
   const handleRemove = () => {
     if (user._id) {
-      dispatch(deleteAvatarThunk(user._id));
+      dispatch(deleteAvatarThunk(user._id))
+        .unwrap()
+        .then(() => {
+          toast.success('Avatar has been removed successfully!');
+        })
+        .catch(e => {
+          toast.error('Oops, something went wrong! Try again!');
+        });
     }
   };
 
@@ -69,6 +88,9 @@ const UserSetsModal = ({ closeModal }) => {
     };
 
     dispatch(updateUserInfoThunk(data));
+    if (selectedOption.value !== user.currency || userName !== user.name) {
+      toast.success('Your profile info has been changed successfully!');
+    }
 
     closeModal();
   };
@@ -79,14 +101,26 @@ const UserSetsModal = ({ closeModal }) => {
       <StyledWrap>
         {user?.avatarUrl ? (
           <StyledSvgWrap>
-            <img src={user.avatarUrl} alt="user avatar" />
+            {loading ? (
+              <StyledLoader>
+                <CirclesWithBar />
+              </StyledLoader>
+            ) : (
+              <img src={user.avatarUrl} alt="user avatar" />
+            )}
           </StyledSvgWrap>
         ) : (
           <StyledSvgWrap>
             <Symbols />
-            <svg width={38} height={38}>
-              <use xlinkHref="#icon-default-svg" />
-            </svg>
+            {loading ? (
+              <StyledLoader>
+                <CirclesWithBar />
+              </StyledLoader>
+            ) : (
+              <svg width={38} height={38}>
+                <use xlinkHref="#icon-default-svg" />
+              </svg>
+            )}
           </StyledSvgWrap>
         )}
 
@@ -108,7 +142,6 @@ const UserSetsModal = ({ closeModal }) => {
           <StyledBtnWrap>
             <StyledSelect className={isOpen ? 'select-open' : ''}>
               <div
-                className="currencies-active"
                 onClick={() => {
                   setIsOpen(!isOpen);
                 }}
@@ -116,9 +149,9 @@ const UserSetsModal = ({ closeModal }) => {
                 <div>{selectedOption.label}</div>
 
                 <Symbols />
-                <SvgArrow width={20} height={20}>
+                <svg className="svg-arrow" width={20} height={20}>
                   <use xlinkHref="#user-icon-up" />
-                </SvgArrow>
+                </svg>
               </div>
               {isOpen && (
                 <ul className="select-options">

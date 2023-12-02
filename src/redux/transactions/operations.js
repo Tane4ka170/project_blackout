@@ -42,11 +42,11 @@ export const deleteTransactionThunk = createAsyncThunk(
 
 export const updateTransactionThunk = createAsyncThunk(
   'updateTransaction',
-  async ({ type, id, transactionData }, thunkApi) => {
+  async ({ type, _id, ...transaction }, thunkApi) => {
     try {
       const { data } = await expenseApi.patch(
-        `transactions/${type}/${id}`,
-        transactionData
+        `transactions/${type}/${_id}`,
+        transaction
       );
       return data;
     } catch (error) {
