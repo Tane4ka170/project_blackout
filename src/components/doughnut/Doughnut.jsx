@@ -183,7 +183,7 @@ const DoughnutComponent = () => {
       <h2>Expenses categories</h2>
       {!items?.length && (
         <StatisticsPlug>
-          Add at least 1 transaction to see "doughnut" statistics here📊
+          Add at least 1 expense to see "doughnut" chart here📊
         </StatisticsPlug>
       )}
       <MainWrapper>
