@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/project_blackout/static/css/main.5e4ffa51.css",
-    "main.js": "/project_blackout/static/js/main.931099ec.js",
+    "main.js": "/project_blackout/static/js/main.0c31222b.js",
     "static/js/950.01cf6023.chunk.js": "/project_blackout/static/js/950.01cf6023.chunk.js",
     "static/js/915.1e1ad8e8.chunk.js": "/project_blackout/static/js/915.1e1ad8e8.chunk.js",
     "static/js/755.7097a345.chunk.js": "/project_blackout/static/js/755.7097a345.chunk.js",
@@ -29,7 +29,7 @@
     "index.html": "/project_blackout/index.html",
     "static/media/eye.svg": "/project_blackout/static/media/eye.eeff295c23781fcaf0988e367a1f8870.svg",
     "main.5e4ffa51.css.map": "/project_blackout/static/css/main.5e4ffa51.css.map",
-    "main.931099ec.js.map": "/project_blackout/static/js/main.931099ec.js.map",
+    "main.0c31222b.js.map": "/project_blackout/static/js/main.0c31222b.js.map",
     "950.01cf6023.chunk.js.map": "/project_blackout/static/js/950.01cf6023.chunk.js.map",
     "915.1e1ad8e8.chunk.js.map": "/project_blackout/static/js/915.1e1ad8e8.chunk.js.map",
     "755.7097a345.chunk.js.map": "/project_blackout/static/js/755.7097a345.chunk.js.map",
@@ -48,6 +48,6 @@
   },
   "entrypoints": [
     "static/css/main.5e4ffa51.css",
-    "static/js/main.931099ec.js"
+    "static/js/main.0c31222b.js"
   ]
 }
