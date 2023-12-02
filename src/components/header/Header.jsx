@@ -105,14 +105,16 @@ const Header = () => {
   };
 
   const handleKeyDown = event => {
-    if (event.key === 'Escape') {
-      setHideOrShowList({ display: 'none' });
-      setHideOrShowSecondList({ display: 'none' });
-      setHideOrShow({ display: 'none' });
-      setIsRotated(false);
-      document.body.style.overflow = 'visible';
-    }
+    // if (event.key === 'Escape') {
+    //   setHideOrShowList({ display: 'none' });
+    //   setHideOrShowSecondList({ display: 'none' });
+    //   setHideOrShow({ display: 'none' });
+    //   setIsRotated(false);
+    //   document.body.style.overflow = 'visible';
+    // }
+    //Замінити функцію закриття бургер меню на esk
   };
+
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
 

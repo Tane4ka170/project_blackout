@@ -1,20 +1,22 @@
 import ReactDOM from 'react-dom';
 import React, { useCallback, useEffect } from 'react';
 
+import { FramerMotion } from 'helpers/framer-motion';
+import Symbols from 'images/svg/Symbols';
+
 import {
   CloseButton,
   ContentWrapper,
   StyledSvgUser,
   StyledWrapper,
 } from './Modal.styled';
-import Symbols from 'images/svg/Symbols';
-import { FramerMotion } from 'helpers/framer-motion';
 
 const rootModal = document.querySelector('#modal');
 
 const Modal = ({ children, closeModal }) => {
   const handleKeyDown = useCallback(
     e => {
+      console.log(e);
       if (e.key === 'Escape') {
         closeModal();
       }
