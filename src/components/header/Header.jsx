@@ -11,32 +11,32 @@ import LogOutModal from 'components/logOutModal/LogOutModal';
 
 import {
   HeaderLink,
-  HeaderStyled,
-  MenuBtn,
+  HeaderAuthorised,
+  BurgerBtn,
   SiteIcon,
   MobileMenu,
   CloseBtn,
   MenuHeader,
-  ProfileBtn,
+  ProfileSettingsBtn,
   UserArrowUp,
   MenuMain,
-  EmptyHeaderStyled,
+  UnAuthorisedHeader,
   ExpensesBtn,
   IncomeBtn,
   DefaultUserIcon,
   UserImgContainer,
-  BtnContainer,
-  UserLink,
-  UserLinkIcons,
+  UserBarContainer,
+  UserPanel,
+  UserPanelIcons,
   UserName,
   ExpensesLink,
   IncomeLink,
   LinksContainer,
-  ProfileContainer,
-  SecondBtnContainer,
-  UserLinkbutton,
+  ProfileSettingsContainer,
+  HeaderProfileSettings,
+  UserPanelLogOut,
   DarkBackDrop,
-  HeaderBtnsContainer,
+  HeaderBurgerMenu,
   UsualBackDrop,
 } from './headerStyled';
 import Symbols from 'images/svg/Symbols';
@@ -48,7 +48,8 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hideOrShow, setHideOrShow] = useState({});
   const [hideOrShowList, setHideOrShowList] = useState({});
-  const [hideOrShowSecondList, setHideOrShowSecondList] = useState({});
+  const [hideOrHeaderProfileSettings, setHideOrHeaderProfileSettings] =
+    useState({});
   const [isRotated, setIsRotated] = useState(false);
   const { isOpened, openModal, closeModal } = useModal();
   const [modal, setModal] = useState(null);
@@ -63,7 +64,7 @@ const Header = () => {
       <LogOutModal
         setHideOrShow={setHideOrShow}
         setHideOrShowList={setHideOrShowList}
-        setHideOrShowSecondList={setHideOrShowSecondList}
+        setHideOrHeaderProfileSettings={setHideOrHeaderProfileSettings}
         closeModal={closeModal}
       />
     );
@@ -96,7 +97,7 @@ const Header = () => {
   };
 
   const hanldeSecondBtnList = () => {
-    setHideOrShowSecondList(prev => ({
+    setHideOrHeaderProfileSettings(prev => ({
       display: prev.display === 'flex' ? 'none' : 'flex',
     }));
     setIsRotated(!isRotated);
@@ -110,7 +111,7 @@ const Header = () => {
 
       if (event.key === 'Escape') {
         setHideOrShowList({ display: 'none' });
-        setHideOrShowSecondList({ display: 'none' });
+        setHideOrHeaderProfileSettings({ display: 'none' });
         setHideOrShow({ display: 'none' });
         setIsRotated(false);
         document.body.style.overflow = 'visible';
@@ -127,7 +128,7 @@ const Header = () => {
   const handleBackDrop = ({ currentTarget, target }) => {
     if (currentTarget === target) {
       setHideOrShowList({ display: 'none' });
-      setHideOrShowSecondList({ display: 'none' });
+      setHideOrHeaderProfileSettings({ display: 'none' });
       setHideOrShow({ display: 'none' });
       setIsRotated(false);
       document.body.style.overflow = 'visible';
@@ -136,12 +137,12 @@ const Header = () => {
   const handleBackDropForLinks = ({ currentTarget, target }) => {
     if (currentTarget === target) {
       setHideOrShowList({ display: 'none' });
-      setHideOrShowSecondList({ display: 'none' });
+      setHideOrHeaderProfileSettings({ display: 'none' });
     }
   };
   if (!isLoggedIn) {
     return (
-      <EmptyHeaderStyled>
+      <UnAuthorisedHeader>
         <HeaderLink to="/">
           <SiteIcon>
             <Symbols />
@@ -151,12 +152,15 @@ const Header = () => {
           </SiteIcon>
           ExpenseTracker
         </HeaderLink>
-      </EmptyHeaderStyled>
+      </UnAuthorisedHeader>
     );
   }
   return (
-    <HeaderStyled onClick={handleBackDrop}>
-      <UsualBackDrop onClick={handleBackDrop} style={hideOrShowSecondList} />
+    <HeaderAuthorised onClick={handleBackDrop}>
+      <UsualBackDrop
+        onClick={handleBackDrop}
+        style={hideOrHeaderProfileSettings}
+      />
       <HeaderLink to="/transactions/expenses">
         <SiteIcon>
           <Symbols />
@@ -176,15 +180,15 @@ const Header = () => {
         </IncomeLink>
       </LinksContainer>
 
-      <HeaderBtnsContainer>
-        <MenuBtn type="button" onClick={handleMenu}>
+      <HeaderBurgerMenu>
+        <BurgerBtn type="button" onClick={handleMenu}>
           <svg width={36} height={36}>
             <use xlinkHref="#icon-burger-menu" />
           </svg>
-        </MenuBtn>
+        </BurgerBtn>
 
-        <ProfileContainer>
-          <ProfileBtn type="button" onClick={hanldeSecondBtnList}>
+        <ProfileSettingsContainer>
+          <ProfileSettingsBtn type="button" onClick={hanldeSecondBtnList}>
             {avatarUrl ? (
               <UserImgContainer>
                 <img src={avatarUrl} alt="User" width={34} height={34} />
@@ -204,35 +208,35 @@ const Header = () => {
             >
               <use xlinkHref="#user-icon-down" />
             </UserArrowUp>
-          </ProfileBtn>
-        </ProfileContainer>
-      </HeaderBtnsContainer>
+          </ProfileSettingsBtn>
+        </ProfileSettingsContainer>
+      </HeaderBurgerMenu>
 
-      <SecondBtnContainer style={hideOrShowSecondList}>
-        <UserLink onClick={openUserSetsModal}>
-          <UserLinkIcons width={16} height={16}>
+      <HeaderProfileSettings style={hideOrHeaderProfileSettings}>
+        <UserPanel onClick={openUserSetsModal}>
+          <UserPanelIcons width={16} height={16}>
             <use xlinkHref="#icon-user" />
-          </UserLinkIcons>
+          </UserPanelIcons>
           Profile settings
-        </UserLink>
+        </UserPanel>
         {isOpened && modal && (
           <Modal children={modal} closeModal={closeModal} />
         )}
-        <UserLinkbutton onClick={openLogOutModal}>
-          <UserLinkIcons width={16} height={16}>
+        <UserPanelLogOut onClick={openLogOutModal}>
+          <UserPanelIcons width={16} height={16}>
             <use xlinkHref="#icon-log-out" />
-          </UserLinkIcons>
+          </UserPanelIcons>
           Log out
-        </UserLinkbutton>
+        </UserPanelLogOut>
         {isOpened && modal && (
           <Modal children={modal} closeModal={closeModal} />
         )}
-      </SecondBtnContainer>
+      </HeaderProfileSettings>
 
       <DarkBackDrop style={hideOrShow} onClick={handleBackDrop} />
       <MobileMenu style={hideOrShow} onClick={handleBackDropForLinks}>
         <MenuHeader>
-          <ProfileBtn
+          <ProfileSettingsBtn
             type="button"
             onClick={hanldeBtnList}
             initial={{ y: -250 }}
@@ -258,27 +262,27 @@ const Header = () => {
             >
               <use xlinkHref="#user-icon-down" />
             </UserArrowUp>
-          </ProfileBtn>
-          <BtnContainer style={hideOrShowList}>
-            <UserLink onClick={openUserSetsModal}>
-              <UserLinkIcons width={16} height={16}>
+          </ProfileSettingsBtn>
+          <UserBarContainer style={hideOrShowList}>
+            <UserPanel onClick={openUserSetsModal}>
+              <UserPanelIcons width={16} height={16}>
                 <use xlinkHref="#icon-user" />
-              </UserLinkIcons>
+              </UserPanelIcons>
               Profile settings
-            </UserLink>
+            </UserPanel>
             {isOpened && modal && (
               <Modal children={modal} closeModal={closeModal} />
             )}
-            <UserLinkbutton onClick={openLogOutModal}>
-              <UserLinkIcons width={16} height={16}>
+            <UserPanelLogOut onClick={openLogOutModal}>
+              <UserPanelIcons width={16} height={16}>
                 <use xlinkHref="#icon-log-out" />
-              </UserLinkIcons>
+              </UserPanelIcons>
               Log out
-            </UserLinkbutton>
+            </UserPanelLogOut>
             {isOpened && modal && (
               <Modal children={modal} closeModal={closeModal} />
             )}
-          </BtnContainer>
+          </UserBarContainer>
           <CloseBtn
             onClick={handleMenu}
             initial={{ y: -250 }}
@@ -309,7 +313,7 @@ const Header = () => {
         </MenuMain>
         <div></div>
       </MobileMenu>
-    </HeaderStyled>
+    </HeaderAuthorised>
   );
 };
 
