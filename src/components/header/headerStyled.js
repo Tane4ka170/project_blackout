@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const EmptyHeaderStyled = styled.div`
+export const UnAuthorisedHeader = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +14,7 @@ export const EmptyHeaderStyled = styled.div`
   }
 `;
 
-export const HeaderStyled = styled(motion.div)`
+export const HeaderAuthorised = styled(motion.div)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -69,7 +69,7 @@ export const UserImgContainer = styled.div`
   overflow: hidden;
 `;
 
-export const BtnContainer = styled.div`
+export const UserBarContainer = styled.div`
   display: none;
   flex-direction: column;
   gap: 16px;
@@ -90,12 +90,12 @@ export const LinksContainer = styled.div`
   }
 `;
 
-export const ProfileContainer = styled(motion.div)`
+export const ProfileSettingsContainer = styled(motion.div)`
   @media screen and (max-width: 1439.97px) {
     display: none;
   }
 `;
-export const SecondBtnContainer = styled.div`
+export const HeaderProfileSettings = styled.div`
   display: none;
   flex-direction: column;
   gap: 16px;
@@ -129,7 +129,7 @@ export const DarkBackDrop = styled.div`
   }
 `;
 
-export const HeaderBtnsContainer = styled.div``;
+export const HeaderBurgerMenu = styled.div``;
 
 export const UsualBackDrop = styled.div`
   display: none;
@@ -157,7 +157,7 @@ export const HeaderLink = styled(motion(Link))`
     font-size: 20px;
   }
 `;
-export const UserLink = styled(Link)`
+export const UserPanel = styled(Link)`
   text-decoration: none;
   color: rgba(250, 250, 250, 0.5);
   font-size: 14px;
@@ -171,7 +171,7 @@ export const UserLink = styled(Link)`
     text-shadow: 0 0 5px #0ef387;
   }
 `;
-export const UserLinkbutton = styled.button`
+export const UserPanelLogOut = styled.button`
   text-decoration: none;
   color: rgba(250, 250, 250, 0.5);
   font-size: 14px;
@@ -191,7 +191,7 @@ export const UserLinkbutton = styled.button`
 `;
 export const SiteIcon = styled.span``;
 
-export const MenuBtn = styled(motion.button)`
+export const BurgerBtn = styled(motion.button)`
   background-color: transparent;
   border: none;
   stroke: white;
@@ -211,7 +211,7 @@ export const CloseBtn = styled(motion.button)`
   }
 `;
 
-export const ProfileBtn = styled(motion.button)`
+export const ProfileSettingsBtn = styled(motion.button)`
   display: flex;
   align-items: center;
   padding: 6px 16px;
@@ -310,7 +310,7 @@ export const UserArrowUp = styled.svg`
   stroke: rgba(14, 243, 135, 1);
   transition: transform 0.3s ease;
 `;
-export const UserLinkIcons = styled.svg`
+export const UserPanelIcons = styled.svg`
   stroke: rgba(131, 131, 131, 1);
 `;
 
