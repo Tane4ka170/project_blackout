@@ -66,7 +66,8 @@ windows ◼ Modal window for Profile settings
 
 ✔️ Oleksandr Hembaruk - Transactions chart
 
-✔️ Kyrylo Shyrokov - Categories modal ◼ Redux slice for categories ◼ Code review
+✔️ Kyrylo Shyrokov - Categories section ◼ Redux slice for categories ◼ Set up
+framer-motion animation for project ◼ Codereview
 
 ✔️ Olena Solonikova - Loader ◼ Layout ◼ Logout modal ◼ Public and private routes
 
@@ -74,6 +75,6 @@ windows ◼ Modal window for Profile settings
 user operations
 
 ✔️ Serhii Kolodiazhnyi - Main transactions page ◼ Transactions total amount ◼
-Transaction form ◼ Code review
+Transaction form ◼ Codereview
 
 ✔️ Kyrylo Ivanov - Welcome page ◼ Register page ◼ Auth form
